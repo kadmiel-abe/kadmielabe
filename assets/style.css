@@ -1,0 +1,127 @@
+/* ====================================
+   CUSTOM STYLES FOR WEBSITE
+   ==================================== */
+
+/* Dot Grid Background */
+.dot-bg {
+    background-image: radial-gradient(var(--tw-colors-dot-grid) 1px, transparent 1px);
+    background-size: 24px 24px;
+}
+
+/* Glass Card Effect */
+.glass-card {
+    background: rgba(255, 255, 255, 0.7);
+    backdrop-filter: blur(20px) saturate(180%);
+    border: 1px solid rgba(0, 0, 0, 0.05);
+}
+
+/* Glow Hover Effect */
+.glow-hover:hover {
+    box-shadow: 0 10px 30px rgba(34, 197, 94, 0.1);
+    transform: translateY(-4px);
+}
+
+/* Text Gradient Effect (Green #006E2F) */
+.text-gradient {
+    background: linear-gradient(to right, #006e2f, #22c55e);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+}
+
+/* Smooth Scroll Behavior */
+html {
+    scroll-behavior: smooth;
+}
+
+/* Animation Preferences */
+@media (prefers-reduced-motion: no-preference) {
+
+    /* Float Animation */
+    .animate-float {
+        animation: float 6s ease-in-out infinite;
+    }
+
+    @keyframes float {
+        0% {
+            transform: translateY(0px);
+        }
+
+        50% {
+            transform: translateY(-20px);
+        }
+
+        100% {
+            transform: translateY(0px);
+        }
+    }
+
+    /* Scroll Reveal Animation */
+    .scroll-reveal {
+        opacity: 0;
+        transform: translateY(40px);
+        transition: opacity 0.8s cubic-bezier(0.16, 1, 0.3, 1),
+            transform 0.8s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+
+    .scroll-reveal.is-visible {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* Category Filter Button Styles */
+.filter-btn {
+    transition: all 0.2s ease;
+
+}
+
+.filter-btn.active {
+    background: #006e2f !important;
+    color: #fff !important;
+}
+
+.filter-btn:not(.active) {
+    background: white !important;
+    border: 1px solid rgba(0, 0, 0, 0.1) !important;
+    color: #666 !important;
+}
+
+/* Scroll to Top Button */
+#scrollToTopBtn {
+    position: fixed;
+    bottom: 96px;
+    right: 32px;
+    background: rgba(255, 255, 255, 0.2);
+    backdrop-filter: blur(12px);
+    border: 1px solid #22C55E;
+    color: #006e2f;
+    padding: 12px;
+    border-radius: 9999px;
+    box-shadow: 0 0 15px rgba(34, 197, 94, 0.3);
+    cursor: pointer;
+    z-index: 40;
+    display: none;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.3s ease;
+}
+
+#scrollToTopBtn.visible {
+    display: flex;
+}
+
+#scrollToTopBtn:hover {
+    box-shadow: 0 0 25px rgba(34, 197, 94, 0.5);
+    background: rgba(255, 255, 255, 0.4);
+    transform: scale(1.1);
+}
+
+/* Mobile Menu */
+#navLinks {
+    transition: all 0.3s ease;
+}
+
+#navLinks.show {
+    display: flex;
+}
