@@ -83,13 +83,55 @@ document.addEventListener('DOMContentLoaded', () => {
     // ====== Mobile Menu Toggle ======
     (function setupMobileMenu() {
         const btn = document.getElementById('mobileMenuBtn');
-        const links = document.getElementById('navLinks');
+        const mobileMenu = document.getElementById('mobileMenu');
+        const mobileMenuContent = document.getElementById('mobileMenuContent');
+        const mobileLinks = mobileMenuContent?.querySelectorAll('a');
 
-        if (!btn || !links) return;
+        if (!btn || !mobileMenu || !mobileMenuContent) return;
+
+        let isOpen = false;
+
+        function openMenu() {
+            isOpen = true;
+            mobileMenu.classList.remove('opacity-0', 'invisible');
+            mobileMenuContent.classList.remove('-translate-y-full');
+            btn.setAttribute('aria-expanded', 'true');
+            document.body.style.overflow = 'hidden';
+        }
+
+        function closeMenu() {
+            isOpen = false;
+            mobileMenu.classList.add('opacity-0', 'invisible');
+            mobileMenuContent.classList.add('-translate-y-full');
+            btn.setAttribute('aria-expanded', 'false');
+            document.body.style.overflow = '';
+        }
 
         btn.addEventListener('click', () => {
-            const hidden = links.classList.toggle('hidden');
-            btn.setAttribute('aria-expanded', String(!hidden));
+            if (isOpen) closeMenu();
+            else openMenu();
+        });
+
+        // Close menu when clicking on links
+        mobileLinks?.forEach(link => {
+            link.addEventListener('click', closeMenu);
+        });
+
+        // Close menu when clicking on the overlay
+        mobileMenu.addEventListener('click', closeMenu);
+
+        // Close menu when clicking outside
+        document.addEventListener('click', (e) => {
+            if (isOpen && !btn.contains(e.target) && !mobileMenuContent.contains(e.target)) {
+                closeMenu();
+            }
+        });
+
+        // Close menu on escape key
+        document.addEventListener('keydown', (e) => {
+            if (e.key === 'Escape' && isOpen) {
+                closeMenu();
+            }
         });
     })();
 });
