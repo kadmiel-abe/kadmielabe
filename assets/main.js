@@ -152,10 +152,12 @@ document.addEventListener('DOMContentLoaded', () => {
             }
         });
 
-        // Close menu when clicking on links
+        // Close menu when clicking on links - FIXED: Don't delay navigation
         mobileLinks?.forEach(link => {
-            link.addEventListener('click', () => {
-                setTimeout(closeMenu, 100);
+            link.addEventListener('click', (e) => {
+                // Don't prevent default - let the anchor link work naturally
+                // Just close the menu immediately
+                closeMenu();
             });
         });
 
