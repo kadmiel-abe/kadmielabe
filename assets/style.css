@@ -126,13 +126,19 @@ html {
     display: flex;
 }
 
-/* Mobile Menu Animation */
+/* Mobile Menu Animation - Pro Version */
 @media (prefers-reduced-motion: no-preference) {
-    /* Menu Content Animation */
+    /* Menu Content - Always has smooth transition */
     #mobileMenuContent {
+        transition: transform 0.4s cubic-bezier(0.4, 0, 0.2, 1), opacity 0.4s ease !important;
+    }
+
+    /* When menu is open (class removed) */
+    #mobileMenuContent:not(.-translate-y-full) {
         animation: slideDown 0.4s cubic-bezier(0.4, 0, 0.2, 1) forwards;
     }
 
+    /* When menu is closed (class added) */
     #mobileMenuContent.-translate-y-full {
         animation: slideUp 0.4s cubic-bezier(0.4, 0, 0.2, 1) forwards;
     }
@@ -159,9 +165,14 @@ html {
         }
     }
 
-    /* Menu Items Stagger Animation */
-    #mobileMenuContent a {
-        animation: slideInMenu 0.5s cubic-bezier(0.4, 0, 0.2, 1) backwards;
+    /* Menu Items Stagger Animation - Fixed selectors */
+    #mobileMenuContent:not(.-translate-y-full) a {
+        animation: slideInMenu 0.5s cubic-bezier(0.4, 0, 0.2, 1) both;
+    }
+
+    /* Menu Items Hide Animation */
+    #mobileMenuContent.-translate-y-full a {
+        animation: none;
     }
 
     @keyframes slideInMenu {
@@ -175,37 +186,95 @@ html {
         }
     }
 
-    /* Staggered delays for menu items */
-    #mobileMenuContent a:nth-child(1) { animation-delay: 0.05s; }
-    #mobileMenuContent a:nth-child(2) { animation-delay: 0.1s; }
-    #mobileMenuContent a:nth-child(3) { animation-delay: 0.15s; }
-    #mobileMenuContent a:nth-child(4) { animation-delay: 0.2s; }
-    #mobileMenuContent a:nth-child(5) { animation-delay: 0.25s; }
-    #mobileMenuContent a:nth-child(6) { animation-delay: 0.3s; }
-    #mobileMenuContent div { animation-delay: 0.35s; }
+    /* Staggered delays for menu items - using nth-of-type for direct a elements */
+    #mobileMenuContent > div > a:nth-of-type(1) { animation-delay: 0.05s; }
+    #mobileMenuContent > div > a:nth-of-type(2) { animation-delay: 0.1s; }
+    #mobileMenuContent > div > a:nth-of-type(3) { animation-delay: 0.15s; }
+    #mobileMenuContent > div > a:nth-of-type(4) { animation-delay: 0.2s; }
+    #mobileMenuContent > div > a:nth-of-type(5) { animation-delay: 0.25s; }
+    #mobileMenuContent > div > a:nth-of-type(6) { animation-delay: 0.3s; }
+    
+    /* Delay for the CTA button */
+    #mobileMenuContent > div > div { animation-delay: 0.35s; }
+    #mobileMenuContent > div > div a { animation-delay: 0.35s; }
 
     /* Overlay Animation */
     #mobileMenu {
         transition: opacity 0.3s ease, visibility 0.3s ease;
     }
 
-    /* Button Icon Animation */
+    /* Button Icon Animation - Hamburger to X */
     #mobileMenuBtn span {
-        transition: opacity 0.3s ease, transform 0.3s ease;
+        transition: opacity 0.3s ease, transform 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        transform-origin: center;
     }
 
+    /* Menu Icon visible by default */
+    #menuIcon {
+        display: inline-block;
+    }
+
+    /* Close Icon hidden by default */
+    #closeIcon {
+        display: inline-block;
+    }
+
+    /* When menu is open, hide menu icon and show close icon */
     #mobileMenuBtn[aria-expanded="true"] #menuIcon {
         opacity: 0;
         transform: scale(0) rotate(-180deg);
+        pointer-events: none;
     }
 
     #mobileMenuBtn[aria-expanded="true"] #closeIcon {
         opacity: 1;
         transform: scale(1) rotate(0deg);
+        pointer-events: auto;
+    }
+
+    /* When menu is closed, show menu icon and hide close icon */
+    #mobileMenuBtn[aria-expanded="false"] #menuIcon {
+        opacity: 1;
+        transform: scale(1) rotate(0deg);
+        pointer-events: auto;
     }
 
     #mobileMenuBtn[aria-expanded="false"] #closeIcon {
         opacity: 0;
         transform: scale(0) rotate(180deg);
+        pointer-events: none;
     }
+}
+
+/* ====== MOBILE MENU FALLBACK - Ensure it works ====== */
+/* These styles apply regardless of motion preference */
+
+/* Hide menu by default */
+#mobileMenu {
+    display: none;
+    opacity: 0;
+    visibility: hidden;
+    transition: opacity 0.3s ease, visibility 0.3s ease;
+}
+
+/* Show menu when opacity-100 class is added */
+#mobileMenu.opacity-100 {
+    display: block;
+    opacity: 1;
+    visibility: visible;
+}
+
+/* Menu content - starts hidden */
+#mobileMenuContent {
+    transform: translateY(-100%);
+    opacity: 0;
+    transition: transform 0.4s cubic-bezier(0.4, 0, 0.2, 1), opacity 0.4s ease;
+    visibility: hidden;
+}
+
+/* Menu content - show when class is removed */
+#mobileMenuContent:not(.-translate-y-full) {
+    transform: translateY(0);
+    opacity: 1;
+    visibility: visible;
 }

@@ -87,42 +87,84 @@ document.addEventListener('DOMContentLoaded', () => {
         const mobileMenuContent = document.getElementById('mobileMenuContent');
         const mobileLinks = mobileMenuContent?.querySelectorAll('a');
 
-        if (!btn || !mobileMenu || !mobileMenuContent) return;
+        if (!btn || !mobileMenu || !mobileMenuContent) {
+            console.warn('Mobile menu elements not found.');
+            return;
+        }
 
         let isOpen = false;
 
         function openMenu() {
+            if (isOpen) return;
+            
             isOpen = true;
-            mobileMenu.classList.remove('opacity-0', 'invisible');
-            mobileMenuContent.classList.remove('-translate-y-full');
+            
+            // Show overlay - handle Tailwind classes
+            mobileMenu.classList.remove('opacity-0', 'invisible', 'pointer-events-none');
+            mobileMenu.classList.add('opacity-100', 'pointer-events-auto');
+            
+            // Show menu - handle Tailwind classes
+            mobileMenuContent.classList.remove('-translate-y-full', 'opacity-0', 'invisible');
+            mobileMenuContent.classList.add('opacity-100');
+            
+            // Update button state
             btn.setAttribute('aria-expanded', 'true');
-            document.body.style.overflow = 'hidden';
+            
+            // Prevent body scroll
+            const body = document.body;
+            const html = document.documentElement;
+            body.style.overflow = 'hidden';
+            html.style.overflow = 'hidden';
+            body.style.height = '100vh';
         }
 
         function closeMenu() {
+            if (!isOpen) return;
+            
             isOpen = false;
-            mobileMenu.classList.add('opacity-0', 'invisible');
-            mobileMenuContent.classList.add('-translate-y-full');
+            
+            // Hide overlay - handle Tailwind classes
+            mobileMenu.classList.remove('opacity-100', 'pointer-events-auto');
+            mobileMenu.classList.add('opacity-0', 'invisible', 'pointer-events-none');
+            
+            // Hide menu - handle Tailwind classes
+            mobileMenuContent.classList.add('-translate-y-full', 'opacity-0', 'invisible');
+            mobileMenuContent.classList.remove('opacity-100');
+            
+            // Update button state
             btn.setAttribute('aria-expanded', 'false');
-            document.body.style.overflow = '';
+            
+            // Restore body scroll
+            const body = document.body;
+            const html = document.documentElement;
+            body.style.overflow = '';
+            html.style.overflow = '';
+            body.style.height = '';
         }
 
+        // Toggle menu on button click
         btn.addEventListener('click', (e) => {
             e.stopPropagation();
-            if (isOpen) closeMenu();
-            else openMenu();
+            if (isOpen) {
+                closeMenu();
+            } else {
+                openMenu();
+            }
         });
 
         // Close menu when clicking on links
         mobileLinks?.forEach(link => {
             link.addEventListener('click', () => {
-                // Small delay for smooth animation
-                setTimeout(closeMenu, 150);
+                setTimeout(closeMenu, 100);
             });
         });
 
         // Close menu when clicking on the overlay
-        mobileMenu.addEventListener('click', closeMenu);
+        mobileMenu.addEventListener('click', (e) => {
+            if (e.target === mobileMenu) {
+                closeMenu();
+            }
+        });
 
         // Close menu when clicking outside
         document.addEventListener('click', (e) => {
@@ -138,7 +180,7 @@ document.addEventListener('DOMContentLoaded', () => {
             }
         });
 
-        // Handle window resize
+        // Close menu on window resize to desktop
         window.addEventListener('resize', () => {
             if (window.innerWidth >= 768 && isOpen) {
                 closeMenu();
