@@ -37,10 +37,12 @@
         </a>
 
         <!-- Mobile Menu Button -->
+        <!-- Mobile Menu Button with Animation -->
         <button id="mobileMenuBtn" 
-            class="md:hidden text-on-surface p-2 hover:bg-surface-container rounded-lg transition-colors"
+            class="md:hidden text-on-surface p-2 hover:bg-surface-container rounded-lg transition-colors relative"
             aria-label="Ouvrir le menu" aria-expanded="false" aria-controls="mobileMenu">
-            <span class="material-symbols-outlined text-headline-md">menu</span>
+            <span id="menuIcon" class="material-symbols-outlined text-headline-md transition-all duration-300 inline-block">menu</span>
+            <span id="closeIcon" class="material-symbols-outlined text-headline-md transition-all duration-300 absolute left-2 top-2 opacity-0 scale-0">close</span>
         </button>
     </div>
 

@@ -107,14 +107,18 @@ document.addEventListener('DOMContentLoaded', () => {
             document.body.style.overflow = '';
         }
 
-        btn.addEventListener('click', () => {
+        btn.addEventListener('click', (e) => {
+            e.stopPropagation();
             if (isOpen) closeMenu();
             else openMenu();
         });
 
         // Close menu when clicking on links
         mobileLinks?.forEach(link => {
-            link.addEventListener('click', closeMenu);
+            link.addEventListener('click', () => {
+                // Small delay for smooth animation
+                setTimeout(closeMenu, 150);
+            });
         });
 
         // Close menu when clicking on the overlay
@@ -130,6 +134,13 @@ document.addEventListener('DOMContentLoaded', () => {
         // Close menu on escape key
         document.addEventListener('keydown', (e) => {
             if (e.key === 'Escape' && isOpen) {
+                closeMenu();
+            }
+        });
+
+        // Handle window resize
+        window.addEventListener('resize', () => {
+            if (window.innerWidth >= 768 && isOpen) {
                 closeMenu();
             }
         });

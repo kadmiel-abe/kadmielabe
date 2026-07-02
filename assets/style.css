@@ -125,3 +125,87 @@ html {
 #navLinks.show {
     display: flex;
 }
+
+/* Mobile Menu Animation */
+@media (prefers-reduced-motion: no-preference) {
+    /* Menu Content Animation */
+    #mobileMenuContent {
+        animation: slideDown 0.4s cubic-bezier(0.4, 0, 0.2, 1) forwards;
+    }
+
+    #mobileMenuContent.-translate-y-full {
+        animation: slideUp 0.4s cubic-bezier(0.4, 0, 0.2, 1) forwards;
+    }
+
+    @keyframes slideDown {
+        from {
+            transform: translateY(-100%);
+            opacity: 0;
+        }
+        to {
+            transform: translateY(0);
+            opacity: 1;
+        }
+    }
+
+    @keyframes slideUp {
+        from {
+            transform: translateY(0);
+            opacity: 1;
+        }
+        to {
+            transform: translateY(-100%);
+            opacity: 0;
+        }
+    }
+
+    /* Menu Items Stagger Animation */
+    #mobileMenuContent a {
+        animation: slideInMenu 0.5s cubic-bezier(0.4, 0, 0.2, 1) backwards;
+    }
+
+    @keyframes slideInMenu {
+        from {
+            transform: translateX(-20px);
+            opacity: 0;
+        }
+        to {
+            transform: translateX(0);
+            opacity: 1;
+        }
+    }
+
+    /* Staggered delays for menu items */
+    #mobileMenuContent a:nth-child(1) { animation-delay: 0.05s; }
+    #mobileMenuContent a:nth-child(2) { animation-delay: 0.1s; }
+    #mobileMenuContent a:nth-child(3) { animation-delay: 0.15s; }
+    #mobileMenuContent a:nth-child(4) { animation-delay: 0.2s; }
+    #mobileMenuContent a:nth-child(5) { animation-delay: 0.25s; }
+    #mobileMenuContent a:nth-child(6) { animation-delay: 0.3s; }
+    #mobileMenuContent div { animation-delay: 0.35s; }
+
+    /* Overlay Animation */
+    #mobileMenu {
+        transition: opacity 0.3s ease, visibility 0.3s ease;
+    }
+
+    /* Button Icon Animation */
+    #mobileMenuBtn span {
+        transition: opacity 0.3s ease, transform 0.3s ease;
+    }
+
+    #mobileMenuBtn[aria-expanded="true"] #menuIcon {
+        opacity: 0;
+        transform: scale(0) rotate(-180deg);
+    }
+
+    #mobileMenuBtn[aria-expanded="true"] #closeIcon {
+        opacity: 1;
+        transform: scale(1) rotate(0deg);
+    }
+
+    #mobileMenuBtn[aria-expanded="false"] #closeIcon {
+        opacity: 0;
+        transform: scale(0) rotate(180deg);
+    }
+}
