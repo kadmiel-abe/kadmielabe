@@ -278,3 +278,433 @@ html {
     opacity: 1;
     visibility: visible;
 }
+
+/* ====== PREMIUM 3D MOTION SYSTEM ====== */
+.typing-text {
+    display: inline-block;
+    min-height: 1.2em;
+    white-space: pre-wrap;
+}
+
+.typing-cursor {
+    display: inline-block;
+    margin-left: 2px;
+    color: #22c55e;
+    font-weight: 300;
+    animation: blink 0.8s infinite;
+}
+
+@keyframes blink {
+    0%, 45% { opacity: 1; }
+    46%, 100% { opacity: 0; }
+}
+
+.service-card {
+    position: relative;
+    transform-style: preserve-3d;
+    perspective: 1200px;
+    overflow: hidden;
+}
+
+.service-card::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(135deg, rgba(34,197,94,0.16), rgba(255,255,255,0.02));
+    opacity: 0;
+    transition: opacity 0.35s ease;
+    pointer-events: none;
+    z-index: 0;
+}
+
+.service-card:hover {
+    transform: rotateX(6deg) rotateY(-8deg) translateY(-10px) scale(1.02);
+    box-shadow: 0 24px 55px -18px rgba(34, 197, 94, 0.35);
+}
+
+.service-card:hover::before {
+    opacity: 1;
+}
+
+.service-card > * {
+    position: relative;
+    z-index: 1;
+}
+
+.service-card .material-symbols-outlined {
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    box-shadow: inset 0 0 0 1px rgba(34,197,94,0.12);
+}
+
+.service-card:hover .material-symbols-outlined {
+    transform: translateZ(20px) scale(1.08);
+    box-shadow: 0 10px 25px rgba(34,197,94,0.2);
+}
+
+.service-card h3,
+.service-card p {
+    transition: transform 0.3s ease, color 0.3s ease;
+}
+
+.service-card:hover h3,
+.service-card:hover p {
+    transform: translateZ(18px);
+}
+
+.service-card {
+    transform-style: preserve-3d;
+    perspective: 1200px;
+    background: linear-gradient(135deg, #ffffff 0%, #f8fff9 100%);
+    box-shadow: 0 12px 30px rgba(0, 0, 0, 0.06);
+    position: relative;
+    overflow: hidden;
+}
+
+.service-card::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(120deg, transparent 0%, rgba(255, 255, 255, 0.45) 30%, transparent 65%);
+    transform: translateX(-120%) rotate(8deg);
+    transition: transform 0.8s ease;
+    pointer-events: none;
+    z-index: 1;
+}
+
+.service-card:hover::before {
+    transform: translateX(120%) rotate(8deg);
+}
+
+.service-card:hover {
+    transform: perspective(1400px) rotateX(10deg) rotateY(-12deg) translateY(-12px) scale(1.04);
+    box-shadow: 0 30px 70px rgba(34, 197, 94, 0.22);
+    border-color: rgba(34, 197, 94, 0.5);
+}
+
+.service-card::after {
+    content: "";
+    position: absolute;
+    inset: -40% auto auto -30%;
+    width: 60%;
+    height: 160%;
+    background: linear-gradient(120deg, transparent 0%, rgba(255,255,255,0.7) 35%, transparent 70%);
+    transform: rotate(18deg) translateX(-120%);
+    transition: transform 0.75s ease;
+    pointer-events: none;
+    z-index: 2;
+}
+
+.service-card:hover::after {
+    transform: rotate(18deg) translateX(180%);
+}
+
+.service-card .material-symbols-outlined {
+    transition: transform 0.35s ease, background-color 0.35s ease, color 0.35s ease;
+}
+
+.service-card:hover .material-symbols-outlined {
+    transform: rotate(14deg) scale(1.1) translateZ(20px);
+}
+
+body {
+    position: relative;
+    background:
+        radial-gradient(circle at top left, rgba(34, 197, 94, 0.08), transparent 28%),
+        linear-gradient(135deg, #f8fff9 0%, #ffffff 50%, #f4fff6 100%);
+}
+
+body::before {
+    content: "";
+    position: fixed;
+    inset: -20%;
+    background:
+        radial-gradient(circle at 20% 15%, rgba(34, 197, 94, 0.12), transparent 25%),
+        radial-gradient(circle at 80% 20%, rgba(0, 110, 47, 0.12), transparent 24%),
+        radial-gradient(circle at 50% 80%, rgba(20, 184, 166, 0.08), transparent 30%);
+    filter: blur(40px);
+    animation: drift 16s ease-in-out infinite alternate;
+    pointer-events: none;
+    z-index: -1;
+}
+
+.nav-3d {
+    box-shadow: 0 12px 40px rgba(0, 0, 0, 0.04);
+    position: relative;
+    overflow: hidden;
+}
+
+.nav-3d::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(120deg, transparent, rgba(255, 255, 255, 0.4), transparent);
+    transform: translateX(-100%);
+    transition: transform 0.6s ease;
+    pointer-events: none;
+}
+
+.nav-3d:hover::after {
+    transform: translateX(100%);
+}
+
+.hero-shell,
+.about-shell,
+.services-shell,
+.portfolio-shell,
+.process-shell,
+.testimonials-shell,
+.faq-shell,
+.cta-shell,
+.footer-shell {
+    position: relative;
+    overflow: hidden;
+}
+
+.hero-shell::before {
+    content: "";
+    position: absolute;
+    inset: -20% -10% auto auto;
+    width: 22rem;
+    height: 22rem;
+    background: radial-gradient(circle, rgba(34, 197, 94, 0.18), transparent 70%);
+    filter: blur(20px);
+    animation: pulseGlow 8s ease-in-out infinite;
+    pointer-events: none;
+}
+
+.hero-shell::after {
+    content: "";
+    position: absolute;
+    inset: auto auto -10% -8%;
+    width: 16rem;
+    height: 16rem;
+    background: radial-gradient(circle, rgba(0, 110, 47, 0.12), transparent 70%);
+    filter: blur(20px);
+    animation: pulseGlow 10s ease-in-out infinite reverse;
+    pointer-events: none;
+}
+
+.hero-visual .hero-photo {
+    animation: heroFloat 7s ease-in-out infinite;
+    transform-style: preserve-3d;
+    box-shadow: 0 25px 70px rgba(34, 197, 94, 0.22);
+}
+
+.hero-visual .hero-photo:hover {
+    transform: perspective(1200px) rotateY(-8deg) rotateX(6deg) scale(1.02);
+}
+
+.hero-badge {
+    animation: badgeFloat 4s ease-in-out infinite;
+    transform: translateZ(20px);
+}
+
+.hero-cta,
+.btn-3d {
+    position: relative;
+    overflow: hidden;
+    transition: transform 0.35s ease, box-shadow 0.35s ease;
+    transform-style: preserve-3d;
+}
+
+.hero-cta::before,
+.btn-3d::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(120deg, transparent, rgba(255, 255, 255, 0.25), transparent);
+    transform: translateX(-120%);
+    transition: transform 0.6s ease;
+}
+
+.hero-cta:hover::before,
+.btn-3d:hover::before {
+    transform: translateX(120%);
+}
+
+.hero-cta:hover,
+.btn-3d:hover {
+    transform: translateY(-4px) scale(1.01);
+    box-shadow: 0 15px 35px rgba(34, 197, 94, 0.22);
+}
+
+.about-shell .stat-card,
+.service-card,
+.project-card,
+.testimonial-card,
+.faq-item,
+.cta-shell {
+    position: relative;
+    isolation: isolate;
+    transform-style: preserve-3d;
+    transition: transform 0.45s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.45s ease, border-color 0.45s ease, background 0.45s ease;
+}
+
+.about-shell .stat-card::before,
+.service-card::before,
+.project-card::before,
+.testimonial-card::before,
+.faq-item::before {
+    content: "";
+    position: absolute;
+    inset: -2px;
+    background: linear-gradient(120deg, transparent, rgba(255, 255, 255, 0.28), transparent);
+    transform: translateX(-120%);
+    transition: transform 0.7s ease;
+    z-index: -1;
+    pointer-events: none;
+}
+
+.about-shell .stat-card:hover::before,
+.service-card:hover::before,
+.project-card:hover::before,
+.testimonial-card:hover::before,
+.faq-item:hover::before {
+    transform: translateX(120%);
+}
+
+.about-shell .stat-card:hover,
+.service-card:hover,
+.project-card:hover,
+.testimonial-card:hover,
+.faq-item:hover {
+    transform: perspective(1000px) rotateX(4deg) rotateY(-4deg) translateY(-8px) scale(1.01);
+    box-shadow: 0 20px 45px rgba(34, 197, 94, 0.14);
+}
+
+.project-card:hover img {
+    transform: scale(1.08) rotate(1deg);
+}
+
+.process-step {
+    transition: transform 0.35s ease, box-shadow 0.35s ease;
+}
+
+.process-step:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 18px 35px rgba(0, 0, 0, 0.05);
+}
+
+.process-step .step-badge {
+    transition: transform 0.35s ease, box-shadow 0.35s ease, border-color 0.35s ease;
+}
+
+.process-step:hover .step-badge {
+    transform: scale(1.12) rotate(360deg);
+    box-shadow: 0 0 20px rgba(34, 197, 94, 0.24);
+}
+
+.faq-item[open] {
+    box-shadow: 0 18px 40px rgba(34, 197, 94, 0.16);
+}
+
+.cta-shell::before {
+    content: "";
+    position: absolute;
+    inset: -30% auto auto -10%;
+    width: 18rem;
+    height: 18rem;
+    background: radial-gradient(circle, rgba(255, 255, 255, 0.16), transparent 70%);
+    filter: blur(20px);
+    animation: pulseGlow 9s ease-in-out infinite;
+    pointer-events: none;
+}
+
+.cta-shell::after {
+    content: "";
+    position: absolute;
+    inset: auto -10% -30% auto;
+    width: 20rem;
+    height: 20rem;
+    background: radial-gradient(circle, rgba(255, 255, 255, 0.12), transparent 70%);
+    filter: blur(20px);
+    animation: pulseGlow 11s ease-in-out infinite reverse;
+    pointer-events: none;
+}
+
+.footer-shell {
+    background: linear-gradient(135deg, #0a0a0a 0%, #111111 100%);
+}
+
+.footer-shell .social-link {
+    transition: transform 0.3s ease, color 0.3s ease, box-shadow 0.3s ease;
+}
+
+.footer-shell .social-link:hover {
+    transform: translateY(-3px) rotate(3deg) scale(1.08);
+    box-shadow: 0 10px 25px rgba(34, 197, 94, 0.16);
+}
+
+.testimonials-marquee {
+    overflow: hidden;
+    position: relative;
+    mask-image: linear-gradient(to right, transparent 0%, black 8%, black 92%, transparent 100%);
+    -webkit-mask-image: linear-gradient(to right, transparent 0%, black 8%, black 92%, transparent 100%);
+}
+
+.testimonial-track {
+    display: flex;
+    width: max-content;
+    gap: 1.5rem;
+    animation: testimonials-scroll 24s linear infinite;
+}
+
+.testimonial-track:hover {
+    animation-play-state: paused;
+}
+
+.testimonial-track .testimonial-card {
+    width: min(28rem, calc(100vw - 2.5rem));
+    flex: 0 0 auto;
+    min-width: min(28rem, calc(100vw - 2.5rem));
+}
+
+.scroll-reveal {
+    will-change: transform, opacity;
+}
+
+.scroll-reveal.is-visible {
+    opacity: 1;
+    transform: translateY(0) rotateX(0deg) rotateY(0deg);
+    animation: sectionReveal 0.8s cubic-bezier(0.16, 1, 0.3, 1) both;
+}
+
+@keyframes drift {
+    0% { transform: translate3d(0, 0, 0) scale(1); }
+    100% { transform: translate3d(3%, -2%, 0) scale(1.06); }
+}
+
+@keyframes pulseGlow {
+    0%, 100% { transform: scale(0.95); opacity: 0.8; }
+    50% { transform: scale(1.08); opacity: 1; }
+}
+
+@keyframes heroFloat {
+    0%, 100% { transform: translateY(0px); }
+    50% { transform: translateY(-12px); }
+}
+
+@keyframes badgeFloat {
+    0%, 100% { transform: translateY(0px) translateZ(20px); }
+    50% { transform: translateY(-8px) translateZ(20px); }
+}
+
+@keyframes testimonials-scroll {
+    0% {
+        transform: translateX(0);
+    }
+    100% {
+        transform: translateX(-50%);
+    }
+}
+
+@keyframes sectionReveal {
+    from {
+        opacity: 0;
+        transform: translateY(30px) scale(0.98);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0) scale(1);
+    }
+}

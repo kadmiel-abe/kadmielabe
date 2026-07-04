@@ -204,7 +204,7 @@
   </button>
 
   <!-- Navigation Bar Component -->
-  <nav class="bg-white/80 backdrop-blur-xl sticky top-0 z-50 border-b border-outline-variant/10 shadow-sm transition-all">
+  <nav class="nav-3d bg-white/80 backdrop-blur-xl sticky top-0 z-50 border-b border-outline-variant/10 shadow-sm transition-all">
     <div class="flex justify-between items-center w-full px-4 sm:px-6 md:px-margin-desktop py-5 max-w-container-max mx-auto">
       <!-- Logo -->
       <a class="font-headline-md text-headline-md font-extrabold text-on-surface flex items-center gap-2 tracking-tight flex-shrink-0"
@@ -292,7 +292,7 @@
 
   <!-- Hero Section -->
   <section
-    class="relative pt-24 pb-32 md:pt-32 md:pb-40 px-4 sm:px-6 md:px-margin-desktop max-w-container-max mx-auto dot-bg min-h-[90vh] flex items-center"
+    class="hero-shell relative pt-24 pb-32 md:pt-32 md:pb-40 px-4 sm:px-6 md:px-margin-desktop max-w-container-max mx-auto dot-bg min-h-[90vh] flex items-center"
     id="accueil">
     <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-8 items-center w-full">
       <div class="lg:col-span-7 flex flex-col gap-6 z-10 scroll-reveal is-visible">
@@ -302,40 +302,41 @@
               class="animate-ping absolute inline-flex h-full w-full rounded-full bg-primary-container opacity-75"></span><span
               class="relative inline-flex rounded-full h-2 w-2 bg-primary"></span></span><span class="">Hello 👋</span>
         </div>
-        <h1
+        <h1 
           class="font-headline-lg-mobile md:font-headline-xl text-4xl md:text-headline-xl text-on-surface leading-tight">
-          Je suis Kadmiel, <br>
-          <span class="text-gradient">Développeur Web</span>
+          <span id="typewriter-line1" class="typing-text"></span><br>
+          <span id="typewriter-line2" class="text-gradient typing-text"></span>
+          <span class="typing-cursor">|</span>
         </h1>
         <p class="font-body-lg text-base md:text-body-lg text-text-secondary max-w-xl mt-2 leading-relaxed">
           Je transforme vos idées en solutions digitales performantes et esthétiques, conçues spécialement pour aider
           les entrepreneurs et PME à exceller sur le web.
         </p>
         <div class="mt-8 flex flex-col sm:flex-row gap-4">
-          <a class="inline-flex items-center justify-center gap-2 bg-primary-container text-white px-6 py-3 sm:px-8 sm:py-4 rounded-full font-label-md text-label-md hover:shadow-[0_8px_25px_rgba(34,197,94,0.35)] hover:-translate-y-1 transition-all duration-300"
+          <a class="hero-cta inline-flex items-center justify-center gap-2 bg-primary-container text-white px-6 py-3 sm:px-8 sm:py-4 rounded-full font-label-md text-label-md hover:shadow-[0_8px_25px_rgba(34,197,94,0.35)] hover:-translate-y-1 transition-all duration-300"
             href="#contact">
             Démarrer un projet
             <span class="material-symbols-outlined group-hover:translate-x-1 transition-transform">arrow_forward</span>
           </a>
           <a id="hero-btn" href="#realisations"
-            class="border-2 border-green-500 text-green-500 px-8 py-3 rounded-full transition-all duration-300 hover:bg-green-500 hover:text-white font-semibold">
+            class="hero-cta btn-3d border-2 border-green-500 text-green-500 px-8 py-3 rounded-full transition-all duration-300 hover:bg-green-500 hover:text-white font-semibold">
             Voir mes réalisations
           </a>
         </div>
       </div>
-      <div class="lg:col-span-5 relative mt-8 lg:mt-0 flex justify-center lg:justify-end animate-float">
+      <div class="hero-visual lg:col-span-5 relative mt-8 lg:mt-0 flex justify-center lg:justify-end animate-float">
         <div class="relative z-10 w-full max-w-[500px]">
           <div
-            class="aspect-square w-full max-w-[400px] mx-auto rounded-full overflow-hidden border-4 border-primary-container shadow-[0_0_30px_rgba(34,197,94,0.3)] bg-white group hover:shadow-[0_0_50px_rgba(34,197,94,0.5)] transition-shadow duration-500">
+            class="hero-photo aspect-square w-full max-w-[400px] mx-auto rounded-full overflow-hidden border-4 border-primary-container shadow-[0_0_30px_rgba(34,197,94,0.3)] bg-white group hover:shadow-[0_0_50px_rgba(34,197,94,0.5)] transition-shadow duration-500">
             <img alt="Kadmiel Abe Headshot"
               class="w-full h-full max-w-full object-cover object-center transition-transform duration-700 group-hover:scale-110"
               src="https://lh3.googleusercontent.com/aida-public/AB6AXuAJkbJt8sjyoJ5n3tQc3BRYQq9ofTWxYXXHhcwRLoH-ZrtJXEYqCSnwciVv5j7r2-69YIiuj4B9onxiCL2D4LkUwgA8V--aOjz7bLNUYEU1nHVWV4PlPuQySmXaX-hqPg5Y0OW6h3CASWwXu5D4MwiOEvAMq6DLpUp0NwbpGY6IYyWLknulJSGBP6GC5QxR6mOVHjblAP_JuaCNEtpp-3-7ogT3fiHJnuEoq08l6laDA-5rRpt-6oNHYydKvf4VTP7hZ7CthOMkkWUW">
           </div>
           <div
-            class="absolute -bottom-4 -left-4 z-20 bg-primary-container text-white px-6 py-2 rounded-xl font-bold text-lg shadow-lg hidden md:block">
+            class="hero-badge absolute -bottom-4 -left-4 z-20 bg-primary-container text-white px-6 py-2 rounded-xl font-bold text-lg shadow-lg hidden md:block">
             Professionnel</div>
           <div
-            class="absolute bottom-4 -right-4 z-20 bg-primary-container text-white px-6 py-2 rounded-xl font-bold text-lg shadow-lg hidden md:block">
+            class="hero-badge absolute bottom-4 -right-4 z-20 bg-primary-container text-white px-6 py-2 rounded-xl font-bold text-lg shadow-lg hidden md:block">
             Créatif</div>
         </div>
         <div
@@ -349,7 +350,7 @@
   </section>
 
   <!-- About Section -->
-  <section class="py-24 md:py-32 px-4 sm:px-6 md:px-margin-desktop max-w-container-max mx-auto scroll-reveal is-visible"
+  <section class="about-shell py-24 md:py-32 px-4 sm:px-6 md:px-margin-desktop max-w-container-max mx-auto scroll-reveal is-visible"
     id="a-propos">
     <div class="text-center mb-20 scroll-reveal is-visible">
       <h2 class="font-headline-lg text-3xl md:text-headline-lg text-on-surface mb-6">À propos</h2>
@@ -380,29 +381,37 @@
         <div class="grid grid-cols-2 gap-6">
           <!-- Bloc 1 -->
           <div
-            class="p-4 rounded-xl bg-surface-container-low border border-outline-variant/10 transition-all duration-300 hover:shadow-[0_0_20px_rgba(34,197,94,0.3)] hover:border-green-500/50 hover:-translate-y-1">
-            <div class="text-3xl font-extrabold mb-1 text-on-surface">3+</div>
+            class="stat-card p-4 rounded-xl bg-surface-container-low border border-outline-variant/10 transition-all duration-300 hover:shadow-[0_0_20px_rgba(34,197,94,0.3)] hover:border-green-500/50 hover:-translate-y-1">
+            <div class="text-3xl font-extrabold mb-1 text-on-surface">
+              <span class="counter-value" data-target="3" data-suffix="+">0</span>
+            </div>
             <div class="text-label-sm text-on-surface-variant uppercase tracking-wider">Années d'expérience</div>
           </div>
 
           <!-- Bloc 2 -->
           <div
-            class="p-4 rounded-xl bg-surface-container-low border border-outline-variant/10 transition-all duration-300 hover:shadow-[0_0_20px_rgba(34,197,94,0.3)] hover:border-green-500/50 hover:-translate-y-1">
-            <div class="text-3xl font-extrabold mb-1 text-on-surface">50+</div>
+            class="stat-card p-4 rounded-xl bg-surface-container-low border border-outline-variant/10 transition-all duration-300 hover:shadow-[0_0_20px_rgba(34,197,94,0.3)] hover:border-green-500/50 hover:-translate-y-1">
+            <div class="text-3xl font-extrabold mb-1 text-on-surface">
+              <span class="counter-value" data-target="50" data-suffix="+">0</span>
+            </div>
             <div class="text-label-sm text-on-surface-variant uppercase tracking-wider">Projets livrés</div>
           </div>
 
           <!-- Bloc 3 -->
           <div
-            class="p-4 rounded-xl bg-surface-container-low border border-outline-variant/10 transition-all duration-300 hover:shadow-[0_0_20px_rgba(34,197,94,0.3)] hover:border-green-500/50 hover:-translate-y-1">
-            <div class="text-3xl font-extrabold mb-1 text-on-surface">95%</div>
+            class="stat-card p-4 rounded-xl bg-surface-container-low border border-outline-variant/10 transition-all duration-300 hover:shadow-[0_0_20px_rgba(34,197,94,0.3)] hover:border-green-500/50 hover:-translate-y-1">
+            <div class="text-3xl font-extrabold mb-1 text-on-surface">
+              <span class="counter-value" data-target="95" data-suffix="%">0</span>
+            </div>
             <div class="text-label-sm text-on-surface-variant uppercase tracking-wider">Clients satisfaits</div>
           </div>
 
           <!-- Bloc 4 -->
           <div
-            class="p-4 rounded-xl bg-surface-container-low border border-outline-variant/10 transition-all duration-300 hover:shadow-[0_0_20px_rgba(34,197,94,0.3)] hover:border-green-500/50 hover:-translate-y-1">
-            <div class="text-3xl font-extrabold mb-1 text-on-surface">24/7</div>
+            class="stat-card p-4 rounded-xl bg-surface-container-low border border-outline-variant/10 transition-all duration-300 hover:shadow-[0_0_20px_rgba(34,197,94,0.3)] hover:border-green-500/50 hover:-translate-y-1">
+            <div class="text-3xl font-extrabold mb-1 text-on-surface">
+              <span class="counter-value" data-target="24" data-suffix="/7">0</span>
+            </div>
             <div class="text-label-sm text-on-surface-variant uppercase tracking-wider">Support technique</div>
           </div>
         </div>
@@ -419,7 +428,7 @@
   </section>
 
   <!-- Services Section -->
-  <section class="py-24 md:py-32 px-4 sm:px-6 md:px-margin-desktop max-w-container-max mx-auto relative bg-white"
+  <section class="services-shell scroll-reveal is-visible py-24 md:py-32 px-4 sm:px-6 md:px-margin-desktop max-w-container-max mx-auto relative bg-white"
     id="services">
     <div class="text-center mb-20">
       <h2 class="font-headline-lg text-3xl md:text-headline-lg text-gray-900 mb-6">Mes Services</h2>
@@ -432,7 +441,7 @@
 
       <!-- 1. Sites vitrines -->
       <div
-        class="p-10 rounded-2xl border border-gray-200 border-t-4 border-t-[#22C55E] bg-white shadow-[0_4px_20px_rgba(0,0,0,0.05)] transition-all duration-500 hover:shadow-[0_20px_50px_-12px_rgba(34,197,94,0.3)] hover:-translate-y-3 flex flex-col h-full group">
+        class="service-card p-10 rounded-2xl border border-gray-200 border-t-4 border-t-[#22C55E] bg-white shadow-[0_4px_20px_rgba(0,0,0,0.05)] transition-all duration-500 hover:shadow-[0_20px_50px_-12px_rgba(34,197,94,0.3)] hover:-translate-y-3 flex flex-col h-full group">
         <div
           class="w-14 h-14 bg-green-50 rounded-xl flex items-center justify-center text-[#22C55E] mb-8 group-hover:bg-[#22C55E] group-hover:text-white transition-all duration-300 group-hover:scale-110">
           <span class="material-symbols-outlined text-3xl">web</span>
@@ -445,7 +454,7 @@
 
       <!-- 2. E-commerce -->
       <div
-        class="p-10 rounded-2xl border border-gray-200 border-t-4 border-t-[#22C55E] bg-white shadow-[0_4px_20px_rgba(0,0,0,0.05)] transition-all duration-500 hover:shadow-[0_20px_50px_-12px_rgba(34,197,94,0.3)] hover:-translate-y-3 flex flex-col h-full group">
+        class="service-card scroll-reveal stagger-item is-visible p-10 rounded-2xl border border-gray-200 border-t-4 border-t-[#22C55E] bg-white shadow-[0_4px_20px_rgba(0,0,0,0.05)] transition-all duration-500 hover:shadow-[0_20px_50px_-12px_rgba(34,197,94,0.3)] hover:-translate-y-3 flex flex-col h-full group" style="transition-delay: 100ms;">
         <div
           class="w-14 h-14 bg-green-50 rounded-xl flex items-center justify-center text-[#22C55E] mb-8 group-hover:bg-[#22C55E] group-hover:text-white transition-all duration-300 group-hover:scale-110">
           <span class="material-symbols-outlined text-3xl">storefront</span>
@@ -458,7 +467,7 @@
 
       <!-- 3. Applications web -->
       <div
-        class="p-10 rounded-2xl border border-gray-200 border-t-4 border-t-[#22C55E] bg-white shadow-[0_4px_20px_rgba(0,0,0,0.05)] transition-all duration-500 hover:shadow-[0_20px_50px_-12px_rgba(34,197,94,0.3)] hover:-translate-y-3 flex flex-col h-full group">
+        class="service-card scroll-reveal stagger-item is-visible p-10 rounded-2xl border border-gray-200 border-t-4 border-t-[#22C55E] bg-white shadow-[0_4px_20px_rgba(0,0,0,0.05)] transition-all duration-500 hover:shadow-[0_20px_50px_-12px_rgba(34,197,94,0.3)] hover:-translate-y-3 flex flex-col h-full group" style="transition-delay: 200ms;">
         <div
           class="w-14 h-14 bg-green-50 rounded-xl flex items-center justify-center text-[#22C55E] mb-8 group-hover:bg-[#22C55E] group-hover:text-white transition-all duration-300 group-hover:scale-110">
           <span class="material-symbols-outlined text-3xl">apps</span>
@@ -471,7 +480,7 @@
 
       <!-- 4. Refonte -->
       <div
-        class="p-10 rounded-2xl border border-gray-200 border-t-4 border-t-[#22C55E] bg-white shadow-[0_4px_20px_rgba(0,0,0,0.05)] transition-all duration-500 hover:shadow-[0_20px_50px_-12px_rgba(34,197,94,0.3)] hover:-translate-y-3 flex flex-col h-full group">
+        class="service-card scroll-reveal stagger-item is-visible p-10 rounded-2xl border border-gray-200 border-t-4 border-t-[#22C55E] bg-white shadow-[0_4px_20px_rgba(0,0,0,0.05)] transition-all duration-500 hover:shadow-[0_20px_50px_-12px_rgba(34,197,94,0.3)] hover:-translate-y-3 flex flex-col h-full group" style="transition-delay: 300ms;">
         <div
           class="w-14 h-14 bg-green-50 rounded-xl flex items-center justify-center text-[#22C55E] mb-8 group-hover:bg-[#22C55E] group-hover:text-white transition-all duration-300 group-hover:scale-110">
           <span class="material-symbols-outlined text-3xl">update</span>
@@ -484,7 +493,7 @@
 
       <!-- 5. Maintenance & Support -->
       <div
-        class="p-10 rounded-2xl border border-gray-200 border-t-4 border-t-[#22C55E] bg-white shadow-[0_4px_20px_rgba(0,0,0,0.05)] transition-all duration-500 hover:shadow-[0_20px_50px_-12px_rgba(34,197,94,0.3)] hover:-translate-y-3 flex flex-col h-full group">
+        class="service-card scroll-reveal stagger-item is-visible p-10 rounded-2xl border border-gray-200 border-t-4 border-t-[#22C55E] bg-white shadow-[0_4px_20px_rgba(0,0,0,0.05)] transition-all duration-500 hover:shadow-[0_20px_50px_-12px_rgba(34,197,94,0.3)] hover:-translate-y-3 flex flex-col h-full group" style="transition-delay: 400ms;">
         <div
           class="w-14 h-14 bg-green-50 rounded-xl flex items-center justify-center text-[#22C55E] mb-8 group-hover:bg-[#22C55E] group-hover:text-white transition-all duration-300 group-hover:scale-110">
           <span class="material-symbols-outlined text-3xl">build</span>
@@ -498,7 +507,7 @@
     </div>
   </section>
   <!-- Portfolio / Réalisations Section -->
-  <section class="py-24 md:py-32 px-4 sm:px-6 md:px-margin-desktop bg-surface-container-low" id="realisations">
+  <section class="portfolio-shell py-24 md:py-32 px-4 sm:px-6 md:px-margin-desktop bg-surface-container-low" id="realisations">
     <div class="max-w-container-max mx-auto">
       <div class="text-center mb-20 scroll-reveal is-visible">
         <h2 class="font-headline-lg text-3xl md:text-headline-lg text-on-surface mb-6">Voici un aperçu de mes
@@ -526,7 +535,7 @@
       <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-2 gap-10">
         <!-- Card 1: Site Vitrine -->
         <div data-category="site-vitrine"
-          class="glass-card rounded-2xl overflow-hidden border border-outline-variant/10 transition-all duration-500 flex flex-col group scroll-reveal stagger-item is-visible hover:scale-[1.02] hover:shadow-[0_0_30px_rgba(34,197,94,0.3)] bg-white/10 border-white/5"
+          class="project-card glass-card rounded-2xl overflow-hidden border border-outline-variant/10 transition-all duration-500 flex flex-col group scroll-reveal stagger-item is-visible hover:scale-[1.02] hover:shadow-[0_0_30px_rgba(34,197,94,0.3)] bg-white/10 border-white/5"
           style="transition-delay: 0ms;">
           <div class="aspect-[4/3] overflow-hidden">
             <img alt="Massy's Relaxation & Spa"
@@ -557,7 +566,7 @@
         </div>
         <!-- Card 2: LivrExpress -->
         <div data-category="site-vitrine"
-          class="glass-card rounded-2xl overflow-hidden border border-outline-variant/10 transition-all duration-500 flex flex-col group scroll-reveal stagger-item is-visible hover:scale-[1.02] hover:shadow-[0_0_30px_rgba(34,197,94,0.3)] bg-white/10 border-white/5"
+          class="project-card glass-card rounded-2xl overflow-hidden border border-outline-variant/10 transition-all duration-500 flex flex-col group scroll-reveal stagger-item is-visible hover:scale-[1.02] hover:shadow-[0_0_30px_rgba(34,197,94,0.3)] bg-white/10 border-white/5"
           style="transition-delay: 100ms;">
           <div class="aspect-[4/3] overflow-hidden">
             <img alt="LivrExpress"
@@ -587,7 +596,7 @@
         </div>
         <!-- Card 3: E-commerce -->
         <div data-category="boutique-en-ligne"
-          class="glass-card rounded-2xl overflow-hidden border border-outline-variant/10 transition-all duration-500 flex flex-col group scroll-reveal stagger-item is-visible hover:scale-[1.02] hover:shadow-[0_0_30px_rgba(34,197,94,0.3)] bg-white/10 border-white/5"
+          class="project-card glass-card rounded-2xl overflow-hidden border border-outline-variant/10 transition-all duration-500 flex flex-col group scroll-reveal stagger-item is-visible hover:scale-[1.02] hover:shadow-[0_0_30px_rgba(34,197,94,0.3)] bg-white/10 border-white/5"
           style="transition-delay: 200ms;">
           <div class="aspect-[4/3] overflow-hidden">
             <img alt="Premium Boutique"
@@ -619,7 +628,7 @@
         </div>
         <!-- Card 4: Application Web -->
         <div data-category="application-web"
-          class="glass-card rounded-2xl overflow-hidden border border-outline-variant/10 transition-all duration-500 flex flex-col group scroll-reveal stagger-item is-visible hover:scale-[1.02] hover:shadow-[0_0_30px_rgba(34,197,94,0.3)] bg-white/10 border-white/5"
+          class="project-card glass-card rounded-2xl overflow-hidden border border-outline-variant/10 transition-all duration-500 flex flex-col group scroll-reveal stagger-item is-visible hover:scale-[1.02] hover:shadow-[0_0_30px_rgba(34,197,94,0.3)] bg-white/10 border-white/5"
           style="transition-delay: 300ms;">
           <div class="aspect-[4/3] overflow-hidden">
             <img alt="SaaS Dashboard"
@@ -651,7 +660,7 @@
         </div>
         <!-- Card 4: Site One Page -->
         <div data-category="site-one-page"
-          class="glass-card rounded-2xl overflow-hidden border border-outline-variant/10 transition-all duration-500 flex flex-col group scroll-reveal stagger-item is-visible hover:scale-[1.02] hover:shadow-[0_0_30px_rgba(34,197,94,0.3)] bg-white/10 border-white/5"
+          class="project-card glass-card rounded-2xl overflow-hidden border border-outline-variant/10 transition-all duration-500 flex flex-col group scroll-reveal stagger-item is-visible hover:scale-[1.02] hover:shadow-[0_0_30px_rgba(34,197,94,0.3)] bg-white/10 border-white/5"
           style="transition-delay: 300ms;">
           <div class="aspect-[4/3] overflow-hidden">
             <img alt="Modern Landing Page"
@@ -685,7 +694,7 @@
   </section>
 
   <!-- Process Section -->
-  <section class="py-24 md:py-32 px-4 sm:px-6 md:px-margin-desktop max-w-container-max mx-auto" id="processus">
+  <section class="process-shell py-24 md:py-32 px-4 sm:px-6 md:px-margin-desktop max-w-container-max mx-auto" id="processus">
     <div class="text-center mb-20 scroll-reveal is-visible">
       <h2 class="font-headline-lg text-3xl md:text-headline-lg text-on-surface mb-6">Mon Processus</h2>
       <p class="font-body-lg text-base md:text-body-lg text-text-secondary max-w-2xl mx-auto">Une approche transparente
@@ -699,7 +708,7 @@
       <div class="space-y-16">
         <!-- Step 1 -->
         <div
-          class="relative flex flex-col md:flex-row items-start md:items-center justify-between w-full group scroll-reveal stagger-item is-visible"
+          class="process-step relative flex flex-col md:flex-row items-start md:items-center justify-between w-full group scroll-reveal stagger-item is-visible"
           style="transition-delay: 0ms;">
           <div class="hidden md:block w-[45%] text-right pr-8">
             <h3 class="font-headline-md text-2xl mb-3 text-on-surface group-hover:text-primary transition-colors">
@@ -722,7 +731,7 @@
         </div>
         <!-- Step 2 -->
         <div
-          class="relative flex flex-col md:flex-row items-start md:items-center justify-between w-full group scroll-reveal stagger-item is-visible"
+          class="process-step relative flex flex-col md:flex-row items-start md:items-center justify-between w-full group scroll-reveal stagger-item is-visible"
           style="transition-delay: 100ms;">
           <div class="w-full pl-20 md:w-[45%] md:pr-8 md:pl-0 text-left md:text-right">
             <div class="md:hidden">
@@ -745,7 +754,7 @@
         </div>
         <!-- Step 3 -->
         <div
-          class="relative flex flex-col md:flex-row items-start md:items-center justify-between w-full group scroll-reveal stagger-item is-visible"
+          class="process-step relative flex flex-col md:flex-row items-start md:items-center justify-between w-full group scroll-reveal stagger-item is-visible"
           style="transition-delay: 200ms;">
           <div class="hidden md:block w-[45%] text-right pr-8">
             <h3 class="font-headline-md text-2xl mb-3 text-on-surface group-hover:text-primary transition-colors">
@@ -768,7 +777,7 @@
         </div>
         <!-- Step 4 -->
         <div
-          class="relative flex flex-col md:flex-row items-start md:items-center justify-between w-full group scroll-reveal stagger-item is-visible"
+          class="process-step relative flex flex-col md:flex-row items-start md:items-center justify-between w-full group scroll-reveal stagger-item is-visible"
           style="transition-delay: 300ms;">
           <div class="w-full pl-20 md:w-[45%] md:pr-8 md:pl-0 text-left md:text-right">
             <div class="md:hidden">
@@ -794,114 +803,214 @@
   </section>
 
   <!-- Testimonials Section -->
-  <section class="py-24 md:py-32 px-4 sm:px-6 md:px-margin-desktop bg-surface-container-low" id="temoignages">
+  <section class="testimonials-shell py-24 md:py-32 px-4 sm:px-6 md:px-margin-desktop bg-surface-container-low" id="temoignages">
     <div class="max-w-container-max mx-auto text-center mb-20 scroll-reveal is-visible">
       <h2 class="font-headline-lg text-3xl md:text-headline-lg text-on-surface mb-6">Ce qu'ils disent</h2>
       <p class="font-body-lg text-base md:text-body-lg text-text-secondary max-w-2xl mx-auto">La satisfaction de mes
         clients est ma priorité. Voici quelques retours sur notre collaboration.</p>
     </div>
-    <div class="max-w-5xl mx-auto grid grid-cols-1 md:grid-cols-2 gap-10">
-      <!-- Testimonial 1 -->
-      <div
-        class="glass-card p-8 rounded-2xl border border-outline-variant/10 shadow-sm relative hover:shadow-[0_15px_40px_rgba(34,197,94,0.15)] hover:-translate-y-2 transition-all duration-300 scroll-reveal stagger-item is-visible"
-        style="transition-delay: 0ms;">
-        <div class="flex items-center gap-4 mb-6">
-          <div class="w-16 h-16 rounded-full overflow-hidden border-2 border-primary-container shadow-sm">
-            <img alt="Sophie L." class="w-full h-full object-cover" src="./assets/src/images/amadine.jpg ">
+    <div class="testimonials-marquee max-w-6xl mx-auto">
+      <div class="testimonial-track">
+        <!-- Testimonial 1 -->
+        <div
+          class="testimonial-card glass-card p-8 rounded-2xl border border-outline-variant/10 shadow-sm relative hover:shadow-[0_15px_40px_rgba(34,197,94,0.15)] hover:-translate-y-2 transition-all duration-300 scroll-reveal stagger-item is-visible"
+          style="transition-delay: 0ms;">
+          <div class="flex items-center gap-4 mb-6">
+            <div class="w-16 h-16 rounded-full overflow-hidden border-2 border-primary-container shadow-sm">
+              <img alt="Sophie L." class="w-full h-full object-cover" src="./assets/src/images/amadine.jpg ">
+            </div>
+            <div>
+              <div class="font-headline-md text-lg text-on-surface font-bold">Sophie L.</div>
+              <div class="font-label-sm text-text-secondary">CEO TechFlow Africa</div>
+            </div>
           </div>
-          <div>
-            <div class="font-headline-md text-lg text-on-surface font-bold">Sophie L.</div>
-            <div class="font-label-sm text-text-secondary">CEO TechFlow Africa</div>
+          <div class="flex text-yellow-400 mb-4">
+            <span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">star</span>
+            <span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">star</span>
+            <span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">star</span>
+            <span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">star</span>
+            <span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">star</span>
           </div>
+          <p class="font-body-md text-on-surface-variant italic leading-relaxed">"L'expertise technique de Kadmiel a
+            transformé notre vision en une réalité digitale fluide. Son approche orientée résultats a boosté notre
+            conversion dès le premier mois."</p>
         </div>
-        <div class="flex text-yellow-400 mb-4">
-          <span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">star</span>
-          <span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">star</span>
-          <span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">star</span>
-          <span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">star</span>
-          <span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">star</span>
-        </div>
-        <p class="font-body-md text-on-surface-variant italic leading-relaxed">"L'expertise technique de Kadmiel a
-          transformé notre vision en une réalité digitale fluide. Son approche orientée résultats a boosté notre
-          conversion dès le premier mois."</p>
-      </div>
-      <!-- Testimonial 2 -->
-      <div
-        class="glass-card p-8 rounded-2xl border border-outline-variant/10 shadow-sm relative hover:shadow-[0_15px_40px_rgba(34,197,94,0.15)] hover:-translate-y-2 transition-all duration-300 scroll-reveal stagger-item is-visible"
-        style="transition-delay: 100ms;">
-        <div class="flex items-center gap-4 mb-6">
-          <div class="w-16 h-16 rounded-full overflow-hidden border-2 border-primary-container shadow-sm">
-            <img alt="Marc A." class="w-full h-full object-cover" src="./assets/src/images/julien.jpg">
+        <!-- Testimonial 2 -->
+        <div
+          class="testimonial-card glass-card p-8 rounded-2xl border border-outline-variant/10 shadow-sm relative hover:shadow-[0_15px_40px_rgba(34,197,94,0.15)] hover:-translate-y-2 transition-all duration-300 scroll-reveal stagger-item is-visible"
+          style="transition-delay: 100ms;">
+          <div class="flex items-center gap-4 mb-6">
+            <div class="w-16 h-16 rounded-full overflow-hidden border-2 border-primary-container shadow-sm">
+              <img alt="Marc A." class="w-full h-full object-cover" src="./assets/src/images/julien.jpg">
+            </div>
+            <div>
+              <div class="font-headline-md text-lg text-on-surface font-bold">Marc A.</div>
+              <div class="font-label-sm text-text-secondary">Directeur Créatif</div>
+            </div>
           </div>
-          <div>
-            <div class="font-headline-md text-lg text-on-surface font-bold">Marc A.</div>
-            <div class="font-label-sm text-text-secondary">Directeur Créatif</div>
+          <div class="flex text-yellow-400 mb-4">
+            <span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">star</span>
+            <span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">star</span>
+            <span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">star</span>
+            <span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">star</span>
+            <span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">star</span>
           </div>
+          <p class="font-body-md text-on-surface-variant italic leading-relaxed">"Un développeur qui comprend réellement
+            le design. La qualité du code et le respect des maquettes sont irréprochables. Une collaboration précieuse
+            pour nos projets créatifs."</p>
         </div>
-        <div class="flex text-yellow-400 mb-4">
-          <span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">star</span>
-          <span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">star</span>
-          <span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">star</span>
-          <span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">star</span>
-          <span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">star</span>
-        </div>
-        <p class="font-body-md text-on-surface-variant italic leading-relaxed">"Un développeur qui comprend réellement
-          le design. La qualité du code et le respect des maquettes sont irréprochables. Une collaboration précieuse
-          pour nos projets créatifs."</p>
-      </div>
-      <!-- Testimonial 3 -->
-      <div
-        class="glass-card p-8 rounded-2xl border border-outline-variant/10 shadow-sm relative hover:shadow-[0_15px_40px_rgba(34,197,94,0.15)] hover:-translate-y-2 transition-all duration-300 scroll-reveal stagger-item is-visible"
-        style="transition-delay: 200ms;">
-        <div class="flex items-center gap-4 mb-6">
-          <div class="w-16 h-16 rounded-full overflow-hidden border-2 border-primary-container shadow-sm">
-            <img alt="Julien R." class="w-full h-full object-cover" src="./assets/src/images/marc.jpg">
+        <!-- Testimonial 3 -->
+        <div
+          class="testimonial-card glass-card p-8 rounded-2xl border border-outline-variant/10 shadow-sm relative hover:shadow-[0_15px_40px_rgba(34,197,94,0.15)] hover:-translate-y-2 transition-all duration-300 scroll-reveal stagger-item is-visible"
+          style="transition-delay: 200ms;">
+          <div class="flex items-center gap-4 mb-6">
+            <div class="w-16 h-16 rounded-full overflow-hidden border-2 border-primary-container shadow-sm">
+              <img alt="Julien R." class="w-full h-full object-cover" src="./assets/src/images/marc.jpg">
+            </div>
+            <div>
+              <div class="font-headline-md text-lg text-on-surface font-bold">Julien R.</div>
+              <div class="font-label-sm text-text-secondary">Fondateur SaaS</div>
+            </div>
           </div>
-          <div>
-            <div class="font-headline-md text-lg text-on-surface font-bold">Julien R.</div>
-            <div class="font-label-sm text-text-secondary">Fondateur SaaS</div>
+          <div class="flex text-yellow-400 mb-4">
+            <span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">star</span>
+            <span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">star</span>
+            <span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">star</span>
+            <span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">star</span>
+            <span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">star</span>
           </div>
+          <p class="font-body-md text-on-surface-variant italic leading-relaxed">"Kadmiel est bien plus qu'un développeur,
+            c'est un partenaire stratégique. Sa maîtrise de Next.js nous a permis de lancer notre MVP en un temps record
+            avec une performance optimale."</p>
         </div>
-        <div class="flex text-yellow-400 mb-4">
-          <span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">star</span>
-          <span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">star</span>
-          <span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">star</span>
-          <span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">star</span>
-          <span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">star</span>
-        </div>
-        <p class="font-body-md text-on-surface-variant italic leading-relaxed">"Kadmiel est bien plus qu'un développeur,
-          c'est un partenaire stratégique. Sa maîtrise de Next.js nous a permis de lancer notre MVP en un temps record
-          avec une performance optimale."</p>
-      </div>
-      <!-- Testimonial 4 -->
-      <div
-        class="glass-card p-8 rounded-2xl border border-outline-variant/10 shadow-sm relative hover:shadow-[0_15px_40px_rgba(34,197,94,0.15)] hover:-translate-y-2 transition-all duration-300 scroll-reveal stagger-item is-visible"
-        style="transition-delay: 300ms;">
-        <div class="flex items-center gap-4 mb-6">
-          <div class="w-16 h-16 rounded-full overflow-hidden border-2 border-primary-container shadow-sm">
-            <img alt="Amandine K." class="w-full h-full object-cover" src="./assets/src/images/Sophie L.jpg">
+        <!-- Testimonial 4 -->
+        <div
+          class="testimonial-card glass-card p-8 rounded-2xl border border-outline-variant/10 shadow-sm relative hover:shadow-[0_15px_40px_rgba(34,197,94,0.15)] hover:-translate-y-2 transition-all duration-300 scroll-reveal stagger-item is-visible"
+          style="transition-delay: 300ms;">
+          <div class="flex items-center gap-4 mb-6">
+            <div class="w-16 h-16 rounded-full overflow-hidden border-2 border-primary-container shadow-sm">
+              <img alt="Amandine K." class="w-full h-full object-cover" src="./assets/src/images/Sophie L.jpg">
+            </div>
+            <div>
+              <div class="font-headline-md text-lg text-on-surface font-bold">Amandine K.</div>
+              <div class="font-label-sm text-text-secondary">Product Manager</div>
+            </div>
           </div>
-          <div>
-            <div class="font-headline-md text-lg text-on-surface font-bold">Amandine K.</div>
-            <div class="font-label-sm text-text-secondary">Product Manager</div>
+          <div class="flex text-yellow-400 mb-4">
+            <span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">star</span>
+            <span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">star</span>
+            <span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">star</span>
+            <span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">star</span>
+            <span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">star</span>
           </div>
+          <p class="font-body-md text-on-surface-variant italic leading-relaxed">"Professionnalisme, réactivité et souci
+            du détail. Kadmiel a su gérer la complexité de notre refonte avec brio. Je recommande vivement ses services
+            pour tout projet web ambitieux."</p>
         </div>
-        <div class="flex text-yellow-400 mb-4">
-          <span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">star</span>
-          <span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">star</span>
-          <span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">star</span>
-          <span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">star</span>
-          <span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">star</span>
+
+        <!-- Duplicated testimonials for seamless loop -->
+        <div
+          class="testimonial-card glass-card p-8 rounded-2xl border border-outline-variant/10 shadow-sm relative hover:shadow-[0_15px_40px_rgba(34,197,94,0.15)] hover:-translate-y-2 transition-all duration-300 scroll-reveal stagger-item is-visible"
+          style="transition-delay: 0ms;"
+          aria-hidden="true">
+          <div class="flex items-center gap-4 mb-6">
+            <div class="w-16 h-16 rounded-full overflow-hidden border-2 border-primary-container shadow-sm">
+              <img alt="Sophie L." class="w-full h-full object-cover" src="./assets/src/images/amadine.jpg ">
+            </div>
+            <div>
+              <div class="font-headline-md text-lg text-on-surface font-bold">Sophie L.</div>
+              <div class="font-label-sm text-text-secondary">CEO TechFlow Africa</div>
+            </div>
+          </div>
+          <div class="flex text-yellow-400 mb-4">
+            <span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">star</span>
+            <span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">star</span>
+            <span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">star</span>
+            <span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">star</span>
+            <span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">star</span>
+          </div>
+          <p class="font-body-md text-on-surface-variant italic leading-relaxed">"L'expertise technique de Kadmiel a
+            transformé notre vision en une réalité digitale fluide. Son approche orientée résultats a boosté notre
+            conversion dès le premier mois."</p>
         </div>
-        <p class="font-body-md text-on-surface-variant italic leading-relaxed">"Professionnalisme, réactivité et souci
-          du détail. Kadmiel a su gérer la complexité de notre refonte avec brio. Je recommande vivement ses services
-          pour tout projet web ambitieux."</p>
+        <div
+          class="testimonial-card glass-card p-8 rounded-2xl border border-outline-variant/10 shadow-sm relative hover:shadow-[0_15px_40px_rgba(34,197,94,0.15)] hover:-translate-y-2 transition-all duration-300 scroll-reveal stagger-item is-visible"
+          style="transition-delay: 100ms;"
+          aria-hidden="true">
+          <div class="flex items-center gap-4 mb-6">
+            <div class="w-16 h-16 rounded-full overflow-hidden border-2 border-primary-container shadow-sm">
+              <img alt="Marc A." class="w-full h-full object-cover" src="./assets/src/images/julien.jpg">
+            </div>
+            <div>
+              <div class="font-headline-md text-lg text-on-surface font-bold">Marc A.</div>
+              <div class="font-label-sm text-text-secondary">Directeur Créatif</div>
+            </div>
+          </div>
+          <div class="flex text-yellow-400 mb-4">
+            <span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">star</span>
+            <span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">star</span>
+            <span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">star</span>
+            <span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">star</span>
+            <span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">star</span>
+          </div>
+          <p class="font-body-md text-on-surface-variant italic leading-relaxed">"Un développeur qui comprend réellement
+            le design. La qualité du code et le respect des maquettes sont irréprochables. Une collaboration précieuse
+            pour nos projets créatifs."</p>
+        </div>
+        <div
+          class="testimonial-card glass-card p-8 rounded-2xl border border-outline-variant/10 shadow-sm relative hover:shadow-[0_15px_40px_rgba(34,197,94,0.15)] hover:-translate-y-2 transition-all duration-300 scroll-reveal stagger-item is-visible"
+          style="transition-delay: 200ms;"
+          aria-hidden="true">
+          <div class="flex items-center gap-4 mb-6">
+            <div class="w-16 h-16 rounded-full overflow-hidden border-2 border-primary-container shadow-sm">
+              <img alt="Julien R." class="w-full h-full object-cover" src="./assets/src/images/marc.jpg">
+            </div>
+            <div>
+              <div class="font-headline-md text-lg text-on-surface font-bold">Julien R.</div>
+              <div class="font-label-sm text-text-secondary">Fondateur SaaS</div>
+            </div>
+          </div>
+          <div class="flex text-yellow-400 mb-4">
+            <span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">star</span>
+            <span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">star</span>
+            <span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">star</span>
+            <span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">star</span>
+            <span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">star</span>
+          </div>
+          <p class="font-body-md text-on-surface-variant italic leading-relaxed">"Kadmiel est bien plus qu'un développeur,
+            c'est un partenaire stratégique. Sa maîtrise de Next.js nous a permis de lancer notre MVP en un temps record
+            avec une performance optimale."</p>
+        </div>
+        <div
+          class="testimonial-card glass-card p-8 rounded-2xl border border-outline-variant/10 shadow-sm relative hover:shadow-[0_15px_40px_rgba(34,197,94,0.15)] hover:-translate-y-2 transition-all duration-300 scroll-reveal stagger-item is-visible"
+          style="transition-delay: 300ms;"
+          aria-hidden="true">
+          <div class="flex items-center gap-4 mb-6">
+            <div class="w-16 h-16 rounded-full overflow-hidden border-2 border-primary-container shadow-sm">
+              <img alt="Amandine K." class="w-full h-full object-cover" src="./assets/src/images/Sophie L.jpg">
+            </div>
+            <div>
+              <div class="font-headline-md text-lg text-on-surface font-bold">Amandine K.</div>
+              <div class="font-label-sm text-text-secondary">Product Manager</div>
+            </div>
+          </div>
+          <div class="flex text-yellow-400 mb-4">
+            <span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">star</span>
+            <span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">star</span>
+            <span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">star</span>
+            <span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">star</span>
+            <span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">star</span>
+          </div>
+          <p class="font-body-md text-on-surface-variant italic leading-relaxed">"Professionnalisme, réactivité et souci
+            du détail. Kadmiel a su gérer la complexité de notre refonte avec brio. Je recommande vivement ses services
+            pour tout projet web ambitieux."</p>
+        </div>
       </div>
     </div>
   </section>
 
   <!-- FAQ Section -->
-  <section class="py-24 md:py-32 px-4 sm:px-6 md:px-margin-desktop max-w-container-max mx-auto scroll-reveal is-visible"
+  <section class="faq-shell py-24 md:py-32 px-4 sm:px-6 md:px-margin-desktop max-w-container-max mx-auto scroll-reveal is-visible"
     id="faq">
     <div class="text-center mb-20">
       <h2 class="font-headline-lg text-3xl md:text-headline-lg text-on-surface mb-6">Questions Fréquentes</h2>
@@ -937,7 +1046,7 @@
         </summary>
         <div
           class="p-6 md:p-8 pt-0 font-body-md text-text-secondary leading-relaxed bg-white border-t border-outline-variant/5 mt-2">
-          Généralement, un site vitrine prend entre 2 à 4 semaines, un site e-commerce 4 à 8 semaines, et les
+          Généralement, un site vitrine prend entre 1 à 2 semaines, un site e-commerce 3 à 4 semaines, et les
           applications web complexes nécessitent une estimation spécifique.
         </div>
       </details>
@@ -959,7 +1068,7 @@
       </details>
       <!-- Question 4 -->
       <details
-        class="bg-white border border-outline-variant/10 shadow-sm rounded-xl group overflow-hidden hover:shadow-md transition-shadow scroll-reveal stagger-item is-visible"
+        class="faq-item bg-white border border-outline-variant/10 shadow-sm rounded-xl group overflow-hidden hover:shadow-md transition-shadow scroll-reveal stagger-item is-visible"
         style="transition-delay: 300ms;">
         <summary
           class="font-headline-md text-xl p-6 md:p-8 cursor-pointer list-none flex justify-between items-center bg-white hover:bg-surface-light/30 transition-colors">
@@ -975,7 +1084,7 @@
       </details>
       <!-- Question 5 -->
       <details
-        class="bg-white border border-outline-variant/10 shadow-sm rounded-xl group overflow-hidden hover:shadow-md transition-shadow scroll-reveal stagger-item is-visible"
+        class="faq-item bg-white border border-outline-variant/10 shadow-sm rounded-xl group overflow-hidden hover:shadow-md transition-shadow scroll-reveal stagger-item is-visible"
         style="transition-delay: 400ms;">
         <summary
           class="font-headline-md text-xl p-6 md:p-8 cursor-pointer list-none flex justify-between items-center bg-white hover:bg-surface-light/30 transition-colors">
@@ -1042,7 +1151,7 @@
 
   <!-- Final CTA Section -->
   <section
-    class="py-32 px-4 sm:px-6 md:px-margin-desktop bg-primary text-white text-center relative overflow-hidden scroll-reveal is-visible"
+    class="cta-shell py-32 px-4 sm:px-6 md:px-margin-desktop bg-primary text-white text-center relative overflow-hidden scroll-reveal is-visible"
     id="contact">
     <div
       class="absolute inset-0 bg-[url('data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMjAiIGhlaWdodD0iMjAiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+PGNpcmNsZSBjeD0iMSIgY3k9IjEiIHI9IjEiIGZpbGw9InJnYmEoMjU1LDI1NSwyNTUsMC4xKSIvPjwvc3ZnPg==')] [mask-image:linear-gradient(to_bottom,white,transparent)] opacity-20">
@@ -1053,7 +1162,7 @@
         projet ?</h2>
       <p class="font-body-lg text-primary-fixed mb-12 text-base md:text-xl font-light">Discutons de vos objectifs et
         voyons comment je peux vous aider à les atteindre avec une solution sur-mesure.</p>
-      <a class="inline-flex items-center justify-center gap-3 bg-white text-primary px-6 py-3 sm:px-10 sm:py-5 rounded-full font-headline-md text-lg sm:text-xl hover:shadow-[0_10px_30px_rgba(0,0,0,0.2)] hover:-translate-y-1 transition-all duration-300"
+      <a class="btn-3d inline-flex items-center justify-center gap-3 bg-white text-primary px-6 py-3 sm:px-10 sm:py-5 rounded-full font-headline-md text-lg sm:text-xl hover:shadow-[0_10px_30px_rgba(0,0,0,0.2)] hover:-translate-y-1 transition-all duration-300"
         href="mailto:contact@exemple.com">
         <svg class="w-6 h-6 fill-current" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
           <path
@@ -1066,7 +1175,7 @@
   </section>
 
   <!-- Footer -->
-  <footer class="bg-[#0A0A0A] text-white/80 border-t border-white/5">
+  <footer class="footer-shell bg-[#0A0A0A] text-white/80 border-t border-white/5">
     <div
       class="flex flex-col md:flex-row justify-between items-center w-full px-4 sm:px-6 md:px-margin-desktop py-12 max-w-container-max mx-auto">
       <div class="flex flex-col md:flex-row justify-between items-center gap-8 w-full">
@@ -1086,7 +1195,7 @@
         </div>
         <div class="flex gap-6">
           <!-- GitHub -->
-          <a class="text-white/60 hover:text-primary-container transition-colors" href="https://github.com/kadmiel-abe">
+          <a class="social-link text-white/60 hover:text-primary-container transition-colors" href="https://github.com/kadmiel-abe">
             <svg class="w-6 h-6 fill-current" viewBox="0 0 24 24">
               <path
                 d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z">

@@ -3,6 +3,108 @@
    ==================================== */
 
 document.addEventListener('DOMContentLoaded', () => {
+    const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+    // ====== Hero Typewriter Animation ======
+    const line1 = document.getElementById('typewriter-line1');
+    const line2 = document.getElementById('typewriter-line2');
+
+    if (line1 && line2 && !prefersReducedMotion) {
+        const text1 = 'Je suis Kadmiel,';
+        const text2 = 'Développeur Web';
+
+        const typeText = (element, text, delay, callback) => {
+            let index = 0;
+            const interval = setInterval(() => {
+                element.textContent = text.slice(0, index + 1);
+                index += 1;
+                if (index >= text.length) {
+                    clearInterval(interval);
+                    if (callback) callback();
+                }
+            }, delay);
+        };
+
+        const deleteText = (element, text, delay, callback) => {
+            let index = text.length;
+            const interval = setInterval(() => {
+                element.textContent = text.slice(0, index - 1);
+                index -= 1;
+                if (index <= 0) {
+                    clearInterval(interval);
+                    if (callback) callback();
+                }
+            }, delay / 2);
+        };
+
+        const loopTypewriter = () => {
+            typeText(line1, text1, 60, () => {
+                setTimeout(() => {
+                    typeText(line2, text2, 60, () => {
+                        setTimeout(() => {
+                            deleteText(line2, text2, 60, () => {
+                                deleteText(line1, text1, 60, () => {
+                                    setTimeout(loopTypewriter, 300);
+                                });
+                            });
+                        }, 1200);
+                    });
+                }, 400);
+            });
+        };
+
+        loopTypewriter();
+    } else if (line1 && line2) {
+        line1.textContent = '# Je suis Kadmiel,';
+        line2.textContent = 'Développeur Web';
+    }
+
+    // ====== Animated Counters ======
+    const counters = document.querySelectorAll('.counter-value');
+
+    const animateCounter = (element) => {
+        const target = Number(element.dataset.target || 0);
+        const suffix = element.dataset.suffix || '';
+        const duration = 1400;
+        const startTime = performance.now();
+
+        const update = (timestamp) => {
+            const progress = Math.min((timestamp - startTime) / duration, 1);
+            const eased = 1 - Math.pow(1 - progress, 3);
+            const currentValue = Math.floor(target * eased);
+            element.textContent = `${currentValue}${suffix}`;
+
+            if (progress < 1) {
+                requestAnimationFrame(update);
+            } else {
+                element.textContent = `${target}${suffix}`;
+            }
+        };
+
+        requestAnimationFrame(update);
+    };
+
+    if (counters.length) {
+        if (prefersReducedMotion) {
+            counters.forEach(counter => {
+                const target = Number(counter.dataset.target || 0);
+                const suffix = counter.dataset.suffix || '';
+                counter.textContent = `${target}${suffix}`;
+            });
+        } else {
+            const counterObserver = new IntersectionObserver((entries, observer) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        animateCounter(entry.target);
+                        observer.unobserve(entry.target);
+                    }
+                });
+            }, { threshold: 0.6 });
+
+            counters.forEach(counter => counterObserver.observe(counter));
+        }
+    }
+
     // ====== Scroll-to-Top Button Logic ======
     const scrollBtn = document.getElementById('scrollToTopBtn');
 
@@ -19,8 +121,6 @@ document.addEventListener('DOMContentLoaded', () => {
     });
 
     // ====== Scroll Reveal Animation Logic ======
-    const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-
     if (!prefersReducedMotion) {
         const revealObserver = new IntersectionObserver((entries) => {
             entries.forEach(entry => {
