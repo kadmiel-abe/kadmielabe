@@ -87,6 +87,35 @@ html {
     color: #666 !important;
 }
 
+/* Mobile navigation fix: visible white navbar and green menu links */
+@media (max-width: 767px) {
+    nav {
+        background-color: #ffffff !important;
+        backdrop-filter: none !important;
+        box-shadow: 0 12px 28px rgba(0, 0, 0, 0.12);
+    }
+
+    nav .md:hidden {
+        color: #006e2f !important;
+    }
+
+    #mobileMenuBtn {
+        background-color: rgba(255, 255, 255, 0.96);
+    }
+
+    #mobileMenuContent {
+        background-color: #ffffff !important;
+    }
+
+    #mobileMenuContent a {
+        color: #006e2f !important;
+    }
+
+    #mobileMenuContent a:hover {
+        background-color: rgba(34, 197, 94, 0.08) !important;
+    }
+}
+
 /* Scroll to Top Button */
 #scrollToTopBtn {
     position: fixed;
@@ -526,6 +555,65 @@ body::before {
 .btn-3d:hover {
     transform: translateY(-4px) scale(1.01);
     box-shadow: 0 15px 35px rgba(34, 197, 94, 0.22);
+}
+
+/* Project visuals: overlays and icons for non-site-vitrine projects */
+.project-ecommerce .aspect-[4/3],
+.project-app .aspect-[4/3],
+.project-landing .aspect-[4/3] {
+    position: relative;
+    overflow: hidden;
+}
+
+.project-ecommerce .aspect-[4/3]::after,
+.project-app .aspect-[4/3]::after,
+.project-landing .aspect-[4/3]::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    pointer-events: none;
+    mix-blend-mode: overlay;
+    opacity: 0.9;
+}
+
+.project-ecommerce .aspect-[4/3]::after {
+    background: linear-gradient(135deg, rgba(2,132,199,0.06), rgba(16,185,129,0.04));
+}
+.project-app .aspect-[4/3]::after {
+    background: linear-gradient(135deg, rgba(99,102,241,0.06), rgba(59,130,246,0.04));
+}
+.project-landing .aspect-[4/3]::after {
+    background: linear-gradient(135deg, rgba(250,204,21,0.06), rgba(234,88,12,0.04));
+}
+
+.project-ecommerce .aspect-[4/3]::before,
+.project-app .aspect-[4/3]::before,
+.project-landing .aspect-[4/3]::before {
+    position: absolute;
+    right: 12px;
+    bottom: 12px;
+    font-size: 44px;
+    opacity: 0.95;
+    line-height: 1;
+    pointer-events: none;
+}
+
+.project-ecommerce .aspect-[4/3]::before { content: "🛒"; }
+.project-app .aspect-[4/3]::before { content: "📊"; }
+.project-landing .aspect-[4/3]::before { content: "🚀"; }
+
+.project-ecommerce img,
+.project-app img,
+.project-landing img {
+    transition: transform 0.7s ease, filter 0.5s ease;
+    object-position: center center;
+    filter: contrast(1.03) saturate(1.05);
+}
+
+.project-ecommerce img:hover,
+.project-app img:hover,
+.project-landing img:hover {
+    transform: scale(1.06);
 }
 
 .about-shell .stat-card,
