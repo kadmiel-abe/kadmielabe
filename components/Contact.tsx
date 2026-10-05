@@ -6,7 +6,7 @@ import { MessageSquare, Mail, Linkedin, Github, MapPin, Copy, Check, Send, Spark
 
 export default function Contact() {
   const [copied, setCopied] = useState(false);
-  const emailAddress = "contact@kadmielabe.dev"; // Email temporaire / configurable
+  const emailAddress = "contact@kadmielabe.dev";
 
   const handleCopyEmail = () => {
     navigator.clipboard.writeText(emailAddress);
@@ -15,20 +15,20 @@ export default function Contact() {
   };
 
   return (
-    <section id="contact" className="py-20 md:py-28 bg-gray-50/80 border-t border-gray-100 relative overflow-hidden">
-      {/* Background Accent glow */}
-      <div className="absolute bottom-0 right-0 w-96 h-96 bg-blue-100/40 rounded-full blur-3xl -z-10 pointer-events-none" />
+    <section id="contact" className="py-20 md:py-28 bg-emerald-50/20 border-t border-emerald-100/60 relative overflow-hidden">
+      {/* Background Ambient Glow */}
+      <div className="absolute bottom-0 right-0 w-96 h-96 bg-emerald-100/50 rounded-full blur-3xl -z-10 pointer-events-none" />
 
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="bg-gradient-to-br from-gray-900 via-slate-900 to-blue-950 rounded-3xl p-8 sm:p-14 text-white shadow-xl relative overflow-hidden">
-          {/* Subtle background grid pattern */}
-          <div className="absolute inset-0 opacity-10 bg-[radial-gradient(#ffffff_1px,transparent_1px)] [background-size:16px_16px]" />
+        <div className="bg-gradient-to-br from-emerald-950 via-slate-900 to-emerald-900 rounded-3xl p-8 sm:p-14 text-white shadow-xl relative overflow-hidden border border-emerald-800/40">
+          {/* Subtle background pattern */}
+          <div className="absolute inset-0 opacity-10 bg-[radial-gradient(#10b981_1px,transparent_1px)] [background-size:16px_16px]" />
 
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 items-center relative z-10">
             {/* Left Column: Heading & Content */}
             <div className="lg:col-span-7">
-              <span className="inline-flex items-center gap-2 text-xs font-semibold uppercase tracking-widest text-blue-400 bg-blue-500/10 px-3.5 py-1.5 rounded-full border border-blue-400/20 mb-6">
-                <Sparkles className="w-3.5 h-3.5" />
+              <span className="inline-flex items-center gap-2 text-xs font-semibold uppercase tracking-widest text-emerald-300 bg-emerald-500/20 px-3.5 py-1.5 rounded-full border border-emerald-400/30 mb-6">
+                <Sparkles className="w-3.5 h-3.5 text-emerald-400" />
                 <span>Prêt à démarrer ?</span>
               </span>
 
@@ -41,8 +41,8 @@ export default function Contact() {
               </p>
 
               {/* Location pill */}
-              <div className="flex items-center gap-2 text-gray-400 text-sm mb-8">
-                <MapPin className="w-4 h-4 text-blue-400" />
+              <div className="flex items-center gap-2 text-gray-300 text-sm mb-8">
+                <MapPin className="w-4 h-4 text-emerald-400" />
                 <span>Basé à Abidjan, Côte d'Ivoire • Disponible à distance dans toute l'Afrique francophone & international</span>
               </div>
 
@@ -90,7 +90,7 @@ export default function Contact() {
                   className="flex items-center justify-between p-4 rounded-xl bg-white/5 hover:bg-white/10 border border-white/10 transition-colors group"
                 >
                   <div className="flex items-center gap-3">
-                    <div className="w-10 h-10 rounded-lg bg-blue-500/20 text-blue-400 flex items-center justify-center">
+                    <div className="w-10 h-10 rounded-lg bg-emerald-500/20 text-emerald-400 flex items-center justify-center">
                       <Mail className="w-5 h-5" />
                     </div>
                     <div>
@@ -98,7 +98,7 @@ export default function Contact() {
                       <p className="text-sm font-semibold text-white">Email direct</p>
                     </div>
                   </div>
-                  <Send className="w-4 h-4 text-gray-400 group-hover:text-white transition-colors" />
+                  <Send className="w-4 h-4 text-gray-400 group-hover:text-emerald-400 transition-colors" />
                 </a>
 
                 {/* LinkedIn */}
@@ -109,7 +109,7 @@ export default function Contact() {
                   className="flex items-center justify-between p-4 rounded-xl bg-white/5 hover:bg-white/10 border border-white/10 transition-colors group"
                 >
                   <div className="flex items-center gap-3">
-                    <div className="w-10 h-10 rounded-lg bg-blue-600/20 text-blue-400 flex items-center justify-center">
+                    <div className="w-10 h-10 rounded-lg bg-emerald-600/20 text-emerald-400 flex items-center justify-center">
                       <Linkedin className="w-5 h-5" />
                     </div>
                     <div>
@@ -117,7 +117,7 @@ export default function Contact() {
                       <p className="text-sm font-semibold text-white">LinkedIn</p>
                     </div>
                   </div>
-                  <span className="text-xs font-semibold text-blue-400 group-hover:underline">Se connecter</span>
+                  <span className="text-xs font-semibold text-emerald-400 group-hover:underline">Se connecter</span>
                 </a>
 
                 {/* GitHub */}
@@ -128,7 +128,7 @@ export default function Contact() {
                   className="flex items-center justify-between p-4 rounded-xl bg-white/5 hover:bg-white/10 border border-white/10 transition-colors group"
                 >
                   <div className="flex items-center gap-3">
-                    <div className="w-10 h-10 rounded-lg bg-purple-500/20 text-purple-400 flex items-center justify-center">
+                    <div className="w-10 h-10 rounded-lg bg-teal-500/20 text-teal-300 flex items-center justify-center">
                       <Github className="w-5 h-5" />
                     </div>
                     <div>
@@ -136,7 +136,7 @@ export default function Contact() {
                       <p className="text-sm font-semibold text-white">GitHub</p>
                     </div>
                   </div>
-                  <span className="text-xs font-semibold text-purple-400 group-hover:underline">Voir les dépôts</span>
+                  <span className="text-xs font-semibold text-teal-300 group-hover:underline">Voir les dépôts</span>
                 </a>
               </div>
             </div>

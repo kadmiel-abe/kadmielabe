@@ -1,14 +1,14 @@
 "use client";
 
 import { motion } from "framer-motion";
-import { ArrowDown, MessageSquare, ExternalLink, ShieldCheck, Zap, Globe, Sparkles } from "lucide-react";
+import { ArrowDown, MessageSquare, ShieldCheck, Zap, Globe } from "lucide-react";
 
 export default function Hero() {
   return (
     <section className="relative pt-32 pb-20 md:pt-40 md:pb-28 bg-white overflow-hidden">
-      {/* Background Subtle Gradient Accents */}
-      <div className="absolute top-1/4 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[350px] bg-blue-50/60 rounded-full blur-3xl -z-10 pointer-events-none" />
-      <div className="absolute top-10 right-10 w-72 h-72 bg-blue-100/30 rounded-full blur-2xl -z-10 pointer-events-none" />
+      {/* Background Ambient Green Gradient Accents */}
+      <div className="absolute top-1/4 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[350px] bg-emerald-50/70 rounded-full blur-3xl -z-10 pointer-events-none" />
+      <div className="absolute top-10 right-10 w-72 h-72 bg-emerald-100/40 rounded-full blur-2xl -z-10 pointer-events-none" />
 
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="max-w-4xl mx-auto text-center">
@@ -17,15 +17,15 @@ export default function Hero() {
             initial={{ opacity: 0, y: 15 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.5 }}
-            className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-blue-50 border border-blue-100/80 text-blue-700 text-xs sm:text-sm font-semibold mb-6 shadow-xs"
+            className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-emerald-50 border border-emerald-200/80 text-emerald-800 text-xs sm:text-sm font-semibold mb-6 shadow-xs"
           >
             <span className="relative flex h-2 w-2">
               <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-75"></span>
               <span className="relative inline-flex rounded-full h-2 w-2 bg-emerald-500"></span>
             </span>
-            <span className="uppercase tracking-wider">Développeur Web Freelance</span>
-            <span className="text-blue-300">•</span>
-            <span className="text-gray-600 font-normal">Abidjan & Remote</span>
+            <span className="uppercase tracking-wider font-bold">Développeur Web Freelance</span>
+            <span className="text-emerald-400">•</span>
+            <span className="text-gray-700 font-normal">Abidjan & Remote</span>
           </motion.div>
 
           {/* Main Headline */}
@@ -36,7 +36,7 @@ export default function Hero() {
             className="font-heading text-3xl sm:text-5xl md:text-6xl font-extrabold text-gray-900 tracking-tight leading-[1.15] mb-6"
           >
             Transformez votre vision en{" "}
-            <span className="bg-gradient-to-r from-blue-600 to-indigo-600 bg-clip-text text-transparent">
+            <span className="bg-gradient-to-r from-emerald-600 via-emerald-700 to-teal-700 bg-clip-text text-transparent">
               solutions web performantes.
             </span>
           </motion.h1>
@@ -62,7 +62,7 @@ export default function Hero() {
               href="https://wa.me/#"
               target="_blank"
               rel="noopener noreferrer"
-              className="w-full sm:w-auto inline-flex items-center justify-center gap-2.5 bg-blue-600 hover:bg-blue-700 text-white font-semibold px-7 py-3.5 rounded-xl shadow-md hover:shadow-lg transition-all transform hover:-translate-y-0.5 text-base"
+              className="w-full sm:w-auto inline-flex items-center justify-center gap-2.5 bg-emerald-600 hover:bg-emerald-700 text-white font-semibold px-7 py-3.5 rounded-xl shadow-md hover:shadow-lg transition-all transform hover:-translate-y-0.5 text-base"
             >
               <MessageSquare className="w-5 h-5" />
               <span>Discuter de mon projet</span>
@@ -83,22 +83,22 @@ export default function Hero() {
             transition={{ duration: 0.6, delay: 0.4 }}
             className="grid grid-cols-1 sm:grid-cols-3 gap-4 pt-8 border-t border-gray-100 max-w-3xl mx-auto"
           >
-            <div className="flex items-center justify-center sm:justify-start gap-3 p-3 rounded-lg bg-gray-50/50">
-              <Zap className="w-5 h-5 text-blue-600 flex-shrink-0" />
+            <div className="flex items-center justify-center sm:justify-start gap-3 p-3.5 rounded-xl bg-emerald-50/50 border border-emerald-100/50">
+              <Zap className="w-5 h-5 text-emerald-600 flex-shrink-0" />
               <div className="text-left">
                 <p className="text-xs text-gray-500 font-medium uppercase tracking-wider">Performance</p>
                 <p className="text-sm font-semibold text-gray-900">Ultra-rapide & SEO</p>
               </div>
             </div>
-            <div className="flex items-center justify-center sm:justify-start gap-3 p-3 rounded-lg bg-gray-50/50">
-              <ShieldCheck className="w-5 h-5 text-blue-600 flex-shrink-0" />
+            <div className="flex items-center justify-center sm:justify-start gap-3 p-3.5 rounded-xl bg-emerald-50/50 border border-emerald-100/50">
+              <ShieldCheck className="w-5 h-5 text-emerald-600 flex-shrink-0" />
               <div className="text-left">
                 <p className="text-xs text-gray-500 font-medium uppercase tracking-wider">Qualité</p>
                 <p className="text-sm font-semibold text-gray-900">Standards Internationaux</p>
               </div>
             </div>
-            <div className="flex items-center justify-center sm:justify-start gap-3 p-3 rounded-lg bg-gray-50/50">
-              <Globe className="w-5 h-5 text-blue-600 flex-shrink-0" />
+            <div className="flex items-center justify-center sm:justify-start gap-3 p-3.5 rounded-xl bg-emerald-50/50 border border-emerald-100/50">
+              <Globe className="w-5 h-5 text-emerald-600 flex-shrink-0" />
               <div className="text-left">
                 <p className="text-xs text-gray-500 font-medium uppercase tracking-wider">Cible B2B</p>
                 <p className="text-sm font-semibold text-gray-900">Afrique & International</p>

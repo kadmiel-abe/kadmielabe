@@ -2,7 +2,8 @@
 
 import { useState, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
-import { Menu, X, ArrowUpRight, Code2 } from "lucide-react";
+import { Menu, X, ArrowUpRight } from "lucide-react";
+import Image from "next/image";
 
 export default function Navbar() {
   const [scrolled, setScrolled] = useState(false);
@@ -10,7 +11,7 @@ export default function Navbar() {
 
   useEffect(() => {
     const handleScroll = () => {
-      if (window.scrollY > 20) {
+      if (window.window.scrollY > 20) {
         setScrolled(true);
       } else {
         setScrolled(false);
@@ -32,21 +33,27 @@ export default function Navbar() {
     <header
       className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
         scrolled
-          ? "bg-white/90 backdrop-blur-md border-b border-gray-100 shadow-sm py-3.5"
-          : "bg-transparent py-5"
+          ? "bg-white/95 backdrop-blur-md border-b border-gray-100 shadow-xs py-3"
+          : "bg-transparent py-4 sm:py-5"
       }`}
     >
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex items-center justify-between">
-        {/* Brand logo */}
+        {/* Brand logo image from /public/logo.png */}
         <a
           href="#"
-          className="group flex items-center gap-2.5 font-heading text-lg font-bold text-gray-900 tracking-tight"
+          className="group flex items-center gap-3 font-heading text-lg font-bold text-gray-900 tracking-tight"
         >
-          <div className="w-9 h-9 rounded-lg bg-blue-600 text-white flex items-center justify-center font-extrabold text-lg shadow-sm group-hover:bg-blue-700 transition-colors">
-            K
+          <div className="relative h-10 w-auto min-w-[120px] sm:min-w-[140px] flex items-center">
+            <Image
+              src="/logo.png"
+              alt="Kadmiel Abe Logo"
+              width={160}
+              height={45}
+              className="h-10 w-auto object-contain transition-transform group-hover:scale-[1.02]"
+              priority
+            />
           </div>
-          <span className="flex items-center gap-1.5">
-            Kadmiel Abe
+          <span className="hidden sm:inline-flex items-center gap-1.5 ml-1">
             <span className="w-2 h-2 rounded-full bg-emerald-500 animate-pulse" title="Disponible pour de nouveaux projets" />
           </span>
         </a>
@@ -57,7 +64,7 @@ export default function Navbar() {
             <a
               key={link.name}
               href={link.href}
-              className="text-sm font-medium text-gray-600 hover:text-blue-600 transition-colors"
+              className="text-sm font-medium text-gray-700 hover:text-emerald-600 transition-colors"
             >
               {link.name}
             </a>
@@ -70,7 +77,7 @@ export default function Navbar() {
             href="https://wa.me/#"
             target="_blank"
             rel="noopener noreferrer"
-            className="inline-flex items-center gap-2 bg-blue-600 hover:bg-blue-700 text-white text-sm font-medium px-4 py-2.5 rounded-lg shadow-sm hover:shadow transition-all group"
+            className="inline-flex items-center gap-2 bg-emerald-600 hover:bg-emerald-700 text-white text-sm font-medium px-4.5 py-2.5 rounded-xl shadow-xs hover:shadow transition-all group"
           >
             <span>Discuter de mon projet</span>
             <ArrowUpRight className="w-4 h-4 transition-transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
@@ -80,7 +87,7 @@ export default function Navbar() {
         {/* Mobile menu trigger button */}
         <button
           onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
-          className="md:hidden p-2 text-gray-700 hover:text-blue-600 focus:outline-none focus:ring-2 focus:ring-blue-500 rounded-lg"
+          className="md:hidden p-2 text-gray-700 hover:text-emerald-600 focus:outline-none focus:ring-2 focus:ring-emerald-500 rounded-lg"
           aria-label="Toggle navigation menu"
         >
           {mobileMenuOpen ? <X className="w-6 h-6" /> : <Menu className="w-6 h-6" />}
@@ -102,7 +109,7 @@ export default function Navbar() {
                   key={link.name}
                   href={link.href}
                   onClick={() => setMobileMenuOpen(false)}
-                  className="text-base font-medium text-gray-700 hover:text-blue-600 py-2 border-b border-gray-50"
+                  className="text-base font-medium text-gray-700 hover:text-emerald-600 py-2 border-b border-gray-50"
                 >
                   {link.name}
                 </a>
@@ -112,7 +119,7 @@ export default function Navbar() {
                 target="_blank"
                 rel="noopener noreferrer"
                 onClick={() => setMobileMenuOpen(false)}
-                className="inline-flex items-center justify-center gap-2 bg-blue-600 hover:bg-blue-700 text-white text-base font-medium px-5 py-3 rounded-lg shadow-sm w-full mt-2"
+                className="inline-flex items-center justify-center gap-2 bg-emerald-600 hover:bg-emerald-700 text-white text-base font-medium px-5 py-3 rounded-xl shadow-xs w-full mt-2"
               >
                 <span>Discuter de mon projet</span>
                 <ArrowUpRight className="w-4 h-4" />

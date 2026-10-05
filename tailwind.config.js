@@ -8,19 +8,19 @@ module.exports = {
     extend: {
       colors: {
         brand: {
-          50: '#eff6ff',
-          100: '#dbeafe',
-          500: '#3b82f6',
-          600: '#2563eb', // Bleu Électrique
-          700: '#1d4ed8', // Hover
-          800: '#1e40af',
-          900: '#1e3a8a',
+          50: '#ecfdf5',
+          100: '#d1fae5',
+          500: '#10b981',
+          600: '#059669', // Vert Émeraude principal
+          700: '#047857', // Hover
+          800: '#065f46',
+          900: '#064e3b',
         },
         surface: {
           pure: '#ffffff',
-          alt: '#f9fafb',
-          muted: '#f3f4f6',
-          border: '#e5e7eb',
+          alt: '#f8fafc',
+          muted: '#f1f5f9',
+          border: '#e2e8f0',
         },
         content: {
           primary: '#111827',
@@ -35,11 +35,8 @@ module.exports = {
       boxShadow: {
         'subtle': '0 1px 3px 0 rgba(0, 0, 0, 0.05), 0 1px 2px -1px rgba(0, 0, 0, 0.03)',
         'elevated': '0 10px 30px -10px rgba(0, 0, 0, 0.08)',
-        'glow': '0 0 25px -5px rgba(37, 99, 235, 0.25)',
+        'glow': '0 0 25px -5px rgba(5, 150, 105, 0.25)',
       },
-      animation: {
-        'pulse-subtle': 'pulse 3s cubic-bezier(0.4, 0, 0.6, 1) infinite',
-      }
     },
   },
   plugins: [],

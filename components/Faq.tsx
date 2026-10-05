@@ -38,7 +38,7 @@ export default function Faq() {
             initial={{ opacity: 0, y: 10 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
-            className="text-xs font-bold tracking-widest text-blue-600 uppercase bg-blue-50 px-3 py-1 rounded-full border border-blue-100"
+            className="text-xs font-bold tracking-widest text-emerald-700 uppercase bg-emerald-50 px-3.5 py-1 rounded-full border border-emerald-200"
           >
             Questions Fréquentes
           </motion.span>
@@ -75,24 +75,24 @@ export default function Faq() {
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
                 transition={{ delay: index * 0.1 }}
-                className={`border rounded-xl transition-all overflow-hidden ${
+                className={`border rounded-2xl transition-all overflow-hidden ${
                   isOpen
-                    ? "border-blue-300 bg-blue-50/20 shadow-sm"
+                    ? "border-emerald-300 bg-emerald-50/20 shadow-xs"
                     : "border-gray-200 bg-white hover:border-gray-300"
                 }`}
               >
                 <button
                   onClick={() => toggleAccordion(index)}
-                  className="w-full text-left p-5 sm:p-6 flex items-center justify-between gap-4 focus:outline-none focus:ring-2 focus:ring-blue-500 rounded-xl"
+                  className="w-full text-left p-5 sm:p-6 flex items-center justify-between gap-4 focus:outline-none focus:ring-2 focus:ring-emerald-500 rounded-2xl"
                   aria-expanded={isOpen}
                 >
                   <span className="font-heading font-bold text-gray-900 text-base sm:text-lg flex items-center gap-3">
-                    <HelpCircle className="w-5 h-5 text-blue-600 flex-shrink-0" />
+                    <HelpCircle className="w-5 h-5 text-emerald-600 flex-shrink-0" />
                     {faq.question}
                   </span>
                   <div
                     className={`w-8 h-8 rounded-full flex items-center justify-center transition-transform duration-300 flex-shrink-0 ${
-                      isOpen ? "bg-blue-600 text-white rotate-180" : "bg-gray-100 text-gray-600"
+                      isOpen ? "bg-emerald-600 text-white rotate-180" : "bg-gray-100 text-gray-600"
                     }`}
                   >
                     <ChevronDown className="w-4 h-4" />
@@ -107,7 +107,7 @@ export default function Faq() {
                       exit={{ opacity: 0, height: 0 }}
                       transition={{ duration: 0.3 }}
                     >
-                      <div className="px-5 pb-6 sm:px-6 sm:pb-6 pt-0 text-gray-600 text-sm sm:text-base leading-relaxed border-t border-blue-100/50 mt-1">
+                      <div className="px-5 pb-6 sm:px-6 sm:pb-6 pt-0 text-gray-600 text-sm sm:text-base leading-relaxed border-t border-emerald-100/60 mt-1">
                         <p className="pt-4">{faq.answer}</p>
                       </div>
                     </motion.div>
@@ -119,15 +119,15 @@ export default function Faq() {
         </div>
 
         {/* Quick Contact Prompt */}
-        <div className="mt-12 text-center p-6 bg-gray-50 rounded-xl border border-gray-200/80">
-          <p className="text-sm text-gray-600 mb-3">
+        <div className="mt-12 text-center p-6 bg-emerald-50/40 rounded-2xl border border-emerald-100">
+          <p className="text-sm text-gray-700 mb-3 font-medium">
             Vous ne trouvez pas la réponse à votre question ?
           </p>
           <a
             href="https://wa.me/#"
             target="_blank"
             rel="noopener noreferrer"
-            className="inline-flex items-center gap-2 text-sm font-semibold text-blue-600 hover:text-blue-700"
+            className="inline-flex items-center gap-2 text-sm font-bold text-emerald-700 hover:text-emerald-800"
           >
             <MessageCircle className="w-4 h-4" />
             <span>Posez-moi votre question sur WhatsApp</span>

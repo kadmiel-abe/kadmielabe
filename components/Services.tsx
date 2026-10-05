@@ -44,7 +44,7 @@ export default function Services() {
   ];
 
   return (
-    <section id="services" className="py-20 md:py-28 bg-gray-50/70 border-y border-gray-100 relative">
+    <section id="services" className="py-20 md:py-28 bg-emerald-50/20 border-y border-emerald-100/60 relative">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         {/* Section Header */}
         <div className="text-center max-w-3xl mx-auto mb-16">
@@ -53,7 +53,7 @@ export default function Services() {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.4 }}
-            className="text-xs font-bold tracking-widest text-blue-600 uppercase bg-blue-50 px-3 py-1 rounded-full border border-blue-100"
+            className="text-xs font-bold tracking-widest text-emerald-700 uppercase bg-emerald-50 px-3.5 py-1 rounded-full border border-emerald-200"
           >
             Mes Domaines d'Expertise
           </motion.span>
@@ -90,19 +90,19 @@ export default function Services() {
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
                 transition={{ duration: 0.5, delay: index * 0.15 }}
-                className="bg-white rounded-xl p-8 border border-gray-200/80 shadow-sm hover:shadow-md hover:border-blue-200 transition-all group flex flex-col justify-between"
+                className="bg-white rounded-2xl p-8 border border-gray-200/80 shadow-xs hover:shadow-md hover:border-emerald-300 transition-all group flex flex-col justify-between"
               >
                 <div>
                   <div className="flex items-center justify-between mb-6">
-                    <div className="w-12 h-12 rounded-xl bg-blue-50 text-blue-600 flex items-center justify-center group-hover:bg-blue-600 group-hover:text-white transition-all shadow-xs">
+                    <div className="w-12 h-12 rounded-xl bg-emerald-50 text-emerald-600 flex items-center justify-center group-hover:bg-emerald-600 group-hover:text-white transition-all shadow-xs">
                       <Icon className="w-6 h-6" />
                     </div>
-                    <span className="text-xs font-semibold px-2.5 py-1 rounded-md bg-gray-100 text-gray-600">
+                    <span className="text-xs font-semibold px-2.5 py-1 rounded-md bg-emerald-50 text-emerald-700 border border-emerald-100">
                       {service.badge}
                     </span>
                   </div>
 
-                  <h3 className="font-heading text-xl font-bold text-gray-900 mb-3 group-hover:text-blue-600 transition-colors">
+                  <h3 className="font-heading text-xl font-bold text-gray-900 mb-3 group-hover:text-emerald-600 transition-colors">
                     {service.title}
                   </h3>
 
@@ -113,7 +113,7 @@ export default function Services() {
                   <div className="space-y-2.5 pt-4 border-t border-gray-100 mb-6">
                     {service.features.map((feat) => (
                       <div key={feat} className="flex items-center gap-2 text-xs text-gray-700">
-                        <CheckCircle2 className="w-4 h-4 text-blue-600 flex-shrink-0" />
+                        <CheckCircle2 className="w-4 h-4 text-emerald-600 flex-shrink-0" />
                         <span>{feat}</span>
                       </div>
                     ))}
@@ -122,7 +122,7 @@ export default function Services() {
 
                 <a
                   href="#contact"
-                  className="inline-flex items-center gap-2 text-sm font-semibold text-blue-600 hover:text-blue-700 pt-2 group-hover:translate-x-1 transition-transform"
+                  className="inline-flex items-center gap-2 text-sm font-semibold text-emerald-600 hover:text-emerald-700 pt-2 group-hover:translate-x-1 transition-transform"
                 >
                   <span>Démarrer un projet</span>
                   <ArrowRight className="w-4 h-4" />

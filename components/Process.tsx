@@ -44,7 +44,7 @@ export default function Process() {
   ];
 
   return (
-    <section id="process" className="py-20 md:py-28 bg-gray-50/70 border-y border-gray-100 relative">
+    <section id="process" className="py-20 md:py-28 bg-emerald-50/20 border-y border-emerald-100/60 relative">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         {/* Section Header */}
         <div className="text-center max-w-3xl mx-auto mb-16">
@@ -52,7 +52,7 @@ export default function Process() {
             initial={{ opacity: 0, y: 10 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
-            className="text-xs font-bold tracking-widest text-blue-600 uppercase bg-blue-50 px-3 py-1 rounded-full border border-blue-100"
+            className="text-xs font-bold tracking-widest text-emerald-700 uppercase bg-emerald-50 px-3.5 py-1 rounded-full border border-emerald-200"
           >
             Méthodologie de travail
           </motion.span>
@@ -89,15 +89,15 @@ export default function Process() {
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
                 transition={{ duration: 0.5, delay: index * 0.15 }}
-                className="bg-white rounded-xl p-8 border border-gray-200/80 shadow-sm relative group hover:border-blue-200 transition-all flex flex-col justify-between"
+                className="bg-white rounded-2xl p-8 border border-gray-200/80 shadow-xs relative group hover:border-emerald-300 transition-all flex flex-col justify-between"
               >
                 <div>
                   {/* Header badge step */}
                   <div className="flex items-center justify-between mb-6">
-                    <div className="w-12 h-12 rounded-xl bg-blue-50 text-blue-600 flex items-center justify-center font-bold group-hover:bg-blue-600 group-hover:text-white transition-all shadow-xs">
+                    <div className="w-12 h-12 rounded-xl bg-emerald-50 text-emerald-600 flex items-center justify-center font-bold group-hover:bg-emerald-600 group-hover:text-white transition-all shadow-xs">
                       <Icon className="w-6 h-6" />
                     </div>
-                    <span className="font-heading text-2xl font-black text-blue-100 group-hover:text-blue-200 transition-colors">
+                    <span className="font-heading text-2xl font-black text-emerald-100 group-hover:text-emerald-200 transition-colors">
                       {step.number}
                     </span>
                   </div>
@@ -114,7 +114,7 @@ export default function Process() {
                 <div className="pt-4 border-t border-gray-100 space-y-2">
                   {step.details.map((detail) => (
                     <div key={detail} className="flex items-center gap-2 text-xs text-gray-700">
-                      <CheckCircle2 className="w-3.5 h-3.5 text-blue-600 flex-shrink-0" />
+                      <CheckCircle2 className="w-3.5 h-3.5 text-emerald-600 flex-shrink-0" />
                       <span>{detail}</span>
                     </div>
                   ))}
