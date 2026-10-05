@@ -19,9 +19,9 @@ export default function Navbar() {
   return (
     <header className="flex justify-between items-center w-full px-6 py-4 bg-white/80 backdrop-blur-md sticky top-0 z-50">
       {/* Zone Logo & Nom (à gauche) */}
-      <Link href="/" className="flex items-center gap-2 text-[#0F766E] hover:opacity-80 transition-opacity">
-        <Code className="w-7 h-7 font-bold" />
-        <span className="text-xl font-bold tracking-tight">Kadmiel Abe</span>
+      <Link href="/" style={{ display: 'flex', alignItems: 'center', gap: '8px', textDecoration: 'none' }}>
+        <Code className="w-7 h-7 font-bold" style={{ color: '#0F766E' }} />
+        <span style={{ color: '#0F766E', fontWeight: 'bold', fontSize: '1.25rem' }}>Kadmiel Abe</span>
       </Link>
 
       {/* Menu de navigation (au centre) */}
