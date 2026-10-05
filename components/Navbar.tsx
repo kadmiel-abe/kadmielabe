@@ -2,8 +2,8 @@
 
 import { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
-import { Menu, X, ArrowUpRight } from "lucide-react";
-import Image from "next/image";
+import { Menu, X, ArrowUpRight, Code } from "lucide-react";
+import Link from "next/link";
 
 export default function Navbar() {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
@@ -19,21 +19,10 @@ export default function Navbar() {
   return (
     <header className="flex justify-between items-center w-full px-6 py-4 bg-white/80 backdrop-blur-md sticky top-0 z-50">
       {/* Zone Logo & Nom (à gauche) */}
-      <a href="#" className="group">
-        <div className="flex items-center gap-2.5">
-          <Image
-            src="/logo.png"
-            alt="Logo Kadmiel Abe"
-            width={40}
-            height={40}
-            className="h-9 sm:h-10 w-auto object-contain transition-transform group-hover:scale-105"
-            priority
-          />
-          <span className="text-xl sm:text-2xl font-extrabold text-[#0F766E] tracking-tight block">
-            Kadmiel Abe
-          </span>
-        </div>
-      </a>
+      <Link href="/" className="flex items-center gap-2 text-[#0F766E] hover:opacity-80 transition-opacity">
+        <Code className="w-7 h-7 font-bold" />
+        <span className="text-xl font-bold tracking-tight">Kadmiel Abe</span>
+      </Link>
 
       {/* Menu de navigation (au centre) */}
       <nav className="hidden md:flex items-center gap-8">
