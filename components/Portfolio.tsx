@@ -13,7 +13,8 @@ export default function Portfolio() {
         "Plateforme SaaS dédiée à la gestion financière. Interface utilisateur fluide et architecture robuste pour garantir sécurité et rapidité.",
       tags: ["Next.js", "Tailwind", "Supabase"],
       link: "https://gestfipro.vercel.app/",
-      image: "/capture gestfipro.gif",
+      image: "/capture gestfipro.png",
+      alt: "Interface de la plateforme GestFiPro",
       stats: [
         { label: "Temps de chargement", value: "< 1.0s" },
         { label: "Sécurité", value: "SSL / Supabase RLS" },
@@ -26,7 +27,8 @@ export default function Portfolio() {
         "Site corporate pour un cabinet d'accompagnement en stratégie financière. Design institutionnel et rassurant pour prospects B2B exigeants.",
       tags: ["Web Design", "UI/UX", "B2B"],
       link: "https://www.rhizomeconseil.com/",
-      image: "/capture rhizomconseil.gif",
+      image: "/capture rhizomzconseil.png",
+      alt: "Site web de Rhizome Conseil",
       stats: [
         { label: "Positionnement", value: "Institutionnel B2B" },
         { label: "Score Performance", value: "98/100" },
@@ -106,7 +108,7 @@ export default function Portfolio() {
                   <div className="relative w-full h-[260px] sm:h-[320px] overflow-hidden bg-gray-900 group">
                     <Image
                       src={project.image}
-                      alt={`Capture d'écran de ${project.title}`}
+                      alt={project.alt}
                       fill
                       unoptimized
                       className="object-cover object-top group-hover:scale-[1.03] transition-transform duration-500"
