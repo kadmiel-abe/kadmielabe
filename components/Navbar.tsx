@@ -19,6 +19,49 @@ export default function Navbar() {
     { label: "Contact", href: "#contact" },
   ];
 
+  const handleNavClick = (
+    e: React.MouseEvent<HTMLAnchorElement>,
+    href: string
+  ) => {
+    if (href.startsWith("#")) {
+      e.preventDefault();
+      setMobileMenuOpen(false);
+
+      const targetId = href.replace(/^#/, "");
+      if (!targetId) {
+        window.scrollTo({ top: 0, behavior: "smooth" });
+        return;
+      }
+
+      setTimeout(() => {
+        const targetElement = document.getElementById(targetId);
+        if (targetElement) {
+          const navbarHeight = 80;
+          const elementPosition = targetElement.getBoundingClientRect().top;
+          const offsetPosition = elementPosition + window.pageYOffset - navbarHeight;
+
+          window.scrollTo({
+            top: offsetPosition,
+            behavior: "smooth",
+          });
+
+          if (window.history.pushState) {
+            window.history.pushState(null, "", href);
+          }
+        }
+      }, 50);
+    }
+  };
+
+  const handleLogoClick = (e: React.MouseEvent<HTMLAnchorElement>) => {
+    e.preventDefault();
+    setMobileMenuOpen(false);
+    window.scrollTo({ top: 0, behavior: "smooth" });
+    if (window.history.pushState) {
+      window.history.pushState(null, "", window.location.pathname);
+    }
+  };
+
   return (
     <header className="fixed top-0 left-0 right-0 z-50 bg-[#0B0B0C]/85 backdrop-blur-md border-b border-[#1E1E22]">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -26,7 +69,8 @@ export default function Navbar() {
           {/* Logo & Brand Identity */}
           <a
             href="#"
-            className="flex items-center gap-3 group focus:outline-none"
+            onClick={handleLogoClick}
+            className="flex items-center gap-3 group focus:outline-none cursor-pointer"
             aria-label="Accueil - Logo Kadmiel Abe"
           >
             <div className="relative h-10 sm:h-11 flex items-center shrink-0">
@@ -47,7 +91,8 @@ export default function Navbar() {
               <a
                 key={link.label}
                 href={link.href}
-                className="text-sm font-medium text-gray-300 hover:text-white transition-colors py-1"
+                onClick={(e) => handleNavClick(e, link.href)}
+                className="text-sm font-medium text-gray-300 hover:text-white transition-colors py-1 cursor-pointer"
               >
                 {link.label}
               </a>
@@ -72,7 +117,7 @@ export default function Navbar() {
           <div className="flex md:hidden">
             <button
               onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
-              className="p-2.5 rounded-xl text-gray-400 hover:text-white hover:bg-[#121214] border border-[#1E1E22] transition-colors"
+              className="p-2.5 rounded-xl text-gray-400 hover:text-white hover:bg-[#121214] border border-[#1E1E22] transition-colors cursor-pointer"
               aria-label={mobileMenuOpen ? "Fermer le menu" : "Ouvrir le menu"}
             >
               {mobileMenuOpen ? <X className="w-5 h-5 text-white" /> : <Menu className="w-5 h-5" />}
@@ -88,7 +133,7 @@ export default function Navbar() {
             initial={{ opacity: 0, height: 0 }}
             animate={{ opacity: 1, height: "auto" }}
             exit={{ opacity: 0, height: 0 }}
-            transition={{ duration: 0.3, ease: easeCurve }}
+            transition={{ duration: 0.25, ease: easeCurve }}
             className="md:hidden bg-[#0B0B0C] border-b border-[#1E1E22] overflow-hidden"
           >
             <div className="px-5 pt-3 pb-6 space-y-2">
@@ -96,8 +141,8 @@ export default function Navbar() {
                 <a
                   key={link.label}
                   href={link.href}
-                  onClick={() => setMobileMenuOpen(false)}
-                  className="block px-4 py-3 rounded-xl text-sm font-medium text-gray-300 hover:text-white hover:bg-[#121214] transition-colors border border-transparent hover:border-[#1E1E22]"
+                  onClick={(e) => handleNavClick(e, link.href)}
+                  className="block px-4 py-3 rounded-xl text-sm font-medium text-gray-300 hover:text-white hover:bg-[#121214] transition-colors border border-transparent hover:border-[#1E1E22] cursor-pointer"
                 >
                   {link.label}
                 </a>

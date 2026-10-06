@@ -41,7 +41,7 @@ export default function Faq() {
   };
 
   return (
-    <section id="faq" className="py-24 md:py-32 bg-[#0B0B0C] border-t border-[#1E1E22] relative">
+    <section id="faq" className="py-24 md:py-32 bg-[#0B0B0C] border-t border-[#1E1E22] relative scroll-mt-20">
       <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
         {/* Section Header */}
         <div className="text-center mb-16 sm:mb-20">

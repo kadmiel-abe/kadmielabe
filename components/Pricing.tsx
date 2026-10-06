@@ -82,7 +82,7 @@ const plans = [
 
 export default function Pricing() {
   return (
-    <section id="tarifs" className="py-24 md:py-32 bg-[#0B0B0C] border-t border-[#1E1E22] relative">
+    <section id="tarifs" className="py-24 md:py-32 bg-[#0B0B0C] border-t border-[#1E1E22] relative scroll-mt-20">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         {/* Section Header */}
         <div className="text-center max-w-3xl mx-auto mb-16 sm:mb-20">

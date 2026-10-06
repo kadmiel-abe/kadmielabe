@@ -18,7 +18,7 @@ export default function Contact() {
   };
 
   return (
-    <section id="contact" className="py-24 md:py-32 bg-[#0B0B0C] border-t border-[#1E1E22] relative">
+    <section id="contact" className="py-24 md:py-32 bg-[#0B0B0C] border-t border-[#1E1E22] relative scroll-mt-20">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-16 items-start">
           {/* Left Column: Direct Contact Info & Value Prop */}
