@@ -34,7 +34,7 @@ const faqs = [
 ];
 
 export default function Faq() {
-  const [openIndex, setOpenIndex] = useState<number | null>(0);
+  const [openIndex, setOpenIndex] = useState<number | null>(null);
 
   const toggle = (index: number) => {
     setOpenIndex((current) => (current === index ? null : index));
@@ -88,7 +88,7 @@ export default function Faq() {
                     transition={{ duration: 0.3, ease: easeCurve }}
                     className={`w-9 h-9 rounded-full flex items-center justify-center shrink-0 transition-colors ${
                       isOpen
-                        ? "bg-emerald-500 text-black shadow-sm"
+                        ? "bg-emerald-500 text-white shadow-sm"
                         : "bg-[#0B0B0C] border border-[#1E1E22] text-emerald-400 group-hover:border-emerald-500/30"
                     }`}
                   >
