@@ -1,39 +1,37 @@
 import type { Metadata, Viewport } from "next";
-import { Playfair_Display, Inter } from "next/font/google";
+import { Inter, Geist_Mono } from "next/font/google";
 import "./globals.css";
-
-const playfair = Playfair_Display({
-  subsets: ["latin"],
-  weight: ["500", "600", "700", "800"],
-  variable: "--font-heading",
-  display: "swap",
-});
+import SmoothScroll from "@/components/SmoothScroll";
+import CustomCursor from "@/components/CustomCursor";
 
 const inter = Inter({
   subsets: ["latin"],
-  weight: ["300", "400", "500", "600", "700"],
   variable: "--font-sans",
+  display: "swap",
+});
+
+const geistMono = Geist_Mono({
+  subsets: ["latin"],
+  variable: "--font-mono",
   display: "swap",
 });
 
 export const metadata: Metadata = {
   title: {
-    default: "Kadmiel Abe — Développeur Web Freelance à Abidjan | SaaS & Sites B2B",
+    default: "Kadmiel Abe — Développeur Web & Stratège Digital à Abidjan",
     template: "%s | Kadmiel Abe",
   },
   description:
-    "Développeur web freelance basé à Abidjan. Conception d'applications web SaaS, sites vitrines B2B et plateformes sur-mesure aux standards internationaux pour entreprises et PME.",
+    "Développeur Web Full-Stack et Stratège Digital basé à Abidjan. Conception d'applications web SaaS performantes, sites B2B sur-mesure et stratégies numériques d'impact.",
   keywords: [
     "Kadmiel Abe",
-    "Développeur Web Freelance",
-    "Abidjan",
-    "Côte d'Ivoire",
-    "Next.js",
-    "React",
-    "Application SaaS",
-    "Site vitrine B2B",
+    "Développeur web Abidjan",
+    "Stratège digital Abidjan",
+    "Développeur Full Stack Côte d'Ivoire",
     "Création site web Abidjan",
-    "Afrique francophone",
+    "Application SaaS Next.js",
+    "Community Management Abidjan",
+    "Supabase React Developer",
   ],
   authors: [{ name: "Kadmiel Abe", url: "https://kadmielabe.dev" }],
   creator: "Kadmiel Abe",
@@ -42,19 +40,27 @@ export const metadata: Metadata = {
     canonical: "https://kadmielabe.dev",
   },
   openGraph: {
-    title: "Kadmiel Abe — Développeur Web Freelance à Abidjan",
+    title: "Kadmiel Abe — Développeur Web & Stratège Digital à Abidjan",
     description:
-      "Des applications web sur-mesure qui propulsent votre entreprise. SaaS, plateformes B2B et sites vitrines haute performance.",
+      "Je conçois des applications web performantes et des stratégies numériques qui transforment la présence en ligne des entreprises ivoiriennes et internationales.",
     url: "https://kadmielabe.dev",
     siteName: "Kadmiel Abe Portfolio",
     locale: "fr_FR",
     type: "website",
+    images: [
+      {
+        url: "/logo.jpg",
+        width: 1200,
+        height: 630,
+        alt: "Kadmiel Abe - Développeur Web & Stratège Digital Abidjan",
+      },
+    ],
   },
   twitter: {
     card: "summary_large_image",
-    title: "Kadmiel Abe — Développeur Web Freelance à Abidjan",
+    title: "Kadmiel Abe — Développeur Web & Stratège Digital",
     description:
-      "Des applications web sur-mesure qui propulsent votre entreprise. SaaS & sites B2B haute performance.",
+      "Applications web sur-mesure, SaaS & stratégies numériques d'impact pour PME et entreprises.",
   },
   robots: {
     index: true,
@@ -62,18 +68,44 @@ export const metadata: Metadata = {
   },
   icons: {
     icon: [
-      { url: "/logo.png", type: "image/png" },
+      { url: "/icon.png", type: "image/png" },
       { url: "/logo.jpg", type: "image/jpeg" },
     ],
-    shortcut: "/logo.png",
-    apple: "/logo.png",
+    shortcut: "/icon.png",
+    apple: "/icon.png",
   },
 };
 
 export const viewport: Viewport = {
-  themeColor: "#0B0B0C",
+  themeColor: "#09090b",
   width: "device-width",
   initialScale: 1,
+};
+
+const jsonLd = {
+  "@context": "https://schema.org",
+  "@type": "Person",
+  name: "Kadmiel Abe",
+  jobTitle: "Développeur Web Full-Stack & Stratège Digital",
+  url: "https://kadmielabe.dev",
+  address: {
+    "@type": "PostalAddress",
+    addressLocality: "Abidjan",
+    addressCountry: "CI",
+  },
+  sameAs: [
+    "https://www.linkedin.com/in/kadmiel-abe-b975a3346/",
+    "https://github.com/kadmiel-abe",
+  ],
+  knowsAbout: [
+    "Next.js",
+    "React",
+    "TypeScript",
+    "Supabase",
+    "Stratégie Digitale",
+    "Community Management",
+    "UI/UX Design",
+  ],
 };
 
 export default function RootLayout({
@@ -82,9 +114,18 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="fr" className={`dark ${playfair.variable} ${inter.variable}`}>
-      <body className="bg-[#0B0B0C] text-[#EDEDED] font-sans antialiased selection:bg-emerald-500/20 selection:text-emerald-400">
-        {children}
+    <html lang="fr" className={`dark ${inter.variable} ${geistMono.variable}`}>
+      <head>
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
+        />
+      </head>
+      <body className="bg-[#09090b] text-[#fafafa] font-sans antialiased selection:bg-cyan-500/20 selection:text-cyan-400">
+        <SmoothScroll>
+          <CustomCursor />
+          {children}
+        </SmoothScroll>
       </body>
     </html>
   );
