@@ -19,7 +19,7 @@ const projects = [
     technologies: ["Next.js", "Supabase", "TypeScript", "Tailwind CSS"],
     url: "https://gestfipro.vercel.app/",
     urlDisplay: "gestfipro.vercel.app",
-    image: "/capture gestfipro.png",
+    image: "/capturegestfipro.jpg",
     imageAlt: "Capture d'écran de l'interface SaaS Dashboard GestFiPro",
     reverse: false,
   },

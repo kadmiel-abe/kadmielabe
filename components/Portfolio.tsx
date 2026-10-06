@@ -13,7 +13,7 @@ export default function Portfolio() {
         "Plateforme SaaS dédiée à la gestion financière. Interface utilisateur fluide et architecture robuste pour garantir sécurité et rapidité.",
       tags: ["Next.js", "Tailwind", "Supabase"],
       link: "https://gestfipro.vercel.app/",
-      image: "/capture gestfipro.png",
+      image: "/capturegestfipro.jpg",
       alt: "Interface de la plateforme GestFiPro",
       stats: [
         { label: "Temps de chargement", value: "< 1.0s" },
