@@ -1,26 +1,28 @@
 "use client";
 
 import { useState, useCallback } from "react";
-import { motion, AnimatePresence } from "framer-motion";
+import { motion, AnimatePresence, type Variants } from "framer-motion";
 import { Github, Linkedin, Mail, X, ExternalLink, CheckCircle2, Code2, Globe, RefreshCcw, ArrowRight, MessageCircle } from "lucide-react";
 
 // ─── Animation variants ───────────────────────────────────────────────────────
-const fadeUp = {
+const easeCurve: [number, number, number, number] = [0.22, 1, 0.36, 1];
+
+const fadeUp: Variants = {
   hidden: { opacity: 0, y: 20 },
   visible: (delay = 0) => ({
     opacity: 1,
     y: 0,
-    transition: { duration: 0.6, delay, ease: [0.22, 1, 0.36, 1] },
+    transition: { duration: 0.6, delay, ease: easeCurve },
   }),
 };
 
-const modalVariants = {
+const modalVariants: Variants = {
   hidden: { opacity: 0, scale: 0.96, y: 10 },
-  visible: { opacity: 1, scale: 1, y: 0, transition: { duration: 0.3, ease: [0.22, 1, 0.36, 1] } },
+  visible: { opacity: 1, scale: 1, y: 0, transition: { duration: 0.3, ease: easeCurve } },
   exit: { opacity: 0, scale: 0.96, y: 10, transition: { duration: 0.2 } },
 };
 
-const backdropVariants = {
+const backdropVariants: Variants = {
   hidden: { opacity: 0 },
   visible: { opacity: 1, transition: { duration: 0.25 } },
   exit: { opacity: 0, transition: { duration: 0.2 } },

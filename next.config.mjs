@@ -1,7 +1,12 @@
+import path from "node:path";
+import { fileURLToPath } from "node:url";
+
+const __dirname = path.dirname(fileURLToPath(import.meta.url));
+
 /** @type {import('next').NextConfig} */
 const nextConfig = {
-  // Strict mode for better React development
   reactStrictMode: true,
+  outputFileTracingRoot: path.join(__dirname),
 
   // Optimized image domains
   images: {
