@@ -8,37 +8,31 @@ module.exports = {
   theme: {
     extend: {
       colors: {
-        canvas: {
-          DEFAULT: '#050505',
-          black: '#000000',
-          elevated: '#0a0a0a',
-          surface: '#111111',
+        dark: {
+          bg: '#0B0B0C',
+          card: '#121214',
+          'card-hover': '#17171A',
+          border: '#1E1E22',
+          'border-hover': '#2A2A30',
         },
-        ink: {
-          primary: '#EDEDED',
-          secondary: '#A1A1AA',
-          muted: '#71717A',
-          faint: '#3F3F46',
-        },
-        luxe: {
-          border: 'rgba(255, 255, 255, 0.08)',
-          'border-hover': 'rgba(255, 255, 255, 0.2)',
-          'border-active': 'rgba(255, 255, 255, 0.35)',
-          glow: 'rgba(255, 255, 255, 0.04)',
-          emerald: '#3ECF80',
-          'emerald-glow': 'rgba(62, 207, 128, 0.25)',
+        emerald: {
+          DEFAULT: '#10B981',
+          50: '#ecfdf5',
+          100: '#d1fae5',
+          400: '#34d399',
+          500: '#10B981',
+          600: '#059669',
+          700: '#047857',
         },
       },
       fontFamily: {
-        serif: ['var(--font-serif)', 'Playfair Display', 'Cormorant Garamond', 'serif'],
-        sans: ['var(--font-sans)', 'Inter', 'system-ui', 'sans-serif'],
+        heading: ['var(--font-heading)', 'serif'],
+        sans: ['var(--font-sans)', 'system-ui', 'sans-serif'],
       },
-      letterSpacing: {
-        'ultra-wide': '0.25em',
-        'mega-wide': '0.35em',
-      },
-      transitionTimingFunction: {
-        'luxe': 'cubic-bezier(0.16, 1, 0.3, 1)',
+      boxShadow: {
+        'glow-emerald': '0 0 40px -10px rgba(16, 185, 129, 0.25)',
+        'glow-emerald-lg': '0 0 60px -15px rgba(16, 185, 129, 0.35)',
+        'card-dark': '0 20px 40px -15px rgba(0, 0, 0, 0.7)',
       },
     },
   },

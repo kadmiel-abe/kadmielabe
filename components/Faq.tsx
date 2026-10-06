@@ -2,66 +2,53 @@
 
 import { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
-import { ChevronDown, HelpCircle, MessageCircle } from "lucide-react";
+import { Plus, Minus, HelpCircle } from "lucide-react";
+
+const faqs = [
+  {
+    question: "Quels sont les délais moyens pour concevoir et livrer mon projet ?",
+    answer:
+      "Pour un site vitrine professionnel (Pack Essentiel ou Pro), le délai moyen est de 7 à 14 jours ouvrés à compter de la réception de vos éléments. Pour une application web sur-mesure ou une plateforme SaaS (type GestFiPro), il faut compter entre 3 et 6 semaines selon la complexité des modules métiers et des intégrations API.",
+  },
+  {
+    question: "Comment s'organise la maintenance et le support technique après le lancement ?",
+    answer:
+      "Tous les projets bénéficient d'une période de garantie et de support technique inclus après la mise en production. Avec le Pack Premium ou un contrat de maintenance personnalisé, j'assure les sauvegardes automatiques hebdomadaires, les mises à jour critiques de sécurité, le monitoring de disponibilité 24/7 et des ajustements de contenu réguliers.",
+  },
+  {
+    question: "Pourquoi choisir un développeur freelance plutôt qu'une agence classique ?",
+    answer:
+      "Avec moi, vous avez un seul interlocuteur technique senior, direct et réactif, du cadrage au déploiement. Aucun intermédiaire commercial, aucune surcharge de coûts de structure superflus, des délais de décision réduits par 3 et un engagement total sur la qualité de votre code.",
+  },
+  {
+    question: "Suis-je propriétaire à 100% de mon site web et du code source ?",
+    answer:
+      "Absolument. Dès le règlement final de la prestation, vous devenez propriétaire exclusif de l'intégralité du code source (hébergé sur votre propre dépôt GitHub sécurisé), de vos noms de domaine, des accès d'hébergement et des contenus. Vous ne subissez aucune dépendance propriétaire ni abonnement captif.",
+  },
+];
 
 export default function Faq() {
   const [openIndex, setOpenIndex] = useState<number | null>(0);
 
-  const faqs = [
-    {
-      question: "Combien de temps faut-il pour créer un site web ?",
-      answer:
-        "Cela dépend de la complexité. Un site vitrine prend généralement 2 à 4 semaines, tandis qu'une application web sur-mesure peut nécessiter 1 à 3 mois.",
-    },
-    {
-      question: "Proposez-vous un service de maintenance ?",
-      answer:
-        "Absolument. Je propose des forfaits de maintenance pour assurer la sécurité, les mises à jour et les sauvegardes de votre site.",
-    },
-    {
-      question: "Comment se déroule le paiement ?",
-      answer:
-        "Nous fonctionnons généralement avec un acompte au lancement du projet, et le solde à la livraison finale, après votre validation.",
-    },
-  ];
-
-  const toggleAccordion = (index: number) => {
+  const toggle = (index: number) => {
     setOpenIndex(openIndex === index ? null : index);
   };
 
   return (
-    <section id="faq" className="py-20 md:py-28 bg-white relative">
+    <section id="faq" className="py-24 md:py-32 bg-[#0B0B0C] border-t border-[#1E1E22] relative">
       <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
         {/* Section Header */}
-        <div className="text-center max-w-2xl mx-auto mb-16">
-          <motion.span
-            initial={{ opacity: 0, y: 10 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            className="text-xs font-bold tracking-widest text-emerald-700 uppercase bg-emerald-50 px-3.5 py-1 rounded-full border border-emerald-200"
-          >
-            Questions Fréquentes
-          </motion.span>
-
-          <motion.h2
-            initial={{ opacity: 0, y: 15 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ delay: 0.1 }}
-            className="font-heading text-3xl sm:text-4xl font-extrabold text-gray-900 tracking-tight mt-3 mb-4"
-          >
-            Tout ce que vous devez savoir avant de démarrer
-          </motion.h2>
-
-          <motion.p
-            initial={{ opacity: 0, y: 15 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ delay: 0.2 }}
-            className="text-gray-600 text-base"
-          >
-            Vous avez une question spécifique ? N'hésitez pas à me contacter directement.
-          </motion.p>
+        <div className="text-center mb-16 sm:mb-20">
+          <div className="inline-flex items-center gap-2 px-3.5 py-1 rounded-full bg-emerald-500/10 border border-emerald-500/20 text-emerald-400 text-xs font-mono tracking-wider uppercase mb-4">
+            <HelpCircle className="w-3.5 h-3.5" />
+            <span>Foire aux Questions</span>
+          </div>
+          <h2 className="font-heading text-3xl sm:text-4xl md:text-5xl font-extrabold text-[#EDEDED] tracking-tight">
+            Questions fréquentes
+          </h2>
+          <p className="mt-4 text-sm sm:text-base text-gray-400 font-light leading-relaxed max-w-xl mx-auto">
+            Toutes les réponses pour aborder votre collaboration en toute sérénité.
+          </p>
         </div>
 
         {/* Accordion List */}
@@ -69,69 +56,42 @@ export default function Faq() {
           {faqs.map((faq, index) => {
             const isOpen = openIndex === index;
             return (
-              <motion.div
+              <div
                 key={faq.question}
-                initial={{ opacity: 0, y: 15 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                transition={{ delay: index * 0.1 }}
-                className={`border rounded-2xl transition-all overflow-hidden ${
-                  isOpen
-                    ? "border-emerald-300 bg-emerald-50/20 shadow-xs"
-                    : "border-gray-200 bg-white hover:border-gray-300"
-                }`}
+                className="rounded-2xl bg-[#121214] border border-[#1E1E22] hover:border-gray-700 transition-colors overflow-hidden"
               >
                 <button
-                  onClick={() => toggleAccordion(index)}
-                  className="w-full text-left p-5 sm:p-6 flex items-center justify-between gap-4 focus:outline-none focus:ring-2 focus:ring-emerald-500 rounded-2xl"
+                  type="button"
+                  onClick={() => toggle(index)}
+                  className="w-full p-6 text-left flex items-center justify-between gap-4 focus:outline-none"
                   aria-expanded={isOpen}
                 >
-                  <span className="font-heading font-bold text-gray-900 text-base sm:text-lg flex items-center gap-3">
-                    <HelpCircle className="w-5 h-5 text-emerald-600 flex-shrink-0" />
+                  <span className="font-heading text-lg sm:text-xl font-bold text-[#EDEDED]">
                     {faq.question}
                   </span>
-                  <div
-                    className={`w-8 h-8 rounded-full flex items-center justify-center transition-transform duration-300 flex-shrink-0 ${
-                      isOpen ? "bg-emerald-600 text-white rotate-180" : "bg-gray-100 text-gray-600"
-                    }`}
-                  >
-                    <ChevronDown className="w-4 h-4" />
+                  <div className="w-8 h-8 rounded-full bg-[#0B0B0C] border border-[#1E1E22] flex items-center justify-center shrink-0 text-emerald-400">
+                    {isOpen ? <Minus className="w-4 h-4" /> : <Plus className="w-4 h-4" />}
                   </div>
                 </button>
 
                 <AnimatePresence initial={false}>
                   {isOpen && (
                     <motion.div
-                      initial={{ opacity: 0, height: 0 }}
-                      animate={{ opacity: 1, height: "auto" }}
-                      exit={{ opacity: 0, height: 0 }}
-                      transition={{ duration: 0.3 }}
+                      initial={{ height: 0, opacity: 0 }}
+                      animate={{ height: "auto", opacity: 1 }}
+                      exit={{ height: 0, opacity: 0 }}
+                      transition={{ duration: 0.3, ease: [0.16, 1, 0.3, 1] }}
+                      className="overflow-hidden"
                     >
-                      <div className="px-5 pb-6 sm:px-6 sm:pb-6 pt-0 text-gray-600 text-sm sm:text-base leading-relaxed border-t border-emerald-100/60 mt-1">
-                        <p className="pt-4">{faq.answer}</p>
+                      <div className="px-6 pb-6 pt-2 text-sm text-gray-400 font-light leading-relaxed border-t border-[#1E1E22]/60">
+                        {faq.answer}
                       </div>
                     </motion.div>
                   )}
                 </AnimatePresence>
-              </motion.div>
+              </div>
             );
           })}
-        </div>
-
-        {/* Quick Contact Prompt */}
-        <div className="mt-12 text-center p-6 bg-emerald-50/40 rounded-2xl border border-emerald-100">
-          <p className="text-sm text-gray-700 mb-3 font-medium">
-            Vous ne trouvez pas la réponse à votre question ?
-          </p>
-          <a
-            href="https://wa.me/#"
-            target="_blank"
-            rel="noopener noreferrer"
-            className="inline-flex items-center gap-2 text-sm font-bold text-emerald-700 hover:text-emerald-800"
-          >
-            <MessageCircle className="w-4 h-4" />
-            <span>Posez-moi votre question sur WhatsApp</span>
-          </a>
         </div>
       </div>
     </section>

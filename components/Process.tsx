@@ -1,123 +1,96 @@
 "use client";
 
 import { motion } from "framer-motion";
-import { Compass, Code, Rocket, CheckCircle2 } from "lucide-react";
+import { Search, Palette, Terminal, Rocket } from "lucide-react";
+
+const steps = [
+  {
+    number: "01",
+    icon: Search,
+    title: "Audit & Cadrage Stratégique",
+    description:
+      "Nous analysons votre activité, vos clients cibles et vos concurrents. Nous définissons ensemble l'architecture exacte et les fonctionnalités indispensables pour maximiser la rentabilité de l'investissement.",
+    duration: "Semaine 1",
+  },
+  {
+    number: "02",
+    icon: Palette,
+    title: "Conception UI/UX & Maquettes",
+    description:
+      "Création de maquettes interactives haute fidélité. Vous visualisez et validez l'expérience utilisateur, l'identité visuelle et la fluidité des parcours de conversion avant la moindre ligne de code.",
+    duration: "Semaine 1 - 2",
+  },
+  {
+    number: "03",
+    icon: Terminal,
+    title: "Développement Full Stack Agile",
+    description:
+      "Intégration et programmation avec Next.js, React et Supabase. Code ultra-rapide, sécurisé et responsive, respectant scrupuleusement les normes d'accessibilité et de performance du web mondial.",
+    duration: "Semaine 2 - 3",
+  },
+  {
+    number: "04",
+    icon: Rocket,
+    title: "Tests, Déploiement & Suivi",
+    description:
+      "Audit de sécurité, vérification des scores SEO (Lighthouse 95+), déploiement sur infrastructure cloud sécurisée (Vercel) et formation pour vous rendre autonome dans l'administration de vos contenus.",
+    duration: "Livraison & Suivi",
+  },
+];
 
 export default function Process() {
-  const steps = [
-    {
-      number: "01",
-      title: "Cadrage stratégique",
-      description:
-        "Nous analysons vos objectifs pour définir la meilleure solution technique.",
-      details: [
-        "Audit des besoins & contraintes métier",
-        "Choix de la stack technique optimale",
-        "Spécifications & maquette d'architecture",
-      ],
-      icon: Compass,
-    },
-    {
-      number: "02",
-      title: "Développement agile",
-      description:
-        "Je code votre projet en vous impliquant à chaque étape clé.",
-      details: [
-        "Sprints courts avec démos régulières",
-        "Code propre, documenté et testé",
-        "Optimisation UI/UX & réactivité mobile",
-      ],
-      icon: Code,
-    },
-    {
-      number: "03",
-      title: "Déploiement & Suivi",
-      description:
-        "Mise en ligne optimisée et maintenance pour assurer la pérennité de l'outil.",
-      details: [
-        "Déploiement Vercel / Cloud sécurisé",
-        "Configuration SEO & analytics",
-        "Support & accompagnement post-lancement",
-      ],
-      icon: Rocket,
-    },
-  ];
-
   return (
-    <section id="process" className="py-20 md:py-28 bg-emerald-50/20 border-y border-emerald-100/60 relative">
+    <section id="processus" className="py-24 md:py-32 bg-[#0B0B0C] border-t border-[#1E1E22] relative">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         {/* Section Header */}
-        <div className="text-center max-w-3xl mx-auto mb-16">
-          <motion.span
-            initial={{ opacity: 0, y: 10 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            className="text-xs font-bold tracking-widest text-emerald-700 uppercase bg-emerald-50 px-3.5 py-1 rounded-full border border-emerald-200"
-          >
-            Méthodologie de travail
-          </motion.span>
-
-          <motion.h2
-            initial={{ opacity: 0, y: 15 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ delay: 0.1 }}
-            className="font-heading text-3xl sm:text-4xl font-extrabold text-gray-900 tracking-tight mt-3 mb-4"
-          >
-            Un processus clair, transparent et orienté résultats
-          </motion.h2>
-
-          <motion.p
-            initial={{ opacity: 0, y: 15 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ delay: 0.2 }}
-            className="text-gray-600 text-lg"
-          >
-            De la première prise de contact au déploiement final, chaque étape est structurée pour vous offrir sérénité et régularité.
-          </motion.p>
+        <div className="text-center max-w-3xl mx-auto mb-16 sm:mb-20">
+          <span className="text-xs font-mono tracking-widest text-emerald-400 uppercase font-semibold block mb-3">
+            MÉTHODOLOGIE TRANSPARENTE
+          </span>
+          <h2 className="font-heading text-3xl sm:text-4xl md:text-5xl font-extrabold text-[#EDEDED] tracking-tight">
+            Un processus clair, sans imprévus ni retards
+          </h2>
+          <p className="mt-4 text-sm sm:text-base text-gray-400 font-light leading-relaxed">
+            De la première discussion jusqu&apos;à la mise en ligne, chaque étape est documentée et validée avec vous pour une sérénité totale.
+          </p>
         </div>
 
-        {/* Process Steps Grid */}
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-8 relative">
+        {/* Steps Grid */}
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
           {steps.map((step, index) => {
             const Icon = step.icon;
             return (
               <motion.div
                 key={step.number}
-                initial={{ opacity: 0, y: 25 }}
+                initial={{ opacity: 0, y: 20 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
-                transition={{ duration: 0.5, delay: index * 0.15 }}
-                className="bg-white rounded-2xl p-8 border border-gray-200/80 shadow-xs relative group hover:border-emerald-300 transition-all flex flex-col justify-between"
+                transition={{ duration: 0.5, delay: index * 0.1 }}
+                className="relative p-6 sm:p-8 rounded-2xl bg-[#121214] border border-[#1E1E22] hover:border-emerald-500/30 transition-all duration-300 flex flex-col justify-between group"
               >
                 <div>
-                  {/* Header badge step */}
                   <div className="flex items-center justify-between mb-6">
-                    <div className="w-12 h-12 rounded-xl bg-emerald-50 text-emerald-600 flex items-center justify-center font-bold group-hover:bg-emerald-600 group-hover:text-white transition-all shadow-xs">
-                      <Icon className="w-6 h-6" />
-                    </div>
-                    <span className="font-heading text-2xl font-black text-emerald-100 group-hover:text-emerald-200 transition-colors">
+                    <span className="font-mono text-2xl font-bold text-gray-400 group-hover:text-emerald-400 transition-colors">
                       {step.number}
                     </span>
+                    <div className="w-10 h-10 rounded-xl bg-emerald-500/10 border border-emerald-500/20 flex items-center justify-center">
+                      <Icon className="w-5 h-5 text-emerald-400" />
+                    </div>
                   </div>
 
-                  <h3 className="font-heading text-xl font-bold text-gray-900 mb-3">
-                    Étape {index + 1} : {step.title}
+                  <h3 className="font-heading text-lg font-bold text-[#EDEDED] group-hover:text-white transition-colors mb-3">
+                    {step.title}
                   </h3>
 
-                  <p className="text-gray-600 text-sm leading-relaxed mb-6">
+                  <p className="text-xs sm:text-sm text-gray-400 font-light leading-relaxed mb-6">
                     {step.description}
                   </p>
                 </div>
 
-                <div className="pt-4 border-t border-gray-100 space-y-2">
-                  {step.details.map((detail) => (
-                    <div key={detail} className="flex items-center gap-2 text-xs text-gray-700">
-                      <CheckCircle2 className="w-3.5 h-3.5 text-emerald-600 flex-shrink-0" />
-                      <span>{detail}</span>
-                    </div>
-                  ))}
+                <div className="pt-4 border-t border-[#1E1E22]">
+                  <span className="text-[11px] font-mono uppercase tracking-wider text-emerald-400/90 font-medium">
+                    {step.duration}
+                  </span>
                 </div>
               </motion.div>
             );
