@@ -12,6 +12,7 @@
 
   html {
     scroll-behavior: smooth;
+    scroll-padding-top: 5.5rem;
     background-color: var(--bg-dark);
     color: #EDEDED;
     color-scheme: dark;
