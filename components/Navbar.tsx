@@ -24,26 +24,20 @@ export default function Navbar() {
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex items-center justify-between h-20">
           {/* Logo & Brand Identity */}
-          <a href="#" className="flex items-center gap-3 group">
-            <div className="relative w-10 h-10 rounded-full overflow-hidden border border-[#1E1E22] group-hover:border-emerald-500/50 transition-colors bg-[#121214] shrink-0">
+          <a
+            href="#"
+            className="flex items-center gap-3 group focus:outline-none"
+            aria-label="Accueil - Logo Kadmiel Abe"
+          >
+            <div className="relative h-10 sm:h-11 flex items-center shrink-0">
               <Image
-                src="/profil.png"
-                alt="Kadmiel Abe"
-                fill
-                sizes="40px"
-                className="object-cover object-center"
+                src="/logo.jpg"
+                alt="Logo Kadmiel Abe"
+                width={160}
+                height={44}
+                priority
+                className="h-10 sm:h-11 w-auto object-contain rounded-lg transition-transform duration-300 group-hover:scale-105"
               />
-            </div>
-            <div>
-              <div className="flex items-center gap-2">
-                <span className="font-heading text-lg font-bold text-white group-hover:text-emerald-400 transition-colors">
-                  Kadmiel Abe
-                </span>
-                <span className="w-2 h-2 rounded-full bg-emerald-500 status-emerald-pulse" />
-              </div>
-              <span className="text-[11px] font-sans tracking-wider text-gray-400 block uppercase">
-                Full Stack · Abidjan
-              </span>
             </div>
           </a>
 
