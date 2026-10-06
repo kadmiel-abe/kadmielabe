@@ -56,11 +56,11 @@ export default function Hero() {
             custom={0.1}
             className="font-heading text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-extrabold text-[#EDEDED] tracking-tight leading-[1.15] mb-6"
           >
-            Des applications web sur-mesure qui{" "}
+            Votre image professionnelle de A à Z,{" "}
             <span className="italic font-normal bg-gradient-to-r from-emerald-400 via-emerald-500 to-teal-400 bg-clip-text text-transparent">
-              propulsent
+              sans casse-tête
             </span>{" "}
-            votre entreprise.
+            technique.
           </motion.h1>
 
           {/* Subtitle / Description */}
@@ -71,7 +71,7 @@ export default function Hero() {
             custom={0.2}
             className="font-sans text-base sm:text-lg md:text-xl text-gray-400 leading-relaxed font-light mb-10 max-w-2xl"
           >
-            Je suis <strong className="font-semibold text-white">Kadmiel Abe</strong>, Développeur Web Freelance à Abidjan. J&apos;accompagne les entrepreneurs et PME ambitieuses dans la conception de plateformes SaaS, d&apos;outils métiers et de sites vitrines haut de gamme, sécurisés et orientés résultats.
+            Je suis <strong className="font-semibold text-white">Kadmiel Abe</strong>. Je conçois l&apos;identité visuelle et le site web des PME ambitieuses pour transformer leurs visiteurs en clients.
           </motion.p>
 
           {/* CTA Buttons */}
