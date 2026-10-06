@@ -47,8 +47,8 @@ export default function HeroBlock() {
         >
           <div className="inline-flex items-center space-x-2.5 px-3.5 py-1.5 rounded-full bg-white/[0.03] border border-white/10 backdrop-blur-sm">
             <span className="relative flex h-2 w-2">
-              <span className="status-emerald-pulse absolute inline-flex h-full w-full rounded-full bg-[#3ECF80]" />
-              <span className="relative inline-flex rounded-full h-2 w-2 bg-[#3ECF80]" />
+              <span className="status-emerald-pulse absolute inline-flex h-full w-full rounded-full bg-[#119134]" />
+              <span className="relative inline-flex rounded-full h-2 w-2 bg-[#119134]" />
             </span>
             <span className="text-[11px] sm:text-xs font-sans tracking-wide text-[#EDEDED]/90 font-light">
               Disponible pour de nouveaux projets
@@ -68,7 +68,7 @@ export default function HeroBlock() {
             variants={itemVariants}
             className="font-serif text-5xl sm:text-7xl md:text-8xl font-normal tracking-tight text-[#EDEDED] leading-none mb-3 select-none"
           >
-            Kadmiel Abe<span className="text-[#3ECF80]">.</span>
+            Kadmiel Abe<span className="text-[#119134]">.</span>
           </motion.h1>
 
           {/* Subtitle (Geometric Sans spaced) */}

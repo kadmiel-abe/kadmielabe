@@ -136,7 +136,7 @@ export default function Projects() {
                       href={project.url}
                       target="_blank"
                       rel="noopener noreferrer"
-                      className="inline-flex items-center gap-2.5 px-6 py-3.5 rounded-xl bg-emerald-500 hover:bg-emerald-400 text-black font-semibold text-xs uppercase tracking-wider transition-all duration-300 shadow-[0_0_20px_-5px_rgba(16,185,129,0.4)] hover:scale-105 active:scale-95"
+                      className="inline-flex items-center gap-2.5 px-6 py-3.5 rounded-xl bg-emerald-500 hover:bg-emerald-600 text-white font-semibold text-xs uppercase tracking-wider transition-all duration-300 shadow-[0_0_20px_-5px_rgba(17,145,52,0.4)] hover:scale-105 active:scale-95"
                     >
                       <span>Visiter le site</span>
                       <ExternalLink className="w-4 h-4" />

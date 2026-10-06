@@ -162,7 +162,7 @@ export default function Contact() {
 
                 <button
                   type="submit"
-                  className="w-full py-4 px-6 rounded-xl bg-emerald-500 hover:bg-emerald-400 text-black font-semibold text-xs uppercase tracking-wider flex items-center justify-center gap-2.5 transition-all duration-300 shadow-[0_0_25px_-5px_rgba(16,185,129,0.5)] hover:scale-[1.02] active:scale-[0.98]"
+                  className="w-full py-4 px-6 rounded-xl bg-emerald-500 hover:bg-emerald-600 text-white font-semibold text-xs uppercase tracking-wider flex items-center justify-center gap-2.5 transition-all duration-300 shadow-[0_0_25px_-5px_rgba(17,145,52,0.5)] hover:scale-[1.02] active:scale-[0.98]"
                 >
                   <Send className="w-4 h-4" />
                   <span>Envoyer ma demande via WhatsApp</span>

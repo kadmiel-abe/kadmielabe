@@ -44,7 +44,7 @@ export default function ProjectsSheet({ open, onOpenChange }: ProjectsSheetProps
       <SheetContent>
         <SheetHeader>
           <div className="flex items-center space-x-2 text-[11px] font-mono tracking-widest text-[#A1A1AA]/70 uppercase">
-            <Sparkles className="w-3.5 h-3.5 text-[#3ECF80]" />
+            <Sparkles className="w-3.5 h-3.5 text-[#34D368]" />
             <span>Sélection de réalisations</span>
           </div>
           <SheetTitle className="mt-1">Travaux & Projets</SheetTitle>
@@ -63,7 +63,7 @@ export default function ProjectsSheet({ open, onOpenChange }: ProjectsSheetProps
                 <span className="text-xs font-mono tracking-widest text-[#A1A1AA]/50">
                   {project.number}
                 </span>
-                <span className="text-[10px] font-sans tracking-widest uppercase text-[#3ECF80] bg-[#3ECF80]/10 px-2.5 py-0.5 rounded-full border border-[#3ECF80]/20">
+                <span className="text-[10px] font-sans tracking-widest uppercase text-[#34D368] bg-[#119134]/15 px-2.5 py-0.5 rounded-full border border-[#119134]/30">
                   {project.category}
                 </span>
               </div>
@@ -79,7 +79,7 @@ export default function ProjectsSheet({ open, onOpenChange }: ProjectsSheetProps
               <div className="space-y-1.5 mb-5">
                 {project.highlights.map((highlight) => (
                   <div key={highlight} className="flex items-center space-x-2 text-xs text-[#EDEDED]/80">
-                    <CheckCircle2 className="w-3.5 h-3.5 text-[#3ECF80] shrink-0" />
+                    <CheckCircle2 className="w-3.5 h-3.5 text-[#34D368] shrink-0" />
                     <span>{highlight}</span>
                   </div>
                 ))}

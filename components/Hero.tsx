@@ -86,7 +86,7 @@ export default function Hero() {
               href="https://wa.me/2250706978570?text=Bonjour%20Kadmiel,%20je%20souhaite%20discuter%20d'un%20projet%20web%20pour%20mon%20entreprise."
               target="_blank"
               rel="noopener noreferrer"
-              className="w-full sm:w-auto inline-flex items-center justify-center gap-2.5 px-8 py-4 rounded-xl bg-emerald-500 hover:bg-emerald-400 text-black font-semibold text-sm uppercase tracking-wider transition-all duration-300 shadow-[0_0_30px_-5px_rgba(16,185,129,0.5)] hover:scale-105 active:scale-95"
+              className="w-full sm:w-auto inline-flex items-center justify-center gap-2.5 px-8 py-4 rounded-xl bg-emerald-500 hover:bg-emerald-600 text-white font-semibold text-sm uppercase tracking-wider transition-all duration-300 shadow-[0_0_30px_-5px_rgba(17,145,52,0.5)] hover:scale-105 active:scale-95"
             >
               <MessageSquare className="w-4 h-4" />
               <span>Discuter de mon projet</span>

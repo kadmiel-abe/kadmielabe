@@ -66,7 +66,7 @@ export default function Faq() {
                 key={faq.id}
                 className={`rounded-2xl transition-all duration-300 overflow-hidden border ${
                   isOpen
-                    ? "bg-[#141417] border-emerald-500/40 shadow-[0_0_30px_-10px_rgba(16,185,129,0.15)]"
+                    ? "bg-[#141417] border-emerald-500/40 shadow-[0_0_30px_-10px_rgba(17,145,52,0.15)]"
                     : "bg-[#121214] border-[#1E1E22] hover:border-gray-700"
                 }`}
               >

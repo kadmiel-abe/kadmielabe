@@ -65,7 +65,7 @@ export default function OffresSheet({ open, onOpenChange }: OffresSheetProps) {
       <SheetContent>
         <SheetHeader>
           <div className="flex items-center space-x-2 text-[11px] font-mono tracking-widest text-[#A1A1AA]/70 uppercase">
-            <Zap className="w-3.5 h-3.5 text-[#3ECF80]" />
+            <Zap className="w-3.5 h-3.5 text-[#34D368]" />
             <span>Tarifs & Accompagnement</span>
           </div>
           <SheetTitle className="mt-1">Offres Clé en Main</SheetTitle>
@@ -80,13 +80,13 @@ export default function OffresSheet({ open, onOpenChange }: OffresSheetProps) {
               key={offre.name}
               className={`relative p-6 rounded-2xl transition-all duration-400 ${
                 offre.isPopular
-                  ? "bg-gradient-to-b from-white/[0.06] to-white/[0.02] border border-[#3ECF80]/40 shadow-[0_0_35px_-10px_rgba(62,207,128,0.2)]"
+                  ? "bg-gradient-to-b from-white/[0.06] to-white/[0.02] border border-[#119134]/40 shadow-[0_0_35px_-10px_rgba(17,145,52,0.25)]"
                   : "bg-white/[0.02] border border-white/10 hover:border-white/20"
               }`}
             >
               {offre.isPopular && (
                 <div className="absolute -top-3 right-6">
-                  <span className="inline-flex items-center space-x-1.5 px-3 py-0.5 rounded-full text-[10px] font-medium tracking-wider uppercase bg-[#3ECF80] text-[#050505]">
+                  <span className="inline-flex items-center space-x-1.5 px-3 py-0.5 rounded-full text-[10px] font-medium tracking-wider uppercase bg-[#119134] text-white">
                     <ShieldCheck className="w-3 h-3" />
                     <span>Recommandé</span>
                   </span>
@@ -111,7 +111,7 @@ export default function OffresSheet({ open, onOpenChange }: OffresSheetProps) {
               <ul className="space-y-2.5 mb-6 border-t border-white/5 pt-4">
                 {offre.features.map((feature) => (
                   <li key={feature} className="flex items-start space-x-2.5 text-xs text-[#EDEDED]/90">
-                    <Check className={`w-3.5 h-3.5 mt-0.5 shrink-0 ${offre.isPopular ? "text-[#3ECF80]" : "text-[#A1A1AA]"}`} />
+                    <Check className={`w-3.5 h-3.5 mt-0.5 shrink-0 ${offre.isPopular ? "text-[#34D368]" : "text-[#A1A1AA]"}`} />
                     <span className="leading-snug">{feature}</span>
                   </li>
                 ))}

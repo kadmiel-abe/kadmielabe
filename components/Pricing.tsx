@@ -114,7 +114,7 @@ export default function Pricing() {
             >
               {plan.badge && (
                 <div className="absolute -top-3.5 left-1/2 -translate-x-1/2">
-                  <span className="inline-flex items-center gap-1.5 px-3.5 py-1 rounded-full text-[11px] font-bold tracking-wider uppercase bg-emerald-500 text-black shadow-md">
+                  <span className="inline-flex items-center gap-1.5 px-3.5 py-1 rounded-full text-[11px] font-bold tracking-wider uppercase bg-emerald-500 text-white shadow-md">
                     <Sparkles className="w-3 h-3" />
                     <span>{plan.badge}</span>
                   </span>
@@ -164,7 +164,7 @@ export default function Pricing() {
                   rel="noopener noreferrer"
                   className={`w-full py-3.5 px-4 rounded-xl font-semibold text-xs uppercase tracking-wider flex items-center justify-center gap-2 transition-all duration-300 ${
                     plan.highlight
-                      ? "bg-emerald-500 hover:bg-emerald-400 text-black shadow-[0_0_20px_-5px_rgba(16,185,129,0.5)] hover:scale-105"
+                      ? "bg-emerald-500 hover:bg-emerald-600 text-white shadow-[0_0_20px_-5px_rgba(17,145,52,0.5)] hover:scale-105"
                       : "bg-[#1E1E22] hover:bg-[#2A2A30] text-white hover:border-gray-600 border border-[#2A2A30]"
                   }`}
                 >

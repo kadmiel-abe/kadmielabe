@@ -60,7 +60,7 @@ export default function Navbar() {
               href="https://wa.me/2250706978570?text=Bonjour%20Kadmiel,%20je%20souhaite%20discuter%20d'un%20projet%20web%20pour%20mon%20entreprise."
               target="_blank"
               rel="noopener noreferrer"
-              className="inline-flex items-center gap-2 px-5 py-2.5 rounded-full bg-emerald-500 hover:bg-emerald-400 text-black font-semibold text-xs uppercase tracking-wider transition-all duration-300 shadow-[0_0_20px_-5px_rgba(16,185,129,0.5)] hover:scale-105 active:scale-95"
+              className="inline-flex items-center gap-2 px-5 py-2.5 rounded-full bg-emerald-500 hover:bg-emerald-400 text-white font-semibold text-xs uppercase tracking-wider transition-all duration-300 shadow-[0_0_20px_-5px_rgba(17,145,52,0.5)] hover:scale-105 active:scale-95"
             >
               <MessageSquare className="w-3.5 h-3.5" />
               <span>WhatsApp Direct</span>
@@ -108,7 +108,7 @@ export default function Navbar() {
                   target="_blank"
                   rel="noopener noreferrer"
                   onClick={() => setMobileMenuOpen(false)}
-                  className="flex items-center justify-center gap-2 w-full py-3.5 rounded-xl bg-emerald-500 text-black font-semibold text-xs uppercase tracking-wider shadow-md"
+                  className="flex items-center justify-center gap-2 w-full py-3.5 rounded-xl bg-emerald-500 text-white font-semibold text-xs uppercase tracking-wider shadow-md"
                 >
                   <MessageSquare className="w-4 h-4" />
                   <span>Discuter sur WhatsApp</span>

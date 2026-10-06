@@ -7,7 +7,12 @@
     --bg-dark: #0B0B0C;
     --card-dark: #121214;
     --border-dark: #1E1E22;
-    --emerald-accent: #10B981;
+    /* Vert exact extrait du logo */
+    --color-primary: #119134;
+    --color-primary-light: #34D368;
+    --color-primary-dark: #0D7A2B;
+    --color-primary-glow: rgba(17, 145, 52, 0.25);
+    --emerald-accent: #119134;
   }
 
   html {
@@ -36,8 +41,8 @@
    SELECTION STYLES
 ───────────────────────────────────────────── */
 ::selection {
-  background-color: rgba(16, 185, 129, 0.25);
-  color: #34d399;
+  background-color: rgba(17, 145, 52, 0.28);
+  color: #34D368;
 }
 
 /* ─────────────────────────────────────────────
@@ -54,7 +59,7 @@
   border-radius: 9999px;
 }
 ::-webkit-scrollbar-thumb:hover {
-  background: #10B981;
+  background: #119134;
 }
 
 /* ─────────────────────────────────────────────
@@ -78,21 +83,21 @@
 }
 
 .glass-panel:hover {
-  border-color: rgba(16, 185, 129, 0.3);
+  border-color: rgba(17, 145, 52, 0.35);
 }
 
 /* ─────────────────────────────────────────────
-   ANIMATED GLOW PULSE
+   ANIMATED GLOW PULSE (Vert Logo #119134)
 ───────────────────────────────────────────── */
 @keyframes emerald-pulse {
   0% {
-    box-shadow: 0 0 0 0 rgba(16, 185, 129, 0.6);
+    box-shadow: 0 0 0 0 rgba(17, 145, 52, 0.65);
   }
   70% {
-    box-shadow: 0 0 0 8px rgba(16, 185, 129, 0);
+    box-shadow: 0 0 0 8px rgba(17, 145, 52, 0);
   }
   100% {
-    box-shadow: 0 0 0 0 rgba(16, 185, 129, 0);
+    box-shadow: 0 0 0 0 rgba(17, 145, 52, 0);
   }
 }
 

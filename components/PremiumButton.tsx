@@ -54,7 +54,7 @@ export default function PremiumButton({
       <div className="relative flex items-center justify-between z-10">
         {/* Left: Index number + Label */}
         <div className="flex items-baseline space-x-3 sm:space-x-4">
-          <span className="text-[11px] sm:text-xs font-mono tracking-widest text-[#A1A1AA]/50 group-hover:text-[#3ECF80] transition-colors duration-400">
+          <span className="text-[11px] sm:text-xs font-mono tracking-widest text-[#A1A1AA]/50 group-hover:text-[#34D368] transition-colors duration-400">
             {number}
           </span>
           <span className="font-sans text-sm sm:text-base font-medium tracking-[0.16em] uppercase text-[#EDEDED] group-hover:text-white transition-colors duration-300">
