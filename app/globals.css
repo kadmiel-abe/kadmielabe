@@ -4,115 +4,100 @@
 
 @layer base {
   :root {
-    --bg-primary: #0a0a0a;
-    --bg-secondary: #111111;
-    --bg-card: #161616;
-    --border: rgba(255, 255, 255, 0.08);
-    --border-hover: rgba(255, 255, 255, 0.16);
-    --text-primary: #f5f5f5;
-    --text-secondary: #a1a1aa;
-    --text-muted: #52525b;
-    --accent: #6ee7b7;
-    --accent-dim: rgba(110, 231, 183, 0.12);
-    --accent-glow: rgba(110, 231, 183, 0.25);
+    --bg-canvas: #050505;
+    --text-primary: #EDEDED;
+    --text-secondary: #A1A1AA;
+    --luxe-border: rgba(255, 255, 255, 0.08);
   }
 
   html {
-    scroll-behavior: smooth;
-    background-color: var(--bg-primary);
+    background-color: var(--bg-canvas);
     color: var(--text-primary);
+    color-scheme: dark;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
   }
 
   body {
-    font-family: var(--font-geist), var(--font-inter), system-ui, -apple-system, sans-serif;
-    -webkit-font-smoothing: antialiased;
-    -moz-osx-font-smoothing: grayscale;
+    background-color: var(--bg-canvas);
+    color: var(--text-primary);
     overflow-x: hidden;
-    background-color: var(--bg-primary);
   }
 }
 
 /* ─────────────────────────────────────────────
-   ANIMATED GRID BACKGROUND
+   FILM GRAIN / NOISE TEXTURE
 ───────────────────────────────────────────── */
-.bg-grid {
-  background-color: var(--bg-primary);
-  background-image:
-    linear-gradient(to right, #80808012 1px, transparent 1px),
-    linear-gradient(to bottom, #80808012 1px, transparent 1px);
-  background-size: 40px 40px;
-}
-
-/* Radial fade masking the grid toward the center */
-.bg-grid::before {
-  content: "";
+.noise-overlay {
   position: fixed;
   inset: 0;
-  background: radial-gradient(ellipse 80% 60% at 50% 0%, rgba(110, 231, 183, 0.06) 0%, transparent 70%);
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  z-index: 40;
+  opacity: 0.035;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.8' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/svg%3E");
+}
+
+/* ─────────────────────────────────────────────
+   RADIAL AMBIENT GLOW
+───────────────────────────────────────────── */
+.ambient-glow {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 600px;
+  height: 600px;
+  border-radius: 9999px;
+  background: radial-gradient(circle at center, rgba(255, 255, 255, 0.03) 0%, rgba(255, 255, 255, 0.008) 40%, transparent 70%);
   pointer-events: none;
   z-index: 0;
 }
 
 /* ─────────────────────────────────────────────
-   GLASSMORPHISM CARD
+   PULSE FOR AVAILABILITY INDICATOR
 ───────────────────────────────────────────── */
-.glass-card {
-  background: rgba(22, 22, 22, 0.7);
-  backdrop-filter: blur(20px);
-  -webkit-backdrop-filter: blur(20px);
-  border: 1px solid var(--border);
-  border-radius: 1.25rem;
+@keyframes emerald-pulse {
+  0% {
+    box-shadow: 0 0 0 0 rgba(62, 207, 128, 0.6);
+  }
+  70% {
+    box-shadow: 0 0 0 7px rgba(62, 207, 128, 0);
+  }
+  100% {
+    box-shadow: 0 0 0 0 rgba(62, 207, 128, 0);
+  }
 }
 
-.glass-card:hover {
-  border-color: var(--border-hover);
+.status-emerald-pulse {
+  animation: emerald-pulse 2.4s cubic-bezier(0.16, 1, 0.3, 1) infinite;
 }
 
 /* ─────────────────────────────────────────────
-   SCROLLBAR
+   CUSTOM LUXE SCROLLBAR (FOR SHEETS)
 ───────────────────────────────────────────── */
 ::-webkit-scrollbar {
-  width: 6px;
+  width: 5px;
 }
+
 ::-webkit-scrollbar-track {
-  background: #0a0a0a;
+  background: #050505;
 }
+
 ::-webkit-scrollbar-thumb {
-  background: #333;
-  border-radius: 3px;
+  background: rgba(255, 255, 255, 0.12);
+  border-radius: 9999px;
 }
+
 ::-webkit-scrollbar-thumb:hover {
-  background: #6ee7b7;
+  background: rgba(255, 255, 255, 0.25);
 }
 
 /* ─────────────────────────────────────────────
    SELECTION
 ───────────────────────────────────────────── */
 ::selection {
-  background-color: rgba(110, 231, 183, 0.2);
-  color: #6ee7b7;
-}
-
-/* ─────────────────────────────────────────────
-   SHIMMER ON AVATAR RING
-───────────────────────────────────────────── */
-@keyframes spin-slow {
-  from { transform: rotate(0deg); }
-  to { transform: rotate(360deg); }
-}
-
-.avatar-ring {
-  animation: spin-slow 8s linear infinite;
-}
-
-/* ─────────────────────────────────────────────
-   GLOW PULSE (accent dot)
-───────────────────────────────────────────── */
-@keyframes glow-pulse {
-  0%, 100% { box-shadow: 0 0 0 0 rgba(110, 231, 183, 0.5); }
-  50% { box-shadow: 0 0 0 6px rgba(110, 231, 183, 0); }
-}
-
-.status-dot {
-  animation: glow-pulse 2s ease-in-out infinite;
+  background-color: rgba(255, 255, 255, 0.9);
+  color: #050505;
 }

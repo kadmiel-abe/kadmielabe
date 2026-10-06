@@ -1,0 +1,219 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Mes offres – Présence professionnelle</title>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:wght@400;600;800&display=swap">
+<style>
+:root{--bg:#f3faf5;--card:#fff;--ink:#0f2a1c;--muted:#52675b;--line:#d3e7da;--accent:#fff;--accent-ink:#0b6b3a;--brand:#0b6b3a;--brand-ink:#fff;
+box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){--bg:#08150e;--card:#10241a;--ink:#eef7f1;--muted:#98b2a2;--line:#1f3a2b;--accent:#fff;--accent-ink:#06281a;--brand:#3ecf80;--brand-ink:#06281a}}
+:root[data-theme="dark"]{--bg:#08150e;--card:#10241a;--ink:#eef7f1;--muted:#98b2a2;--line:#1f3a2b;--accent:#fff;--accent-ink:#06281a;--brand:#3ecf80;--brand-ink:#06281a}
+html{scroll-padding-top:env(safe-area-inset-top,0px)}
+*,*::before,*::after{box-sizing:inherit}
+body{margin:0;background:var(--bg);color:var(--ink);font-family:"Bricolage Grotesque",system-ui,-apple-system,"Segoe UI",sans-serif;line-height:1.55}
+main{max-width:1040px;margin:0 auto;padding:40px 20px 56px}
+h1{font-size:clamp(2rem,5vw,3.2rem);font-weight:800;line-height:1.05;margin:0 0 12px;letter-spacing:-.02em}
+.lead{color:var(--muted);max-width:60ch;margin:0 0 36px;font-size:1.05rem}
+.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:18px;align-items:stretch}
+.card{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:24px;display:flex;flex-direction:column}
+.card.featured{background:var(--brand);color:var(--brand-ink);border-color:var(--brand)}
+.card.featured .muted,.card.featured li{color:inherit}
+.tag{align-self:flex-start;background:var(--accent);color:var(--accent-ink);font-size:.8rem;font-weight:600;padding:3px 10px;border-radius:99px;margin-bottom:12px}
+h2{font-size:1.5rem;margin:0 0 4px}
+.muted{color:var(--muted);margin:0 0 16px;font-size:.95rem}
+ul{list-style:none;padding:0;margin:0 0 20px;flex:1}
+li{padding:7px 0 7px 26px;position:relative;border-top:1px solid var(--line)}
+.featured li{border-color:rgba(255,255,255,.25)}
+li::before{content:"✓";position:absolute;left:0;font-weight:800}
+.price{font-size:1.5rem;font-weight:800;margin:0}
+.price small{font-size:.85rem;font-weight:400;opacity:.8}
+section{margin-top:44px}
+h3{font-size:1.25rem;margin:0 0 14px}
+.two{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:18px}
+.box{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:20px}
+.box ul{margin:0}
+.fill{border-bottom:2px dotted var(--muted);display:inline-block;min-width:5ch}
+.table-wrap{overflow-x:auto}
+table{border-collapse:collapse;width:100%;min-width:480px}
+th,td{text-align:left;padding:10px 12px;border-bottom:1px solid var(--line)}
+th{font-weight:600}
+.foot{margin-top:40px;color:var(--muted);font-size:.9rem}
+
+.mesure{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:24px}
+.opt{display:flex;align-items:center;gap:12px;padding:12px 0;border-top:1px solid var(--line);cursor:pointer}
+.opt:first-of-type{border-top:0}
+.opt input[type=checkbox]{width:20px;height:20px;accent-color:var(--brand);flex:none}
+.opt .nom{flex:1}
+.opt .nom small{display:block;color:var(--muted)}
+.opt .pu{font-weight:600;white-space:nowrap}
+.opt input[type=number]{width:4.2em;padding:6px;border:1px solid var(--line);border-radius:8px;background:var(--bg);color:var(--ink);font:inherit}
+.total{display:flex;justify-content:space-between;align-items:baseline;gap:12px;flex-wrap:wrap;margin-top:16px;padding-top:16px;border-top:2px solid var(--ink)}
+.total strong{font-size:1.7rem}
+#astuce{margin:8px 0 0;color:var(--brand);font-weight:600}
+:root[data-theme="dark"] #astuce{color:var(--brand)}
+
+ol.steps{list-style:none;counter-reset:s;padding:0;margin:0;display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:14px}
+ol.steps li{counter-increment:s;background:var(--card);border:1px solid var(--line);border-radius:14px;padding:18px;border-top:1px solid var(--line)}
+ol.steps li::before{content:counter(s);position:static;display:inline-flex;width:30px;height:30px;align-items:center;justify-content:center;border-radius:50%;background:var(--brand);color:var(--brand-ink);font-weight:800;margin-bottom:8px}
+ol.steps strong{display:block}
+ol.steps span{color:var(--muted);font-size:.95rem}
+details{background:var(--card);border:1px solid var(--line);border-radius:12px;padding:14px 18px;margin-bottom:10px}
+summary{cursor:pointer;font-weight:600}
+details p{margin:10px 0 0;color:var(--muted)}
+a{color:inherit}
+</style>
+</head>
+<body>
+<main>
+  <h1>Votre image professionnelle, clé en main</h1>
+  <p class="lead">Logo, carte de visite, site web, plaquette et visibilité en ligne : un seul interlocuteur, un prix fixe, des délais clairs.</p>
+
+  <div class="grid">
+    <article class="card">
+      <h2>Essentiel</h2>
+      <p class="muted">Pour démarrer vite avec les bases.</p>
+      <ul>
+        <li>Carte de visite avec QR code vers votre site, impression de 100 cartes incluse</li>
+        <li>Site vitrine (jusqu'à <span class="fill">3</span> pages)</li>
+        <li>Bouton WhatsApp et formulaire de contact</li>
+        <li>Nom de domaine et hébergement 1 an</li>
+      </ul>
+      <p class="price">150 000 FCFA</p>
+    </article>
+
+    <article class="card featured">
+      <span class="tag">Le plus choisi</span>
+      <h2>Pro</h2>
+      <p class="muted">Le pack complet pour une image cohérente.</p>
+      <ul>
+        <li>Identité visuelle : logo, couleurs, typographies</li>
+        <li>Carte de visite avec QR code, impression de 100 cartes incluse</li>
+        <li>Site web professionnel (jusqu'à <span class="fill">5</span> pages)</li>
+        <li>Plaquette commerciale (PDF et impression)</li>
+        <li>Fiche Google Business Profile et SEO de base</li>
+        <li>1 mois de support après livraison</li>
+      </ul>
+      <p class="price">350 000 FCFA</p>
+    </article>
+
+    <article class="card">
+      <h2>Premium</h2>
+      <p class="muted">Le pack Pro, avec un suivi sur la durée.</p>
+      <ul>
+        <li>Tout le contenu de la formule Pro</li>
+        <li>Maintenance pendant 12 mois</li>
+        <li>Mises à jour et sauvegardes du site</li>
+        <li>Modifications mineures incluses</li>
+        <li>Rapport de visibilité trimestriel</li>
+      </ul>
+      <p class="price">450 000 FCFA</p>
+    </article>
+  </div>
+
+  <section>
+    <h3>Comparatif</h3>
+    <div class="table-wrap">
+      <table>
+        <tr><th>Prestation</th><th>Essentiel</th><th>Pro</th><th>Premium</th></tr>
+        <tr><td>Identité visuelle</td><td>–</td><td>✓</td><td>✓</td></tr>
+        <tr><td>Carte de visite + QR code + impression de 100 cartes</td><td>✓</td><td>✓</td><td>✓</td></tr>
+        <tr><td>Site web</td><td>3 pages</td><td>5 pages</td><td>5 pages</td></tr>
+        <tr><td>Plaquette commerciale</td><td>–</td><td>✓</td><td>✓</td></tr>
+        <tr><td>Google Business Profile + SEO</td><td>–</td><td>✓</td><td>✓</td></tr>
+        <tr><td>Support après livraison</td><td>–</td><td>1 mois</td><td>12 mois</td></tr>
+      </table>
+    </div>
+  </section>
+
+
+  <section>
+    <h3>Sur mesure : composez votre offre</h3>
+    <div class="mesure">
+      <p class="muted">Cochez uniquement ce dont vous avez besoin. Le total se calcule tout seul.</p>
+      <label class="opt"><input type="checkbox" data-p="50000"><span class="nom">Identité visuelle<small>Logo, couleurs, typographies</small></span><span class="pu">50 000</span></label>
+      <label class="opt"><input type="checkbox" data-p="25000"><span class="nom">Carte de visite avec QR code<small>Impression de 100 cartes incluse</small></span><span class="pu">25 000</span></label>
+      <label class="opt"><input type="checkbox" data-p="170000"><span class="nom">Site web professionnel<small>Jusqu'à 3 pages, domaine et hébergement 1 an</small></span><span class="pu">170 000</span></label>
+      <label class="opt"><input type="number" id="pages" min="0" max="10" value="0"><span class="nom">Pages supplémentaires<small>Nombre de pages à ajouter au site</small></span><span class="pu">25 000 / page</span></label>
+      <label class="opt"><input type="checkbox" data-p="40000"><span class="nom">Plaquette commerciale<small>PDF et fichier d'impression</small></span><span class="pu">40 000</span></label>
+      <label class="opt"><input type="checkbox" data-p="25000"><span class="nom">Google Business Profile<small>Création, configuration, SEO de base</small></span><span class="pu">25 000</span></label>
+      <label class="opt"><input type="checkbox" data-p="15000"><span class="nom">Adresse email professionnelle<small>contact@votreentreprise.com</small></span><span class="pu">15 000</span></label>
+      <label class="opt"><input type="checkbox" data-p="20000"><span class="nom">Support 1 mois après livraison</span><span class="pu">20 000</span></label>
+      <label class="opt"><input type="checkbox" data-p="120000"><span class="nom">Maintenance 12 mois<small>Mises à jour, sauvegardes, modifications mineures</small></span><span class="pu">120 000</span></label>
+      <div class="total"><span>Total estimé</span><strong id="total">0 FCFA</strong></div>
+      <p id="astuce"></p>
+    </div>
+  </section>
+
+  <section class="two">
+    <div class="box">
+      <h3>Conditions</h3>
+      <ul>
+        <li><span class="fill">2</span> allers-retours de modifications par support</li>
+        <li>Livraison sous <span class="fill">3</span> semaines</li>
+        <li>Paiement : 50 % à la commande, 50 % à la livraison</li>
+        <li>Orange Money, Wave, MTN MoMo ou virement</li>
+        <li>Prix valables 30 jours</li>
+        <li>Le logo et le site vous appartiennent après paiement complet</li>
+        <li>Vos informations restent confidentielles</li>
+      </ul>
+    </div>
+    <div class="box">
+      <h3>Options</h3>
+      <ul>
+        <li>Maintenance mensuelle : 10 000 FCFA/mois</li>
+        <li>Adresse email professionnelle</li>
+        <li>Pages supplémentaires sur le site</li>
+        <li>Cartes de visite supplémentaires (par lot de 100)</li><li>Impression de plaquettes</li>
+      </ul>
+    </div>
+  </section>
+
+  <section>
+    <h3>Comment ça se passe</h3>
+    <ol class="steps">
+      <li><strong>Échange</strong><span>On discute de votre activité et de vos besoins, par WhatsApp ou en personne.</span></li>
+      <li><strong>Devis et acompte</strong><span>Vous validez l'offre et versez 50 % pour lancer le travail.</span></li>
+      <li><strong>Création et validation</strong><span>Je vous présente chaque support, vous demandez vos retouches.</span></li>
+      <li><strong>Livraison</strong><span>Vous payez le solde et recevez tous vos fichiers, votre site en ligne et vos cartes imprimées.</span></li>
+    </ol>
+  </section>
+
+  <section>
+    <h3>Ce que vous devez me fournir</h3>
+    <div class="box"><ul>
+      <li>Vos textes (présentation, services, horaires) ou de quoi les rédiger ensemble</li>
+      <li>Vos photos, ou la possibilité d'en faire</li>
+      <li>Votre logo et vos couleurs si vous en avez déjà</li>
+      <li>Vos réponses et validations rapidement : le délai de livraison en dépend</li>
+    </ul></div>
+  </section>
+
+  <section>
+    <h3>Questions fréquentes</h3>
+    <details><summary>Le site m'appartient-il ?</summary><p>Oui. Une fois le paiement complet effectué, le site, le logo et tous les fichiers sont à vous.</p></details>
+    <details><summary>Que se passe-t-il après la première année ?</summary><p>Le nom de domaine et l'hébergement sont inclus 1 an. Avant l'échéance, je vous communique le tarif de renouvellement pour que vous décidiez en connaissance de cause.</p></details>
+    <details><summary>Puis-je modifier mon site moi-même ?</summary><p>Oui, si vous le souhaitez. Je vous montre comment faire pendant le mois de support, ou vous pouvez choisir la maintenance et me laisser vous en occuper.</p></details>
+    <details><summary>Que comprend le délai de livraison ?</summary><p>Le délai court à partir de la réception de l'acompte et de vos contenus (textes, photos). Si les contenus arrivent plus tard, la livraison est décalée d'autant.</p></details>
+  </section>
+
+  <p class="foot"><strong>Kadmiel Abe</strong> · WhatsApp et téléphone : <a href="https://wa.me/2250706978570">+225 07 06 97 85 70</a> · Email : <a href="mailto:kadmielabe@gmail.com">kadmielabe@gmail.com</a></p>
+</main>
+
+<script>
+(function(){
+  var boxes=document.querySelectorAll('.mesure input[type=checkbox]'),pages=document.getElementById('pages'),
+  tot=document.getElementById('total'),tip=document.getElementById('astuce');
+  function fmt(n){return n.toString().replace(/\B(?=(\d{3})+(?!\d))/g,' ')+' FCFA'}
+  function calc(){
+    var t=0;boxes.forEach(function(b){if(b.checked)t+=+b.dataset.p});
+    t+=(Math.max(0,Math.min(10,+pages.value||0)))*25000;
+    tot.textContent=fmt(t);
+    tip.textContent=t>=350000?'Le pack Pro à 350 000 FCFA couvre déjà l\u2019essentiel : demandez-nous la comparaison.':'';
+  }
+  boxes.forEach(function(b){b.addEventListener('change',calc)});pages.addEventListener('input',calc);calc();
+})();
+</script>
+</body>
+</html>

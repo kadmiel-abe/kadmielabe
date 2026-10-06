@@ -1,33 +1,40 @@
 import type { Metadata, Viewport } from "next";
-import { Inter } from "next/font/google";
+import { Cormorant_Garamond, Inter } from "next/font/google";
 import "./globals.css";
+
+const cormorant = Cormorant_Garamond({
+  subsets: ["latin"],
+  weight: ["300", "400", "500", "600", "700"],
+  style: ["normal", "italic"],
+  variable: "--font-serif",
+  display: "swap",
+});
 
 const inter = Inter({
   subsets: ["latin"],
-  weight: ["400", "500", "600", "700"],
-  variable: "--font-inter",
+  weight: ["300", "400", "500", "600"],
+  variable: "--font-sans",
   display: "swap",
 });
 
 export const metadata: Metadata = {
   title: {
-    default: "Kadmiel Abe — Développeur Full Stack à Abidjan",
+    default: "Kadmiel Abe — Développeur Full Stack & Créatif",
     template: "%s | Kadmiel Abe",
   },
   description:
-    "Développeur Full Stack basé à Abidjan. Création d'applications web performantes et sur mesure avec Next.js, React et Node.js. Passionné par le code propre et l'expérience utilisateur.",
+    "Kadmiel Abe. Développeur Full Stack & Créatif basé à Abidjan. Création d'expériences web performantes, élégantes et sur mesure pour les entreprises ambitieuses.",
   keywords: [
     "Kadmiel Abe",
     "Développeur Full Stack",
+    "Creative Developer",
     "Abidjan",
     "Côte d'Ivoire",
     "Next.js",
     "React",
-    "Node.js",
-    "Application web",
-    "Site vitrine",
+    "Site vitrine luxe",
+    "Application web sur mesure",
     "Freelance",
-    "Afrique francophone",
   ],
   authors: [{ name: "Kadmiel Abe", url: "https://kadmielabe.dev" }],
   creator: "Kadmiel Abe",
@@ -36,9 +43,9 @@ export const metadata: Metadata = {
     canonical: "https://kadmielabe.dev",
   },
   openGraph: {
-    title: "Kadmiel Abe — Développeur Full Stack à Abidjan",
+    title: "Kadmiel Abe — Développeur Full Stack & Créatif",
     description:
-      "Applications web performantes et sur mesure avec Next.js, React et Node.js. Code propre, UX soignée, basé à Abidjan.",
+      "Création d'expériences web performantes et sur mesure pour les entreprises ambitieuses. Basé à Abidjan.",
     url: "https://kadmielabe.dev",
     siteName: "Kadmiel Abe",
     locale: "fr_FR",
@@ -46,22 +53,18 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: "summary_large_image",
-    title: "Kadmiel Abe — Développeur Full Stack à Abidjan",
+    title: "Kadmiel Abe — Développeur Full Stack & Créatif",
     description:
-      "Applications web performantes et sur mesure avec Next.js, React et Node.js.",
+      "Création d'expériences web performantes et sur mesure pour les entreprises ambitieuses.",
   },
   robots: {
     index: true,
     follow: true,
-    googleBot: {
-      index: true,
-      follow: true,
-    },
   },
 };
 
 export const viewport: Viewport = {
-  themeColor: "#0a0a0a",
+  themeColor: "#050505",
   width: "device-width",
   initialScale: 1,
 };
@@ -72,8 +75,12 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="fr" className={`dark ${inter.variable}`}>
-      <body className="bg-[#0a0a0a] text-[#f5f5f5] font-sans antialiased overflow-x-hidden">
+    <html lang="fr" className={`dark ${cormorant.variable} ${inter.variable}`}>
+      <body className="bg-[#050505] text-[#EDEDED] font-sans antialiased overflow-x-hidden selection:bg-[#EDEDED] selection:text-[#050505]">
+        {/* Subtle film grain texture overlay */}
+        <div className="noise-overlay" aria-hidden="true" />
+        {/* Subtle radial ambient light */}
+        <div className="ambient-glow" aria-hidden="true" />
         {children}
       </body>
     </html>
