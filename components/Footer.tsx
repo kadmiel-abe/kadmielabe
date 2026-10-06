@@ -51,7 +51,7 @@ export default function Footer() {
                 <MessageSquare className="w-4 h-4" />
               </a>
               <a
-                href="mailto:kadmiel@kadmielabe.dev"
+                href="mailto:kadmielabe@gmail.com"
                 aria-label="Email direct"
                 className="w-9 h-9 rounded-full bg-[#121214] border border-[#1E1E22] hover:border-emerald-500/50 flex items-center justify-center text-gray-400 hover:text-white transition-colors"
               >

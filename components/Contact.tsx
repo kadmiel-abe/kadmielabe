@@ -58,7 +58,7 @@ export default function Contact() {
                 </a>
 
                 <a
-                  href="mailto:kadmiel@kadmielabe.dev"
+                  href="mailto:kadmielabe@gmail.com"
                   className="flex items-center justify-between p-4 rounded-2xl bg-[#121214] border border-[#1E1E22] hover:border-emerald-500/40 transition-all group"
                 >
                   <div className="flex items-center gap-4">
@@ -68,7 +68,7 @@ export default function Contact() {
                     <div>
                       <p className="text-xs text-gray-400 uppercase tracking-wider font-mono">E-mail Professionnel</p>
                       <p className="text-sm font-semibold text-white group-hover:text-emerald-400 transition-colors">
-                        kadmiel@kadmielabe.dev
+                        kadmielabe@gmail.com
                       </p>
                     </div>
                   </div>
