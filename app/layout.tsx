@@ -1,37 +1,32 @@
 import type { Metadata, Viewport } from "next";
-import { Plus_Jakarta_Sans, Inter } from "next/font/google";
+import { Inter } from "next/font/google";
 import "./globals.css";
-
-const plusJakartaSans = Plus_Jakarta_Sans({
-  subsets: ["latin"],
-  weight: ["600", "700", "800"],
-  variable: "--font-plus-jakarta",
-  display: "swap",
-});
 
 const inter = Inter({
   subsets: ["latin"],
-  weight: ["400", "500"],
+  weight: ["400", "500", "600", "700"],
   variable: "--font-inter",
   display: "swap",
 });
 
 export const metadata: Metadata = {
   title: {
-    default: "Kadmiel Abe - Développeur Web Freelance à Abidjan",
+    default: "Kadmiel Abe — Développeur Full Stack à Abidjan",
     template: "%s | Kadmiel Abe",
   },
   description:
-    "Développeur web freelance basé à Abidjan. Conception de sites vitrines B2B, applications web SaaS et plateformes sur-mesure aux standards internationaux pour entreprises et PME en Afrique francophone.",
+    "Développeur Full Stack basé à Abidjan. Création d'applications web performantes et sur mesure avec Next.js, React et Node.js. Passionné par le code propre et l'expérience utilisateur.",
   keywords: [
     "Kadmiel Abe",
-    "Développeur Web Freelance",
+    "Développeur Full Stack",
     "Abidjan",
     "Côte d'Ivoire",
-    "Développeur React Next.js",
-    "Création site web B2B",
-    "Application web SaaS",
-    "E-commerce",
+    "Next.js",
+    "React",
+    "Node.js",
+    "Application web",
+    "Site vitrine",
+    "Freelance",
     "Afrique francophone",
   ],
   authors: [{ name: "Kadmiel Abe", url: "https://kadmielabe.dev" }],
@@ -41,28 +36,32 @@ export const metadata: Metadata = {
     canonical: "https://kadmielabe.dev",
   },
   openGraph: {
-    title: "Kadmiel Abe - Développeur Web Freelance à Abidjan",
+    title: "Kadmiel Abe — Développeur Full Stack à Abidjan",
     description:
-      "Transformez votre vision en solutions web performantes. Sites vitrines B2B, SaaS & E-commerce sur-mesure aux standards internationaux.",
+      "Applications web performantes et sur mesure avec Next.js, React et Node.js. Code propre, UX soignée, basé à Abidjan.",
     url: "https://kadmielabe.dev",
-    siteName: "Kadmiel Abe Portfolio",
+    siteName: "Kadmiel Abe",
     locale: "fr_FR",
     type: "website",
   },
   twitter: {
     card: "summary_large_image",
-    title: "Kadmiel Abe - Développeur Web Freelance à Abidjan",
+    title: "Kadmiel Abe — Développeur Full Stack à Abidjan",
     description:
-      "Transformez votre vision en solutions web performantes. Sites vitrines B2B, SaaS & E-commerce sur-mesure aux standards internationaux.",
+      "Applications web performantes et sur mesure avec Next.js, React et Node.js.",
   },
   robots: {
     index: true,
     follow: true,
+    googleBot: {
+      index: true,
+      follow: true,
+    },
   },
 };
 
 export const viewport: Viewport = {
-  themeColor: "#059669",
+  themeColor: "#0a0a0a",
   width: "device-width",
   initialScale: 1,
 };
@@ -73,8 +72,8 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="fr" className={`${plusJakartaSans.variable} ${inter.variable}`}>
-      <body className="bg-white text-gray-900 font-sans selection:bg-blue-100 selection:text-blue-900 antialiased">
+    <html lang="fr" className={`dark ${inter.variable}`}>
+      <body className="bg-[#0a0a0a] text-[#f5f5f5] font-sans antialiased overflow-x-hidden">
         {children}
       </body>
     </html>
