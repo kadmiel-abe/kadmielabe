@@ -45,29 +45,65 @@ export default function Faq() {
       <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
         {/* Section Header */}
         <div className="text-center mb-16 sm:mb-20">
-          <div className="inline-flex items-center gap-2 px-3.5 py-1 rounded-full bg-emerald-500/10 border border-emerald-500/20 text-emerald-400 text-xs font-mono tracking-wider uppercase mb-4">
+          <motion.div
+            initial={{ opacity: 0, y: -20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true, margin: "-50px" }}
+            transition={{ duration: 0.6 }}
+            className="inline-flex items-center gap-2 px-3.5 py-1 rounded-full bg-emerald-500/10 border border-emerald-500/20 text-emerald-400 text-xs font-mono tracking-wider uppercase mb-4"
+          >
             <HelpCircle className="w-3.5 h-3.5" />
             <span>Foire aux Questions</span>
-          </div>
-          <h2 className="font-heading text-3xl sm:text-4xl md:text-5xl font-extrabold text-[#EDEDED] tracking-tight">
+          </motion.div>
+
+          <motion.h2
+            initial={{ opacity: 0, y: 30 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true, margin: "-50px" }}
+            transition={{ duration: 0.7, ease: "easeOut", delay: 0.05 }}
+            className="font-heading text-3xl sm:text-4xl md:text-5xl font-extrabold text-[#EDEDED] tracking-tight"
+          >
             Questions fréquentes
-          </h2>
-          <p className="mt-4 text-sm sm:text-base text-gray-400 font-light leading-relaxed max-w-xl mx-auto">
+          </motion.h2>
+
+          <motion.p
+            initial={{ opacity: 0, y: 30 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true, margin: "-50px" }}
+            transition={{ duration: 0.7, ease: "easeOut", delay: 0.1 }}
+            className="mt-4 text-sm sm:text-base text-gray-400 font-light leading-relaxed max-w-xl mx-auto"
+          >
             Toutes les réponses pour aborder votre collaboration en toute clarté et sérénité.
-          </p>
+          </motion.p>
         </div>
 
-        {/* Accordion List */}
-        <div className="space-y-4">
+        {/* Accordion List with Stagger */}
+        <motion.div
+          initial="hidden"
+          whileInView="visible"
+          viewport={{ once: true, margin: "-50px" }}
+          variants={{
+            visible: { transition: { staggerChildren: 0.12 } },
+          }}
+          className="space-y-4"
+        >
           {faqs.map((faq, index) => {
             const isOpen = openIndex === index;
             return (
-              <div
+              <motion.div
                 key={faq.id}
+                variants={{
+                  hidden: { opacity: 0, y: 30 },
+                  visible: {
+                    opacity: 1,
+                    y: 0,
+                    transition: { duration: 0.5, ease: "easeOut" },
+                  },
+                }}
                 className={`rounded-2xl transition-all duration-300 overflow-hidden border ${
                   isOpen
                     ? "bg-[#141417] border-emerald-500/40 shadow-[0_0_30px_-10px_rgba(17,145,52,0.15)]"
-                    : "bg-[#121214] border-[#1E1E22] hover:border-gray-700"
+                    : "bg-[#121214] border-[#1E1E22] hover:border-emerald-500/30"
                 }`}
               >
                 <button
@@ -76,8 +112,8 @@ export default function Faq() {
                   className="w-full p-6 sm:p-7 text-left flex items-center justify-between gap-4 focus:outline-none cursor-pointer group select-none"
                   aria-expanded={isOpen}
                 >
-                  <span className={`font-heading text-lg sm:text-xl font-bold transition-colors ${
-                    isOpen ? "text-white" : "text-[#EDEDED] group-hover:text-white"
+                  <span className={`font-heading text-lg sm:text-xl font-bold transition-all duration-300 group-hover:translate-x-1 ${
+                    isOpen ? "text-emerald-400" : "text-[#EDEDED] group-hover:text-white"
                   }`}>
                     {faq.question}
                   </span>
@@ -112,10 +148,10 @@ export default function Faq() {
                     </motion.div>
                   )}
                 </AnimatePresence>
-              </div>
+              </motion.div>
             );
           })}
-        </div>
+        </motion.div>
       </div>
     </section>
   );

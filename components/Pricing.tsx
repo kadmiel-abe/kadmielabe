@@ -1,7 +1,7 @@
 "use client";
 
 import { motion } from "framer-motion";
-import { Check, ShieldCheck, ArrowUpRight, Zap, Sparkles } from "lucide-react";
+import { Check, ArrowUpRight, Sparkles } from "lucide-react";
 
 const plans = [
   {
@@ -86,36 +86,68 @@ export default function Pricing() {
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         {/* Section Header */}
         <div className="text-center max-w-3xl mx-auto mb-16 sm:mb-20">
-          <span className="text-xs font-mono tracking-widest text-emerald-400 uppercase font-semibold block mb-3">
+          <motion.span
+            initial={{ opacity: 0, y: -20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true, margin: "-50px" }}
+            transition={{ duration: 0.6 }}
+            className="text-xs font-mono tracking-widest text-emerald-400 uppercase font-semibold block mb-3"
+          >
             TARIFS TRANSPARENTS SANS SURPRISE
-          </span>
-          <h2 className="font-heading text-3xl sm:text-4xl md:text-5xl font-extrabold text-[#EDEDED] tracking-tight">
+          </motion.span>
+
+          <motion.h2
+            initial={{ opacity: 0, y: 30 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true, margin: "-50px" }}
+            transition={{ duration: 0.7, ease: "easeOut", delay: 0.05 }}
+            className="font-heading text-3xl sm:text-4xl md:text-5xl font-extrabold text-[#EDEDED] tracking-tight"
+          >
             Des investissements clairs pour des résultats concrets
-          </h2>
-          <p className="mt-4 text-sm sm:text-base text-gray-400 font-light leading-relaxed">
+          </motion.h2>
+
+          <motion.p
+            initial={{ opacity: 0, y: 30 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true, margin: "-50px" }}
+            transition={{ duration: 0.7, ease: "easeOut", delay: 0.1 }}
+            className="mt-4 text-sm sm:text-base text-gray-400 font-light leading-relaxed"
+          >
             Pas de devis opaques ni de frais dissimulés. Choisissez la formule adaptée à vos objectifs et lancez votre présence digitale dans les meilleurs délais.
-          </p>
+          </motion.p>
         </div>
 
-        {/* Pricing Cards Grid */}
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 sm:gap-8">
+        {/* Pricing Cards Grid with Stagger & Motion */}
+        <motion.div
+          initial="hidden"
+          whileInView="visible"
+          viewport={{ once: true, margin: "-50px" }}
+          variants={{
+            visible: { transition: { staggerChildren: 0.15 } },
+          }}
+          className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 sm:gap-8"
+        >
           {plans.map((plan, index) => (
             <motion.div
               key={plan.name}
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.5, delay: index * 0.1 }}
-              className={`relative p-6 sm:p-8 rounded-3xl transition-all duration-300 flex flex-col justify-between ${
+              variants={{
+                hidden: { opacity: 0, y: 40 },
+                visible: {
+                  opacity: 1,
+                  y: 0,
+                  transition: { duration: 0.6, ease: "easeOut" },
+                },
+              }}
+              className={`group relative p-6 sm:p-8 rounded-3xl transition-all duration-300 flex flex-col justify-between hover:-translate-y-2 ${
                 plan.highlight
-                  ? "bg-gradient-to-b from-[#17171A] to-[#121214] border-2 border-emerald-500 shadow-glow-emerald"
-                  : "bg-[#121214] border border-[#1E1E22] hover:border-gray-700"
+                  ? "bg-gradient-to-b from-[#17171A] to-[#121214] border-2 border-emerald-500 shadow-glow-emerald hover:shadow-[0_0_35px_rgba(16,185,129,0.3)]"
+                  : "bg-[#121214] border border-[#1E1E22] hover:border-emerald-500/50 hover:shadow-xl hover:shadow-emerald-500/10"
               }`}
             >
               {plan.badge && (
                 <div className="absolute -top-3.5 left-1/2 -translate-x-1/2">
                   <span className="inline-flex items-center gap-1.5 px-3.5 py-1 rounded-full text-[11px] font-bold tracking-wider uppercase bg-emerald-500 text-white shadow-md">
-                    <Sparkles className="w-3 h-3" />
+                    <Sparkles className="w-3 h-3 animate-pulse" />
                     <span>{plan.badge}</span>
                   </span>
                 </div>
@@ -126,7 +158,7 @@ export default function Pricing() {
                   <span className="text-[11px] font-mono uppercase tracking-wider text-emerald-400 font-medium block">
                     {plan.subtitle}
                   </span>
-                  <h3 className="font-heading text-2xl font-bold text-[#EDEDED] mt-1 mb-3">
+                  <h3 className="font-heading text-2xl font-bold text-[#EDEDED] group-hover:text-emerald-400 transition-all duration-300 group-hover:translate-x-1 mt-1 mb-3">
                     {plan.name}
                   </h3>
                   <div className="flex items-baseline gap-1.5 mt-2">
@@ -150,7 +182,7 @@ export default function Pricing() {
                 <ul className="space-y-3 mb-8 pt-4 border-t border-[#1E1E22]">
                   {plan.features.map((feature) => (
                     <li key={feature} className="flex items-start gap-2.5 text-xs text-gray-300">
-                      <Check className={`w-4 h-4 shrink-0 mt-0.5 ${plan.highlight ? "text-emerald-400" : "text-gray-400"}`} />
+                      <Check className={`w-4 h-4 shrink-0 mt-0.5 ${plan.highlight ? "text-emerald-400" : "text-emerald-400/80"}`} />
                       <span className="leading-snug">{feature}</span>
                     </li>
                   ))}
@@ -164,8 +196,8 @@ export default function Pricing() {
                   rel="noopener noreferrer"
                   className={`w-full py-3.5 px-4 rounded-xl font-semibold text-xs uppercase tracking-wider flex items-center justify-center gap-2 transition-all duration-300 ${
                     plan.highlight
-                      ? "bg-emerald-500 hover:bg-emerald-600 text-white shadow-[0_0_20px_-5px_rgba(17,145,52,0.5)] hover:scale-105"
-                      : "bg-[#1E1E22] hover:bg-[#2A2A30] text-white hover:border-gray-600 border border-[#2A2A30]"
+                      ? "bg-emerald-500 hover:bg-emerald-400 text-black shadow-[0_0_20px_-5px_rgba(17,145,52,0.5)] hover:scale-105"
+                      : "bg-[#1E1E22] hover:bg-emerald-500 hover:text-black text-white border border-[#2A2A30] hover:scale-105"
                   }`}
                 >
                   <span>Choisir cette offre</span>
@@ -174,7 +206,7 @@ export default function Pricing() {
               </div>
             </motion.div>
           ))}
-        </div>
+        </motion.div>
       </div>
     </section>
   );

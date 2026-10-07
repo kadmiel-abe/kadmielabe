@@ -1,7 +1,8 @@
 "use client";
 
 import { useState } from "react";
-import { MessageSquare, Mail, Send, Linkedin, Github, MapPin, Sparkles, Phone, ArrowUpRight } from "lucide-react";
+import { motion } from "framer-motion";
+import { MessageSquare, Mail, Send, MapPin, Sparkles, ArrowUpRight } from "lucide-react";
 
 export default function Contact() {
   const [name, setName] = useState("");
@@ -21,12 +22,18 @@ export default function Contact() {
     <section id="contact" className="py-24 md:py-32 bg-[#0B0B0C] border-t border-[#1E1E22] relative scroll-mt-20">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-16 items-start">
-          {/* Left Column: Direct Contact Info & Value Prop */}
-          <div className="lg:col-span-5 flex flex-col justify-between">
+          {/* Left Column: Direct Contact Info & Value Prop (Slide from Left) */}
+          <motion.div
+            initial={{ opacity: 0, x: -40 }}
+            whileInView={{ opacity: 1, x: 0 }}
+            viewport={{ once: true, margin: "-50px" }}
+            transition={{ duration: 0.7, ease: "easeOut" }}
+            className="lg:col-span-5 flex flex-col justify-between"
+          >
             <div>
               <div className="inline-flex items-center gap-2 px-3.5 py-1 rounded-full bg-emerald-500/10 border border-emerald-500/20 text-emerald-400 text-xs font-mono tracking-wider uppercase mb-4">
                 <Sparkles className="w-3.5 h-3.5" />
-                <span>Contact & Devis</span>
+                <span>Contact &amp; Devis</span>
               </div>
               <h2 className="font-heading text-3xl sm:text-4xl md:text-5xl font-extrabold text-[#EDEDED] tracking-tight mb-6">
                 Prêt à propulser votre entreprise ?
@@ -41,10 +48,10 @@ export default function Contact() {
                   href="https://wa.me/2250706978570?text=Bonjour%20Kadmiel,%20je%20souhaite%20discuter%20d'un%20projet%20web."
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="flex items-center justify-between p-4 rounded-2xl bg-[#121214] border border-[#1E1E22] hover:border-emerald-500/40 transition-all group"
+                  className="flex items-center justify-between p-4 rounded-2xl bg-[#121214] border border-[#1E1E22] hover:border-emerald-500/40 hover:shadow-lg hover:shadow-emerald-500/10 transition-all duration-300 group hover:-translate-y-1"
                 >
                   <div className="flex items-center gap-4">
-                    <div className="w-10 h-10 rounded-xl bg-emerald-500/10 border border-emerald-500/20 flex items-center justify-center text-emerald-400">
+                    <div className="w-10 h-10 rounded-xl bg-emerald-500/10 border border-emerald-500/20 flex items-center justify-center text-emerald-400 group-hover:scale-110 transition-transform">
                       <MessageSquare className="w-5 h-5" />
                     </div>
                     <div>
@@ -54,15 +61,15 @@ export default function Contact() {
                       </p>
                     </div>
                   </div>
-                  <ArrowUpRight className="w-4 h-4 text-gray-400 group-hover:text-white group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-all" />
+                  <ArrowUpRight className="w-4 h-4 text-gray-400 group-hover:text-emerald-400 group-hover:translate-x-1 group-hover:-translate-y-1 transition-all" />
                 </a>
 
                 <a
                   href="mailto:kadmielabe@gmail.com"
-                  className="flex items-center justify-between p-4 rounded-2xl bg-[#121214] border border-[#1E1E22] hover:border-emerald-500/40 transition-all group"
+                  className="flex items-center justify-between p-4 rounded-2xl bg-[#121214] border border-[#1E1E22] hover:border-emerald-500/40 hover:shadow-lg hover:shadow-emerald-500/10 transition-all duration-300 group hover:-translate-y-1"
                 >
                   <div className="flex items-center gap-4">
-                    <div className="w-10 h-10 rounded-xl bg-emerald-500/10 border border-emerald-500/20 flex items-center justify-center text-emerald-400">
+                    <div className="w-10 h-10 rounded-xl bg-emerald-500/10 border border-emerald-500/20 flex items-center justify-center text-emerald-400 group-hover:scale-110 transition-transform">
                       <Mail className="w-5 h-5" />
                     </div>
                     <div>
@@ -72,21 +79,27 @@ export default function Contact() {
                       </p>
                     </div>
                   </div>
-                  <ArrowUpRight className="w-4 h-4 text-gray-400 group-hover:text-white group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-all" />
+                  <ArrowUpRight className="w-4 h-4 text-gray-400 group-hover:text-emerald-400 group-hover:translate-x-1 group-hover:-translate-y-1 transition-all" />
                 </a>
               </div>
 
               {/* Location Badge */}
               <div className="flex items-center gap-3 p-4 rounded-2xl bg-[#121214]/50 border border-[#1E1E22] text-xs text-gray-400">
                 <MapPin className="w-4 h-4 text-emerald-400 shrink-0" />
-                <span>Basé à Abidjan, Côte d&apos;Ivoire · Disponible pour clients locaux & internationaux (Remote)</span>
+                <span>Basé à Abidjan, Côte d&apos;Ivoire · Disponible pour clients locaux &amp; internationaux (Remote)</span>
               </div>
             </div>
-          </div>
+          </motion.div>
 
-          {/* Right Column: Interactive Quick Form */}
-          <div className="lg:col-span-7">
-            <div className="p-8 sm:p-10 rounded-3xl bg-[#121214] border border-[#1E1E22] shadow-card-dark">
+          {/* Right Column: Interactive Quick Form (Slide from Right) */}
+          <motion.div
+            initial={{ opacity: 0, x: 40 }}
+            whileInView={{ opacity: 1, x: 0 }}
+            viewport={{ once: true, margin: "-50px" }}
+            transition={{ duration: 0.7, ease: "easeOut", delay: 0.15 }}
+            className="lg:col-span-7"
+          >
+            <div className="p-8 sm:p-10 rounded-3xl bg-[#121214] border border-[#1E1E22] shadow-card-dark hover:border-emerald-500/30 transition-all duration-300">
               <h3 className="font-heading text-2xl font-bold text-[#EDEDED] mb-2">
                 Démarrer une discussion de projet
               </h3>
@@ -162,14 +175,14 @@ export default function Contact() {
 
                 <button
                   type="submit"
-                  className="w-full py-4 px-6 rounded-xl bg-emerald-500 hover:bg-emerald-600 text-white font-semibold text-xs uppercase tracking-wider flex items-center justify-center gap-2.5 transition-all duration-300 shadow-[0_0_25px_-5px_rgba(17,145,52,0.5)] hover:scale-[1.02] active:scale-[0.98]"
+                  className="w-full py-4 px-6 rounded-xl bg-emerald-500 hover:bg-emerald-400 text-black font-semibold text-xs uppercase tracking-wider flex items-center justify-center gap-2.5 transition-all duration-300 shadow-[0_0_25px_-5px_rgba(17,145,52,0.5)] hover:scale-[1.02] active:scale-[0.98] cursor-pointer"
                 >
                   <Send className="w-4 h-4" />
                   <span>Envoyer ma demande via WhatsApp</span>
                 </button>
               </form>
             </div>
-          </div>
+          </motion.div>
         </div>
       </div>
     </section>
