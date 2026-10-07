@@ -72,7 +72,7 @@ export default function Hero() {
           />
         </motion.div>
 
-        {/* Titre H1 avec Glissement initial + Saisie en boucle infinie & Curseur | */}
+        {/* 1. Titre H1 avec alignement strict du curseur (empêche les sauts de ligne) */}
         <motion.h1
           initial={{ opacity: 0, y: -50 }}
           animate={{ opacity: 1, y: 0 }}
@@ -83,19 +83,26 @@ export default function Hero() {
             {typedText.includes("Digital.") ? (
               <>
                 {typedText.replace("Digital.", "")}
-                <span className={brandGreen}>Digital.</span>
+                <span className="inline-flex items-center whitespace-nowrap">
+                  <span className={brandGreen}>Digital.</span>
+                  <motion.span
+                    animate={{ opacity: [1, 0, 1] }}
+                    transition={{ duration: 0.8, repeat: Infinity, ease: "easeInOut" }}
+                    className="inline-block w-[3px] h-[0.85em] bg-emerald-400 ml-1.5 align-middle rounded-full shadow-[0_0_8px_rgba(16,185,129,0.8)]"
+                  />
+                </span>
               </>
             ) : (
-              typedText
+              <span className="inline-flex items-center whitespace-nowrap">
+                {typedText}
+                <motion.span
+                  animate={{ opacity: [1, 0, 1] }}
+                  transition={{ duration: 0.8, repeat: Infinity, ease: "easeInOut" }}
+                  className="inline-block w-[3px] h-[0.85em] bg-emerald-400 ml-1.5 align-middle rounded-full shadow-[0_0_8px_rgba(16,185,129,0.8)]"
+                />
+              </span>
             )}
           </span>
-          <motion.span
-            animate={{ opacity: [1, 0, 1] }}
-            transition={{ duration: 0.8, repeat: Infinity, ease: "easeInOut" }}
-            className="text-emerald-400 font-mono ml-1 inline-block"
-          >
-            |
-          </motion.span>
         </motion.h1>
 
         {/* Sous-titre */}
@@ -108,21 +115,21 @@ export default function Hero() {
           Je conçois des applications web performantes et des stratégies numériques sur-mesure pour automatiser votre gestion et propulser la croissance de votre entreprise.
         </motion.p>
 
-        {/* Conteneur des Boutons & Curseur Interactif */}
+        {/* 2. Conteneur des Boutons & Curseur Interactif avec Effet de Clic Manuel Physique Ultra-Réaliste */}
         <div className="relative flex flex-col sm:flex-row items-center justify-center gap-4 w-full sm:w-auto">
-          {/* Bouton Gauche ("Discuter du projet") : Réagit de façon réaliste au clic du curseur */}
+          {/* Bouton Gauche ("Discuter du projet") : Réaction physique au clic (scale 0.95 & réduction d'ombre) */}
           <motion.a
             href="#contact"
             initial={{ opacity: 0, x: -50 }}
             animate={{
               opacity: 1,
               x: 0,
-              scale: [1, 1, 0.92, 1, 1, 1, 1],
+              scale: [1, 1, 0.95, 1, 1, 1, 1],
               boxShadow: [
                 "0 0 15px rgba(16,185,129,0.3)",
                 "0 0 15px rgba(16,185,129,0.3)",
-                "0 0 35px rgba(16,185,129,0.9)",
-                "0 0 15px rgba(16,185,129,0.3)",
+                "0 0 4px rgba(16,185,129,0.1)", // Réduction instantanée de l'ombre lors du clic physique
+                "0 0 25px rgba(16,185,129,0.6)",
                 "0 0 15px rgba(16,185,129,0.3)",
                 "0 0 15px rgba(16,185,129,0.3)",
                 "0 0 15px rgba(16,185,129,0.3)",
@@ -150,31 +157,31 @@ export default function Hero() {
             <span>Discuter du projet</span>
           </motion.a>
 
-          {/* Bouton Droite ("Voir les réalisations ↓") : Réagit de façon réaliste au clic du curseur */}
+          {/* Bouton Droite ("Voir les réalisations ↓") : Réaction physique au clic (scale 0.95 & bordure réactive) */}
           <motion.a
             href="#projets"
             initial={{ opacity: 0, x: 50 }}
             animate={{
               opacity: 1,
               x: 0,
-              scale: [1, 1, 1, 1, 0.92, 1, 1],
+              scale: [1, 1, 1, 1, 0.95, 1, 1],
               borderColor: [
                 "rgba(55, 65, 81, 1)",
                 "rgba(55, 65, 81, 1)",
                 "rgba(55, 65, 81, 1)",
                 "rgba(55, 65, 81, 1)",
-                "rgba(16, 185, 129, 1)",
-                "rgba(55, 65, 81, 1)",
+                "rgba(16, 185, 129, 0.9)",
+                "rgba(16, 185, 129, 0.4)",
                 "rgba(55, 65, 81, 1)",
               ],
-              backgroundColor: [
-                "transparent",
-                "transparent",
-                "transparent",
-                "transparent",
-                "rgba(16, 185, 129, 0.2)",
-                "transparent",
-                "transparent",
+              boxShadow: [
+                "0 0 0px transparent",
+                "0 0 0px transparent",
+                "0 0 0px transparent",
+                "0 0 0px transparent",
+                "0 0 4px rgba(16,185,129,0.1)", // Réduction d'ombre sur le clic
+                "0 0 20px rgba(16,185,129,0.4)",
+                "0 0 0px transparent",
               ],
             }}
             transition={{
@@ -192,7 +199,7 @@ export default function Hero() {
                 repeatDelay: 1,
                 times: [0, 0.3, 0.65, 0.68, 0.72, 0.78, 1],
               },
-              backgroundColor: {
+              boxShadow: {
                 duration: 6,
                 repeat: Infinity,
                 repeatDelay: 1,
@@ -205,14 +212,15 @@ export default function Hero() {
             <span className="text-sm">↓</span>
           </motion.a>
 
-          {/* 4. Faux Curseur de Souris SVG Humain (Déplacement & Clics hyper-réalistes en boucle) */}
+          {/* 2. Faux Curseur SVG Humain : Pression physique avec scale: 0.85 & rotation -10deg au clic */}
           <motion.div
-            initial={{ opacity: 0, x: 100, y: -80, scale: 1 }}
+            initial={{ opacity: 0, x: 100, y: -80, scale: 1, rotate: 0 }}
             animate={{
               opacity: [0, 1, 1, 1, 1, 1, 0],
               x: [100, -130, -130, 130, 130, 100],
               y: [-80, 0, 0, 0, 0, -80],
-              scale: [1, 1, 0.7, 1, 0.7, 1],
+              scale: [1, 1, 0.85, 1, 0.85, 1], // Rétrécissement physique au clic
+              rotate: [0, 0, -10, 0, -10, 0], // Inclinaison physique au clic
             }}
             transition={{
               duration: 6,
@@ -224,7 +232,6 @@ export default function Hero() {
             className="pointer-events-none absolute z-30 top-1/2 left-1/2 hidden sm:block filter drop-shadow-[0_0_10px_rgba(16,185,129,0.7)]"
             aria-hidden="true"
           >
-            {/* SVG Curseur de souris avec pointeur & halo émeraude */}
             <div className="relative">
               <svg
                 width="28"
@@ -236,7 +243,7 @@ export default function Hero() {
               >
                 <path d="M5.5 3.5L18.5 13.5H12L16 20.5L13.5 21.5L9.5 14.5L5.5 18V3.5Z" />
               </svg>
-              {/* Onde de clic humaine (Click Ripple effect) sur le curseur */}
+              {/* Onde de pression physique du clic */}
               <motion.span
                 animate={{
                   scale: [0.5, 1.8, 0.5],
