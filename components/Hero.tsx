@@ -72,7 +72,7 @@ export default function Hero() {
           />
         </motion.div>
 
-        {/* 1. Titre H1 avec alignement strict du curseur (empêche les sauts de ligne) */}
+        {/* Titre H1 avec alignement strict du curseur (empêche les sauts de ligne) */}
         <motion.h1
           initial={{ opacity: 0, y: -50 }}
           animate={{ opacity: 1, y: 0 }}
@@ -115,9 +115,9 @@ export default function Hero() {
           Je conçois des applications web performantes et des stratégies numériques sur-mesure pour automatiser votre gestion et propulser la croissance de votre entreprise.
         </motion.p>
 
-        {/* 2. Conteneur des Boutons & Curseur Interactif avec Effet de Clic Manuel Physique Ultra-Réaliste */}
+        {/* Conteneur des Boutons & Curseur Interactif */}
         <div className="relative flex flex-col sm:flex-row items-center justify-center gap-4 w-full sm:w-auto">
-          {/* Bouton Gauche ("Discuter du projet") : Réaction physique au clic (scale 0.95 & réduction d'ombre) */}
+          {/* Bouton Gauche ("Discuter du projet") : Texte passe en BLANC au survol/clic du faux curseur */}
           <motion.a
             href="#contact"
             initial={{ opacity: 0, x: -50 }}
@@ -125,10 +125,19 @@ export default function Hero() {
               opacity: 1,
               x: 0,
               scale: [1, 1, 0.95, 1, 1, 1, 1],
+              color: [
+                "rgba(0, 0, 0, 1)",
+                "rgba(0, 0, 0, 1)",
+                "rgba(255, 255, 255, 1)", // Texte devient Blanc lors du survol/clic
+                "rgba(255, 255, 255, 1)",
+                "rgba(0, 0, 0, 1)",
+                "rgba(0, 0, 0, 1)",
+                "rgba(0, 0, 0, 1)",
+              ],
               boxShadow: [
                 "0 0 15px rgba(16,185,129,0.3)",
                 "0 0 15px rgba(16,185,129,0.3)",
-                "0 0 4px rgba(16,185,129,0.1)", // Réduction instantanée de l'ombre lors du clic physique
+                "0 0 4px rgba(16,185,129,0.1)",
                 "0 0 25px rgba(16,185,129,0.6)",
                 "0 0 15px rgba(16,185,129,0.3)",
                 "0 0 15px rgba(16,185,129,0.3)",
@@ -144,6 +153,12 @@ export default function Hero() {
                 repeatDelay: 1,
                 times: [0, 0.28, 0.32, 0.38, 0.7, 0.9, 1],
               },
+              color: {
+                duration: 6,
+                repeat: Infinity,
+                repeatDelay: 1,
+                times: [0, 0.25, 0.30, 0.42, 0.48, 0.9, 1],
+              },
               boxShadow: {
                 duration: 6,
                 repeat: Infinity,
@@ -151,13 +166,13 @@ export default function Hero() {
                 times: [0, 0.28, 0.32, 0.38, 0.7, 0.9, 1],
               },
             }}
-            className={`w-full sm:w-auto px-8 py-3.5 ${bgGreen} text-black font-semibold rounded-md ${hoverGreen} transition-all duration-300 flex items-center justify-center gap-2 hover:scale-105 active:scale-95`}
+            className={`w-full sm:w-auto px-8 py-3.5 ${bgGreen} font-semibold rounded-md ${hoverGreen} transition-all duration-300 flex items-center justify-center gap-2 hover:scale-105 active:scale-95`}
           >
             <Mail size={18} />
             <span>Discuter du projet</span>
           </motion.a>
 
-          {/* Bouton Droite ("Voir les réalisations ↓") : Réaction physique au clic (scale 0.95 & bordure réactive) */}
+          {/* Bouton Droite ("Voir les réalisations ↓") : Texte passe en VERT (#34d399 / emerald-400) au survol/clic du faux curseur */}
           <motion.a
             href="#projets"
             initial={{ opacity: 0, x: 50 }}
@@ -165,6 +180,15 @@ export default function Hero() {
               opacity: 1,
               x: 0,
               scale: [1, 1, 1, 1, 0.95, 1, 1],
+              color: [
+                "rgba(255, 255, 255, 1)",
+                "rgba(255, 255, 255, 1)",
+                "rgba(255, 255, 255, 1)",
+                "rgba(255, 255, 255, 1)",
+                "rgba(52, 211, 153, 1)", // Texte devient Vert Émeraude (#34d399) lors du survol/clic
+                "rgba(52, 211, 153, 1)",
+                "rgba(255, 255, 255, 1)",
+              ],
               borderColor: [
                 "rgba(55, 65, 81, 1)",
                 "rgba(55, 65, 81, 1)",
@@ -179,7 +203,7 @@ export default function Hero() {
                 "0 0 0px transparent",
                 "0 0 0px transparent",
                 "0 0 0px transparent",
-                "0 0 4px rgba(16,185,129,0.1)", // Réduction d'ombre sur le clic
+                "0 0 4px rgba(16,185,129,0.1)",
                 "0 0 20px rgba(16,185,129,0.4)",
                 "0 0 0px transparent",
               ],
@@ -192,6 +216,12 @@ export default function Hero() {
                 repeat: Infinity,
                 repeatDelay: 1,
                 times: [0, 0.3, 0.65, 0.68, 0.72, 0.78, 1],
+              },
+              color: {
+                duration: 6,
+                repeat: Infinity,
+                repeatDelay: 1,
+                times: [0, 0.3, 0.65, 0.68, 0.78, 0.84, 1],
               },
               borderColor: {
                 duration: 6,
@@ -206,21 +236,21 @@ export default function Hero() {
                 times: [0, 0.3, 0.65, 0.68, 0.72, 0.78, 1],
               },
             }}
-            className="w-full sm:w-auto px-8 py-3.5 bg-transparent text-white border border-gray-700 font-medium rounded-md hover:bg-gray-800 hover:border-emerald-500/50 hover:text-emerald-400 transition-all duration-300 flex items-center justify-center gap-2 hover:scale-105 active:scale-95"
+            className="w-full sm:w-auto px-8 py-3.5 bg-transparent border border-gray-700 font-medium rounded-md hover:bg-gray-800 hover:border-emerald-500/50 hover:text-emerald-400 transition-all duration-300 flex items-center justify-center gap-2 hover:scale-105 active:scale-95"
           >
             <span>Voir les réalisations</span>
             <span className="text-sm">↓</span>
           </motion.a>
 
-          {/* 2. Faux Curseur SVG Humain : Pression physique avec scale: 0.85 & rotation -10deg au clic */}
+          {/* Faux Curseur SVG Humain : Pression physique avec scale: 0.85 & rotation -10deg au clic */}
           <motion.div
             initial={{ opacity: 0, x: 100, y: -80, scale: 1, rotate: 0 }}
             animate={{
               opacity: [0, 1, 1, 1, 1, 1, 0],
               x: [100, -130, -130, 130, 130, 100],
               y: [-80, 0, 0, 0, 0, -80],
-              scale: [1, 1, 0.85, 1, 0.85, 1], // Rétrécissement physique au clic
-              rotate: [0, 0, -10, 0, -10, 0], // Inclinaison physique au clic
+              scale: [1, 1, 0.85, 1, 0.85, 1],
+              rotate: [0, 0, -10, 0, -10, 0],
             }}
             transition={{
               duration: 6,
