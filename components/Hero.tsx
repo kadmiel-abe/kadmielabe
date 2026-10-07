@@ -11,11 +11,11 @@ export default function Hero() {
   const hoverGreen = "hover:bg-emerald-400";
 
   return (
-    <section className="relative min-h-screen flex flex-col items-center justify-center bg-[#0a0a0a] overflow-hidden px-4">
+    <section className="relative min-h-screen flex flex-col items-center justify-center bg-[#0a0a0a] overflow-hidden px-4 pt-44 pb-16 md:pt-56 md:pb-24">
       {/* Background Grid Pattern (très subtil) */}
       <div className="absolute inset-0 bg-[linear-gradient(to_right,#80808012_1px,transparent_1px),linear-gradient(to_bottom,#80808012_1px,transparent_1px)] bg-[size:32px_32px]"></div>
 
-      <div className="relative z-10 flex flex-col items-center max-w-4xl mx-auto text-center mt-16">
+      <div className="relative z-10 flex flex-col items-center max-w-4xl mx-auto text-center mt-8 md:mt-16">
         {/* Ta Photo de Profil */}
         <div className="w-28 h-28 mb-8 rounded-full border-2 border-emerald-500/30 overflow-hidden shadow-[0_0_30px_rgba(16,185,129,0.15)] ring-4 ring-[#0a0a0a] relative">
           <Image
