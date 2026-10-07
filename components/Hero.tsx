@@ -15,14 +15,14 @@ export default function Hero() {
       {/* Background Grid Pattern (très subtil) */}
       <div className="absolute inset-0 bg-[linear-gradient(to_right,#80808012_1px,transparent_1px),linear-gradient(to_bottom,#80808012_1px,transparent_1px)] bg-[size:32px_32px] pointer-events-none"></div>
 
-      <motion.div
-        initial={{ opacity: 0, y: 30 }}
-        animate={{ opacity: 1, y: 0 }}
-        transition={{ duration: 0.8, ease: "easeOut" }}
-        className="relative z-10 flex flex-col items-center max-w-4xl mx-auto text-center"
-      >
+      <div className="relative z-10 flex flex-col items-center max-w-4xl mx-auto text-center">
         {/* Ta Photo de Profil */}
-        <div className="w-24 h-24 sm:w-28 sm:h-28 mb-6 sm:mb-8 rounded-full border-2 border-emerald-500/30 overflow-hidden shadow-[0_0_30px_rgba(16,185,129,0.15)] ring-4 ring-[#0a0a0a] relative shrink-0">
+        <motion.div
+          initial={{ opacity: 0, scale: 0.8 }}
+          animate={{ opacity: 1, scale: 1 }}
+          transition={{ duration: 0.6, ease: "easeOut" }}
+          className="w-24 h-24 sm:w-28 sm:h-28 mb-6 sm:mb-8 rounded-full border-2 border-emerald-500/30 overflow-hidden shadow-[0_0_30px_rgba(16,185,129,0.15)] ring-4 ring-[#0a0a0a] relative shrink-0"
+        >
           <Image
             src="/photo.jpg"
             alt="Kadmiel Abe"
@@ -31,21 +31,41 @@ export default function Hero() {
             className="w-full h-full object-cover"
             priority
           />
-        </div>
+        </motion.div>
 
-        {/* Titre H1 avec accentuation de ton nom */}
-        <h1 className="text-4xl sm:text-6xl lg:text-7xl font-bold text-white tracking-tight leading-[1.1] mb-5 sm:mb-6 max-w-3xl">
+        {/* Titre H1 avec animation Slide up + Fade in */}
+        <motion.h1
+          initial={{ opacity: 0, y: 40 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true, margin: "-50px" }}
+          transition={{ duration: 0.7, ease: "easeOut" }}
+          className="text-4xl sm:text-6xl lg:text-7xl font-bold text-white tracking-tight leading-[1.1] mb-5 sm:mb-6 max-w-3xl"
+        >
           Développeur Web <br className="hidden md:block" /> &amp; Stratège{" "}
-          <span className={brandGreen}>Digital.</span>
-        </h1>
+          <span className={`${brandGreen} inline-block transition-all duration-300 hover:translate-x-2`}>
+            Digital.
+          </span>
+        </motion.h1>
 
-        {/* Sous-titre orienté Bénéfice Client */}
-        <p className="text-base sm:text-lg md:text-xl text-gray-400 max-w-2xl mb-8 sm:mb-10 leading-relaxed font-light">
+        {/* Sous-titre avec animation Slide up + Fade in */}
+        <motion.p
+          initial={{ opacity: 0, y: 40 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true, margin: "-50px" }}
+          transition={{ duration: 0.7, ease: "easeOut", delay: 0.1 }}
+          className="text-base sm:text-lg md:text-xl text-gray-400 max-w-2xl mb-8 sm:mb-10 leading-relaxed font-light"
+        >
           Je conçois des applications web performantes et des stratégies numériques sur-mesure pour automatiser votre gestion et propulser la croissance de votre entreprise.
-        </p>
+        </motion.p>
 
         {/* Call to Actions */}
-        <div className="flex flex-col sm:flex-row items-center justify-center gap-4 w-full sm:w-auto">
+        <motion.div
+          initial={{ opacity: 0, y: 40 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true, margin: "-50px" }}
+          transition={{ duration: 0.7, ease: "easeOut", delay: 0.2 }}
+          className="flex flex-col sm:flex-row items-center justify-center gap-4 w-full sm:w-auto"
+        >
           <a
             href="#contact"
             className={`w-full sm:w-auto px-8 py-3.5 ${bgGreen} text-black font-semibold rounded-md ${hoverGreen} transition-all duration-300 flex items-center justify-center gap-2 shadow-[0_0_15px_rgba(16,185,129,0.3)] hover:scale-105 hover:shadow-[0_0_20px_rgba(16,185,129,0.4)] active:scale-95`}
@@ -60,8 +80,8 @@ export default function Hero() {
             <span>Voir les réalisations</span>
             <span className="text-sm">↓</span>
           </a>
-        </div>
-      </motion.div>
+        </motion.div>
+      </div>
     </section>
   );
 }

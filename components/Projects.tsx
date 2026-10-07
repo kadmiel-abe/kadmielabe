@@ -47,42 +47,68 @@ export default function Projects() {
   return (
     <section id="projets" className="py-24 md:py-32 bg-[#0B0B0C] relative scroll-mt-20">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        {/* Section Header with Scroll Animation */}
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true, margin: "-100px" }}
-          transition={{ duration: 0.6 }}
-          className="flex flex-col md:flex-row md:items-end justify-between mb-16 sm:mb-20 gap-6"
-        >
+        {/* Section Header with Slide Up + Fade In Animations */}
+        <div className="flex flex-col md:flex-row md:items-end justify-between mb-16 sm:mb-20 gap-6">
           <div className="max-w-2xl">
-            <div className="inline-flex items-center gap-2 px-3.5 py-1 rounded-full bg-emerald-500/10 border border-emerald-500/20 text-emerald-400 text-xs font-mono tracking-wider uppercase mb-4">
+            <motion.div
+              initial={{ opacity: 0, y: 40 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true, margin: "-50px" }}
+              transition={{ duration: 0.7, ease: "easeOut" }}
+              className="inline-flex items-center gap-2 px-3.5 py-1 rounded-full bg-emerald-500/10 border border-emerald-500/20 text-emerald-400 text-xs font-mono tracking-wider uppercase mb-4"
+            >
               <Sparkles className="w-3.5 h-3.5" />
               <span>Réalisations & Études de Cas</span>
-            </div>
-            <h2 className="font-heading text-3xl sm:text-4xl md:text-5xl font-extrabold text-[#EDEDED] tracking-tight">
+            </motion.div>
+
+            <motion.h2
+              initial={{ opacity: 0, y: 40 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true, margin: "-50px" }}
+              transition={{ duration: 0.7, ease: "easeOut", delay: 0.05 }}
+              className="font-heading text-3xl sm:text-4xl md:text-5xl font-extrabold text-[#EDEDED] tracking-tight"
+            >
               Travaux & Projets
-            </h2>
-            <p className="mt-4 text-base text-gray-400 font-light leading-relaxed">
+            </motion.h2>
+
+            <motion.p
+              initial={{ opacity: 0, y: 40 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true, margin: "-50px" }}
+              transition={{ duration: 0.7, ease: "easeOut", delay: 0.1 }}
+              className="mt-4 text-base text-gray-400 font-light leading-relaxed"
+            >
               Chaque produit est conçu sur mesure pour répondre aux objectifs stratégiques des PME : gain de temps, automatisation et conversion maximale.
-            </p>
+            </motion.p>
           </div>
           <div className="hidden md:flex">
             <span className="text-xs font-mono text-gray-400 tracking-wider uppercase border border-[#1E1E22] px-4 py-2 rounded-xl bg-[#121214]">
               Standards Internationaux · Production
             </span>
           </div>
-        </motion.div>
+        </div>
 
         {/* Project Cards Stack */}
-        <div className="space-y-16 lg:space-y-24">
-          {projects.map((project, index) => (
+        <motion.div
+          initial="hidden"
+          whileInView="visible"
+          viewport={{ once: true, margin: "-50px" }}
+          variants={{
+            visible: { transition: { staggerChildren: 0.2 } },
+          }}
+          className="space-y-16 lg:space-y-24"
+        >
+          {projects.map((project) => (
             <motion.div
               key={project.id}
-              initial={{ opacity: 0, y: 30 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true, margin: "-80px" }}
-              transition={{ duration: 0.7, delay: index * 0.15 }}
+              variants={{
+                hidden: { opacity: 0, y: 40 },
+                visible: {
+                  opacity: 1,
+                  y: 0,
+                  transition: { duration: 0.7, ease: "easeOut" },
+                },
+              }}
               className="group relative rounded-3xl bg-[#121214] border border-[#1E1E22] hover:border-emerald-500/50 p-6 sm:p-10 lg:p-12 transition-all duration-300 hover:-translate-y-2 hover:shadow-xl hover:shadow-emerald-500/10"
             >
               {/* Grid Layout: Desktop Asymmetric 2-Columns */}
@@ -103,7 +129,7 @@ export default function Projects() {
                   </span>
 
                   {/* Main Title */}
-                  <h3 className="font-heading text-3xl sm:text-4xl font-bold text-[#EDEDED] group-hover:text-white transition-colors mb-4">
+                  <h3 className="font-heading text-3xl sm:text-4xl font-bold text-[#EDEDED] group-hover:text-white transition-all duration-300 hover:translate-x-2 inline-block mb-4">
                     {project.title}
                   </h3>
 
@@ -195,7 +221,7 @@ export default function Projects() {
               </div>
             </motion.div>
           ))}
-        </div>
+        </motion.div>
       </div>
     </section>
   );
