@@ -2,7 +2,7 @@
 
 import React from "react";
 import Image from "next/image";
-import { Github, Linkedin, Mail } from "lucide-react";
+import { Mail } from "lucide-react";
 
 export default function Hero() {
   const brandGreen = "text-emerald-400";
@@ -39,7 +39,7 @@ export default function Hero() {
         </p>
 
         {/* Call to Actions */}
-        <div className="flex flex-col sm:flex-row items-center justify-center gap-4 w-full sm:w-auto mb-10 sm:mb-12">
+        <div className="flex flex-col sm:flex-row items-center justify-center gap-4 w-full sm:w-auto">
           <a
             href="#contact"
             className={`w-full sm:w-auto px-8 py-3.5 ${bgGreen} text-black font-semibold rounded-md ${hoverGreen} transition-all duration-300 flex items-center justify-center gap-2 shadow-[0_0_15px_rgba(16,185,129,0.3)] hover:shadow-[0_0_25px_rgba(16,185,129,0.5)] hover:scale-105 active:scale-95`}
@@ -53,28 +53,6 @@ export default function Hero() {
           >
             <span>Voir les réalisations</span>
             <span className="text-sm">↓</span>
-          </a>
-        </div>
-
-        {/* Social Icons */}
-        <div className="flex items-center justify-center gap-4">
-          <a
-            href="https://github.com"
-            target="_blank"
-            rel="noopener noreferrer"
-            className="p-3 bg-[#111111] border border-gray-800 rounded-full text-gray-400 hover:text-emerald-400 hover:border-emerald-400/50 transition-all hover:scale-110"
-            aria-label="GitHub"
-          >
-            <Github size={20} />
-          </a>
-          <a
-            href="https://linkedin.com"
-            target="_blank"
-            rel="noopener noreferrer"
-            className="p-3 bg-[#111111] border border-gray-800 rounded-full text-gray-400 hover:text-emerald-400 hover:border-emerald-400/50 transition-all hover:scale-110"
-            aria-label="LinkedIn"
-          >
-            <Linkedin size={20} />
           </a>
         </div>
       </div>
