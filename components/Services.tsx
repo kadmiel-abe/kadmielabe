@@ -75,8 +75,14 @@ export default function Services() {
       className="py-20 md:py-28 bg-[#0a0a0a] text-white border-t border-white/5 scroll-mt-20"
     >
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        {/* Section Header */}
-        <div className="text-center max-w-3xl mx-auto mb-12 sm:mb-16">
+        {/* Section Header with Scroll Animation */}
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true, margin: "-100px" }}
+          transition={{ duration: 0.6 }}
+          className="text-center max-w-3xl mx-auto mb-12 sm:mb-16"
+        >
           <span className="text-xs font-mono tracking-widest text-emerald-400 uppercase font-semibold block mb-3">
             SERVICES &amp; EXPERTISE
           </span>
@@ -86,7 +92,7 @@ export default function Services() {
           <p className="mt-4 text-base sm:text-lg text-gray-400 font-light leading-relaxed">
             Des solutions digitales sur-mesure pour établir votre présence, attirer des clients et automatiser vos processus.
           </p>
-        </div>
+        </motion.div>
 
         {/* Tab Filters (Text only, no icons) */}
         <div className="flex items-center justify-center gap-3 mb-12 flex-wrap">
@@ -124,7 +130,7 @@ export default function Services() {
                   animate={{ opacity: 1, scale: 1 }}
                   exit={{ opacity: 0, scale: 0.9 }}
                   transition={{ duration: 0.3 }}
-                  className="group relative p-8 rounded-xl bg-[#111111] border border-white/5 hover:border-emerald-500/30 transition-all duration-300 hover:-translate-y-1 flex flex-col justify-between"
+                  className="group relative p-8 rounded-xl bg-[#111111] border border-white/5 hover:border-emerald-500/50 transition-all duration-300 hover:-translate-y-2 hover:shadow-xl hover:shadow-emerald-500/10 flex flex-col justify-between"
                 >
                   <div>
                     <div className="w-12 h-12 rounded-xl bg-emerald-500/10 border border-emerald-500/20 flex items-center justify-center text-emerald-400 mb-6 group-hover:scale-110 group-hover:bg-emerald-500/20 transition-all">

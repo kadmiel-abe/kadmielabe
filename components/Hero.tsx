@@ -2,6 +2,7 @@
 
 import React from "react";
 import Image from "next/image";
+import { motion } from "framer-motion";
 import { Mail } from "lucide-react";
 
 export default function Hero() {
@@ -14,7 +15,12 @@ export default function Hero() {
       {/* Background Grid Pattern (très subtil) */}
       <div className="absolute inset-0 bg-[linear-gradient(to_right,#80808012_1px,transparent_1px),linear-gradient(to_bottom,#80808012_1px,transparent_1px)] bg-[size:32px_32px] pointer-events-none"></div>
 
-      <div className="relative z-10 flex flex-col items-center max-w-4xl mx-auto text-center">
+      <motion.div
+        initial={{ opacity: 0, y: 30 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ duration: 0.8, ease: "easeOut" }}
+        className="relative z-10 flex flex-col items-center max-w-4xl mx-auto text-center"
+      >
         {/* Ta Photo de Profil */}
         <div className="w-24 h-24 sm:w-28 sm:h-28 mb-6 sm:mb-8 rounded-full border-2 border-emerald-500/30 overflow-hidden shadow-[0_0_30px_rgba(16,185,129,0.15)] ring-4 ring-[#0a0a0a] relative shrink-0">
           <Image
@@ -42,20 +48,20 @@ export default function Hero() {
         <div className="flex flex-col sm:flex-row items-center justify-center gap-4 w-full sm:w-auto">
           <a
             href="#contact"
-            className={`w-full sm:w-auto px-8 py-3.5 ${bgGreen} text-black font-semibold rounded-md ${hoverGreen} transition-all duration-300 flex items-center justify-center gap-2 shadow-[0_0_15px_rgba(16,185,129,0.3)] hover:shadow-[0_0_25px_rgba(16,185,129,0.5)] hover:scale-105 active:scale-95`}
+            className={`w-full sm:w-auto px-8 py-3.5 ${bgGreen} text-black font-semibold rounded-md ${hoverGreen} transition-all duration-300 flex items-center justify-center gap-2 shadow-[0_0_15px_rgba(16,185,129,0.3)] hover:scale-105 hover:shadow-[0_0_20px_rgba(16,185,129,0.4)] active:scale-95`}
           >
             <Mail size={18} />
             <span>Discuter du projet</span>
           </a>
           <a
             href="#projets"
-            className="w-full sm:w-auto px-8 py-3.5 bg-transparent text-white border border-gray-700 font-medium rounded-md hover:bg-gray-800 hover:border-emerald-500/50 transition-colors flex items-center justify-center gap-2 hover:scale-105 active:scale-95"
+            className="w-full sm:w-auto px-8 py-3.5 bg-transparent text-white border border-gray-700 font-medium rounded-md hover:bg-gray-800 hover:border-emerald-500/50 hover:text-emerald-400 transition-all duration-300 flex items-center justify-center gap-2 hover:scale-105 active:scale-95"
           >
             <span>Voir les réalisations</span>
             <span className="text-sm">↓</span>
           </a>
         </div>
-      </div>
+      </motion.div>
     </section>
   );
 }

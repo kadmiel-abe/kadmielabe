@@ -47,8 +47,14 @@ export default function Projects() {
   return (
     <section id="projets" className="py-24 md:py-32 bg-[#0B0B0C] relative scroll-mt-20">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        {/* Section Header */}
-        <div className="flex flex-col md:flex-row md:items-end justify-between mb-16 sm:mb-20 gap-6">
+        {/* Section Header with Scroll Animation */}
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true, margin: "-100px" }}
+          transition={{ duration: 0.6 }}
+          className="flex flex-col md:flex-row md:items-end justify-between mb-16 sm:mb-20 gap-6"
+        >
           <div className="max-w-2xl">
             <div className="inline-flex items-center gap-2 px-3.5 py-1 rounded-full bg-emerald-500/10 border border-emerald-500/20 text-emerald-400 text-xs font-mono tracking-wider uppercase mb-4">
               <Sparkles className="w-3.5 h-3.5" />
@@ -66,7 +72,7 @@ export default function Projects() {
               Standards Internationaux · Production
             </span>
           </div>
-        </div>
+        </motion.div>
 
         {/* Project Cards Stack */}
         <div className="space-y-16 lg:space-y-24">
@@ -77,7 +83,7 @@ export default function Projects() {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true, margin: "-80px" }}
               transition={{ duration: 0.7, delay: index * 0.15 }}
-              className="group relative rounded-3xl bg-[#121214] border border-[#1E1E22] hover:border-emerald-500/40 p-6 sm:p-10 lg:p-12 transition-all duration-500 shadow-card-dark hover:shadow-glow-emerald"
+              className="group relative rounded-3xl bg-[#121214] border border-[#1E1E22] hover:border-emerald-500/50 p-6 sm:p-10 lg:p-12 transition-all duration-300 hover:-translate-y-2 hover:shadow-xl hover:shadow-emerald-500/10"
             >
               {/* Grid Layout: Desktop Asymmetric 2-Columns */}
               <div
@@ -136,7 +142,7 @@ export default function Projects() {
                       href={project.url}
                       target="_blank"
                       rel="noopener noreferrer"
-                      className="inline-flex items-center gap-2.5 px-6 py-3.5 rounded-xl bg-emerald-500 hover:bg-emerald-600 text-white font-semibold text-xs uppercase tracking-wider transition-all duration-300 shadow-[0_0_20px_-5px_rgba(17,145,52,0.4)] hover:scale-105 active:scale-95"
+                      className="inline-flex items-center gap-2.5 px-6 py-3.5 rounded-xl bg-emerald-500 hover:bg-emerald-400 text-black font-semibold text-xs uppercase tracking-wider transition-all duration-300 shadow-[0_0_20px_-5px_rgba(17,145,52,0.4)] hover:scale-105 hover:shadow-[0_0_20px_rgba(16,185,129,0.4)] active:scale-95"
                     >
                       <span>Visiter le site</span>
                       <ExternalLink className="w-4 h-4" />
