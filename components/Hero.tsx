@@ -1,143 +1,69 @@
 "use client";
 
-import { motion, type Variants } from "framer-motion";
-import { MessageSquare, ArrowDown, Zap, ShieldCheck, Globe, Star } from "lucide-react";
-
-const easeCurve: [number, number, number, number] = [0.16, 1, 0.3, 1];
-
-const fadeUp: Variants = {
-  hidden: { opacity: 0, y: 24 },
-  visible: (delay = 0) => ({
-    opacity: 1,
-    y: 0,
-    transition: { duration: 0.7, delay, ease: easeCurve },
-  }),
-};
+import React from "react";
+import { Github, Linkedin, Mail } from "lucide-react";
 
 export default function Hero() {
   return (
-    <section className="relative pt-36 pb-20 md:pt-44 md:pb-28 bg-[#0B0B0C] overflow-hidden bg-grid-subtle">
-      {/* Ambient background glows */}
-      <div
-        aria-hidden="true"
-        className="pointer-events-none absolute top-1/4 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[400px] bg-emerald-500/10 rounded-full blur-[140px] -z-10"
-      />
-      <div
-        aria-hidden="true"
-        className="pointer-events-none absolute top-10 right-10 w-72 h-72 bg-emerald-600/5 rounded-full blur-[100px] -z-10"
-      />
+    <section className="relative min-h-screen flex flex-col items-center justify-center bg-[#0a0a0a] overflow-hidden px-4">
+      {/* Background Grid Pattern */}
+      <div className="absolute inset-0 bg-[linear-gradient(to_right,#80808012_1px,transparent_1px),linear-gradient(to_bottom,#80808012_1px,transparent_1px)] bg-[size:32px_32px]"></div>
 
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="flex flex-col items-center text-center max-w-4xl mx-auto">
-          {/* Availability Status Badge */}
-          <motion.div
-            variants={fadeUp}
-            initial="hidden"
-            animate="visible"
-            custom={0}
-            className="inline-flex items-center gap-2.5 px-4 py-1.5 rounded-full bg-[#121214] border border-[#1E1E22] text-xs font-medium text-gray-300 mb-8 shadow-xs"
+      <div className="relative z-10 flex flex-col items-center max-w-4xl mx-auto text-center mt-16">
+        {/* Top Sphere / Avatar Placeholder */}
+        <div className="w-24 h-24 mb-8 rounded-full bg-gradient-to-br from-gray-200 to-gray-600 shadow-[0_0_40px_rgba(255,255,255,0.1)]"></div>
+
+        {/* Main Title H1 */}
+        <h1 className="text-5xl md:text-7xl font-bold text-white tracking-tight mb-6">
+          Développeur Web <br className="hidden md:block" /> & Stratège Digital
+        </h1>
+
+        {/* Subtitle */}
+        <p className="text-lg md:text-xl text-gray-400 max-w-2xl mb-10 leading-relaxed">
+          Je conçois des applications web performantes et des stratégies numériques sur-mesure pour automatiser votre gestion et propulser la croissance de votre entreprise.
+        </p>
+
+        {/* Call to Actions */}
+        <div className="flex flex-col sm:flex-row items-center gap-4 mb-16">
+          <a
+            href="#contact"
+            className="w-full sm:w-auto px-8 py-3 bg-white text-black font-medium rounded-md hover:bg-gray-100 transition-colors flex items-center justify-center gap-2"
           >
-            <span className="relative flex h-2.5 w-2.5">
-              <span className="status-emerald-pulse absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-75" />
-              <span className="relative inline-flex rounded-full h-2.5 w-2.5 bg-emerald-500" />
-            </span>
-            <span className="uppercase tracking-widest text-[11px] text-emerald-400 font-semibold">
-              Disponible pour de nouveaux projets
-            </span>
-            <span className="text-gray-600">•</span>
-            <span className="text-gray-400 text-xs">Abidjan & Remote</span>
-          </motion.div>
-
-          {/* Main Headline */}
-          <motion.h1
-            variants={fadeUp}
-            initial="hidden"
-            animate="visible"
-            custom={0.1}
-            className="font-heading text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-extrabold text-[#EDEDED] tracking-tight leading-[1.15] mb-6"
+            <Mail size={18} />
+            Discuter du projet
+          </a>
+          <a
+            href="#projets"
+            className="w-full sm:w-auto px-8 py-3 bg-transparent text-white border border-gray-700 font-medium rounded-md hover:bg-gray-800 transition-colors flex items-center justify-center gap-2"
           >
-            Votre image professionnelle de A à Z,{" "}
-            <span className="italic font-normal bg-gradient-to-r from-emerald-400 via-emerald-500 to-teal-400 bg-clip-text text-transparent">
-              sans casse-tête
-            </span>{" "}
-            technique.
-          </motion.h1>
+            Voir les réalisations
+            <span className="text-sm">↓</span>
+          </a>
+        </div>
 
-          {/* Subtitle / Description */}
-          <motion.p
-            variants={fadeUp}
-            initial="hidden"
-            animate="visible"
-            custom={0.2}
-            className="font-sans text-base sm:text-lg md:text-xl text-gray-400 leading-relaxed font-light mb-10 max-w-2xl"
+        {/* Social Icons */}
+        <div className="flex items-center gap-4">
+          <a
+            href="#"
+            className="p-3 bg-[#111111] border border-gray-800 rounded-full text-gray-400 hover:text-white hover:border-gray-600 transition-all"
+            aria-label="GitHub"
           >
-            Je suis <strong className="font-semibold text-white">Kadmiel Abe</strong>. Je conçois l&apos;identité visuelle et le site web des PME ambitieuses pour transformer leurs visiteurs en clients.
-          </motion.p>
-
-          {/* CTA Buttons */}
-          <motion.div
-            variants={fadeUp}
-            initial="hidden"
-            animate="visible"
-            custom={0.3}
-            className="flex flex-col sm:flex-row items-center justify-center gap-4 w-full sm:w-auto mb-16"
+            <Github size={20} />
+          </a>
+          <a
+            href="#"
+            className="p-3 bg-[#111111] border border-gray-800 rounded-full text-gray-400 hover:text-white hover:border-gray-600 transition-all"
+            aria-label="LinkedIn"
           >
-            <a
-              href="https://wa.me/2250706978570?text=Bonjour%20Kadmiel,%20je%20souhaite%20discuter%20d'un%20projet%20web%20pour%20mon%20entreprise."
-              target="_blank"
-              rel="noopener noreferrer"
-              className="w-full sm:w-auto inline-flex items-center justify-center gap-2.5 px-8 py-4 rounded-xl bg-emerald-500 hover:bg-emerald-600 text-white font-semibold text-sm uppercase tracking-wider transition-all duration-300 shadow-[0_0_30px_-5px_rgba(17,145,52,0.5)] hover:scale-105 active:scale-95"
-            >
-              <MessageSquare className="w-4 h-4" />
-              <span>Discuter de mon projet</span>
-            </a>
-            <a
-              href="#projets"
-              className="w-full sm:w-auto inline-flex items-center justify-center gap-2 px-8 py-4 rounded-xl bg-[#121214] hover:bg-[#17171A] text-gray-200 hover:text-white font-medium text-sm border border-[#1E1E22] hover:border-gray-700 transition-all duration-300"
-            >
-              <span>Voir mes réalisations</span>
-              <ArrowDown className="w-4 h-4 text-emerald-400" />
-            </a>
-          </motion.div>
-
-          {/* Reassurance Metrics & Value Banner */}
-          <motion.div
-            variants={fadeUp}
-            initial="hidden"
-            animate="visible"
-            custom={0.4}
-            className="grid grid-cols-1 sm:grid-cols-3 gap-4 w-full pt-8 border-t border-[#1E1E22]"
+            <Linkedin size={20} />
+          </a>
+          <a
+            href="#contact"
+            className="p-3 bg-[#111111] border border-gray-800 rounded-full text-gray-400 hover:text-white hover:border-gray-600 transition-all"
+            aria-label="Email"
           >
-            <div className="flex items-center justify-center sm:justify-start gap-3.5 p-4 rounded-xl bg-[#121214]/70 border border-[#1E1E22]">
-              <div className="w-10 h-10 rounded-lg bg-emerald-500/10 flex items-center justify-center shrink-0 border border-emerald-500/20">
-                <Zap className="w-5 h-5 text-emerald-400" />
-              </div>
-              <div className="text-left">
-                <p className="text-[11px] text-gray-400 font-mono tracking-wider uppercase">PERFORMANCE EXTRÊME</p>
-                <p className="text-sm font-semibold text-[#EDEDED]">Score Lighthouse 98+ & SEO</p>
-              </div>
-            </div>
-
-            <div className="flex items-center justify-center sm:justify-start gap-3.5 p-4 rounded-xl bg-[#121214]/70 border border-[#1E1E22]">
-              <div className="w-10 h-10 rounded-lg bg-emerald-500/10 flex items-center justify-center shrink-0 border border-emerald-500/20">
-                <ShieldCheck className="w-5 h-5 text-emerald-400" />
-              </div>
-              <div className="text-left">
-                <p className="text-[11px] text-gray-400 font-mono tracking-wider uppercase">SÉCURITÉ & ROBUSTESSE</p>
-                <p className="text-sm font-semibold text-[#EDEDED]">Next.js & Supabase Cloud</p>
-              </div>
-            </div>
-
-            <div className="flex items-center justify-center sm:justify-start gap-3.5 p-4 rounded-xl bg-[#121214]/70 border border-[#1E1E22]">
-              <div className="w-10 h-10 rounded-lg bg-emerald-500/10 flex items-center justify-center shrink-0 border border-emerald-500/20">
-                <Globe className="w-5 h-5 text-emerald-400" />
-              </div>
-              <div className="text-left">
-                <p className="text-[11px] text-gray-400 font-mono tracking-wider uppercase">STANDARDS INTERNATIONAUX</p>
-                <p className="text-sm font-semibold text-[#EDEDED]">Afrique Francophone & Monde</p>
-              </div>
-            </div>
-          </motion.div>
+            <Mail size={20} />
+          </a>
         </div>
       </div>
     </section>
