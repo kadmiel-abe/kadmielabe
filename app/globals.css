@@ -104,3 +104,26 @@
 .status-emerald-pulse {
   animation: emerald-pulse 2.2s cubic-bezier(0.16, 1, 0.3, 1) infinite;
 }
+
+/* ─────────────────────────────────────────────
+   PORTFOLIO PROJECT CARD ANIMATIONS & UTILITIES
+───────────────────────────────────────────── */
+@media (hover: hover) and (pointer: fine) {
+  .project-card-hover:hover {
+    transform: translateY(-4px);
+    will-change: transform;
+  }
+  .group:hover .mockup-scroll-image {
+    transform: translateY(-44%);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .mockup-scroll-image,
+  .project-card-hover {
+    transition: none !important;
+    transform: none !important;
+    animation: none !important;
+  }
+}
+
