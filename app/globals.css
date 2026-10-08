@@ -113,13 +113,9 @@
     transform: translateY(-4px);
     will-change: transform;
   }
-  .group:hover .mockup-scroll-image {
-    transform: translateY(-44%);
-  }
 }
 
 @media (prefers-reduced-motion: reduce) {
-  .mockup-scroll-image,
   .project-card-hover {
     transition: none !important;
     transform: none !important;

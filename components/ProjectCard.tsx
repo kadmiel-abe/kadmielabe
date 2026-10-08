@@ -1,7 +1,6 @@
 "use client";
 
-import { useRef, useState, useEffect } from "react";
-import { motion, useScroll, useTransform, useReducedMotion, useInView, Variants } from "framer-motion";
+import { motion, useScroll, useTransform, useReducedMotion, Variants } from "framer-motion";
 import { CheckCircle2, ArrowUpRight, Shield } from "lucide-react";
 import Image from "next/image";
 import { useSpotlight } from "@/hooks/useSpotlight";
@@ -22,8 +21,8 @@ export interface ProjectCardProps {
 
 /**
  * Composant ProjectCard réutilisable
- * Intègre les animations au scroll, l'effet spotlight interactif, le défilement de capture,
- * la parallaxe et la conformité aux critères d'accessibilité & performance.
+ * Rendu fidèle des captures d'écran (sans rognage ni déformation forcée),
+ * avec animations au scroll, parallaxe fluide, spotlight interactif et accessibilité.
  */
 export function ProjectCard({
   index,
@@ -38,36 +37,20 @@ export function ProjectCard({
   imageAlt = title,
   reverse = false,
 }: ProjectCardProps) {
-  // 1. Ref pour l'effet Spotlight (mis à jour sans re-render React)
+  // 1. Ref pour l'effet Spotlight souris (mise à jour directe du DOM à 60 fps sans re-render React)
   const cardRef = useSpotlight<HTMLDivElement>();
 
-  // 2. Détection du mode reduced-motion pour l'accessibilité
+  // 2. Détection du mode reduced-motion pour l'accessibilité WCAG
   const shouldReduceMotion = useReducedMotion();
 
-  // 3. Effet de Parallaxe très léger (±30px max) avec useScroll + useTransform
+  // 3. Parallaxe très légère (±25px max) basée sur la progression du scroll
   const { scrollYProgress } = useScroll({
     target: cardRef,
     offset: ["start end", "end start"],
   });
-  const parallaxY = useTransform(scrollYProgress, [0, 1], [-30, 30]);
+  const parallaxY = useTransform(scrollYProgress, [0, 1], [-25, 25]);
 
-  // 4. Détection du centrage mobile pour déclencher le défilement de capture sans hover
-  const mockupRef = useRef<HTMLDivElement>(null);
-  const isMockupInView = useInView(mockupRef, { amount: 0.5 });
-  const [isTouchDevice, setIsTouchDevice] = useState(false);
-
-  useEffect(() => {
-    const checkTouch = () => {
-      setIsTouchDevice(window.matchMedia("(hover: none)").matches);
-    };
-    checkTouch();
-    window.addEventListener("resize", checkTouch);
-    return () => window.removeEventListener("resize", checkTouch);
-  }, []);
-
-  const shouldAutoScrollOnMobile = !shouldReduceMotion && isTouchDevice && isMockupInView;
-
-  // Variantes de l'animation d'entrée au scroll avec Stagger Cascade (badge, titre, desc, points, tags, bouton)
+  // Variantes de l'animation d'entrée au scroll avec Stagger Cascade (badge -> titre -> desc -> points -> tags -> bouton)
   const cardVariants: Variants = {
     hidden: { opacity: 0, y: shouldReduceMotion ? 0 : 40 },
     visible: {
@@ -173,7 +156,7 @@ export function ProjectCard({
             {title}
           </motion.h3>
 
-          {/* 3. Description (Contraste supérieur à 4.5:1) */}
+          {/* 3. Description (Contraste accessible >= 4.5:1) */}
           <motion.p
             variants={itemVariants}
             className="text-sm sm:text-base text-neutral-300 font-light leading-relaxed mb-6"
@@ -230,8 +213,8 @@ export function ProjectCard({
           variants={mockupVariants}
           className={`lg:col-span-6 ${reverse ? "lg:col-start-1" : ""}`}
         >
-          <div
-            ref={mockupRef}
+          <motion.div
+            style={{ y: shouldReduceMotion ? 0 : parallaxY }}
             className="relative rounded-2xl overflow-hidden border border-white/10 bg-[#0a0a0a] shadow-2xl group-hover:border-emerald-500/40 transition-all duration-500"
           >
             {/* Barre de fenêtre macOS */}
@@ -252,34 +235,20 @@ export function ProjectCard({
               </span>
             </div>
 
-            {/* Zone de la capture d'écran avec Parallaxe légère et Défilement vertical */}
+            {/* Zone de la capture d'écran - Rendu net et fidèle tel quel avec zoom doux au hover */}
             <div className="relative aspect-[16/10] w-full overflow-hidden bg-[#0a0a0a]">
-              <motion.div
-                style={{ y: shouldReduceMotion ? 0 : parallaxY }}
-                className="w-full h-full relative"
-              >
-                <div
-                  className={`
-                    relative w-full h-[180%] mockup-scroll-image
-                    transition-transform duration-[5000ms] ease-in-out
-                    group-hover:scale-[1.03]
-                    ${shouldAutoScrollOnMobile ? "-translate-y-[44%]" : ""}
-                  `}
-                >
-                  <Image
-                    src={image}
-                    alt={imageAlt}
-                    fill
-                    priority={index === 0}
-                    loading={index === 0 ? "eager" : "lazy"}
-                    sizes="(max-width: 1024px) 100vw, 50vw"
-                    className="object-cover object-top transition-transform duration-700 ease-out"
-                  />
-                </div>
-              </motion.div>
-              <div className="absolute inset-0 bg-gradient-to-t from-[#0a0a0a]/50 via-transparent to-transparent pointer-events-none z-10" />
+              <Image
+                src={image}
+                alt={imageAlt}
+                fill
+                priority={index === 0}
+                loading={index === 0 ? "eager" : "lazy"}
+                sizes="(max-width: 1024px) 100vw, 50vw"
+                className="object-cover object-top transition-transform duration-700 ease-out group-hover:scale-[1.03]"
+              />
+              <div className="absolute inset-0 bg-gradient-to-t from-[#0a0a0a]/30 via-transparent to-transparent pointer-events-none z-10" />
             </div>
-          </div>
+          </motion.div>
         </motion.div>
       </div>
     </motion.article>
