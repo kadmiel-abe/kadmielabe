@@ -48,7 +48,7 @@ export const projects: Project[] = [
     tags: ["Next.js", "TypeScript", "TailwindCSS", "SEO B2B"],
     url: "https://www.rhizomeconseil.com/",
     urlDisplay: "rhizomeconseil.com",
-    image: "/capture rhizomeconseil.png",
+    image: "/capture rhizomzconseil.png",
     imageAlt: "Capture de l'écosystème web Cabinet Rhizome Conseil",
     reverse: true,
   },
