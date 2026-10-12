@@ -1,0 +1,252 @@
+/**
+ * ==============================================================================
+ * KADMIEL ABE — MOTION DESIGN LAYER (COUCHE D'ANIMATION UNIFIÉE)
+ * ==============================================================================
+ * Architecture : Non-intrusive, progressive enhancement, 60fps GPU-only.
+ * Principes :
+ *  1. Ne modifie aucun contenu, texte ou agencement existant.
+ *  2. Anime UNIQUEMENT transform et opacity (zéro layout repaint).
+ *  3. Respect strict de prefers-reduced-motion (accessibilité AA/AAA).
+ *  4. Contrôles centralisés via variables CSS ci-dessous pour ajustements aisés.
+ * ==============================================================================
+ */
+
+:root {
+  /* ==========================================
+   * 1. VARIABLES MOTION AJUSTABLES (ÉCHELLES & TIMINGS)
+   * ========================================== */
+  --anim-duration-screen: 0.75s;        /* Apparitions au scroll et 1er écran (0.6s - 1s) */
+  --anim-duration-micro: 0.28s;         /* Micro-interactions (survol, clic, focus) */
+  --anim-duration-glow: 2.4s;           /* Respirations lumineuses d'ambiance */
+  --anim-distance-y: 24px;              /* Translation verticale desktop */
+  --anim-distance-y-mobile: 12px;       /* Translation verticale adaptée mobile */
+  --anim-distance-x: 20px;              /* Translation horizontale latérale */
+  --anim-scale-lift: 1.015;             /* Micro-élévation cartes & conteneurs */
+  --anim-scale-button: 1.025;           /* Micro-scale boutons CTA */
+
+  /* Courbes d'accélération douces (easeOutExpo / power3.out, aucun rebond agressif) */
+  --anim-ease-out: cubic-bezier(0.16, 1, 0.3, 1);
+  --anim-ease-in-out: cubic-bezier(0.4, 0, 0.2, 1);
+  --anim-ease-bounce-soft: cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+
+/* ==========================================
+ * 2. FLUIDITÉ GLOBALE & DÉFILEMENT DOUX
+ * ========================================== */
+html {
+  scroll-behavior: smooth;
+}
+
+/* ==========================================
+ * 3. OPTIMISATION GPU & WILL-CHANGE
+ * ========================================== */
+.motion-gpu,
+header,
+section,
+article,
+button,
+a,
+input,
+textarea,
+select {
+  backface-visibility: hidden;
+  -webkit-font-smoothing: subpixel-antialiased;
+}
+
+/* ==========================================
+ * 4. MICRO-INTERACTIONS AU SURVOL (BOUTONS, LIENS, CARTES)
+ * Activées uniquement sur appareils supportant le hover (évite les bugs tactiles)
+ * ========================================== */
+@media (hover: hover) and (pointer: fine) {
+  /* Boutons CTA principaux (vert plein) */
+  a[href*="wa.me"],
+  button[type="submit"],
+  a[href="#contact"] {
+    transition: transform var(--anim-duration-micro) var(--anim-ease-out),
+                box-shadow var(--anim-duration-micro) var(--anim-ease-out),
+                opacity var(--anim-duration-micro) ease !important;
+  }
+
+  a[href*="wa.me"]:hover,
+  button[type="submit"]:hover,
+  a[href="#contact"]:hover {
+    transform: translateY(-2px) scale(var(--anim-scale-button)) !important;
+  }
+
+  a[href*="wa.me"]:active,
+  button[type="submit"]:active,
+  a[href="#contact"]:active {
+    transform: translateY(0px) scale(0.97) !important;
+  }
+
+  /* Micro-mouvement dynamique sur les icônes de flèche (↗ ou ↓) */
+  a:hover svg.lucide-arrow-up-right,
+  a:hover svg[class*="ArrowUpRight"] {
+    transform: translate(2px, -2px);
+    transition: transform var(--anim-duration-micro) var(--anim-ease-out);
+  }
+
+  /* Boutons secondaires & bordés */
+  a[href="#projets"] {
+    transition: transform var(--anim-duration-micro) var(--anim-ease-out),
+                border-color var(--anim-duration-micro) var(--anim-ease-out),
+                background-color var(--anim-duration-micro) ease !important;
+  }
+
+  a[href="#projets"]:hover {
+    transform: translateY(-2px) !important;
+  }
+
+  a[href="#projets"]:active {
+    transform: translateY(0px) scale(0.98) !important;
+  }
+
+  /* Liens de navigation Header */
+  header nav a {
+    transition: color var(--anim-duration-micro) ease,
+                transform var(--anim-duration-micro) var(--anim-ease-out) !important;
+    position: relative;
+  }
+
+  header nav a:hover {
+    transform: translateY(-1px);
+  }
+
+  /* Cartes de projets (ProjectCard) */
+  #projets article {
+    transition: transform var(--anim-duration-screen) var(--anim-ease-out),
+                border-color var(--anim-duration-micro) var(--anim-ease-out),
+                box-shadow var(--anim-duration-screen) var(--anim-ease-out) !important;
+  }
+
+  #projets article:hover {
+    transform: translateY(-4px) !important;
+  }
+
+  /* Cartes de Services, Méthodologie (Process) et Tarifs (Pricing) */
+  #services .grid > div,
+  #processus .grid > div,
+  #tarifs .grid > div {
+    transition: transform var(--anim-duration-screen) var(--anim-ease-out),
+                border-color var(--anim-duration-micro) var(--anim-ease-out),
+                box-shadow var(--anim-duration-screen) var(--anim-ease-out) !important;
+  }
+
+  #services .grid > div:hover,
+  #processus .grid > div:hover,
+  #tarifs .grid > div:hover {
+    transform: translateY(-4px) !important;
+  }
+
+  /* Cartes d'accès direct (WhatsApp / Email dans Contact) */
+  #contact .space-y-4 > a {
+    transition: transform var(--anim-duration-micro) var(--anim-ease-out),
+                border-color var(--anim-duration-micro) var(--anim-ease-out),
+                box-shadow var(--anim-duration-micro) var(--anim-ease-out) !important;
+  }
+
+  #contact .space-y-4 > a:hover {
+    transform: translateY(-2px) !important;
+  }
+
+  /* Icônes de réseaux sociaux dans le Footer */
+  footer a[aria-label] {
+    transition: transform var(--anim-duration-micro) var(--anim-ease-out),
+                border-color var(--anim-duration-micro) ease,
+                background-color var(--anim-duration-micro) ease !important;
+  }
+
+  footer a[aria-label]:hover {
+    transform: translateY(-2px) scale(1.08) !important;
+  }
+
+  /* Bouton Retour en haut */
+  footer button[aria-label="Retour en haut"]:hover {
+    transform: translateY(-3px) !important;
+    transition: transform var(--anim-duration-micro) var(--anim-ease-out) !important;
+  }
+}
+
+/* ==========================================
+ * 5. FOCUS ACCESSIBLE AVEC GLOW FLUIDE
+ * ========================================== */
+input:focus,
+textarea:focus,
+select:focus {
+  transition: border-color var(--anim-duration-micro) var(--anim-ease-out),
+              box-shadow var(--anim-duration-micro) var(--anim-ease-out) !important;
+  box-shadow: 0 0 0 3px rgba(16, 185, 129, 0.15) !important;
+}
+
+/* ==========================================
+ * 6. CLASSES D'ENTRÉE ET DE RÉVÉLATION AU SCROLL (PROGRESSIVE ENHANCEMENT)
+ * Si JavaScript est actif, ces classes animent l'apparition.
+ * Si JavaScript est inactif, le contenu reste 100% visible par défaut.
+ * ========================================== */
+.motion-fade-in {
+  opacity: 1;
+  transform: translate3d(0, 0, 0);
+  transition: opacity var(--anim-duration-screen) var(--anim-ease-out),
+              transform var(--anim-duration-screen) var(--anim-ease-out);
+}
+
+.motion-hidden {
+  opacity: 0;
+  transform: translate3d(0, var(--anim-distance-y), 0);
+}
+
+.motion-hidden-left {
+  opacity: 0;
+  transform: translate3d(calc(-1 * var(--anim-distance-x)), 0, 0);
+}
+
+.motion-hidden-right {
+  opacity: 0;
+  transform: translate3d(var(--anim-distance-x), 0, 0);
+}
+
+.motion-visible {
+  opacity: 1 !important;
+  transform: translate3d(0, 0, 0) !important;
+}
+
+/* ==========================================
+ * 7. RESPONSIVE MOBILE : DISTANCES RÉDUITES
+ * ========================================== */
+@media (max-width: 768px) {
+  :root {
+    --anim-distance-y: var(--anim-distance-y-mobile);
+    --anim-distance-x: 12px;
+  }
+
+  /* Désactivation des lifts agressifs sur petit écran */
+  #projets article:hover,
+  #services .grid > div:hover,
+  #processus .grid > div:hover,
+  #tarifs .grid > div:hover {
+    transform: none !important;
+  }
+}
+
+/* ==========================================
+ * 8. RESPECT STRICT DE PREFERS-REDUCED-MOTION
+ * Désactive tout déplacement et animation si demandé par le système de l'utilisateur
+ * ========================================== */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+    transform: none !important;
+  }
+
+  .motion-hidden,
+  .motion-hidden-left,
+  .motion-hidden-right {
+    opacity: 1 !important;
+    transform: none !important;
+  }
+}
