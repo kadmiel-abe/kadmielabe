@@ -37,17 +37,17 @@
   }
 }
 
-/* ─────────────────────────────────────────────
+/* -----------------------------------------------
    SELECTION STYLES
-───────────────────────────────────────────── */
+----------------------------------------------- */
 ::selection {
   background-color: rgba(17, 145, 52, 0.28);
   color: #34D368;
 }
 
-/* ─────────────────────────────────────────────
+/* -----------------------------------------------
    CUSTOM SCROLLBAR
-───────────────────────────────────────────── */
+----------------------------------------------- */
 ::-webkit-scrollbar {
   width: 7px;
 }
@@ -62,9 +62,9 @@
   background: #119134;
 }
 
-/* ─────────────────────────────────────────────
+/* -----------------------------------------------
    SUBTLE BACKGROUND GRID LINES
-───────────────────────────────────────────── */
+----------------------------------------------- */
 .bg-grid-subtle {
   background-image: 
     linear-gradient(to right, rgba(255, 255, 255, 0.03) 1px, transparent 1px),
@@ -72,9 +72,58 @@
   background-size: 48px 48px;
 }
 
-/* ─────────────────────────────────────────────
+/* -----------------------------------------------
+   CUT-CORNER (CHAMFERED) GEOMETRY SIGNATURE
+----------------------------------------------- */
+.chamfer-tl-br {
+  clip-path: polygon(24px 0%, 100% 0%, 100% calc(100% - 24px), calc(100% - 24px) 100%, 0% 100%, 0% 24px);
+}
+
+.chamfer-step {
+  clip-path: polygon(0 20px, 20px 0, calc(100% - 20px) 0, 100% 20px, 100% 100%, 0 100%);
+}
+
+.chamfer-card {
+  clip-path: polygon(28px 0%, calc(100% - 28px) 0%, 100% 28px, 100% calc(100% - 28px), calc(100% - 28px) 100%, 28px 100%, 0% calc(100% - 28px), 0% 28px);
+}
+
+.chamfer-badge {
+  clip-path: polygon(12px 0%, calc(100% - 12px) 0%, 100% 12px, 100% calc(100% - 12px), calc(100% - 12px) 100%, 12px 100%, 0% calc(100% - 12px), 0% 12px);
+}
+
+/* -----------------------------------------------
+   MARQUEE CONTINUOUS SCROLL
+----------------------------------------------- */
+@keyframes marquee-scroll {
+  0% { transform: translateX(0); }
+  100% { transform: translateX(-50%); }
+}
+
+.animate-marquee-smooth {
+  display: flex;
+  width: max-content;
+  animation: marquee-scroll 24s linear infinite;
+}
+
+.animate-marquee-smooth:hover {
+  animation-play-state: paused;
+}
+
+/* -----------------------------------------------
+   ROTATING SEAL "HIRE ME" ANIMATION
+----------------------------------------------- */
+@keyframes rotate-seal {
+  from { transform: rotate(0deg); }
+  to { transform: rotate(360deg); }
+}
+
+.animate-rotate-seal {
+  animation: rotate-seal 14s linear infinite;
+}
+
+/* -----------------------------------------------
    CARD GLASSMORPHISM
-───────────────────────────────────────────── */
+----------------------------------------------- */
 .glass-panel {
   background: rgba(18, 18, 20, 0.75);
   backdrop-filter: blur(16px);
@@ -86,9 +135,9 @@
   border-color: rgba(17, 145, 52, 0.35);
 }
 
-/* ─────────────────────────────────────────────
+/* -----------------------------------------------
    ANIMATED GLOW PULSE (Vert Logo #119134)
-───────────────────────────────────────────── */
+----------------------------------------------- */
 @keyframes emerald-pulse {
   0% {
     box-shadow: 0 0 0 0 rgba(17, 145, 52, 0.65);
@@ -105,9 +154,9 @@
   animation: emerald-pulse 2.2s cubic-bezier(0.16, 1, 0.3, 1) infinite;
 }
 
-/* ─────────────────────────────────────────────
+/* -----------------------------------------------
    PORTFOLIO PROJECT CARD ANIMATIONS & UTILITIES
-───────────────────────────────────────────── */
+----------------------------------------------- */
 @media (hover: hover) and (pointer: fine) {
   .project-card-hover:hover {
     transform: translateY(-4px);
@@ -116,10 +165,11 @@
 }
 
 @media (prefers-reduced-motion: reduce) {
-  .project-card-hover {
+  .project-card-hover,
+  .animate-rotate-seal,
+  .animate-marquee-smooth {
     transition: none !important;
     transform: none !important;
     animation: none !important;
   }
 }
-

@@ -1,44 +1,44 @@
 /**
  * ==============================================================================
- * KADMIEL ABE — MOTION DESIGN LAYER (COUCHE D'ANIMATION UNIFIÉE)
+ * KADMIEL ABE - MOTION DESIGN LAYER (ANIMATION LAYER)
  * ==============================================================================
- * Architecture : Non-intrusive, progressive enhancement, 60fps GPU-only.
- * Principes :
- *  1. Ne modifie aucun contenu, texte ou agencement existant.
- *  2. Anime UNIQUEMENT transform et opacity (zéro layout repaint).
- *  3. Respect strict de prefers-reduced-motion (accessibilité AA/AAA).
- *  4. Contrôles centralisés via variables CSS ci-dessous pour ajustements aisés.
+ * Architecture: Non-intrusive, progressive enhancement, 60fps GPU-only.
+ * Principles:
+ *  1. Does not modify any content, text or existing layout.
+ *  2. Animates ONLY transform and opacity (zero layout repaint).
+ *  3. Strict respect of prefers-reduced-motion (accessibility AA/AAA).
+ *  4. Centralized controls via CSS variables below for easy adjustments.
  * ==============================================================================
  */
 
 :root {
   /* ==========================================
-   * 1. VARIABLES MOTION AJUSTABLES (ÉCHELLES & TIMINGS)
+   * 1. MOTION VARIABLES (SCALES & TIMINGS)
    * ========================================== */
-  --anim-duration-screen: 0.75s;        /* Apparitions au scroll et 1er écran (0.6s - 1s) */
-  --anim-duration-micro: 0.28s;         /* Micro-interactions (survol, clic, focus) */
-  --anim-duration-glow: 2.4s;           /* Respirations lumineuses d'ambiance */
-  --anim-distance-y: 24px;              /* Translation verticale desktop */
-  --anim-distance-y-mobile: 12px;       /* Translation verticale adaptée mobile */
-  --anim-distance-x: 20px;              /* Translation horizontale latérale */
-  --anim-scale-lift: 1.015;             /* Micro-élévation cartes & conteneurs */
-  --anim-scale-button: 1.025;           /* Micro-scale boutons CTA */
+  --anim-duration-screen: 0.75s;        /* Scroll appearances and 1st screen (0.6s - 1s) */
+  --anim-duration-micro: 0.28s;         /* Micro-interactions (hover, click, focus) */
+  --anim-duration-glow: 2.4s;           /* Ambient light breathing */
+  --anim-distance-y: 24px;              /* Vertical translation desktop */
+  --anim-distance-y-mobile: 12px;       /* Vertical translation mobile */
+  --anim-distance-x: 20px;              /* Lateral horizontal translation */
+  --anim-scale-lift: 1.015;             /* Micro-elevation cards & containers */
+  --anim-scale-button: 1.025;           /* Micro-scale CTA buttons */
 
-  /* Courbes d'accélération douces (easeOutExpo / power3.out, aucun rebond agressif) */
+  /* Smooth easing curves (easeOutExpo / power3.out, no aggressive bounce) */
   --anim-ease-out: cubic-bezier(0.16, 1, 0.3, 1);
   --anim-ease-in-out: cubic-bezier(0.4, 0, 0.2, 1);
   --anim-ease-bounce-soft: cubic-bezier(0.34, 1.56, 0.64, 1);
 }
 
 /* ==========================================
- * 2. FLUIDITÉ GLOBALE & DÉFILEMENT DOUX
+ * 2. GLOBAL FLUIDITY & SMOOTH SCROLL
  * ========================================== */
 html {
   scroll-behavior: smooth;
 }
 
 /* ==========================================
- * 3. OPTIMISATION GPU & WILL-CHANGE
+ * 3. GPU OPTIMIZATION & WILL-CHANGE
  * ========================================== */
 .motion-gpu,
 header,
@@ -54,11 +54,11 @@ select {
 }
 
 /* ==========================================
- * 4. MICRO-INTERACTIONS AU SURVOL (BOUTONS, LIENS, CARTES)
- * Activées uniquement sur appareils supportant le hover (évite les bugs tactiles)
+ * 4. HOVER MICRO-INTERACTIONS (BUTTONS, LINKS, CARDS)
+ * Only activated on devices supporting hover (avoids touch bugs)
  * ========================================== */
 @media (hover: hover) and (pointer: fine) {
-  /* Boutons CTA principaux (vert plein) */
+  /* Primary CTA buttons (solid green) */
   a[href*="wa.me"],
   button[type="submit"],
   a[href="#contact"] {
@@ -79,14 +79,14 @@ select {
     transform: translateY(0px) scale(0.97) !important;
   }
 
-  /* Micro-mouvement dynamique sur les icônes de flèche (↗ ou ↓) */
+  /* Arrow icon micro-movement */
   a:hover svg.lucide-arrow-up-right,
   a:hover svg[class*="ArrowUpRight"] {
     transform: translate(2px, -2px);
     transition: transform var(--anim-duration-micro) var(--anim-ease-out);
   }
 
-  /* Boutons secondaires & bordés */
+  /* Secondary & bordered buttons */
   a[href="#projets"] {
     transition: transform var(--anim-duration-micro) var(--anim-ease-out),
                 border-color var(--anim-duration-micro) var(--anim-ease-out),
@@ -101,7 +101,7 @@ select {
     transform: translateY(0px) scale(0.98) !important;
   }
 
-  /* Liens de navigation Header */
+  /* Header navigation links */
   header nav a {
     transition: color var(--anim-duration-micro) ease,
                 transform var(--anim-duration-micro) var(--anim-ease-out) !important;
@@ -112,7 +112,7 @@ select {
     transform: translateY(-1px);
   }
 
-  /* Cartes de projets (ProjectCard) */
+  /* Project cards */
   #projets article {
     transition: transform var(--anim-duration-screen) var(--anim-ease-out),
                 border-color var(--anim-duration-micro) var(--anim-ease-out),
@@ -123,7 +123,7 @@ select {
     transform: translateY(-4px) !important;
   }
 
-  /* Cartes de Services, Méthodologie (Process) et Tarifs (Pricing) */
+  /* Services, Process and Pricing cards */
   #services .grid > div,
   #processus .grid > div,
   #tarifs .grid > div {
@@ -138,7 +138,7 @@ select {
     transform: translateY(-4px) !important;
   }
 
-  /* Cartes d'accès direct (WhatsApp / Email dans Contact) */
+  /* Direct access cards (WhatsApp / Email in Contact) */
   #contact .space-y-4 > a {
     transition: transform var(--anim-duration-micro) var(--anim-ease-out),
                 border-color var(--anim-duration-micro) var(--anim-ease-out),
@@ -149,7 +149,7 @@ select {
     transform: translateY(-2px) !important;
   }
 
-  /* Icônes de réseaux sociaux dans le Footer */
+  /* Social network icons in Footer */
   footer a[aria-label] {
     transition: transform var(--anim-duration-micro) var(--anim-ease-out),
                 border-color var(--anim-duration-micro) ease,
@@ -160,7 +160,7 @@ select {
     transform: translateY(-2px) scale(1.08) !important;
   }
 
-  /* Bouton Retour en haut */
+  /* Back to top button */
   footer button[aria-label="Retour en haut"]:hover {
     transform: translateY(-3px) !important;
     transition: transform var(--anim-duration-micro) var(--anim-ease-out) !important;
@@ -168,7 +168,7 @@ select {
 }
 
 /* ==========================================
- * 5. FOCUS ACCESSIBLE AVEC GLOW FLUIDE
+ * 5. ACCESSIBLE FOCUS WITH FLUID GLOW
  * ========================================== */
 input:focus,
 textarea:focus,
@@ -179,9 +179,9 @@ select:focus {
 }
 
 /* ==========================================
- * 6. CLASSES D'ENTRÉE ET DE RÉVÉLATION AU SCROLL (PROGRESSIVE ENHANCEMENT)
- * Si JavaScript est actif, ces classes animent l'apparition.
- * Si JavaScript est inactif, le contenu reste 100% visible par défaut.
+ * 6. SCROLL REVEAL ENTRY CLASSES (PROGRESSIVE ENHANCEMENT)
+ * If JavaScript is active, these classes animate appearance.
+ * If JavaScript is inactive, content remains 100% visible by default.
  * ========================================== */
 .motion-fade-in {
   opacity: 1;
@@ -211,7 +211,7 @@ select:focus {
 }
 
 /* ==========================================
- * 7. RESPONSIVE MOBILE : DISTANCES RÉDUITES
+ * 7. RESPONSIVE MOBILE: REDUCED DISTANCES
  * ========================================== */
 @media (max-width: 768px) {
   :root {
@@ -219,7 +219,7 @@ select:focus {
     --anim-distance-x: 12px;
   }
 
-  /* Désactivation des lifts agressifs sur petit écran */
+  /* Disable aggressive lifts on small screen */
   #projets article:hover,
   #services .grid > div:hover,
   #processus .grid > div:hover,
@@ -229,8 +229,8 @@ select:focus {
 }
 
 /* ==========================================
- * 8. RESPECT STRICT DE PREFERS-REDUCED-MOTION
- * Désactive tout déplacement et animation si demandé par le système de l'utilisateur
+ * 8. STRICT RESPECT OF PREFERS-REDUCED-MOTION
+ * Disables all movement and animation if requested by the user's system
  * ========================================== */
 @media (prefers-reduced-motion: reduce) {
   *,

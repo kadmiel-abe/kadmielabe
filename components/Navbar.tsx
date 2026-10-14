@@ -1,21 +1,53 @@
 "use client";
 
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
-import { Menu, X, ArrowUpRight, Code2 } from "lucide-react";
-import Image from "next/image";
-
-const easeCurve: [number, number, number, number] = [0.16, 1, 0.3, 1];
+import { Menu, X, ArrowUpRight, Moon, Sun, Sparkles } from "lucide-react";
 
 export default function Navbar() {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
+  const [isDark, setIsDark] = useState(true);
+  const [scrolled, setScrolled] = useState(false);
+
+  useEffect(() => {
+    // Check initial dark mode from DOM or localStorage
+    const savedTheme = localStorage.getItem("theme");
+    if (savedTheme === "light") {
+      setIsDark(false);
+      document.documentElement.classList.remove("dark");
+    } else {
+      setIsDark(true);
+      document.documentElement.classList.add("dark");
+    }
+
+    const handleScroll = () => {
+      setScrolled(window.scrollY > 30);
+    };
+
+    window.addEventListener("scroll", handleScroll, { passive: true });
+    return () => window.removeEventListener("scroll", handleScroll);
+  }, []);
+
+  const toggleTheme = () => {
+    if (isDark) {
+      document.documentElement.classList.remove("dark");
+      localStorage.setItem("theme", "light");
+      setIsDark(false);
+    } else {
+      document.documentElement.classList.add("dark");
+      localStorage.setItem("theme", "dark");
+      setIsDark(true);
+    }
+  };
 
   const navLinks = [
-    { label: "Projets", href: "#projets" },
+    { label: "Accueil", href: "#hero" },
+    { label: "À propos", href: "#a-propos" },
     { label: "Services", href: "#services" },
-    { label: "Méthode", href: "#processus" },
+    { label: "Projets", href: "#portfolio" },
+    { label: "Outils", href: "#outils" },
+    { label: "Parcours", href: "#parcours" },
     { label: "Tarifs", href: "#tarifs" },
-    { label: "FAQ", href: "#faq" },
     { label: "Contact", href: "#contact" },
   ];
 
@@ -33,127 +65,139 @@ export default function Navbar() {
         return;
       }
 
-      setTimeout(() => {
-        const targetElement = document.getElementById(targetId);
-        if (targetElement) {
-          const navbarHeight = 80;
-          const elementPosition = targetElement.getBoundingClientRect().top;
-          const offsetPosition = elementPosition + window.pageYOffset - navbarHeight;
+      const targetElement = document.getElementById(targetId);
+      if (targetElement) {
+        const navbarOffset = 90;
+        const elementPosition = targetElement.getBoundingClientRect().top;
+        const offsetPosition = elementPosition + window.pageYOffset - navbarOffset;
 
-          window.scrollTo({
-            top: offsetPosition,
-            behavior: "smooth",
-          });
+        window.scrollTo({
+          top: offsetPosition,
+          behavior: "smooth",
+        });
 
-          if (window.history.pushState) {
-            window.history.pushState(null, "", href);
-          }
+        if (window.history.pushState) {
+          window.history.pushState(null, "", href);
         }
-      }, 50);
-    }
-  };
-
-  const handleLogoClick = (e: React.MouseEvent<HTMLAnchorElement>) => {
-    e.preventDefault();
-    setMobileMenuOpen(false);
-    window.scrollTo({ top: 0, behavior: "smooth" });
-    if (window.history.pushState) {
-      window.history.pushState(null, "", window.location.pathname);
+      }
     }
   };
 
   return (
-    <header className="fixed top-0 left-0 right-0 z-50 h-20 bg-[#0a0a0a]/90 backdrop-blur-md border-b border-gray-800/60">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-full flex items-center justify-between gap-4">
-        {/* Left: Logo </ > */}
+    <header className="fixed top-4 left-0 right-0 z-50 flex justify-center px-4 sm:px-6 pointer-events-none">
+      <nav
+        aria-label="Navigation principale"
+        className={`pointer-events-auto w-full max-w-6xl rounded-full transition-all duration-300 flex items-center justify-between px-4 sm:px-6 py-2.5 sm:py-3 ${
+          scrolled
+            ? "bg-[#0f0f11]/90 dark:bg-[#0f0f11]/90 bg-white/90 backdrop-blur-xl border border-white/10 dark:border-white/10 border-gray-200/80 shadow-[0_12px_40px_-10px_rgba(0,0,0,0.5)]"
+            : "bg-[#121214]/80 dark:bg-[#121214]/80 bg-white/80 backdrop-blur-lg border border-white/10 dark:border-white/10 border-gray-200/60 shadow-lg"
+        }`}
+      >
+        {/* Logo: Code mark with emerald dot + Kadmiel */}
         <a
-          href="#"
-          onClick={handleLogoClick}
-          className="flex items-center gap-3 group focus:outline-none cursor-pointer shrink-0"
-          aria-label="Accueil - Kadmiel Abe"
+          href="#hero"
+          onClick={(e) => handleNavClick(e, "#hero")}
+          className="flex items-center gap-2.5 group cursor-pointer focus:outline-none shrink-0"
+          aria-label="Kadmiel Abe - Accueil"
         >
-          <div className="flex items-center gap-2">
-            <span className="font-mono text-2xl font-black text-emerald-400 tracking-tighter transition-transform duration-300 group-hover:scale-110">
-              &lt;/&gt;
+          <div className="w-9 h-9 rounded-full bg-emerald-500/15 dark:bg-emerald-500/20 border border-emerald-500/40 flex items-center justify-center text-emerald-500 group-hover:scale-105 transition-transform duration-300 shadow-[0_0_12px_rgba(17,145,52,0.3)]">
+            <span className="font-mono text-sm font-black tracking-tighter">&lt;/&gt;</span>
+          </div>
+          <div className="flex items-baseline">
+            <span className="font-heading text-lg sm:text-xl font-extrabold tracking-tight text-white dark:text-white text-gray-900 group-hover:text-emerald-500 transition-colors">
+              Kadmiel
             </span>
-            <span className="font-bold text-white text-base tracking-tight group-hover:text-emerald-400 transition-colors">
-              Kadmiel Abe
-            </span>
+            <span className="w-1.5 h-1.5 rounded-full bg-emerald-500 ml-1 inline-block animate-pulse" />
           </div>
         </a>
 
-        {/* Center: Main Desktop Navigation (evenly spaced & uncrowded) */}
-        <nav
-          className="hidden md:flex items-center justify-center gap-8 lg:gap-10 mx-auto"
-          aria-label="Navigation principale"
-        >
+        {/* Center Links (Desktop) */}
+        <div className="hidden lg:flex items-center gap-1 xl:gap-2">
           {navLinks.map((link) => (
             <a
               key={link.label}
               href={link.href}
               onClick={(e) => handleNavClick(e, link.href)}
-              className="text-sm font-medium text-gray-300 hover:text-emerald-400 transition-colors py-1 cursor-pointer"
+              className="text-xs xl:text-sm font-medium text-gray-300 dark:text-gray-300 text-gray-700 hover:text-emerald-400 dark:hover:text-emerald-400 hover:bg-white/5 dark:hover:bg-white/5 px-3 py-1.5 rounded-full transition-all duration-200"
             >
               {link.label}
             </a>
           ))}
-        </nav>
+        </div>
 
-        {/* Right: WhatsApp Direct Button */}
-        <div className="hidden md:flex items-center shrink-0">
+        {/* Right action controls */}
+        <div className="flex items-center gap-2 sm:gap-3">
+          {/* Dark / Light Mode Toggle Button */}
+          <button
+            onClick={toggleTheme}
+            type="button"
+            aria-label={isDark ? "Passer en mode clair" : "Passer en mode sombre"}
+            className="w-9 h-9 rounded-full flex items-center justify-center text-gray-300 dark:text-gray-300 text-gray-700 hover:text-white hover:bg-white/10 dark:hover:bg-white/10 bg-black/10 dark:bg-black/20 border border-white/5 transition-all duration-200 cursor-pointer"
+          >
+            {isDark ? (
+              <Sun className="w-4 h-4 text-emerald-400 transition-transform duration-300 hover:rotate-45" />
+            ) : (
+              <Moon className="w-4 h-4 text-emerald-600 transition-transform duration-300 hover:-rotate-12" />
+            )}
+          </button>
+
+          {/* Let's talk CTA Pill */}
           <a
             href="https://wa.me/2250706978570?text=Bonjour%20Kadmiel,%20je%20souhaite%20discuter%20d'un%20projet%20web%20pour%20mon%20entreprise."
             target="_blank"
             rel="noopener noreferrer"
-            className="inline-flex items-center gap-1.5 px-5 py-2.5 rounded-full bg-emerald-500 hover:bg-emerald-400 text-black font-semibold text-xs uppercase tracking-wider transition-all duration-300 shadow-[0_0_15px_rgba(16,185,129,0.3)] hover:shadow-[0_0_25px_rgba(16,185,129,0.5)] hover:scale-105 active:scale-95"
+            className="hidden sm:inline-flex items-center gap-2 px-5 py-2 rounded-full bg-white dark:bg-white bg-gray-900 text-gray-950 dark:text-gray-950 text-white font-heading font-bold text-xs uppercase tracking-wider hover:bg-emerald-500 hover:text-black dark:hover:bg-emerald-500 dark:hover:text-black transition-all duration-300 shadow-[0_4px_15px_rgba(0,0,0,0.15)] hover:shadow-pill-hover hover:scale-105 active:scale-95"
           >
-            <span>WhatsApp Direct</span>
-            <ArrowUpRight className="w-4 h-4 stroke-[2.5]" />
+            <span>Let&apos;s Talk</span>
+            <div className="w-4 h-4 rounded-full bg-black/10 dark:bg-black/10 flex items-center justify-center">
+              <ArrowUpRight className="w-3 h-3 stroke-[2.5]" />
+            </div>
           </a>
-        </div>
 
-        {/* Mobile Burger Menu Button */}
-        <div className="flex md:hidden">
+          {/* Mobile menu button */}
           <button
+            type="button"
             onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
-            className="p-2.5 rounded-xl text-gray-300 hover:text-white hover:bg-gray-800/60 border border-gray-800 transition-colors cursor-pointer"
             aria-label={mobileMenuOpen ? "Fermer le menu" : "Ouvrir le menu"}
+            className="lg:hidden p-2 rounded-full text-gray-300 dark:text-gray-300 text-gray-800 hover:bg-white/10 dark:hover:bg-white/10 cursor-pointer"
           >
             {mobileMenuOpen ? <X className="w-5 h-5 text-emerald-400" /> : <Menu className="w-5 h-5" />}
           </button>
         </div>
-      </div>
+      </nav>
 
-      {/* Mobile Menu Drawer */}
+      {/* Mobile Drawer */}
       <AnimatePresence>
         {mobileMenuOpen && (
           <motion.div
-            initial={{ opacity: 0, height: 0 }}
-            animate={{ opacity: 1, height: "auto" }}
-            exit={{ opacity: 0, height: 0 }}
-            transition={{ duration: 0.25, ease: easeCurve }}
-            className="md:hidden bg-[#0a0a0a] border-b border-gray-800 overflow-hidden"
+            initial={{ opacity: 0, y: -15, scale: 0.96 }}
+            animate={{ opacity: 1, y: 0, scale: 1 }}
+            exit={{ opacity: 0, y: -15, scale: 0.96 }}
+            transition={{ duration: 0.2, ease: "easeOut" }}
+            className="pointer-events-auto absolute top-20 left-4 right-4 max-w-md mx-auto rounded-3xl bg-[#121214]/95 backdrop-blur-2xl border border-white/10 p-5 shadow-2xl lg:hidden"
           >
-            <div className="px-5 pt-3 pb-6 space-y-2">
+            <div className="flex flex-col gap-1.5">
               {navLinks.map((link) => (
                 <a
                   key={link.label}
                   href={link.href}
                   onClick={(e) => handleNavClick(e, link.href)}
-                  className="block px-4 py-3 rounded-xl text-sm font-medium text-gray-300 hover:text-white hover:bg-gray-800/50 transition-colors border border-transparent hover:border-gray-800 cursor-pointer"
+                  className="px-4 py-3 rounded-2xl text-sm font-medium text-gray-200 hover:text-emerald-400 hover:bg-white/5 transition-colors flex items-center justify-between"
                 >
-                  {link.label}
+                  <span>{link.label}</span>
+                  <span className="text-xs text-gray-500 font-mono">→</span>
                 </a>
               ))}
-              <div className="pt-3">
+
+              <div className="pt-3 border-t border-white/10 mt-2">
                 <a
                   href="https://wa.me/2250706978570?text=Bonjour%20Kadmiel,%20je%20souhaite%20discuter%20d'un%20projet%20web%20pour%20mon%20entreprise."
                   target="_blank"
                   rel="noopener noreferrer"
-                  onClick={() => setMobileMenuOpen(false)}
-                  className="flex items-center justify-center gap-2 w-full py-3.5 rounded-xl bg-emerald-500 text-black font-semibold text-xs uppercase tracking-wider shadow-md hover:bg-emerald-400 transition-colors"
+                  className="flex items-center justify-center gap-2 w-full py-3.5 rounded-full bg-emerald-500 hover:bg-emerald-400 text-black font-heading font-bold text-xs uppercase tracking-wider shadow-lg transition-transform active:scale-95"
                 >
-                  <span>WhatsApp Direct ↗</span>
+                  <span>Let&apos;s Talk on WhatsApp</span>
+                  <ArrowUpRight className="w-4 h-4" />
                 </a>
               </div>
             </div>

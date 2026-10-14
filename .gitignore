@@ -39,3 +39,7 @@ next-env.d.ts
 *.pem
 .vscode/
 .idea/
+
+# Design references (do not push to repo)
+/exemple/
+

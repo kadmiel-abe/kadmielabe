@@ -1,7 +1,7 @@
 "use client";
 
 import { useState } from "react";
-import { motion } from "framer-motion";
+import { motion, useReducedMotion } from "framer-motion";
 import { MessageSquare, Mail, Send, MapPin, Sparkles, ArrowUpRight } from "lucide-react";
 
 export default function Contact() {
@@ -9,6 +9,7 @@ export default function Contact() {
   const [email, setEmail] = useState("");
   const [service, setService] = useState("Pack Pro (350 000 FCFA)");
   const [message, setMessage] = useState("");
+  const shouldReduceMotion = useReducedMotion();
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
@@ -19,26 +20,40 @@ export default function Contact() {
   };
 
   return (
-    <section id="contact" className="py-24 md:py-32 bg-[#0B0B0C] border-t border-[#1E1E22] relative scroll-mt-20">
+    <section
+      id="contact"
+      className="py-24 sm:py-32 bg-[#0B0B0C] text-[#EDEDED] relative overflow-hidden border-t border-[#1E1E22]"
+    >
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-16 items-start">
-          {/* Left Column: Direct Contact Info & Value Prop (Slide from Left) */}
+          {/* Left Column: Direct Contact Info & Value Prop */}
           <motion.div
-            initial={{ opacity: 0, x: -40 }}
+            initial={shouldReduceMotion ? { opacity: 0 } : { opacity: 0, x: -30 }}
             whileInView={{ opacity: 1, x: 0 }}
             viewport={{ once: true, margin: "-50px" }}
             transition={{ duration: 0.7, ease: "easeOut" }}
             className="lg:col-span-5 flex flex-col justify-between"
           >
             <div>
-              <div className="inline-flex items-center gap-2 px-3.5 py-1 rounded-full bg-emerald-500/10 border border-emerald-500/20 text-emerald-400 text-xs font-mono tracking-wider uppercase mb-4">
-                <Sparkles className="w-3.5 h-3.5" />
-                <span>Contact &amp; Devis</span>
+              <div className="inline-flex items-center gap-2 mb-3">
+                <div className="flex items-center -space-x-1">
+                  <span className="w-2.5 h-2.5 rounded-full bg-emerald-500" />
+                  <span className="w-2.5 h-2.5 rounded-full bg-white" />
+                </div>
+                <span className="text-xs font-heading font-semibold uppercase tracking-wider text-gray-400">
+                  Contact &amp; Devis
+                </span>
               </div>
-              <h2 className="font-heading text-3xl sm:text-4xl md:text-5xl font-extrabold text-[#EDEDED] tracking-tight mb-6">
-                Prêt à propulser votre entreprise ?
+
+              <h2 className="font-heading text-3xl sm:text-5xl md:text-6xl font-black text-white tracking-tight leading-tight mb-6">
+                Prêt à propulser votre{" "}
+                <span className="text-emerald-400 inline-flex items-center gap-2">
+                  entreprise ?
+                  <Sparkles className="w-6 h-6 text-emerald-400 shrink-0 fill-emerald-400" />
+                </span>
               </h2>
-              <p className="text-sm sm:text-base text-gray-400 font-light leading-relaxed mb-8">
+
+              <p className="text-sm sm:text-base text-gray-300 font-light leading-relaxed mb-8">
                 Discutons de votre vision, de vos contraintes et de vos objectifs. Je réponds sous 24h ouvrées avec des conseils concrets et une estimation claire.
               </p>
 
@@ -48,15 +63,17 @@ export default function Contact() {
                   href="https://wa.me/2250706978570?text=Bonjour%20Kadmiel,%20je%20souhaite%20discuter%20d'un%20projet%20web."
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="flex items-center justify-between p-4 rounded-2xl bg-[#121214] border border-[#1E1E22] hover:border-emerald-500/40 hover:shadow-lg hover:shadow-emerald-500/10 transition-all duration-300 group hover:-translate-y-1"
+                  className="flex items-center justify-between p-4 rounded-2xl bg-[#141416] border border-[#1E1E22] hover:border-emerald-500/50 hover:shadow-lg transition-all duration-300 group hover:-translate-y-1 chamfer-step"
                 >
                   <div className="flex items-center gap-4">
-                    <div className="w-10 h-10 rounded-xl bg-emerald-500/10 border border-emerald-500/20 flex items-center justify-center text-emerald-400 group-hover:scale-110 transition-transform">
+                    <div className="w-11 h-11 rounded-xl bg-emerald-500/15 border border-emerald-500/30 flex items-center justify-center text-emerald-400 group-hover:scale-110 group-hover:bg-emerald-500 group-hover:text-black transition-all">
                       <MessageSquare className="w-5 h-5" />
                     </div>
                     <div>
-                      <p className="text-xs text-gray-400 uppercase tracking-wider font-mono">WhatsApp direct (Recommandé)</p>
-                      <p className="text-sm font-semibold text-white group-hover:text-emerald-400 transition-colors">
+                      <p className="text-xs text-gray-400 uppercase tracking-wider font-mono">
+                        WhatsApp direct (Recommandé)
+                      </p>
+                      <p className="text-sm font-heading font-bold text-white group-hover:text-emerald-400 transition-colors">
                         +225 07 06 97 85 70
                       </p>
                     </div>
@@ -66,15 +83,17 @@ export default function Contact() {
 
                 <a
                   href="mailto:kadmielabe@gmail.com"
-                  className="flex items-center justify-between p-4 rounded-2xl bg-[#121214] border border-[#1E1E22] hover:border-emerald-500/40 hover:shadow-lg hover:shadow-emerald-500/10 transition-all duration-300 group hover:-translate-y-1"
+                  className="flex items-center justify-between p-4 rounded-2xl bg-[#141416] border border-[#1E1E22] hover:border-emerald-500/50 hover:shadow-lg transition-all duration-300 group hover:-translate-y-1 chamfer-step"
                 >
                   <div className="flex items-center gap-4">
-                    <div className="w-10 h-10 rounded-xl bg-emerald-500/10 border border-emerald-500/20 flex items-center justify-center text-emerald-400 group-hover:scale-110 transition-transform">
+                    <div className="w-11 h-11 rounded-xl bg-emerald-500/15 border border-emerald-500/30 flex items-center justify-center text-emerald-400 group-hover:scale-110 group-hover:bg-emerald-500 group-hover:text-black transition-all">
                       <Mail className="w-5 h-5" />
                     </div>
                     <div>
-                      <p className="text-xs text-gray-400 uppercase tracking-wider font-mono">E-mail Professionnel</p>
-                      <p className="text-sm font-semibold text-white group-hover:text-emerald-400 transition-colors">
+                      <p className="text-xs text-gray-400 uppercase tracking-wider font-mono">
+                        E-mail Professionnel
+                      </p>
+                      <p className="text-sm font-heading font-bold text-white group-hover:text-emerald-400 transition-colors">
                         kadmielabe@gmail.com
                       </p>
                     </div>
@@ -84,26 +103,26 @@ export default function Contact() {
               </div>
 
               {/* Location Badge */}
-              <div className="flex items-center gap-3 p-4 rounded-2xl bg-[#121214]/50 border border-[#1E1E22] text-xs text-gray-400">
+              <div className="flex items-center gap-3 p-4 rounded-2xl bg-[#141416]/60 border border-[#1E1E22] text-xs text-gray-400">
                 <MapPin className="w-4 h-4 text-emerald-400 shrink-0" />
                 <span>Basé à Abidjan, Côte d&apos;Ivoire · Disponible pour clients locaux &amp; internationaux (Remote)</span>
               </div>
             </div>
           </motion.div>
 
-          {/* Right Column: Interactive Quick Form (Slide from Right) */}
+          {/* Right Column: Interactive Quick Form */}
           <motion.div
-            initial={{ opacity: 0, x: 40 }}
+            initial={shouldReduceMotion ? { opacity: 0 } : { opacity: 0, x: 30 }}
             whileInView={{ opacity: 1, x: 0 }}
             viewport={{ once: true, margin: "-50px" }}
             transition={{ duration: 0.7, ease: "easeOut", delay: 0.15 }}
             className="lg:col-span-7"
           >
-            <div className="p-8 sm:p-10 rounded-3xl bg-[#121214] border border-[#1E1E22] shadow-card-dark hover:border-emerald-500/30 transition-all duration-300">
-              <h3 className="font-heading text-2xl font-bold text-[#EDEDED] mb-2">
+            <div className="p-8 sm:p-10 rounded-3xl bg-[#141416] border border-[#1E1E22] shadow-2xl chamfer-tl-br hover:border-emerald-500/40 transition-all duration-300">
+              <h3 className="font-heading text-2xl sm:text-3xl font-black text-white mb-2">
                 Démarrer une discussion de projet
               </h3>
-              <p className="text-xs text-gray-400 font-light mb-8">
+              <p className="text-xs sm:text-sm text-gray-400 font-light mb-8">
                 Remplissez ces quelques lignes pour lancer directement l&apos;échange avec vos éléments pré-saisis sur WhatsApp.
               </p>
 
@@ -175,7 +194,7 @@ export default function Contact() {
 
                 <button
                   type="submit"
-                  className="w-full py-4 px-6 rounded-xl bg-emerald-500 hover:bg-emerald-400 text-black font-semibold text-xs uppercase tracking-wider flex items-center justify-center gap-2.5 transition-all duration-300 shadow-[0_0_25px_-5px_rgba(17,145,52,0.5)] hover:scale-[1.02] active:scale-[0.98] cursor-pointer"
+                  className="w-full py-4 px-6 rounded-full bg-emerald-500 hover:bg-emerald-400 text-black font-heading font-bold text-xs uppercase tracking-wider flex items-center justify-center gap-2.5 transition-all duration-300 shadow-md hover:scale-[1.02] active:scale-[0.98] cursor-pointer"
                 >
                   <Send className="w-4 h-4" />
                   <span>Envoyer ma demande via WhatsApp</span>

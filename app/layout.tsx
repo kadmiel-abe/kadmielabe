@@ -1,9 +1,9 @@
 import type { Metadata, Viewport } from "next";
-import { Playfair_Display, Inter } from "next/font/google";
+import { Syne, Inter } from "next/font/google";
 import "./globals.css";
 import "./motion.css";
 
-const playfair = Playfair_Display({
+const syne = Syne({
   subsets: ["latin"],
   weight: ["500", "600", "700", "800"],
   variable: "--font-heading",
@@ -83,8 +83,8 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="fr" className={`dark ${playfair.variable} ${inter.variable}`}>
-      <body className="bg-[#0B0B0C] text-[#EDEDED] font-sans antialiased selection:bg-emerald-500/20 selection:text-emerald-400">
+    <html lang="fr" className={`dark ${syne.variable} ${inter.variable}`} suppressHydrationWarning>
+      <body className="bg-[#0B0B0C] text-[#EDEDED] font-sans antialiased selection:bg-emerald-500/20 selection:text-emerald-400 min-h-screen">
         {children}
       </body>
     </html>

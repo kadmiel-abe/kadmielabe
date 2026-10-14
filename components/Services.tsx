@@ -2,195 +2,253 @@
 
 import React, { useState } from "react";
 import { motion, AnimatePresence, useReducedMotion } from "framer-motion";
-import { Globe, Wrench, Palette, Printer, MapPin } from "lucide-react";
+import { ArrowUpRight, Sparkles } from "lucide-react";
 
 interface ServiceItem {
   id: string;
+  number: string;
   title: string;
+  subcategories: string[];
   description: string;
-  category: "web" | "design";
-  icon: React.ElementType;
+  linkText: string;
 }
 
-const servicesData: ServiceItem[] = [
+const servicesList: ServiceItem[] = [
   {
     id: "site-web",
-    title: "Création de Sites Web",
+    number: "01.",
+    title: "Création de Sites Web B2B",
+    subcategories: [
+      "Sites Vitrines 3 à 5 pages",
+      "Responsive Mobile-First",
+      "Hébergement & Domaine 1 an",
+      "Boutons Contact WhatsApp Direct",
+    ],
     description:
-      "Conception de sites vitrines professionnels (3 à 5 pages), incluant nom de domaine, hébergement 1 an et boutons de contact direct.",
-    category: "web",
-    icon: Globe,
+      "Conception sur-mesure de sites vitrines professionnels et captivants pour entreprises, cabinets de conseil et PME. Une vitrine digitale haut de gamme qui valorise vos offres et convertit vos prospects en clients.",
+    linkText: "En savoir plus",
+  },
+  {
+    id: "saas",
+    number: "02.",
+    title: "Applications Web SaaS & Métiers",
+    subcategories: [
+      "Architecture Next.js & React",
+      "Cloud Supabase & Authentification",
+      "Dashboards Financiers & Analytiques",
+      "Intégrations API & Paiements",
+    ],
+    description:
+      "Développement de plateformes logicielles sur-mesure (type GestFiPro) adaptées à vos processus d'affaires : gestion de trésorerie, portails clients, automatisation de flux de travail et sécurité renforcée aux standards mondiaux.",
+    linkText: "Découvrir la solution",
+  },
+  {
+    id: "refonte",
+    number: "03.",
+    title: "Refonte & Optimisation SEO",
+    subcategories: [
+      "Audit de Performance & Sécurité",
+      "Migration vers Next.js 15",
+      "Score Lighthouse 95+",
+      "Architecture SEO B2B",
+    ],
+    description:
+      "Modernisation complète de vos plateformes existantes lentes ou dépassées. Nous transformons votre site en un outil rapide comme l'éclair, parfaitement positionné sur Google et calibré pour convertir.",
+    linkText: "Demander un audit",
   },
   {
     id: "maintenance",
-    title: "Maintenance Technique",
+    number: "04.",
+    title: "Maintenance & Support Dédié",
+    subcategories: [
+      "Sauvegardes Hebdomadaires",
+      "Mises à jour critiques de sécurité",
+      "Monitoring 24/7",
+      "Ajustements de contenu inclus",
+    ],
     description:
-      "Suivi sur 12 mois comprenant les mises à jour, les sauvegardes régulières et les modifications mineures pour la sécurité de votre plateforme.",
-    category: "web",
-    icon: Wrench,
+      "Suivi technique proactif sur 12 mois pour garantir la continuité opérationnelle, la sérénité absolue et la longévité de vos investissements digitaux.",
+    linkText: "Voir les formules",
   },
   {
-    id: "identite-visuelle",
-    title: "Identité Visuelle",
+    id: "identite",
+    number: "05.",
+    title: "Identité Visuelle & Stratégie B2B",
+    subcategories: [
+      "Logos & Chartes Graphiques",
+      "Cartes de Visite avec QR Code",
+      "Plaquettes Commerciales PDF & Print",
+      "Fiche Google Business Profile",
+    ],
     description:
-      "Conception de logos, définition de palettes de couleurs et choix typographiques pour une image de marque cohérente.",
-    category: "design",
-    icon: Palette,
+      "Création d'une image de marque forte, mémorable et cohérente sur tous les canaux pour asseoir instantanément votre autorité auprès de vos partenaires et clients.",
+    linkText: "Consulter les options",
   },
-  {
-    id: "supports-communication",
-    title: "Supports de Communication",
-    description:
-      "Design de plaquettes commerciales (PDF et impression) et conception de cartes de visite professionnelles avec QR codes.",
-    category: "design",
-    icon: Printer,
-  },
-  {
-    id: "seo-local",
-    title: "Référencement & SEO Local",
-    description:
-      "Création et optimisation de fiches Google Business Profile couplées à un référencement naturel pour attirer vos clients.",
-    category: "design",
-    icon: MapPin,
-  },
-];
-
-const tabs = [
-  { id: "all", label: "Tous" },
-  { id: "web", label: "Web" },
-  { id: "design", label: "Design" },
 ];
 
 export default function Services() {
-  const [activeTab, setActiveTab] = useState<string>("all");
+  // Default expanded item is the second one (02) as in the reference screenshot!
+  const [activeId, setActiveId] = useState<string>("saas");
   const shouldReduceMotion = useReducedMotion();
 
-  const filteredServices =
-    activeTab === "all"
-      ? servicesData
-      : (servicesData ?? []).filter((service) => service.category === activeTab);
+  const toggleAccordion = (id: string) => {
+    setActiveId((prev) => (prev === id ? "" : id));
+  };
 
   return (
     <section
       id="services"
-      className="py-20 md:py-28 bg-[#0a0a0a] text-white border-t border-white/5 scroll-mt-20"
+      className="py-24 sm:py-32 bg-[#FAF9F5] dark:bg-[#0E0E10] text-gray-900 dark:text-[#EDEDED] transition-colors duration-300 relative border-t border-gray-200 dark:border-[#1E1E22]"
     >
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        {/* En-tête de section avec animation au scroll accessible */}
-        <div className="text-center max-w-3xl mx-auto mb-12 sm:mb-16">
-          <motion.span
-            initial={shouldReduceMotion ? { opacity: 0 } : { opacity: 0, y: 40 }}
-            whileInView={shouldReduceMotion ? { opacity: 1 } : { opacity: 1, y: 0 }}
-            viewport={{ once: true, margin: "-50px" }}
-            transition={{ duration: shouldReduceMotion ? 0.3 : 0.7, ease: "easeOut" }}
-            className="text-xs font-mono tracking-widest text-emerald-400 uppercase font-semibold block mb-3"
-          >
-            SERVICES &amp; EXPERTISE
-          </motion.span>
+      <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+        {/* Section Header */}
+        <div className="flex flex-col sm:flex-row sm:items-end justify-between gap-6 mb-12 sm:mb-16">
+          <div>
+            <div className="inline-flex items-center gap-2 mb-3">
+              <div className="flex items-center -space-x-1">
+                <span className="w-2.5 h-2.5 rounded-full bg-emerald-500" />
+                <span className="w-2.5 h-2.5 rounded-full bg-gray-400 dark:bg-white" />
+              </div>
+              <span className="text-xs font-heading font-semibold uppercase tracking-wider text-gray-500 dark:text-gray-400">
+                Mes Services
+              </span>
+            </div>
 
-          <motion.h2
-            initial={shouldReduceMotion ? { opacity: 0 } : { opacity: 0, y: 40 }}
-            whileInView={shouldReduceMotion ? { opacity: 1 } : { opacity: 1, y: 0 }}
-            viewport={{ once: true, margin: "-50px" }}
-            transition={{ duration: shouldReduceMotion ? 0.3 : 0.7, ease: "easeOut", delay: shouldReduceMotion ? 0 : 0.05 }}
-            className="text-3xl sm:text-4xl md:text-5xl font-bold text-white tracking-tight"
-          >
-            Des offres concrètes pour développer votre entreprise
-          </motion.h2>
+            <h2 className="font-heading text-3xl sm:text-5xl md:text-6xl font-black text-gray-900 dark:text-white tracking-tight leading-tight">
+              Comment je donne vie à vos{" "}
+              <span className="text-emerald-600 dark:text-emerald-400 inline-flex items-center gap-2">
+                idées &amp; projets
+                <Sparkles className="w-6 h-6 text-emerald-500 shrink-0 fill-emerald-500" />
+              </span>
+            </h2>
+          </div>
 
-          <motion.p
-            initial={shouldReduceMotion ? { opacity: 0 } : { opacity: 0, y: 40 }}
-            whileInView={shouldReduceMotion ? { opacity: 1 } : { opacity: 1, y: 0 }}
-            viewport={{ once: true, margin: "-50px" }}
-            transition={{ duration: shouldReduceMotion ? 0.3 : 0.7, ease: "easeOut", delay: shouldReduceMotion ? 0 : 0.1 }}
-            className="mt-4 text-base sm:text-lg text-gray-400 font-light leading-relaxed"
+          <a
+            href="#tarifs"
+            className="inline-flex items-center gap-2 px-6 py-3 rounded-full bg-emerald-500 hover:bg-emerald-400 text-black font-heading font-bold text-xs uppercase tracking-wider shadow-md hover:scale-105 active:scale-95 transition-all self-start sm:self-auto shrink-0"
           >
-            Des solutions digitales sur-mesure pour établir votre présence, attirer des clients et automatiser vos processus.
-          </motion.p>
+            <span>Voir Toutes les Offres</span>
+            <div className="w-5 h-5 rounded-full bg-black text-white flex items-center justify-center">
+              <ArrowUpRight className="w-3 h-3 stroke-[2.5]" />
+            </div>
+          </a>
         </div>
 
-        {/* Onglets de filtre */}
-        <div className="flex items-center justify-center gap-3 mb-12 flex-wrap">
-          {tabs.map((tab) => {
-            const isActive = activeTab === tab.id;
+        {/* Numbered Accordion List (Cards with stepped cut corners) */}
+        <div className="space-y-4 sm:space-y-5">
+          {servicesList.map((service) => {
+            const isActive = activeId === service.id;
+
             return (
-              <button
-                key={tab.id}
-                onClick={() => setActiveTab(tab.id)}
-                className={`px-6 py-2 rounded-full text-sm font-medium transition-all duration-300 cursor-pointer ${
+              <motion.div
+                key={service.id}
+                layout
+                transition={{ duration: 0.35, ease: "easeInOut" }}
+                className={`overflow-hidden transition-all duration-300 chamfer-step border ${
                   isActive
-                    ? "bg-emerald-500/20 text-white border border-emerald-500/50 shadow-[0_0_15px_rgba(16,185,129,0.2)]"
-                    : "text-gray-400 border border-transparent hover:text-white hover:bg-white/5"
+                    ? "bg-[#141417] text-white border-emerald-500/40 shadow-2xl"
+                    : "bg-white dark:bg-[#141416] text-gray-900 dark:text-[#EDEDED] border-gray-200/80 dark:border-white/10 hover:border-emerald-500/30 shadow-sm hover:shadow-md"
                 }`}
               >
-                {tab.label}
-              </button>
+                {/* Header row (Clickable trigger) */}
+                <button
+                  type="button"
+                  onClick={() => toggleAccordion(service.id)}
+                  className="w-full p-5 sm:p-7 text-left flex items-center justify-between gap-4 cursor-pointer focus:outline-none select-none group"
+                  aria-expanded={isActive}
+                >
+                  <div className="flex items-center gap-4 sm:gap-8 flex-1 min-w-0">
+                    {/* Number pill */}
+                    <span
+                      className={`text-xs sm:text-sm font-mono font-bold px-3 py-1 rounded-full transition-colors ${
+                        isActive
+                          ? "bg-emerald-500/20 text-emerald-400 border border-emerald-500/40"
+                          : "bg-gray-100 dark:bg-white/5 text-gray-500 dark:text-gray-400 border border-gray-200 dark:border-white/5 group-hover:text-emerald-500"
+                      }`}
+                    >
+                      {service.number}
+                    </span>
+
+                    {/* Dotted separator line */}
+                    <div
+                      className={`hidden sm:block flex-1 border-b border-dotted transition-colors ${
+                        isActive
+                          ? "border-emerald-500/30"
+                          : "border-gray-300 dark:border-white/10"
+                      }`}
+                    />
+
+                    {/* Service Title */}
+                    <h3
+                      className={`font-heading text-lg sm:text-2xl font-bold tracking-tight transition-colors ${
+                        isActive
+                          ? "text-white"
+                          : "text-gray-900 dark:text-gray-100 group-hover:text-emerald-500"
+                      }`}
+                    >
+                      {service.title}
+                    </h3>
+                  </div>
+
+                  {/* Circular Action Arrow Button */}
+                  <div
+                    className={`w-9 h-9 sm:w-11 sm:h-11 rounded-full flex items-center justify-center shrink-0 transition-all duration-300 ${
+                      isActive
+                        ? "bg-emerald-500 text-black shadow-md rotate-45 scale-105"
+                        : "bg-gray-100 dark:bg-[#1E1E22] text-gray-600 dark:text-gray-300 group-hover:bg-emerald-500 group-hover:text-black"
+                    }`}
+                  >
+                    <ArrowUpRight className="w-4 h-4 sm:w-5 sm:h-5 stroke-[2.5]" />
+                  </div>
+                </button>
+
+                {/* Expanded Accordion Body */}
+                <AnimatePresence initial={false}>
+                  {isActive && (
+                    <motion.div
+                      key="content"
+                      initial={{ opacity: 0, height: 0 }}
+                      animate={{ opacity: 1, height: "auto" }}
+                      exit={{ opacity: 0, height: 0 }}
+                      transition={{ duration: 0.35, ease: "easeInOut" }}
+                      className="overflow-hidden"
+                    >
+                      <div className="px-5 sm:px-7 pb-7 pt-2 border-t border-white/10">
+                        {/* Sub-category tags in small dark pills */}
+                        <div className="flex flex-wrap gap-2 mb-5">
+                          {service.subcategories.map((tag) => (
+                            <span
+                              key={tag}
+                              className="px-3.5 py-1.5 rounded-full text-xs font-heading font-medium bg-[#1F1F24] text-gray-300 border border-white/10"
+                            >
+                              {tag}
+                            </span>
+                          ))}
+                        </div>
+
+                        {/* Description */}
+                        <p className="text-sm sm:text-base text-gray-300 font-light leading-relaxed max-w-3xl mb-6">
+                          {service.description}
+                        </p>
+
+                        {/* Direct action link */}
+                        <a
+                          href="https://wa.me/2250706978570?text=Bonjour%20Kadmiel,%20je%20souhaite%20en%20savoir%20plus%20sur%20ce%20service."
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          className="inline-flex items-center gap-2 text-xs font-heading font-bold uppercase tracking-wider text-emerald-400 hover:text-emerald-300 transition-colors"
+                        >
+                          <span>Discuter de cette prestation sur WhatsApp</span>
+                          <ArrowUpRight className="w-4 h-4" />
+                        </a>
+                      </div>
+                    </motion.div>
+                  )}
+                </AnimatePresence>
+              </motion.div>
             );
           })}
         </div>
-
-        {/* Grille de services — initial + animate directs par carte pour fiabiliser le filtrage */}
-        <motion.div
-          layout
-          className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6"
-        >
-          <AnimatePresence mode="popLayout">
-            {(filteredServices ?? []).map((service, index) => {
-              const Icon = service.icon;
-              return (
-                <motion.div
-                  key={service.id}
-                  layout
-                  initial={shouldReduceMotion ? { opacity: 0 } : { opacity: 0, y: 30 }}
-                  animate={
-                    shouldReduceMotion
-                      ? { opacity: 1, transition: { duration: 0.2 } }
-                      : {
-                          opacity: 1,
-                          y: 0,
-                          transition: {
-                            duration: 0.5,
-                            ease: "easeOut",
-                            delay: index * 0.08,
-                          },
-                        }
-                  }
-                  exit={
-                    shouldReduceMotion
-                      ? { opacity: 0, transition: { duration: 0.15 } }
-                      : {
-                          opacity: 0,
-                          scale: 0.95,
-                          transition: { duration: 0.25, ease: "easeIn" },
-                        }
-                  }
-                  className="group relative p-8 rounded-xl bg-[#111111] border border-white/5 hover:border-emerald-500/50 transition-all duration-300 hover:-translate-y-2 hover:shadow-xl hover:shadow-emerald-500/10 flex flex-col justify-between"
-                >
-                  <div>
-                    <div className="w-12 h-12 rounded-xl bg-emerald-500/10 border border-emerald-500/20 flex items-center justify-center text-emerald-400 mb-6 group-hover:scale-110 group-hover:bg-emerald-500/20 transition-all">
-                      <Icon size={24} />
-                    </div>
-
-                    <h3 className="text-xl font-bold text-white group-hover:text-emerald-400 transition-all duration-300 hover:translate-x-2 inline-block mb-3">
-                      {service.title}
-                    </h3>
-
-                    <p className="text-sm text-gray-400 leading-relaxed font-light">
-                      {service.description}
-                    </p>
-                  </div>
-                </motion.div>
-              );
-            })}
-          </AnimatePresence>
-
-          {/* État vide si aucun service ne correspond */}
-          {filteredServices.length === 0 && (
-            <div className="col-span-full text-center py-16 text-gray-500">
-              Aucun service dans cette catégorie.
-            </div>
-          )}
-        </motion.div>
       </div>
     </section>
   );
