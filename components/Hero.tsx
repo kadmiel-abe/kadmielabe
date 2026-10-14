@@ -4,7 +4,6 @@ import React from "react";
 import Image from "next/image";
 import { motion, useReducedMotion } from "framer-motion";
 import {
-  ArrowUpRight,
   ArrowRight,
   Sparkles,
   Quote,
@@ -58,8 +57,8 @@ export default function Hero() {
             transition={{ duration: 0.6 }}
             className="inline-flex items-center gap-2.5 px-4 py-1.5 rounded-full bg-white dark:bg-[#141417] border border-gray-200 dark:border-white/10 shadow-sm text-xs font-heading font-medium tracking-wide text-gray-800 dark:text-gray-200"
           >
-            <div className="w-5 h-5 rounded-full bg-emerald-500/15 flex items-center justify-center text-emerald-500">
-              <Sparkles className="w-3 h-3 fill-emerald-500" />
+            <div className="w-5 h-5 rounded-full bg-black border border-emerald-500/50 flex items-center justify-center text-emerald-400 shadow-sm">
+              <span className="font-mono text-[9px] font-black tracking-tighter">&lt;/&gt;</span>
             </div>
             <span>Développeur Web &amp; Stratège Digital Freelance</span>
           </motion.div>
@@ -93,9 +92,9 @@ export default function Hero() {
                 </svg>
               </div>
 
-              {/* Center Stamp Icon */}
-              <div className="w-11 h-11 sm:w-12 sm:h-12 rounded-full bg-emerald-500 text-black flex items-center justify-center shadow-lg group-hover:bg-emerald-400 group-hover:rotate-45 transition-all duration-300">
-                <ArrowUpRight className="w-5 h-5 stroke-[2.5]" />
+              {/* Center Stamp Icon: Logo on black background */}
+              <div className="w-11 h-11 sm:w-12 sm:h-12 rounded-full bg-black border border-emerald-500/60 text-emerald-400 flex items-center justify-center shadow-[0_0_15px_rgba(17,145,52,0.4)] group-hover:border-emerald-400 group-hover:scale-105 transition-all duration-300">
+                <span className="font-mono text-sm sm:text-base font-black tracking-tighter">&lt;/&gt;</span>
               </div>
             </a>
           </div>
@@ -112,8 +111,15 @@ export default function Hero() {
             Je suis{" "}
             <span className="relative inline-block text-emerald-600 dark:text-emerald-400">
               Kadmiel Abe
-              {/* Sparkle decorative icons near name */}
-              <Sparkles className="w-6 h-6 sm:w-8 sm:h-8 text-emerald-500 absolute -top-3 -right-6 sm:-right-8 animate-pulse" />
+              {/* Logo icon badge near main title with black background */}
+              <span
+                aria-hidden="true"
+                className="inline-flex items-center justify-center w-7 h-7 sm:w-8 sm:h-8 md:w-9 md:h-9 rounded-full bg-black border border-emerald-500/60 shadow-[0_0_12px_rgba(17,145,52,0.4)] align-middle ml-2 sm:ml-3 -translate-y-1 sm:-translate-y-2 group"
+              >
+                <span className="font-mono text-xs sm:text-sm font-black text-emerald-400 tracking-tighter">
+                  &lt;/&gt;
+                </span>
+              </span>
             </span>
           </motion.h1>
 

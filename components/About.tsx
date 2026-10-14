@@ -3,7 +3,7 @@
 import React, { useState, useEffect, useRef } from "react";
 import Image from "next/image";
 import { motion, useInView, useReducedMotion } from "framer-motion";
-import { Download, ArrowUpRight, Sparkles } from "lucide-react";
+import { ArrowUpRight, Sparkles } from "lucide-react";
 
 // Counter component for smooth animated counting effect
 function AnimatedCounter({ target, suffix = "" }: { target: number; suffix?: string }) {
@@ -164,19 +164,18 @@ export default function About() {
               </p>
             </div>
 
-            {/* Action Row: Download CV Pill Button + Signature */}
+            {/* Action Row: CTA Pill Button + Signature */}
             <div className="flex flex-col sm:flex-row items-start sm:items-center gap-6 sm:gap-8">
-              {/* Download CV Pill Button */}
+              {/* Contact / Hire CTA Button */}
               <a
-                href="/CV_Kadmiel_Abe.pdf"
-                download="CV_Kadmiel_Abe.pdf"
+                href="#contact"
                 className="group inline-flex items-center p-1.5 pr-2 rounded-full bg-[#17171A] hover:bg-[#1E1E22] border border-[#2A2A30] hover:border-emerald-500/50 transition-all duration-300 shadow-lg hover:scale-105 active:scale-95 cursor-pointer"
               >
                 <span className="px-5 py-2 font-heading font-bold text-xs uppercase tracking-wider text-white">
-                  Télécharger mon CV
+                  Démarrer un projet
                 </span>
                 <div className="w-9 h-9 rounded-full bg-emerald-500 text-black flex items-center justify-center group-hover:bg-emerald-400 transition-colors shadow-md">
-                  <Download className="w-4 h-4 stroke-[2.5] group-hover:translate-y-0.5 transition-transform" />
+                  <ArrowUpRight className="w-4 h-4 stroke-[2.5] group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-transform" />
                 </div>
               </a>
 

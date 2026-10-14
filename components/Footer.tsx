@@ -1,6 +1,6 @@
 "use client";
 
-import { Linkedin, Github, MessageSquare, ArrowUp, Download } from "lucide-react";
+import { Linkedin, Github, MessageSquare, ArrowUp } from "lucide-react";
 
 export default function Footer() {
   const scrollToTop = () => {
@@ -121,11 +121,6 @@ export default function Footer() {
                 </a>
               </li>
               <li>
-                <a href="#parcours" className="hover:text-emerald-400 transition-colors">
-                  Parcours &amp; Formations
-                </a>
-              </li>
-              <li>
                 <a href="#tarifs" className="hover:text-emerald-400 transition-colors">
                   Tarifs &amp; Packs
                 </a>
@@ -133,25 +128,16 @@ export default function Footer() {
             </ul>
           </div>
 
-          {/* Contact & CV */}
+          {/* Contact & Availability */}
           <div className="md:col-span-4">
             <h4 className="text-xs font-heading uppercase tracking-wider text-white font-bold mb-4">
-              Localisation &amp; Téléchargement
+              Localisation &amp; Disponibilité
             </h4>
             <p className="text-xs text-gray-400 leading-relaxed mb-4">
               Abidjan, Côte d&apos;Ivoire (Cocody / Plateau)
               <br />
               Disponible pour missions en présentiel &amp; à distance (Afrique francophone &amp; International).
             </p>
-
-            <a
-              href="/CV_Kadmiel_Abe.pdf"
-              download="CV_Kadmiel_Abe.pdf"
-              className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-[#141416] hover:bg-emerald-500 hover:text-black border border-[#1E1E22] text-xs font-heading font-semibold text-gray-300 transition-all duration-300 mb-4"
-            >
-              <Download className="w-3.5 h-3.5" />
-              <span>Télécharger mon CV (PDF)</span>
-            </a>
 
             <div className="flex items-center gap-2 text-xs text-emerald-400 font-mono">
               <span className="w-2 h-2 rounded-full bg-emerald-500 animate-pulse" />
