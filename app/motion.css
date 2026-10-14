@@ -32,10 +32,8 @@
 
 /* ==========================================
  * 2. GLOBAL FLUIDITY & SMOOTH SCROLL
+ * Lenis handles smooth scrolling universally
  * ========================================== */
-html {
-  scroll-behavior: smooth;
-}
 
 /* ==========================================
  * 3. GPU OPTIMIZATION & WILL-CHANGE
