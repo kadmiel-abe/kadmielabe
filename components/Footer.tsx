@@ -14,7 +14,7 @@ export default function Footer() {
           {/* Brand Col */}
           <div className="md:col-span-5">
             <div className="flex items-center gap-2 mb-3">
-              <div className="w-8 h-8 rounded-full bg-emerald-500/15 border border-emerald-500/40 flex items-center justify-center text-emerald-400">
+              <div className="w-8 h-8 rounded-full bg-black border border-emerald-500/40 flex items-center justify-center text-emerald-400">
                 <span className="font-mono text-xs font-black tracking-tighter">&lt;/&gt;</span>
               </div>
               <span className="font-heading text-xl font-black text-white">

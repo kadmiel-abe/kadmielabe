@@ -99,11 +99,11 @@ export default function Navbar() {
           className="flex items-center gap-2.5 group cursor-pointer focus:outline-none shrink-0"
           aria-label="Kadmiel Abe - Accueil"
         >
-          <div className="w-9 h-9 rounded-full bg-emerald-500/15 dark:bg-emerald-500/20 border border-emerald-500/40 flex items-center justify-center text-emerald-500 group-hover:scale-105 transition-transform duration-300 shadow-[0_0_12px_rgba(17,145,52,0.3)]">
-            <span className="font-mono text-sm font-black tracking-tighter">&lt;/&gt;</span>
+          <div className="w-9 h-9 rounded-full bg-black border border-emerald-500/60 flex items-center justify-center text-emerald-400 group-hover:scale-105 transition-transform duration-300 shadow-[0_0_15px_rgba(17,145,52,0.4)]">
+            <span className="font-mono text-sm font-black tracking-tighter text-emerald-400">&lt;/&gt;</span>
           </div>
           <div className="flex items-baseline">
-            <span className="font-heading text-lg sm:text-xl font-extrabold tracking-tight text-white dark:text-white text-gray-900 group-hover:text-emerald-500 transition-colors">
+            <span className="font-heading text-lg sm:text-xl font-extrabold tracking-tight text-white dark:text-white text-gray-900 group-hover:text-emerald-400 transition-colors">
               Kadmiel
             </span>
             <span className="w-1.5 h-1.5 rounded-full bg-emerald-500 ml-1 inline-block animate-pulse" />
