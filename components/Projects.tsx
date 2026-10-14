@@ -39,11 +39,11 @@ export default function Projects() {
               </span>
             </div>
 
-            <h2 className="font-heading text-3xl sm:text-5xl md:text-6xl font-black text-white tracking-tight leading-tight">
+            <h2 className="section-title text-white">
               Découvrez un aperçu de{" "}
               <span className="text-emerald-400 inline-flex items-center gap-2">
                 mon portfolio
-                <Sparkles className="w-6 h-6 text-emerald-400 shrink-0 fill-emerald-400" />
+                <Sparkles className="w-5 h-5 text-emerald-400 shrink-0 fill-emerald-400" />
               </span>
             </h2>
           </div>

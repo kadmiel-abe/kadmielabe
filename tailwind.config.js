@@ -70,6 +70,18 @@ module.exports = {
         'card-dark': '0 20px 40px -15px rgba(0, 0, 0, 0.7)',
         'pill-hover': '0 10px 25px -5px rgba(17, 145, 52, 0.35)',
       },
+      maxWidth: {
+        title: '22ch',
+      },
+      lineHeight: {
+        title: '1.15',
+      },
+      fontSize: {
+        'section-title': [
+          'clamp(1.75rem, 3.6vw, 3rem)',
+          { lineHeight: '1.15', letterSpacing: '-0.02em', fontWeight: '700' },
+        ],
+      },
     },
   },
   plugins: [],
