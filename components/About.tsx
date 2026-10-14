@@ -81,14 +81,14 @@ export default function About() {
 
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-16 items-center">
-          {/* Left Column: Cut-corner Chamfered Portrait Card with Mask Reveal */}
+          {/* Left Column: Cut-corner Chamfered Portrait Card with Skill Pills */}
           <div className="lg:col-span-5 flex justify-center">
             <motion.div
-              initial={shouldReduceMotion ? { opacity: 0 } : { opacity: 0, clipPath: "inset(0% 0% 100% 0%)", y: 30 }}
-              whileInView={{ opacity: 1, clipPath: "inset(0% 0% 0% 0%)", y: 0 }}
+              initial={shouldReduceMotion ? { opacity: 0 } : { opacity: 0, y: 30 }}
+              whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true, margin: "-50px" }}
-              transition={{ duration: 0.9, ease: EASINGS.awwwards }}
-              className="relative w-full max-w-[380px] sm:max-w-[420px]"
+              transition={{ duration: 0.8, ease: EASINGS.awwwards }}
+              className="relative w-full max-w-[380px] sm:max-w-[420px] pb-10 sm:pb-8 overflow-visible"
             >
               {/* Outer Chamfered Container (Border effect with cut corners) */}
               <div className="p-1 rounded-3xl bg-gradient-to-br from-emerald-500/50 via-emerald-500/20 to-transparent chamfer-card shadow-2xl">
@@ -111,7 +111,7 @@ export default function About() {
               </div>
 
               {/* Overlapping Skill Tag Pills Clustered across the bottom with continuous float */}
-              <div className="absolute -bottom-6 left-2 right-2 flex flex-wrap justify-center gap-2 z-20">
+              <div className="absolute -bottom-4 left-0 right-0 flex flex-wrap justify-center gap-2 z-30 px-2">
                 {skillPills.map((pill, i) => (
                   <motion.span
                     key={pill.label}
@@ -119,7 +119,7 @@ export default function About() {
                     whileInView={{ opacity: 1, y: 0 }}
                     viewport={{ once: true }}
                     transition={{ duration: 0.4, delay: 0.1 + i * 0.05 }}
-                    className={`px-3 py-1.5 rounded-full text-xs font-heading shadow-lg border border-white/10 backdrop-blur-md ${pill.bg} ${pill.float}`}
+                    className={`px-3 py-1.5 rounded-full text-xs font-heading shadow-xl border border-white/10 backdrop-blur-md whitespace-nowrap ${pill.bg} ${pill.float}`}
                   >
                     {pill.label}
                   </motion.span>

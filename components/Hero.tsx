@@ -247,7 +247,7 @@ export default function Hero() {
           </div>
 
           {/* Center Column: Portrait with Organic Backdrop, Floating Skill Pills, and Dual CTA Pill Bar */}
-          <div className="lg:col-span-6 relative flex flex-col items-center order-1 lg:order-2">
+          <div className="lg:col-span-6 relative flex flex-col items-center order-1 lg:order-2 overflow-visible">
             {/* Backdrop graphic oval/layered shape */}
             <div
               className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[300px] sm:w-[380px] h-[300px] sm:h-[380px] rounded-full bg-gradient-to-tr from-emerald-500/20 via-emerald-500/10 to-transparent -z-10 blur-xl pointer-events-none"
@@ -259,59 +259,62 @@ export default function Hero() {
               aria-hidden="true"
             />
 
-            {/* Portrait Image Container */}
-            <div className="relative w-64 h-64 sm:w-80 sm:h-80 md:w-96 md:h-96 rounded-full overflow-hidden p-2 bg-gradient-to-b from-emerald-500/40 via-transparent to-emerald-500/20 shadow-2xl">
-              <div className="w-full h-full rounded-full overflow-hidden bg-black/5 dark:bg-black/40 relative">
-                <Image
-                  src="/profil.png"
-                  alt="Kadmiel Abe - Développeur Web Freelance"
-                  width={400}
-                  height={400}
-                  priority
-                  className="w-full h-full object-cover object-top hover:scale-105 transition-transform duration-700"
-                />
+            {/* Portrait & Floating Badges Relative Anchor */}
+            <div className="relative overflow-visible">
+              {/* Portrait Image Container */}
+              <div className="relative w-64 h-64 sm:w-80 sm:h-80 md:w-96 md:h-96 rounded-full overflow-hidden p-2 bg-gradient-to-b from-emerald-500/40 via-transparent to-emerald-500/20 shadow-2xl">
+                <div className="w-full h-full rounded-full overflow-hidden bg-black/5 dark:bg-black/40 relative">
+                  <Image
+                    src="/profil.png"
+                    alt="Kadmiel Abe - Développeur Web Freelance"
+                    width={400}
+                    height={400}
+                    priority
+                    className="w-full h-full object-cover object-top hover:scale-105 transition-transform duration-700"
+                  />
+                </div>
               </div>
+
+              {/* Floating Skill Badges (Anchored to the circular portrait with continuous float) */}
+              <motion.div
+                initial={shouldReduceMotion ? { opacity: 0 } : { opacity: 0, scale: 0.8 }}
+                animate={{ opacity: 1, scale: 1 }}
+                transition={{ duration: 0.6, delay: 0.2 }}
+                className="absolute top-3 -left-2 sm:top-6 sm:-left-6 z-20 px-3 sm:px-3.5 py-1.5 rounded-full bg-white dark:bg-[#18181B] text-gray-900 dark:text-white border border-gray-200 dark:border-white/10 text-[11px] sm:text-xs font-heading font-semibold shadow-xl backdrop-blur-md flex items-center gap-1.5 animate-float-1 whitespace-nowrap"
+              >
+                <span className="w-2 h-2 rounded-full bg-emerald-500" />
+                <span>Next.js 15</span>
+              </motion.div>
+
+              <motion.div
+                initial={shouldReduceMotion ? { opacity: 0 } : { opacity: 0, scale: 0.8 }}
+                animate={{ opacity: 1, scale: 1 }}
+                transition={{ duration: 0.6, delay: 0.3 }}
+                className="absolute top-5 -right-2 sm:top-8 sm:-right-6 z-20 px-3.5 sm:px-4 py-1.5 rounded-full bg-emerald-500 text-black text-[11px] sm:text-xs font-heading font-bold shadow-xl shadow-emerald-500/25 flex items-center gap-1.5 animate-float-2 whitespace-nowrap"
+              >
+                <Sparkles className="w-3.5 h-3.5 fill-black" />
+                <span>Applications SaaS</span>
+              </motion.div>
+
+              <motion.div
+                initial={shouldReduceMotion ? { opacity: 0 } : { opacity: 0, scale: 0.8 }}
+                animate={{ opacity: 1, scale: 1 }}
+                transition={{ duration: 0.6, delay: 0.4 }}
+                className="absolute bottom-20 -right-2 sm:bottom-24 sm:-right-4 z-20 px-3 sm:px-3.5 py-1.5 rounded-full bg-white dark:bg-[#18181B] text-gray-900 dark:text-white border border-gray-200 dark:border-white/10 text-[11px] sm:text-xs font-heading font-semibold shadow-xl backdrop-blur-md flex items-center gap-1.5 animate-float-3 whitespace-nowrap"
+              >
+                <span className="w-2 h-2 rounded-full bg-emerald-500" />
+                <span>TypeScript</span>
+              </motion.div>
+
+              <motion.div
+                initial={shouldReduceMotion ? { opacity: 0 } : { opacity: 0, scale: 0.8 }}
+                animate={{ opacity: 1, scale: 1 }}
+                transition={{ duration: 0.6, delay: 0.5 }}
+                className="absolute bottom-14 -left-2 sm:bottom-18 sm:-left-4 z-20 px-3.5 py-1.5 rounded-full bg-emerald-500/15 text-emerald-700 dark:text-emerald-400 border border-emerald-500/30 text-[11px] sm:text-xs font-heading font-bold shadow-xl backdrop-blur-md animate-float-1 whitespace-nowrap"
+              >
+                Tailwind CSS
+              </motion.div>
             </div>
-
-            {/* Floating Skill Badges (Positioned around the portrait with continuous float) */}
-            <motion.div
-              initial={shouldReduceMotion ? { opacity: 0 } : { opacity: 0, scale: 0.8 }}
-              animate={{ opacity: 1, scale: 1 }}
-              transition={{ duration: 0.6, delay: 0.2 }}
-              className="absolute top-6 -left-2 sm:left-4 z-20 px-3.5 py-1.5 rounded-full bg-white dark:bg-[#18181B] text-gray-900 dark:text-white border border-gray-200 dark:border-white/10 text-xs font-heading font-semibold shadow-lg backdrop-blur-md flex items-center gap-1.5 animate-float-1"
-            >
-              <span className="w-2 h-2 rounded-full bg-emerald-500" />
-              <span>Next.js 15</span>
-            </motion.div>
-
-            <motion.div
-              initial={shouldReduceMotion ? { opacity: 0 } : { opacity: 0, scale: 0.8 }}
-              animate={{ opacity: 1, scale: 1 }}
-              transition={{ duration: 0.6, delay: 0.3 }}
-              className="absolute top-8 -right-2 sm:right-6 z-20 px-4 py-1.5 rounded-full bg-emerald-500 text-black text-xs font-heading font-bold shadow-lg shadow-emerald-500/20 flex items-center gap-1.5 animate-float-2"
-            >
-              <Sparkles className="w-3.5 h-3.5 fill-black" />
-              <span>Applications SaaS</span>
-            </motion.div>
-
-            <motion.div
-              initial={shouldReduceMotion ? { opacity: 0 } : { opacity: 0, scale: 0.8 }}
-              animate={{ opacity: 1, scale: 1 }}
-              transition={{ duration: 0.6, delay: 0.4 }}
-              className="absolute bottom-28 -right-4 sm:-right-2 z-20 px-3.5 py-1.5 rounded-full bg-white dark:bg-[#18181B] text-gray-900 dark:text-white border border-gray-200 dark:border-white/10 text-xs font-heading font-semibold shadow-lg backdrop-blur-md flex items-center gap-1.5 animate-float-3"
-            >
-              <span className="w-2 h-2 rounded-full bg-emerald-500" />
-              <span>TypeScript</span>
-            </motion.div>
-
-            <motion.div
-              initial={shouldReduceMotion ? { opacity: 0 } : { opacity: 0, scale: 0.8 }}
-              animate={{ opacity: 1, scale: 1 }}
-              transition={{ duration: 0.6, delay: 0.5 }}
-              className="absolute bottom-24 -left-4 sm:left-0 z-20 px-3.5 py-1.5 rounded-full bg-emerald-500/15 text-emerald-700 dark:text-emerald-400 border border-emerald-500/30 text-xs font-heading font-bold shadow-lg backdrop-blur-md animate-float-1"
-            >
-              Tailwind CSS
-            </motion.div>
 
             {/* Overlapping Dual CTA Button Bar with Magnetic physics */}
             <motion.div
