@@ -87,8 +87,8 @@ const servicesList: ServiceItem[] = [
 ];
 
 export default function Services() {
-  // Default expanded item is the second one (02) as in the reference screenshot!
-  const [activeId, setActiveId] = useState<string>("saas");
+  // All items start collapsed — user clicks to expand
+  const [activeId, setActiveId] = useState<string>("");
   const shouldReduceMotion = useReducedMotion();
 
   const toggleAccordion = (id: string) => {
