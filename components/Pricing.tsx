@@ -112,27 +112,34 @@ export default function Pricing() {
           </p>
         </div>
 
-        {/* Pricing Cards Grid */}
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 sm:gap-8">
-          {plans.map((plan) => (
-            <div
+        {/* Pricing Cards Grid — 2 cols on tablet, 2 cols on desktop for readability */}
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-6 sm:gap-8">
+          {plans.map((plan, index) => (
+            <motion.div
               key={plan.name}
-              className={`group relative p-6 sm:p-8 rounded-3xl transition-all duration-300 flex flex-col justify-between hover:-translate-y-2 chamfer-tl-br ${
+              initial={{ opacity: 0, y: 30 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true, margin: "-50px" }}
+              transition={{ duration: 0.5, delay: index * 0.1 }}
+              className={`group relative rounded-3xl transition-all duration-300 flex flex-col overflow-visible ${
                 plan.highlight
                   ? "bg-gradient-to-b from-[#1C1C20] to-[#141417] border-2 border-emerald-500 shadow-glow-emerald hover:shadow-[0_0_35px_rgba(17,145,52,0.35)]"
                   : "bg-[#141416] border border-[#1E1E22] hover:border-emerald-500/40 hover:shadow-xl"
               }`}
             >
+              {/* Badge — positioned outside clip area */}
               {plan.badge && (
                 <div className="absolute -top-3.5 left-1/2 -translate-x-1/2 z-20">
-                  <span className="inline-flex items-center gap-1.5 px-4 py-1 rounded-full text-[11px] font-heading font-bold tracking-wider uppercase bg-emerald-500 text-black shadow-md">
+                  <span className="inline-flex items-center gap-1.5 px-4 py-1 rounded-full text-[11px] font-heading font-bold tracking-wider uppercase bg-emerald-500 text-black shadow-md whitespace-nowrap">
                     <Sparkles className="w-3 h-3 fill-black" />
                     <span>{plan.badge}</span>
                   </span>
                 </div>
               )}
 
-              <div>
+              {/* Card inner content */}
+              <div className="p-6 sm:p-8 flex flex-col flex-1">
+                {/* Header */}
                 <div className="mb-6">
                   <span className="text-[11px] font-mono uppercase tracking-wider text-emerald-400 font-medium block mb-1">
                     {plan.subtitle}
@@ -153,27 +160,27 @@ export default function Pricing() {
                   <span className="text-xs text-gray-500 font-mono block mt-1">
                     {plan.period}
                   </span>
-                  <p className="text-xs text-gray-400 font-light leading-relaxed mt-4">
+                  <p className="text-xs sm:text-sm text-gray-400 font-light leading-relaxed mt-4">
                     {plan.description}
                   </p>
                 </div>
 
-                <ul className="space-y-3 mb-8 pt-4 border-t border-[#1E1E22]">
+                {/* Features list */}
+                <ul className="space-y-3 mb-8 pt-4 border-t border-[#1E1E22] flex-1">
                   {plan.features.map((feature) => (
-                    <li key={feature} className="flex items-start gap-2.5 text-xs text-gray-300">
+                    <li key={feature} className="flex items-start gap-2.5 text-xs sm:text-sm text-gray-300">
                       <Check className="w-4 h-4 text-emerald-400 shrink-0 mt-0.5" />
                       <span className="leading-snug">{feature}</span>
                     </li>
                   ))}
                 </ul>
-              </div>
 
-              <div>
+                {/* CTA Button */}
                 <a
                   href={`https://wa.me/2250706978570?text=${encodeURIComponent(plan.whatsappText)}`}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className={`w-full py-3.5 px-4 rounded-full font-heading font-bold text-xs uppercase tracking-wider flex items-center justify-center gap-2 transition-all duration-300 ${
+                  className={`w-full py-3.5 px-4 rounded-full font-heading font-bold text-xs uppercase tracking-wider flex items-center justify-center gap-2 transition-all duration-300 mt-auto ${
                     plan.highlight
                       ? "bg-emerald-500 hover:bg-emerald-400 text-black shadow-md hover:scale-105 active:scale-95"
                       : "bg-[#1E1E22] hover:bg-emerald-500 hover:text-black text-white border border-[#2A2A30] hover:scale-105 active:scale-95"
@@ -183,7 +190,7 @@ export default function Pricing() {
                   <ArrowUpRight className="w-4 h-4 stroke-[2.5]" />
                 </a>
               </div>
-            </div>
+            </motion.div>
           ))}
         </div>
       </div>
