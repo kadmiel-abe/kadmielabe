@@ -1,8 +1,9 @@
 "use client";
 
-import React from "react";
-import { motion, useReducedMotion } from "framer-motion";
+import React, { useState, useEffect, useRef } from "react";
+import { motion, useInView, useReducedMotion } from "framer-motion";
 import { Sparkles, Code2, Database, Palette, Terminal, Cpu, Layout, Globe, FileCode2 } from "lucide-react";
+import { EASINGS } from "@/lib/motion";
 
 interface ToolItem {
   name: string;
@@ -62,6 +63,41 @@ const toolsList: ToolItem[] = [
   },
 ];
 
+function ToolPercentageCounter({ target }: { target: number }) {
+  const [val, setVal] = useState(0);
+  const ref = useRef<HTMLSpanElement>(null);
+  const inView = useInView(ref, { once: true, margin: "-30px" });
+  const shouldReduceMotion = useReducedMotion();
+
+  useEffect(() => {
+    if (!inView) return;
+    if (shouldReduceMotion) {
+      setVal(target);
+      return;
+    }
+
+    let start = 0;
+    const duration = 1200;
+    const stepTime = 30;
+    const steps = duration / stepTime;
+    const increment = target / steps;
+
+    const timer = setInterval(() => {
+      start += increment;
+      if (start >= target) {
+        setVal(target);
+        clearInterval(timer);
+      } else {
+        setVal(Math.floor(start));
+      }
+    }, stepTime);
+
+    return () => clearInterval(timer);
+  }, [inView, target, shouldReduceMotion]);
+
+  return <span ref={ref}>{val}%</span>;
+}
+
 export default function Tools() {
   const shouldReduceMotion = useReducedMotion();
 
@@ -100,6 +136,12 @@ export default function Tools() {
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 sm:gap-7">
           {toolsList.map((tool, idx) => {
             const Icon = tool.icon;
+            const floatClass =
+              idx % 3 === 0
+                ? "animate-float-1"
+                : idx % 3 === 1
+                ? "animate-float-2"
+                : "animate-float-3";
 
             return (
               <motion.div
@@ -107,18 +149,20 @@ export default function Tools() {
                 initial={shouldReduceMotion ? { opacity: 0 } : { opacity: 0, y: 25 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true, margin: "-40px" }}
-                transition={{ duration: 0.5, delay: idx * 0.06, ease: "easeOut" }}
+                transition={{ duration: 0.6, delay: idx * 0.06, ease: EASINGS.awwwards }}
                 className="group relative p-6 bg-white dark:bg-[#141416] rounded-2xl border border-gray-200/90 dark:border-white/10 hover:border-emerald-500/50 shadow-sm hover:shadow-xl transition-all duration-300 hover:-translate-y-1 chamfer-step flex flex-col justify-between"
               >
                 <div>
                   {/* Top row: Icon on left, Percentage Pill on right */}
                   <div className="flex items-center justify-between mb-6">
-                    <div className="w-12 h-12 rounded-xl bg-emerald-500/10 dark:bg-emerald-500/15 border border-emerald-500/20 flex items-center justify-center text-emerald-600 dark:text-emerald-400 group-hover:scale-110 group-hover:bg-emerald-500 group-hover:text-black transition-all duration-300 shadow-sm">
+                    <div
+                      className={`w-12 h-12 rounded-xl bg-emerald-500/10 dark:bg-emerald-500/15 border border-emerald-500/20 flex items-center justify-center text-emerald-600 dark:text-emerald-400 group-hover:scale-110 group-hover:bg-emerald-500 group-hover:text-black transition-all duration-300 shadow-sm ${floatClass}`}
+                    >
                       <Icon className="w-6 h-6" />
                     </div>
 
                     <span className="px-3 py-1 rounded-full text-xs font-mono font-bold bg-black dark:bg-[#1F1F24] text-white shadow-sm border border-white/10">
-                      {tool.percentage}%
+                      <ToolPercentageCounter target={tool.percentage} />
                     </span>
                   </div>
 
@@ -138,7 +182,7 @@ export default function Tools() {
                       initial={{ width: 0 }}
                       whileInView={{ width: `${tool.percentage}%` }}
                       viewport={{ once: true }}
-                      transition={{ duration: 1.2, delay: 0.2 + idx * 0.05, ease: "easeOut" }}
+                      transition={{ duration: 1.1, delay: 0.2 + idx * 0.05, ease: EASINGS.awwwards }}
                       className="h-full rounded-full bg-emerald-500 shadow-[0_0_10px_rgba(17,145,52,0.5)]"
                     />
                   </div>
@@ -151,3 +195,4 @@ export default function Tools() {
     </section>
   );
 }
+

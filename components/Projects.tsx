@@ -4,6 +4,7 @@ import React, { useState } from "react";
 import { Sparkles, ArrowUpRight } from "lucide-react";
 import { projects } from "@/data/projects";
 import { ProjectCard } from "@/components/ProjectCard";
+import Magnetic from "@/components/motion/Magnetic";
 
 export default function Projects() {
   const [filter, setFilter] = useState<string>("all");
@@ -48,17 +49,19 @@ export default function Projects() {
             </h2>
           </div>
 
-          <a
-            href="https://wa.me/2250706978570?text=Bonjour%20Kadmiel,%20j'ai%20vu%20vos%20projets%20et%20je%20souhaite%20discuter%20de%20mon%20besoin."
-            target="_blank"
-            rel="noopener noreferrer"
-            className="inline-flex items-center gap-2 px-6 py-3 rounded-full bg-[#18181B] hover:bg-[#202025] text-white border border-white/10 hover:border-emerald-500/50 font-heading font-bold text-xs uppercase tracking-wider transition-all shadow-md self-start sm:self-auto shrink-0 group"
-          >
-            <span>Lancer un projet similaire</span>
-            <div className="w-5 h-5 rounded-full bg-emerald-500 text-black flex items-center justify-center group-hover:bg-emerald-400 transition-colors">
-              <ArrowUpRight className="w-3 h-3 stroke-[2.5]" />
-            </div>
-          </a>
+          <Magnetic strength={0.25}>
+            <a
+              href="https://wa.me/2250706978570?text=Bonjour%20Kadmiel,%20j'ai%20vu%20vos%20projets%20et%20je%20souhaite%20discuter%20de%20mon%20besoin."
+              target="_blank"
+              rel="noopener noreferrer"
+              className="inline-flex items-center gap-2 px-6 py-3 rounded-full bg-[#18181B] hover:bg-[#202025] text-white border border-white/10 hover:border-emerald-500/50 font-heading font-bold text-xs uppercase tracking-wider transition-all shadow-md self-start sm:self-auto shrink-0 group"
+            >
+              <span>Lancer un projet similaire</span>
+              <div className="w-5 h-5 rounded-full bg-emerald-500 text-black flex items-center justify-center group-hover:bg-emerald-400 transition-colors">
+                <ArrowUpRight className="w-3 h-3 stroke-[2.5]" />
+              </div>
+            </a>
+          </Magnetic>
         </div>
 
         {/* Category filter tabs */}

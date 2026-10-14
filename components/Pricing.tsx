@@ -2,6 +2,8 @@
 
 import { motion } from "framer-motion";
 import { Check, ArrowUpRight, Sparkles } from "lucide-react";
+import Magnetic from "@/components/motion/Magnetic";
+import { EASINGS } from "@/lib/motion";
 
 const plans = [
   {
@@ -117,10 +119,10 @@ export default function Pricing() {
           {plans.map((plan, index) => (
             <motion.div
               key={plan.name}
-              initial={{ opacity: 0, y: 30 }}
+              initial={{ opacity: 0, y: 35 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true, margin: "-50px" }}
-              transition={{ duration: 0.5, delay: index * 0.1 }}
+              transition={{ duration: 0.65, delay: index * 0.1, ease: EASINGS.awwwards }}
               className={`group relative rounded-3xl transition-all duration-300 flex flex-col overflow-visible ${
                 plan.highlight
                   ? "bg-gradient-to-b from-[#1C1C20] to-[#141417] border-2 border-emerald-500 shadow-glow-emerald hover:shadow-[0_0_35px_rgba(17,145,52,0.35)]"
@@ -175,20 +177,24 @@ export default function Pricing() {
                   ))}
                 </ul>
 
-                {/* CTA Button */}
-                <a
-                  href={`https://wa.me/2250706978570?text=${encodeURIComponent(plan.whatsappText)}`}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className={`w-full py-3.5 px-4 rounded-full font-heading font-bold text-xs uppercase tracking-wider flex items-center justify-center gap-2 transition-all duration-300 mt-auto ${
-                    plan.highlight
-                      ? "bg-emerald-500 hover:bg-emerald-400 text-black shadow-md hover:scale-105 active:scale-95"
-                      : "bg-[#1E1E22] hover:bg-emerald-500 hover:text-black text-white border border-[#2A2A30] hover:scale-105 active:scale-95"
-                  }`}
-                >
-                  <span>Commander cette offre</span>
-                  <ArrowUpRight className="w-4 h-4 stroke-[2.5]" />
-                </a>
+                {/* CTA Button with Magnetic */}
+                <div className="mt-auto">
+                  <Magnetic strength={0.2} className="w-full">
+                    <a
+                      href={`https://wa.me/2250706978570?text=${encodeURIComponent(plan.whatsappText)}`}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className={`w-full py-3.5 px-4 rounded-full font-heading font-bold text-xs uppercase tracking-wider flex items-center justify-center gap-2 transition-all duration-300 ${
+                        plan.highlight
+                          ? "bg-emerald-500 hover:bg-emerald-400 text-black shadow-md hover:scale-105 active:scale-95"
+                          : "bg-[#1E1E22] hover:bg-emerald-500 hover:text-black text-white border border-[#2A2A30] hover:scale-105 active:scale-95"
+                      }`}
+                    >
+                      <span>Commander cette offre</span>
+                      <ArrowUpRight className="w-4 h-4 stroke-[2.5]" />
+                    </a>
+                  </Magnetic>
+                </div>
               </div>
             </motion.div>
           ))}

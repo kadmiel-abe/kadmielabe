@@ -69,13 +69,17 @@ export default function Faq() {
           </p>
         </div>
 
-        {/* Accordion List */}
+        {/* Accordion List with Staggered Entrance */}
         <div className="space-y-4">
           {faqs.map((faq, index) => {
             const isOpen = openIndex === index;
             return (
-              <div
+              <motion.div
                 key={faq.id}
+                initial={{ opacity: 0, y: 25 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true, margin: "-40px" }}
+                transition={{ duration: 0.5, delay: index * 0.08, ease: "easeOut" }}
                 className={`rounded-2xl transition-all duration-300 overflow-hidden border chamfer-step ${
                   isOpen
                     ? "bg-white dark:bg-[#141417] border-emerald-500/50 shadow-lg"
@@ -101,7 +105,7 @@ export default function Faq() {
                   <div
                     className={`w-9 h-9 rounded-full flex items-center justify-center shrink-0 transition-transform duration-300 ${
                       isOpen
-                        ? "bg-emerald-500 text-black rotate-45 shadow-sm"
+                        ? "bg-emerald-500 text-black rotate-45 shadow-sm scale-105"
                         : "bg-gray-100 dark:bg-white/5 text-gray-500 dark:text-gray-400 group-hover:bg-emerald-500 group-hover:text-black"
                     }`}
                   >
@@ -116,7 +120,7 @@ export default function Faq() {
                       initial={{ height: 0, opacity: 0 }}
                       animate={{ height: "auto", opacity: 1 }}
                       exit={{ height: 0, opacity: 0 }}
-                      transition={{ duration: 0.3, ease: "easeInOut" }}
+                      transition={{ duration: 0.35, ease: [0.22, 1, 0.36, 1] }}
                       className="overflow-hidden"
                     >
                       <div className="px-6 sm:px-7 pb-6 pt-1 text-sm sm:text-base text-gray-600 dark:text-gray-300 font-light leading-relaxed border-t border-gray-100 dark:border-white/10">
@@ -125,7 +129,7 @@ export default function Faq() {
                     </motion.div>
                   )}
                 </AnimatePresence>
-              </div>
+              </motion.div>
             );
           })}
         </div>

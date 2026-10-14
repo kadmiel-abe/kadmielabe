@@ -4,6 +4,8 @@ import React from "react";
 import { motion, useReducedMotion } from "framer-motion";
 import { ArrowUpRight, CheckCircle2 } from "lucide-react";
 import Image from "next/image";
+import Magnetic from "@/components/motion/Magnetic";
+import { EASINGS } from "@/lib/motion";
 
 export interface ProjectCardProps {
   index: number;
@@ -35,13 +37,18 @@ export function ProjectCard({
   reverse = false,
 }: ProjectCardProps) {
   const shouldReduceMotion = useReducedMotion();
+  const isEven = index % 2 === 0;
 
   return (
     <motion.article
-      initial={shouldReduceMotion ? { opacity: 0 } : { opacity: 0, y: 35 }}
-      whileInView={{ opacity: 1, y: 0 }}
-      viewport={{ once: true, margin: "-50px" }}
-      transition={{ duration: 0.6, ease: "easeOut" }}
+      initial={
+        shouldReduceMotion
+          ? { opacity: 0 }
+          : { opacity: 0, x: isEven ? -40 : 40, y: 20 }
+      }
+      whileInView={{ opacity: 1, x: 0, y: 0 }}
+      viewport={{ once: true, margin: "-60px" }}
+      transition={{ duration: 0.75, ease: EASINGS.awwwards }}
       className="group relative rounded-3xl p-1 bg-gradient-to-br from-emerald-500/30 via-white/5 to-transparent chamfer-tl-br transition-all duration-500 hover:from-emerald-500/60 hover:shadow-[0_20px_50px_-15px_rgba(17,145,52,0.25)]"
     >
       <div className="w-full h-full bg-[#121214] rounded-3xl p-6 sm:p-10 lg:p-12 chamfer-tl-br overflow-hidden">
@@ -132,17 +139,19 @@ export function ProjectCard({
               ))}
             </div>
 
-            {/* Action Arrow Button */}
+            {/* Action Arrow Button with Magnetic */}
             <div>
-              <a
-                href={url}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="inline-flex items-center gap-2.5 px-6 py-3 rounded-full bg-emerald-500 hover:bg-emerald-400 text-black font-heading font-bold text-xs uppercase tracking-wider transition-all duration-300 shadow-lg hover:scale-105 active:scale-95"
-              >
-                <span>Visiter le projet</span>
-                <ArrowUpRight className="w-4 h-4 stroke-[2.5]" />
-              </a>
+              <Magnetic strength={0.25}>
+                <a
+                  href={url}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="inline-flex items-center gap-2.5 px-6 py-3 rounded-full bg-emerald-500 hover:bg-emerald-400 text-black font-heading font-bold text-xs uppercase tracking-wider transition-all duration-300 shadow-lg hover:scale-105 active:scale-95"
+                >
+                  <span>Visiter le projet</span>
+                  <ArrowUpRight className="w-4 h-4 stroke-[2.5]" />
+                </a>
+              </Magnetic>
             </div>
           </div>
         </div>

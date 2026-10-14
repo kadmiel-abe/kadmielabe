@@ -14,6 +14,7 @@ import {
   Linkedin,
   Github,
 } from "lucide-react";
+import Magnetic from "@/components/motion/Magnetic";
 
 export default function Hero() {
   const shouldReduceMotion = useReducedMotion();
@@ -63,70 +64,88 @@ export default function Hero() {
             <span>Développeur Web &amp; Stratège Digital Freelance</span>
           </motion.div>
 
-          {/* Right Rotating "Hire Me" Seal Badge */}
+          {/* Right Rotating "Hire Me" Seal Badge with Magnetic interaction */}
           <div className="sm:w-1/4 flex justify-end">
-            <a
-              href="https://wa.me/2250706978570?text=Bonjour%20Kadmiel,%20je%20souhaite%20collaborer%20avec%20vous."
-              target="_blank"
-              rel="noopener noreferrer"
-              aria-label="Engager Kadmiel Abe sur WhatsApp"
-              className="relative w-24 h-24 sm:w-28 sm:h-28 rounded-full flex items-center justify-center group cursor-pointer shrink-0 transition-transform hover:scale-105 active:scale-95"
-            >
-              {/* Spinning Circular Text Ring */}
-              <div className="absolute inset-0 animate-rotate-seal">
-                <svg
-                  className="w-full h-full"
-                  viewBox="0 0 100 100"
-                  aria-hidden="true"
-                >
-                  <path
-                    id="sealCirclePath"
-                    d="M 50, 50 m -37, 0 a 37,37 0 1,1 74,0 a 37,37 0 1,1 -74,0"
-                    fill="none"
-                  />
-                  <text className="text-[9.5px] font-heading font-black uppercase tracking-[0.25em] fill-gray-900 dark:fill-gray-100">
-                    <textPath href="#sealCirclePath" startOffset="0%">
-                      • HIRE ME • DISPONIBLE POUR PROJETS
-                    </textPath>
-                  </text>
-                </svg>
-              </div>
+            <Magnetic strength={0.3}>
+              <a
+                href="https://wa.me/2250706978570?text=Bonjour%20Kadmiel,%20je%20souhaite%20collaborer%20avec%20vous."
+                target="_blank"
+                rel="noopener noreferrer"
+                aria-label="Engager Kadmiel Abe sur WhatsApp"
+                className="relative w-24 h-24 sm:w-28 sm:h-28 rounded-full flex items-center justify-center group cursor-pointer shrink-0 transition-transform hover:scale-105 active:scale-95"
+              >
+                {/* Spinning Circular Text Ring */}
+                <div className="absolute inset-0 animate-rotate-seal">
+                  <svg
+                    className="w-full h-full"
+                    viewBox="0 0 100 100"
+                    aria-hidden="true"
+                  >
+                    <path
+                      id="sealCirclePath"
+                      d="M 50, 50 m -37, 0 a 37,37 0 1,1 74,0 a 37,37 0 1,1 -74,0"
+                      fill="none"
+                    />
+                    <text className="text-[9.5px] font-heading font-black uppercase tracking-[0.25em] fill-gray-900 dark:fill-gray-100">
+                      <textPath href="#sealCirclePath" startOffset="0%">
+                        • HIRE ME • DISPONIBLE POUR PROJETS
+                      </textPath>
+                    </text>
+                  </svg>
+                </div>
 
-              {/* Center Stamp Icon: Logo on black background */}
-              <div className="w-11 h-11 sm:w-12 sm:h-12 rounded-full bg-black border border-emerald-500/60 text-emerald-400 flex items-center justify-center shadow-[0_0_15px_rgba(17,145,52,0.4)] group-hover:border-emerald-400 group-hover:scale-105 transition-all duration-300">
-                <span className="font-mono text-sm sm:text-base font-black tracking-tighter">&lt;/&gt;</span>
-              </div>
-            </a>
+                {/* Center Stamp Icon: Logo on black background */}
+                <div className="w-11 h-11 sm:w-12 sm:h-12 rounded-full bg-black border border-emerald-500/60 text-emerald-400 flex items-center justify-center shadow-[0_0_15px_rgba(17,145,52,0.4)] group-hover:border-emerald-400 group-hover:scale-105 transition-all duration-300">
+                  <span className="font-mono text-sm sm:text-base font-black tracking-tighter">&lt;/&gt;</span>
+                </div>
+              </a>
+            </Magnetic>
           </div>
         </div>
 
-        {/* Big Syne Title */}
-        <div className="text-center max-w-4xl mx-auto mb-10 sm:mb-14">
+        {/* Big Syne Title with Masked Line/Word Reveal */}
+        <div className="text-center max-w-4xl mx-auto mb-10 sm:mb-14 overflow-hidden">
           <motion.h1
-            initial={shouldReduceMotion ? { opacity: 0 } : { opacity: 0, y: 30 }}
+            initial={shouldReduceMotion ? { opacity: 0 } : { opacity: 0, y: 35 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.7, ease: "easeOut" }}
+            transition={{ duration: 0.8, ease: [0.22, 1, 0.36, 1] }}
             className="font-heading text-4xl sm:text-6xl md:text-7xl lg:text-8xl font-black tracking-tight leading-[1.05] text-gray-900 dark:text-white"
           >
-            Je suis{" "}
-            <span className="relative inline-block text-emerald-600 dark:text-emerald-400">
-              Kadmiel Abe
-              {/* Logo icon badge near main title with black background */}
-              <span
-                aria-hidden="true"
-                className="inline-flex items-center justify-center w-7 h-7 sm:w-8 sm:h-8 md:w-9 md:h-9 rounded-full bg-black border border-emerald-500/60 shadow-[0_0_12px_rgba(17,145,52,0.4)] align-middle ml-2 sm:ml-3 -translate-y-1 sm:-translate-y-2 group"
+            <span className="inline-block overflow-hidden align-top">
+              <motion.span
+                initial={shouldReduceMotion ? { y: 0 } : { y: "100%" }}
+                animate={{ y: "0%" }}
+                transition={{ duration: 0.7, ease: [0.22, 1, 0.36, 1] }}
+                className="inline-block"
               >
-                <span className="font-mono text-xs sm:text-sm font-black text-emerald-400 tracking-tighter">
-                  &lt;/&gt;
+                Je suis{" "}
+              </motion.span>
+            </span>
+            <span className="relative inline-block text-emerald-600 dark:text-emerald-400 overflow-hidden align-top ml-2 sm:ml-3">
+              <motion.span
+                initial={shouldReduceMotion ? { y: 0 } : { y: "100%" }}
+                animate={{ y: "0%" }}
+                transition={{ duration: 0.75, delay: 0.12, ease: [0.22, 1, 0.36, 1] }}
+                className="inline-flex items-center"
+              >
+                Kadmiel Abe
+                {/* Logo icon badge near main title with black background */}
+                <span
+                  aria-hidden="true"
+                  className="inline-flex items-center justify-center w-7 h-7 sm:w-8 sm:h-8 md:w-9 md:h-9 rounded-full bg-black border border-emerald-500/60 shadow-[0_0_12px_rgba(17,145,52,0.4)] align-middle ml-2 sm:ml-3 -translate-y-1 sm:-translate-y-2 group hover:rotate-12 transition-transform duration-300"
+                >
+                  <span className="font-mono text-xs sm:text-sm font-black text-emerald-400 tracking-tighter">
+                    &lt;/&gt;
+                  </span>
                 </span>
-              </span>
+              </motion.span>
             </span>
           </motion.h1>
 
           <motion.p
             initial={shouldReduceMotion ? { opacity: 0 } : { opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6, delay: 0.15, ease: "easeOut" }}
+            transition={{ duration: 0.6, delay: 0.25, ease: "easeOut" }}
             className="mt-4 sm:mt-5 text-sm sm:text-lg md:text-xl font-medium text-gray-600 dark:text-gray-400 max-w-2xl mx-auto"
           >
             Concepteur d&apos;applications SaaS et de plateformes B2B basé à Abidjan
@@ -254,12 +273,12 @@ export default function Hero() {
               </div>
             </div>
 
-            {/* Floating Skill Badges (Positioned around the portrait) */}
+            {/* Floating Skill Badges (Positioned around the portrait with continuous float) */}
             <motion.div
               initial={shouldReduceMotion ? { opacity: 0 } : { opacity: 0, scale: 0.8 }}
               animate={{ opacity: 1, scale: 1 }}
               transition={{ duration: 0.6, delay: 0.2 }}
-              className="absolute top-6 -left-2 sm:left-4 z-20 px-3.5 py-1.5 rounded-full bg-white dark:bg-[#18181B] text-gray-900 dark:text-white border border-gray-200 dark:border-white/10 text-xs font-heading font-semibold shadow-lg backdrop-blur-md flex items-center gap-1.5"
+              className="absolute top-6 -left-2 sm:left-4 z-20 px-3.5 py-1.5 rounded-full bg-white dark:bg-[#18181B] text-gray-900 dark:text-white border border-gray-200 dark:border-white/10 text-xs font-heading font-semibold shadow-lg backdrop-blur-md flex items-center gap-1.5 animate-float-1"
             >
               <span className="w-2 h-2 rounded-full bg-emerald-500" />
               <span>Next.js 15</span>
@@ -269,7 +288,7 @@ export default function Hero() {
               initial={shouldReduceMotion ? { opacity: 0 } : { opacity: 0, scale: 0.8 }}
               animate={{ opacity: 1, scale: 1 }}
               transition={{ duration: 0.6, delay: 0.3 }}
-              className="absolute top-8 -right-2 sm:right-6 z-20 px-4 py-1.5 rounded-full bg-emerald-500 text-black text-xs font-heading font-bold shadow-lg shadow-emerald-500/20 flex items-center gap-1.5"
+              className="absolute top-8 -right-2 sm:right-6 z-20 px-4 py-1.5 rounded-full bg-emerald-500 text-black text-xs font-heading font-bold shadow-lg shadow-emerald-500/20 flex items-center gap-1.5 animate-float-2"
             >
               <Sparkles className="w-3.5 h-3.5 fill-black" />
               <span>Applications SaaS</span>
@@ -279,7 +298,7 @@ export default function Hero() {
               initial={shouldReduceMotion ? { opacity: 0 } : { opacity: 0, scale: 0.8 }}
               animate={{ opacity: 1, scale: 1 }}
               transition={{ duration: 0.6, delay: 0.4 }}
-              className="absolute bottom-28 -right-4 sm:-right-2 z-20 px-3.5 py-1.5 rounded-full bg-white dark:bg-[#18181B] text-gray-900 dark:text-white border border-gray-200 dark:border-white/10 text-xs font-heading font-semibold shadow-lg backdrop-blur-md flex items-center gap-1.5"
+              className="absolute bottom-28 -right-4 sm:-right-2 z-20 px-3.5 py-1.5 rounded-full bg-white dark:bg-[#18181B] text-gray-900 dark:text-white border border-gray-200 dark:border-white/10 text-xs font-heading font-semibold shadow-lg backdrop-blur-md flex items-center gap-1.5 animate-float-3"
             >
               <span className="w-2 h-2 rounded-full bg-emerald-500" />
               <span>TypeScript</span>
@@ -289,36 +308,40 @@ export default function Hero() {
               initial={shouldReduceMotion ? { opacity: 0 } : { opacity: 0, scale: 0.8 }}
               animate={{ opacity: 1, scale: 1 }}
               transition={{ duration: 0.6, delay: 0.5 }}
-              className="absolute bottom-24 -left-4 sm:left-0 z-20 px-3.5 py-1.5 rounded-full bg-emerald-500/15 text-emerald-700 dark:text-emerald-400 border border-emerald-500/30 text-xs font-heading font-bold shadow-lg backdrop-blur-md"
+              className="absolute bottom-24 -left-4 sm:left-0 z-20 px-3.5 py-1.5 rounded-full bg-emerald-500/15 text-emerald-700 dark:text-emerald-400 border border-emerald-500/30 text-xs font-heading font-bold shadow-lg backdrop-blur-md animate-float-1"
             >
               Tailwind CSS
             </motion.div>
 
-            {/* Overlapping Dual CTA Button Bar (Signature element from reference!) */}
+            {/* Overlapping Dual CTA Button Bar with Magnetic physics */}
             <motion.div
               initial={shouldReduceMotion ? { opacity: 0 } : { opacity: 0, y: 30 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.6, delay: 0.35, ease: "easeOut" }}
-              className="mt-6 z-30 p-1.5 rounded-full bg-white/90 dark:bg-[#141416]/90 border border-gray-200 dark:border-white/10 shadow-2xl backdrop-blur-xl flex items-center gap-2"
+              className="mt-6 z-30"
             >
-              {/* Primary Filled Emerald Button */}
-              <a
-                href="#portfolio"
-                className="px-6 sm:px-7 py-3 rounded-full bg-emerald-500 hover:bg-emerald-400 text-black font-heading font-bold text-xs sm:text-sm uppercase tracking-wider flex items-center gap-2 transition-all duration-300 shadow-md hover:scale-105 active:scale-95"
-              >
-                <span>Mes Réalisations</span>
-                <div className="w-5 h-5 rounded-full bg-black text-white flex items-center justify-center">
-                  <ArrowRight className="w-3 h-3" />
-                </div>
-              </a>
+              <Magnetic strength={0.2}>
+                <div className="p-1.5 rounded-full bg-white/90 dark:bg-[#141416]/90 border border-gray-200 dark:border-white/10 shadow-2xl backdrop-blur-xl flex items-center gap-2">
+                  {/* Primary Filled Emerald Button */}
+                  <a
+                    href="#portfolio"
+                    className="px-6 sm:px-7 py-3 rounded-full bg-emerald-500 hover:bg-emerald-400 text-black font-heading font-bold text-xs sm:text-sm uppercase tracking-wider flex items-center gap-2 transition-all duration-300 shadow-md hover:scale-105 active:scale-95"
+                  >
+                    <span>Mes Réalisations</span>
+                    <div className="w-5 h-5 rounded-full bg-black text-white flex items-center justify-center">
+                      <ArrowRight className="w-3 h-3" />
+                    </div>
+                  </a>
 
-              {/* Secondary Outline / Clean Button */}
-              <a
-                href="#contact"
-                className="px-6 sm:px-7 py-3 rounded-full bg-transparent hover:bg-gray-100 dark:hover:bg-white/10 text-gray-900 dark:text-white font-heading font-bold text-xs sm:text-sm uppercase tracking-wider transition-all duration-300 active:scale-95 border border-gray-300 dark:border-white/20"
-              >
-                <span>Me Contacter</span>
-              </a>
+                  {/* Secondary Outline / Clean Button */}
+                  <a
+                    href="#contact"
+                    className="px-6 sm:px-7 py-3 rounded-full bg-transparent hover:bg-gray-100 dark:hover:bg-white/10 text-gray-900 dark:text-white font-heading font-bold text-xs sm:text-sm uppercase tracking-wider transition-all duration-300 active:scale-95 border border-gray-300 dark:border-white/20"
+                  >
+                    <span>Me Contacter</span>
+                  </a>
+                </div>
+              </Magnetic>
             </motion.div>
           </div>
 

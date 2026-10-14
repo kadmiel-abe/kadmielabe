@@ -3,6 +3,8 @@
 import React, { useState } from "react";
 import { motion, AnimatePresence, useReducedMotion } from "framer-motion";
 import { ArrowUpRight, Sparkles } from "lucide-react";
+import Magnetic from "@/components/motion/Magnetic";
+import { EASINGS } from "@/lib/motion";
 
 interface ServiceItem {
   id: string;
@@ -123,27 +125,32 @@ export default function Services() {
             </h2>
           </div>
 
-          <a
-            href="#tarifs"
-            className="inline-flex items-center gap-2 px-6 py-3 rounded-full bg-emerald-500 hover:bg-emerald-400 text-black font-heading font-bold text-xs uppercase tracking-wider shadow-md hover:scale-105 active:scale-95 transition-all self-start sm:self-auto shrink-0"
-          >
-            <span>Voir Toutes les Offres</span>
-            <div className="w-5 h-5 rounded-full bg-black text-white flex items-center justify-center">
-              <ArrowUpRight className="w-3 h-3 stroke-[2.5]" />
-            </div>
-          </a>
+          <Magnetic strength={0.25}>
+            <a
+              href="#tarifs"
+              className="inline-flex items-center gap-2 px-6 py-3 rounded-full bg-emerald-500 hover:bg-emerald-400 text-black font-heading font-bold text-xs uppercase tracking-wider shadow-md hover:scale-105 active:scale-95 transition-all self-start sm:self-auto shrink-0"
+            >
+              <span>Voir Toutes les Offres</span>
+              <div className="w-5 h-5 rounded-full bg-black text-white flex items-center justify-center">
+                <ArrowUpRight className="w-3 h-3 stroke-[2.5]" />
+              </div>
+            </a>
+          </Magnetic>
         </div>
 
         {/* Numbered Accordion List (Cards with stepped cut corners) */}
         <div className="space-y-4 sm:space-y-5">
-          {servicesList.map((service) => {
+          {servicesList.map((service, index) => {
             const isActive = activeId === service.id;
 
             return (
               <motion.div
                 key={service.id}
                 layout
-                transition={{ duration: 0.35, ease: "easeInOut" }}
+                initial={shouldReduceMotion ? { opacity: 0 } : { opacity: 0, y: 30 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true, margin: "-40px" }}
+                transition={{ duration: 0.6, delay: index * 0.08, ease: EASINGS.awwwards }}
                 className={`overflow-hidden transition-all duration-300 chamfer-step border ${
                   isActive
                     ? "bg-[#141417] text-white border-emerald-500/40 shadow-2xl"
@@ -214,15 +221,18 @@ export default function Services() {
                       className="overflow-hidden"
                     >
                       <div className="px-5 sm:px-7 pb-7 pt-2 border-t border-white/10">
-                        {/* Sub-category tags in small dark pills */}
+                        {/* Sub-category tags in small dark pills with cascade */}
                         <div className="flex flex-wrap gap-2 mb-5">
-                          {service.subcategories.map((tag) => (
-                            <span
+                          {service.subcategories.map((tag, tagIdx) => (
+                            <motion.span
                               key={tag}
+                              initial={shouldReduceMotion ? { opacity: 0 } : { opacity: 0, scale: 0.85, y: 8 }}
+                              animate={{ opacity: 1, scale: 1, y: 0 }}
+                              transition={{ duration: 0.3, delay: tagIdx * 0.05, ease: "easeOut" }}
                               className="px-3.5 py-1.5 rounded-full text-xs font-heading font-medium bg-[#1F1F24] text-gray-300 border border-white/10"
                             >
                               {tag}
-                            </span>
+                            </motion.span>
                           ))}
                         </div>
 

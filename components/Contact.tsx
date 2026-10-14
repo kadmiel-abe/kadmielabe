@@ -3,6 +3,8 @@
 import { useState } from "react";
 import { motion, useReducedMotion } from "framer-motion";
 import { MessageSquare, Mail, Send, MapPin, Sparkles, ArrowUpRight } from "lucide-react";
+import Magnetic from "@/components/motion/Magnetic";
+import { EASINGS } from "@/lib/motion";
 
 export default function Contact() {
   const [name, setName] = useState("");
@@ -28,10 +30,10 @@ export default function Contact() {
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-16 items-start">
           {/* Left Column: Direct Contact Info & Value Prop */}
           <motion.div
-            initial={shouldReduceMotion ? { opacity: 0 } : { opacity: 0, x: -30 }}
+            initial={shouldReduceMotion ? { opacity: 0 } : { opacity: 0, x: -35 }}
             whileInView={{ opacity: 1, x: 0 }}
             viewport={{ once: true, margin: "-50px" }}
-            transition={{ duration: 0.7, ease: "easeOut" }}
+            transition={{ duration: 0.75, ease: EASINGS.awwwards }}
             className="lg:col-span-5 flex flex-col justify-between"
           >
             <div>
@@ -59,47 +61,51 @@ export default function Contact() {
 
               {/* Direct channels */}
               <div className="space-y-4 mb-10">
-                <a
-                  href="https://wa.me/2250706978570?text=Bonjour%20Kadmiel,%20je%20souhaite%20discuter%20d'un%20projet%20web."
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="flex items-center justify-between p-4 rounded-2xl bg-[#141416] border border-[#1E1E22] hover:border-emerald-500/50 hover:shadow-lg transition-all duration-300 group hover:-translate-y-1 chamfer-step"
-                >
-                  <div className="flex items-center gap-4">
-                    <div className="w-11 h-11 rounded-xl bg-emerald-500/15 border border-emerald-500/30 flex items-center justify-center text-emerald-400 group-hover:scale-110 group-hover:bg-emerald-500 group-hover:text-black transition-all">
-                      <MessageSquare className="w-5 h-5" />
+                <Magnetic strength={0.15} className="w-full">
+                  <a
+                    href="https://wa.me/2250706978570?text=Bonjour%20Kadmiel,%20je%20souhaite%20discuter%20d'un%20projet%20web."
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="flex items-center justify-between p-4 rounded-2xl bg-[#141416] border border-[#1E1E22] hover:border-emerald-500/50 hover:shadow-lg transition-all duration-300 group hover:-translate-y-1 chamfer-step w-full"
+                  >
+                    <div className="flex items-center gap-4">
+                      <div className="w-11 h-11 rounded-xl bg-emerald-500/15 border border-emerald-500/30 flex items-center justify-center text-emerald-400 group-hover:scale-110 group-hover:bg-emerald-500 group-hover:text-black transition-all">
+                        <MessageSquare className="w-5 h-5" />
+                      </div>
+                      <div>
+                        <p className="text-xs text-gray-400 uppercase tracking-wider font-mono">
+                          WhatsApp direct (Recommandé)
+                        </p>
+                        <p className="text-sm font-heading font-bold text-white group-hover:text-emerald-400 transition-colors">
+                          +225 07 06 97 85 70
+                        </p>
+                      </div>
                     </div>
-                    <div>
-                      <p className="text-xs text-gray-400 uppercase tracking-wider font-mono">
-                        WhatsApp direct (Recommandé)
-                      </p>
-                      <p className="text-sm font-heading font-bold text-white group-hover:text-emerald-400 transition-colors">
-                        +225 07 06 97 85 70
-                      </p>
-                    </div>
-                  </div>
-                  <ArrowUpRight className="w-4 h-4 text-gray-400 group-hover:text-emerald-400 group-hover:translate-x-1 group-hover:-translate-y-1 transition-all" />
-                </a>
+                    <ArrowUpRight className="w-4 h-4 text-gray-400 group-hover:text-emerald-400 group-hover:translate-x-1 group-hover:-translate-y-1 transition-all" />
+                  </a>
+                </Magnetic>
 
-                <a
-                  href="mailto:kadmielabe@gmail.com"
-                  className="flex items-center justify-between p-4 rounded-2xl bg-[#141416] border border-[#1E1E22] hover:border-emerald-500/50 hover:shadow-lg transition-all duration-300 group hover:-translate-y-1 chamfer-step"
-                >
-                  <div className="flex items-center gap-4">
-                    <div className="w-11 h-11 rounded-xl bg-emerald-500/15 border border-emerald-500/30 flex items-center justify-center text-emerald-400 group-hover:scale-110 group-hover:bg-emerald-500 group-hover:text-black transition-all">
-                      <Mail className="w-5 h-5" />
+                <Magnetic strength={0.15} className="w-full">
+                  <a
+                    href="mailto:kadmielabe@gmail.com"
+                    className="flex items-center justify-between p-4 rounded-2xl bg-[#141416] border border-[#1E1E22] hover:border-emerald-500/50 hover:shadow-lg transition-all duration-300 group hover:-translate-y-1 chamfer-step w-full"
+                  >
+                    <div className="flex items-center gap-4">
+                      <div className="w-11 h-11 rounded-xl bg-emerald-500/15 border border-emerald-500/30 flex items-center justify-center text-emerald-400 group-hover:scale-110 group-hover:bg-emerald-500 group-hover:text-black transition-all">
+                        <Mail className="w-5 h-5" />
+                      </div>
+                      <div>
+                        <p className="text-xs text-gray-400 uppercase tracking-wider font-mono">
+                          E-mail Professionnel
+                        </p>
+                        <p className="text-sm font-heading font-bold text-white group-hover:text-emerald-400 transition-colors">
+                          kadmielabe@gmail.com
+                        </p>
+                      </div>
                     </div>
-                    <div>
-                      <p className="text-xs text-gray-400 uppercase tracking-wider font-mono">
-                        E-mail Professionnel
-                      </p>
-                      <p className="text-sm font-heading font-bold text-white group-hover:text-emerald-400 transition-colors">
-                        kadmielabe@gmail.com
-                      </p>
-                    </div>
-                  </div>
-                  <ArrowUpRight className="w-4 h-4 text-gray-400 group-hover:text-emerald-400 group-hover:translate-x-1 group-hover:-translate-y-1 transition-all" />
-                </a>
+                    <ArrowUpRight className="w-4 h-4 text-gray-400 group-hover:text-emerald-400 group-hover:translate-x-1 group-hover:-translate-y-1 transition-all" />
+                  </a>
+                </Magnetic>
               </div>
 
               {/* Location Badge */}
@@ -192,13 +198,15 @@ export default function Contact() {
                   />
                 </div>
 
-                <button
-                  type="submit"
-                  className="w-full py-4 px-6 rounded-full bg-emerald-500 hover:bg-emerald-400 text-black font-heading font-bold text-xs uppercase tracking-wider flex items-center justify-center gap-2.5 transition-all duration-300 shadow-md hover:scale-[1.02] active:scale-[0.98] cursor-pointer"
-                >
-                  <Send className="w-4 h-4" />
-                  <span>Envoyer ma demande via WhatsApp</span>
-                </button>
+                <Magnetic strength={0.2} className="w-full">
+                  <button
+                    type="submit"
+                    className="w-full py-4 px-6 rounded-full bg-emerald-500 hover:bg-emerald-400 text-black font-heading font-bold text-xs uppercase tracking-wider flex items-center justify-center gap-2.5 transition-all duration-300 shadow-md hover:scale-[1.02] active:scale-[0.98] cursor-pointer"
+                  >
+                    <Send className="w-4 h-4" />
+                    <span>Envoyer ma demande via WhatsApp</span>
+                  </button>
+                </Magnetic>
               </form>
             </div>
           </motion.div>

@@ -1,6 +1,8 @@
 "use client";
 
+import { motion } from "framer-motion";
 import { Linkedin, Github, MessageSquare, ArrowUp } from "lucide-react";
+import Magnetic from "@/components/motion/Magnetic";
 
 export default function Footer() {
   const scrollToTop = () => {
@@ -29,63 +31,73 @@ export default function Footer() {
 
             <div className="flex items-center gap-3 flex-wrap">
               {/* LinkedIn */}
-              <a
-                href="https://www.linkedin.com/in/kadmiel-abe-b975a3346/"
-                target="_blank"
-                rel="noopener noreferrer"
-                aria-label="Profil LinkedIn"
-                className="w-10 h-10 rounded-full bg-[#121214] border border-[#1E1E22] hover:border-emerald-500/50 hover:bg-emerald-500/10 flex items-center justify-center text-gray-400 hover:text-emerald-400 transition-all duration-300"
-              >
-                <Linkedin className="w-4 h-4" />
-              </a>
+              <Magnetic strength={0.3}>
+                <a
+                  href="https://www.linkedin.com/in/kadmiel-abe-b975a3346/"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  aria-label="Profil LinkedIn"
+                  className="w-10 h-10 rounded-full bg-[#121214] border border-[#1E1E22] hover:border-emerald-500/50 hover:bg-emerald-500/10 flex items-center justify-center text-gray-400 hover:text-emerald-400 transition-all duration-300"
+                >
+                  <Linkedin className="w-4 h-4" />
+                </a>
+              </Magnetic>
 
               {/* GitHub */}
-              <a
-                href="https://github.com/kadmiel-abe"
-                target="_blank"
-                rel="noopener noreferrer"
-                aria-label="Profil GitHub"
-                className="w-10 h-10 rounded-full bg-[#121214] border border-[#1E1E22] hover:border-emerald-500/50 hover:bg-emerald-500/10 flex items-center justify-center text-gray-400 hover:text-emerald-400 transition-all duration-300"
-              >
-                <Github className="w-4 h-4" />
-              </a>
+              <Magnetic strength={0.3}>
+                <a
+                  href="https://github.com/kadmiel-abe"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  aria-label="Profil GitHub"
+                  className="w-10 h-10 rounded-full bg-[#121214] border border-[#1E1E22] hover:border-emerald-500/50 hover:bg-emerald-500/10 flex items-center justify-center text-gray-400 hover:text-emerald-400 transition-all duration-300"
+                >
+                  <Github className="w-4 h-4" />
+                </a>
+              </Magnetic>
 
               {/* TikTok */}
-              <a
-                href="https://www.tiktok.com/@kadmiel_officiel255?_r=1&_t=ZS-9APHfi4BUUk"
-                target="_blank"
-                rel="noopener noreferrer"
-                aria-label="Profil TikTok"
-                className="w-10 h-10 rounded-full bg-[#121214] border border-[#1E1E22] hover:border-emerald-500/50 hover:bg-emerald-500/10 flex items-center justify-center text-gray-400 hover:text-emerald-400 transition-all duration-300"
-              >
-                <svg className="w-4 h-4 fill-current" viewBox="0 0 24 24" aria-hidden="true">
-                  <path d="M19.59 6.69a4.83 4.83 0 0 1-3.77-4.25V2h-3.45v13.67a2.89 2.89 0 0 1-5.2 1.74 2.89 2.89 0 0 1 2.31-4.64 2.93 2.93 0 0 1 .88.13V9.4a6.84 6.84 0 0 0-1-.05A6.33 6.33 0 0 0 3 15.65 6.34 6.34 0 0 0 9.35 22a6.33 6.33 0 0 0 6.33-6.33V9.05a8.16 8.16 0 0 0 4.91 1.62V7.21a4.85 4.85 0 0 1-1-.52z" />
-                </svg>
-              </a>
+              <Magnetic strength={0.3}>
+                <a
+                  href="https://www.tiktok.com/@kadmiel_officiel255?_r=1&_t=ZS-9APHfi4BUUk"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  aria-label="Profil TikTok"
+                  className="w-10 h-10 rounded-full bg-[#121214] border border-[#1E1E22] hover:border-emerald-500/50 hover:bg-emerald-500/10 flex items-center justify-center text-gray-400 hover:text-emerald-400 transition-all duration-300"
+                >
+                  <svg className="w-4 h-4 fill-current" viewBox="0 0 24 24" aria-hidden="true">
+                    <path d="M19.59 6.69a4.83 4.83 0 0 1-3.77-4.25V2h-3.45v13.67a2.89 2.89 0 0 1-5.2 1.74 2.89 2.89 0 0 1 2.31-4.64 2.93 2.93 0 0 1 .88.13V9.4a6.84 6.84 0 0 0-1-.05A6.33 6.33 0 0 0 3 15.65 6.34 6.34 0 0 0 9.35 22a6.33 6.33 0 0 0 6.33-6.33V9.05a8.16 8.16 0 0 0 4.91 1.62V7.21a4.85 4.85 0 0 1-1-.52z" />
+                  </svg>
+                </a>
+              </Magnetic>
 
               {/* Facebook */}
-              <a
-                href="https://www.facebook.com/kadmielogodwin.abe.3/"
-                target="_blank"
-                rel="noopener noreferrer"
-                aria-label="Profil Facebook"
-                className="w-10 h-10 rounded-full bg-[#121214] border border-[#1E1E22] hover:border-emerald-500/50 hover:bg-emerald-500/10 flex items-center justify-center text-gray-400 hover:text-emerald-400 transition-all duration-300"
-              >
-                <svg className="w-4 h-4 fill-current" viewBox="0 0 24 24" aria-hidden="true">
-                  <path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z" />
-                </svg>
-              </a>
+              <Magnetic strength={0.3}>
+                <a
+                  href="https://www.facebook.com/kadmielogodwin.abe.3/"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  aria-label="Profil Facebook"
+                  className="w-10 h-10 rounded-full bg-[#121214] border border-[#1E1E22] hover:border-emerald-500/50 hover:bg-emerald-500/10 flex items-center justify-center text-gray-400 hover:text-emerald-400 transition-all duration-300"
+                >
+                  <svg className="w-4 h-4 fill-current" viewBox="0 0 24 24" aria-hidden="true">
+                    <path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z" />
+                  </svg>
+                </a>
+              </Magnetic>
 
               {/* WhatsApp */}
-              <a
-                href="https://wa.me/2250706978570"
-                target="_blank"
-                rel="noopener noreferrer"
-                aria-label="WhatsApp direct"
-                className="w-10 h-10 rounded-full bg-[#121214] border border-[#1E1E22] hover:border-emerald-500/50 hover:bg-emerald-500/10 flex items-center justify-center text-gray-400 hover:text-emerald-400 transition-all duration-300"
-              >
-                <MessageSquare className="w-4 h-4" />
-              </a>
+              <Magnetic strength={0.3}>
+                <a
+                  href="https://wa.me/2250706978570"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  aria-label="WhatsApp direct"
+                  className="w-10 h-10 rounded-full bg-[#121214] border border-[#1E1E22] hover:border-emerald-500/50 hover:bg-emerald-500/10 flex items-center justify-center text-gray-400 hover:text-emerald-400 transition-all duration-300"
+                >
+                  <MessageSquare className="w-4 h-4" />
+                </a>
+              </Magnetic>
             </div>
           </div>
 
@@ -155,13 +167,15 @@ export default function Footer() {
             <span className="font-mono text-[11px] text-gray-500">
               Conçu avec Next.js 15 &amp; Tailwind CSS
             </span>
-            <button
-              onClick={scrollToTop}
-              className="p-2 rounded-full bg-[#121214] border border-[#1E1E22] hover:border-emerald-500/40 text-gray-400 hover:text-white transition-colors cursor-pointer"
-              aria-label="Retour en haut"
-            >
-              <ArrowUp className="w-3.5 h-3.5" />
-            </button>
+            <Magnetic strength={0.3}>
+              <button
+                onClick={scrollToTop}
+                className="p-2 rounded-full bg-[#121214] border border-[#1E1E22] hover:border-emerald-500/40 text-gray-400 hover:text-white transition-colors cursor-pointer"
+                aria-label="Retour en haut"
+              >
+                <ArrowUp className="w-3.5 h-3.5" />
+              </button>
+            </Magnetic>
           </div>
         </div>
       </div>

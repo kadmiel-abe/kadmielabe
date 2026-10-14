@@ -4,6 +4,8 @@ import React, { useState, useEffect, useRef } from "react";
 import Image from "next/image";
 import { motion, useInView, useReducedMotion } from "framer-motion";
 import { ArrowUpRight, Sparkles } from "lucide-react";
+import Magnetic from "@/components/motion/Magnetic";
+import { EASINGS } from "@/lib/motion";
 
 // Counter component for smooth animated counting effect
 function AnimatedCounter({ target, suffix = "" }: { target: number; suffix?: string }) {
@@ -50,13 +52,13 @@ export default function About() {
   const shouldReduceMotion = useReducedMotion();
 
   const skillPills = [
-    { label: "Next.js 15", bg: "bg-black/90 dark:bg-[#18181B] text-white" },
-    { label: "SaaS & B2B", bg: "bg-emerald-500 text-black font-bold" },
-    { label: "TypeScript", bg: "bg-black/90 dark:bg-[#18181B] text-white" },
-    { label: "Tailwind CSS", bg: "bg-emerald-500 text-black font-bold" },
-    { label: "Supabase", bg: "bg-black/90 dark:bg-[#18181B] text-white" },
-    { label: "UI/UX Design", bg: "bg-black/90 dark:bg-[#18181B] text-white" },
-    { label: "Vibecoding / IA", bg: "bg-emerald-500 text-black font-bold" },
+    { label: "Next.js 15", bg: "bg-black/90 dark:bg-[#18181B] text-white", float: "animate-float-1" },
+    { label: "SaaS & B2B", bg: "bg-emerald-500 text-black font-bold", float: "animate-float-2" },
+    { label: "TypeScript", bg: "bg-black/90 dark:bg-[#18181B] text-white", float: "animate-float-3" },
+    { label: "Tailwind CSS", bg: "bg-emerald-500 text-black font-bold", float: "animate-float-1" },
+    { label: "Supabase", bg: "bg-black/90 dark:bg-[#18181B] text-white", float: "animate-float-2" },
+    { label: "UI/UX Design", bg: "bg-black/90 dark:bg-[#18181B] text-white", float: "animate-float-3" },
+    { label: "Vibecoding / IA", bg: "bg-emerald-500 text-black font-bold", float: "animate-float-1" },
   ];
 
   const stats = [
@@ -79,18 +81,18 @@ export default function About() {
 
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-16 items-center">
-          {/* Left Column: Cut-corner Chamfered Portrait Card with Overlapping Skill Pills */}
+          {/* Left Column: Cut-corner Chamfered Portrait Card with Mask Reveal */}
           <div className="lg:col-span-5 flex justify-center">
             <motion.div
-              initial={shouldReduceMotion ? { opacity: 0 } : { opacity: 0, scale: 0.95, y: 30 }}
-              whileInView={{ opacity: 1, scale: 1, y: 0 }}
+              initial={shouldReduceMotion ? { opacity: 0 } : { opacity: 0, clipPath: "inset(0% 0% 100% 0%)", y: 30 }}
+              whileInView={{ opacity: 1, clipPath: "inset(0% 0% 0% 0%)", y: 0 }}
               viewport={{ once: true, margin: "-50px" }}
-              transition={{ duration: 0.7, ease: "easeOut" }}
+              transition={{ duration: 0.9, ease: EASINGS.awwwards }}
               className="relative w-full max-w-[380px] sm:max-w-[420px]"
             >
               {/* Outer Chamfered Container (Border effect with cut corners) */}
               <div className="p-1 rounded-3xl bg-gradient-to-br from-emerald-500/50 via-emerald-500/20 to-transparent chamfer-card shadow-2xl">
-                <div className="relative aspect-[4/5] w-full rounded-3xl overflow-hidden bg-gradient-to-b from-emerald-600 via-emerald-700 to-[#0B0B0C] chamfer-card">
+                <div className="relative aspect-[4/5] w-full rounded-3xl overflow-hidden bg-gradient-to-b from-emerald-600 via-emerald-700 to-[#0B0B0C] chamfer-card group">
                   {/* Subtle Geometric Background Pattern inside photo frame */}
                   <div className="absolute inset-0 bg-grid-subtle opacity-30 mix-blend-overlay pointer-events-none" />
 
@@ -100,7 +102,7 @@ export default function About() {
                     alt="Kadmiel Abe - À propos"
                     fill
                     sizes="(max-width: 768px) 100vw, 420px"
-                    className="object-cover object-top hover:scale-105 transition-transform duration-700"
+                    className="object-cover object-top group-hover:scale-105 transition-transform duration-700"
                   />
 
                   {/* Gradient shadow for text / badges overlay */}
@@ -108,7 +110,7 @@ export default function About() {
                 </div>
               </div>
 
-              {/* Overlapping Skill Tag Pills Clustered across the bottom */}
+              {/* Overlapping Skill Tag Pills Clustered across the bottom with continuous float */}
               <div className="absolute -bottom-6 left-2 right-2 flex flex-wrap justify-center gap-2 z-20">
                 {skillPills.map((pill, i) => (
                   <motion.span
@@ -117,7 +119,7 @@ export default function About() {
                     whileInView={{ opacity: 1, y: 0 }}
                     viewport={{ once: true }}
                     transition={{ duration: 0.4, delay: 0.1 + i * 0.05 }}
-                    className={`px-3 py-1.5 rounded-full text-xs font-heading shadow-lg border border-white/10 backdrop-blur-md ${pill.bg}`}
+                    className={`px-3 py-1.5 rounded-full text-xs font-heading shadow-lg border border-white/10 backdrop-blur-md ${pill.bg} ${pill.float}`}
                   >
                     {pill.label}
                   </motion.span>
@@ -126,12 +128,12 @@ export default function About() {
             </motion.div>
           </div>
 
-          {/* Right Column: Bio Content, CV Download, and Stylized Signature */}
+          {/* Right Column: Bio Content, CTA, and Stylized Signature */}
           <motion.div
             initial={shouldReduceMotion ? { opacity: 0 } : { opacity: 0, x: 40 }}
             whileInView={{ opacity: 1, x: 0 }}
             viewport={{ once: true, margin: "-50px" }}
-            transition={{ duration: 0.7, ease: "easeOut" }}
+            transition={{ duration: 0.8, ease: EASINGS.awwwards }}
             className="lg:col-span-7 flex flex-col justify-center mt-6 lg:mt-0"
           >
             {/* Section label with double-circle icon */}
@@ -166,18 +168,20 @@ export default function About() {
 
             {/* Action Row: CTA Pill Button + Signature */}
             <div className="flex flex-col sm:flex-row items-start sm:items-center gap-6 sm:gap-8">
-              {/* Contact / Hire CTA Button */}
-              <a
-                href="#contact"
-                className="group inline-flex items-center p-1.5 pr-2 rounded-full bg-[#17171A] hover:bg-[#1E1E22] border border-[#2A2A30] hover:border-emerald-500/50 transition-all duration-300 shadow-lg hover:scale-105 active:scale-95 cursor-pointer"
-              >
-                <span className="px-5 py-2 font-heading font-bold text-xs uppercase tracking-wider text-white">
-                  Démarrer un projet
-                </span>
-                <div className="w-9 h-9 rounded-full bg-emerald-500 text-black flex items-center justify-center group-hover:bg-emerald-400 transition-colors shadow-md">
-                  <ArrowUpRight className="w-4 h-4 stroke-[2.5] group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-transform" />
-                </div>
-              </a>
+              {/* Contact / Hire CTA Button with Magnetic */}
+              <Magnetic strength={0.25}>
+                <a
+                  href="#contact"
+                  className="group inline-flex items-center p-1.5 pr-2 rounded-full bg-[#17171A] hover:bg-[#1E1E22] border border-[#2A2A30] hover:border-emerald-500/50 transition-all duration-300 shadow-lg hover:scale-105 active:scale-95 cursor-pointer"
+                >
+                  <span className="px-5 py-2 font-heading font-bold text-xs uppercase tracking-wider text-white">
+                    Démarrer un projet
+                  </span>
+                  <div className="w-9 h-9 rounded-full bg-emerald-500 text-black flex items-center justify-center group-hover:bg-emerald-400 transition-colors shadow-md">
+                    <ArrowUpRight className="w-4 h-4 stroke-[2.5] group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-transform" />
+                  </div>
+                </a>
+              </Magnetic>
 
               {/* Signature (Stylized script) */}
               <div className="flex items-center gap-2 select-none">

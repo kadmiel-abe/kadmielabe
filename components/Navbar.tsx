@@ -3,11 +3,14 @@
 import { useState, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { Menu, X, ArrowUpRight, Moon, Sun, Sparkles } from "lucide-react";
+import Magnetic from "@/components/motion/Magnetic";
+import { EASINGS } from "@/lib/motion";
 
 export default function Navbar() {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const [isDark, setIsDark] = useState(true);
   const [scrolled, setScrolled] = useState(false);
+  const [activeSection, setActiveSection] = useState("hero");
 
   useEffect(() => {
     // Check initial dark mode from DOM or localStorage
@@ -22,6 +25,18 @@ export default function Navbar() {
 
     const handleScroll = () => {
       setScrolled(window.scrollY > 30);
+
+      // Section spy
+      const sections = ["hero", "a-propos", "services", "portfolio", "outils", "tarifs", "contact"];
+      const scrollPos = window.scrollY + 140;
+
+      for (let i = sections.length - 1; i >= 0; i--) {
+        const el = document.getElementById(sections[i]);
+        if (el && el.offsetTop <= scrollPos) {
+          setActiveSection(sections[i]);
+          break;
+        }
+      }
     };
 
     window.addEventListener("scroll", handleScroll, { passive: true });
@@ -41,13 +56,13 @@ export default function Navbar() {
   };
 
   const navLinks = [
-    { label: "Accueil", href: "#hero" },
-    { label: "À propos", href: "#a-propos" },
-    { label: "Services", href: "#services" },
-    { label: "Projets", href: "#portfolio" },
-    { label: "Outils", href: "#outils" },
-    { label: "Tarifs", href: "#tarifs" },
-    { label: "Contact", href: "#contact" },
+    { label: "Accueil", href: "#hero", id: "hero" },
+    { label: "À propos", href: "#a-propos", id: "a-propos" },
+    { label: "Services", href: "#services", id: "services" },
+    { label: "Projets", href: "#portfolio", id: "portfolio" },
+    { label: "Outils", href: "#outils", id: "outils" },
+    { label: "Tarifs", href: "#tarifs", id: "tarifs" },
+    { label: "Contact", href: "#contact", id: "contact" },
   ];
 
   const handleNavClick = (
@@ -83,7 +98,12 @@ export default function Navbar() {
   };
 
   return (
-    <header className="fixed top-4 left-0 right-0 z-50 flex justify-center px-4 sm:px-6 pointer-events-none">
+    <motion.header
+      initial={{ y: -70, opacity: 0 }}
+      animate={{ y: 0, opacity: 1 }}
+      transition={{ duration: 0.8, ease: EASINGS.awwwards }}
+      className="fixed top-4 left-0 right-0 z-50 flex justify-center px-4 sm:px-6 pointer-events-none"
+    >
       <nav
         aria-label="Navigation principale"
         className={`pointer-events-auto w-full max-w-6xl rounded-full transition-all duration-300 flex items-center justify-between px-4 sm:px-6 py-2.5 sm:py-3 ${
@@ -99,7 +119,7 @@ export default function Navbar() {
           className="flex items-center gap-2.5 group cursor-pointer focus:outline-none shrink-0"
           aria-label="Kadmiel Abe - Accueil"
         >
-          <div className="w-9 h-9 rounded-full bg-black border border-emerald-500/60 flex items-center justify-center text-emerald-400 group-hover:scale-105 transition-transform duration-300 shadow-[0_0_15px_rgba(17,145,52,0.4)]">
+          <div className="w-9 h-9 rounded-full bg-black border border-emerald-500/60 flex items-center justify-center text-emerald-400 group-hover:scale-105 group-hover:rotate-12 transition-transform duration-300 shadow-[0_0_15px_rgba(17,145,52,0.4)]">
             <span className="font-mono text-sm font-black tracking-tighter text-emerald-400">&lt;/&gt;</span>
           </div>
           <div className="flex items-baseline">
@@ -111,17 +131,32 @@ export default function Navbar() {
         </a>
 
         {/* Center Links (Desktop) */}
-        <div className="hidden lg:flex items-center gap-1 xl:gap-2">
-          {navLinks.map((link) => (
-            <a
-              key={link.label}
-              href={link.href}
-              onClick={(e) => handleNavClick(e, link.href)}
-              className="text-xs xl:text-sm font-medium text-gray-300 dark:text-gray-300 text-gray-700 hover:text-emerald-400 dark:hover:text-emerald-400 hover:bg-white/5 dark:hover:bg-white/5 px-3 py-1.5 rounded-full transition-all duration-200"
-            >
-              {link.label}
-            </a>
-          ))}
+        <div className="hidden lg:flex items-center gap-1 xl:gap-1.5">
+          {navLinks.map((link) => {
+            const isActive = activeSection === link.id;
+
+            return (
+              <a
+                key={link.label}
+                href={link.href}
+                onClick={(e) => handleNavClick(e, link.href)}
+                className={`relative text-xs xl:text-sm font-medium px-3.5 py-1.5 rounded-full transition-colors duration-200 ${
+                  isActive
+                    ? "text-emerald-600 dark:text-emerald-400 font-semibold"
+                    : "text-gray-700 dark:text-gray-300 hover:text-emerald-500 dark:hover:text-emerald-400"
+                }`}
+              >
+                {isActive && (
+                  <motion.span
+                    layoutId="activeNavIndicator"
+                    className="absolute inset-0 rounded-full bg-emerald-500/10 dark:bg-emerald-500/15 border border-emerald-500/30 -z-10"
+                    transition={{ type: "spring", stiffness: 350, damping: 30 }}
+                  />
+                )}
+                <span>{link.label}</span>
+              </a>
+            );
+          })}
         </div>
 
         {/* Right action controls */}
@@ -131,7 +166,7 @@ export default function Navbar() {
             onClick={toggleTheme}
             type="button"
             aria-label={isDark ? "Passer en mode clair" : "Passer en mode sombre"}
-            className="w-9 h-9 rounded-full flex items-center justify-center text-gray-300 dark:text-gray-300 text-gray-700 hover:text-white hover:bg-white/10 dark:hover:bg-white/10 bg-black/10 dark:bg-black/20 border border-white/5 transition-all duration-200 cursor-pointer"
+            className="w-9 h-9 rounded-full flex items-center justify-center text-gray-700 dark:text-gray-300 hover:text-white hover:bg-white/10 dark:hover:bg-white/10 bg-black/5 dark:bg-black/20 border border-gray-200 dark:border-white/5 transition-all duration-200 cursor-pointer"
           >
             {isDark ? (
               <Sun className="w-4 h-4 text-emerald-400 transition-transform duration-300 hover:rotate-45" />
@@ -140,25 +175,27 @@ export default function Navbar() {
             )}
           </button>
 
-          {/* Let's talk CTA Pill */}
-          <a
-            href="https://wa.me/2250706978570?text=Bonjour%20Kadmiel,%20je%20souhaite%20discuter%20d'un%20projet%20web%20pour%20mon%20entreprise."
-            target="_blank"
-            rel="noopener noreferrer"
-            className="hidden sm:inline-flex items-center gap-2 px-5 py-2 rounded-full bg-emerald-600 text-white dark:bg-white dark:text-gray-950 hover:bg-white hover:text-emerald-600 dark:hover:bg-emerald-500 dark:hover:text-black font-heading font-bold text-xs uppercase tracking-wider transition-all duration-300 shadow-[0_4px_15px_rgba(0,0,0,0.15)] hover:shadow-pill-hover hover:scale-105 active:scale-95"
-          >
-            <span>Let&apos;s Talk</span>
-            <div className="w-4 h-4 rounded-full bg-black/10 dark:bg-black/10 flex items-center justify-center">
-              <ArrowUpRight className="w-3 h-3 stroke-[2.5]" />
-            </div>
-          </a>
+          {/* Let's talk CTA Pill with Magnetic pull */}
+          <Magnetic strength={0.25}>
+            <a
+              href="https://wa.me/2250706978570?text=Bonjour%20Kadmiel,%20je%20souhaite%20discuter%20d'un%20projet%20web%20pour%20mon%20entreprise."
+              target="_blank"
+              rel="noopener noreferrer"
+              className="hidden sm:inline-flex items-center gap-2 px-5 py-2 rounded-full bg-emerald-600 text-white dark:bg-white dark:text-gray-950 hover:bg-white hover:text-emerald-600 dark:hover:bg-emerald-500 dark:hover:text-black font-heading font-bold text-xs uppercase tracking-wider transition-all duration-300 shadow-[0_4px_15px_rgba(0,0,0,0.15)] hover:shadow-pill-hover hover:scale-105 active:scale-95"
+            >
+              <span>Let&apos;s Talk</span>
+              <div className="w-4 h-4 rounded-full bg-black/10 dark:bg-black/10 flex items-center justify-center">
+                <ArrowUpRight className="w-3 h-3 stroke-[2.5]" />
+              </div>
+            </a>
+          </Magnetic>
 
           {/* Mobile menu button */}
           <button
             type="button"
             onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
             aria-label={mobileMenuOpen ? "Fermer le menu" : "Ouvrir le menu"}
-            className="lg:hidden p-2 rounded-full text-gray-300 dark:text-gray-300 text-gray-800 hover:bg-white/10 dark:hover:bg-white/10 cursor-pointer"
+            className="lg:hidden p-2 rounded-full text-gray-800 dark:text-gray-300 hover:bg-white/10 dark:hover:bg-white/10 cursor-pointer"
           >
             {mobileMenuOpen ? <X className="w-5 h-5 text-emerald-400" /> : <Menu className="w-5 h-5" />}
           </button>
@@ -203,6 +240,6 @@ export default function Navbar() {
           </motion.div>
         )}
       </AnimatePresence>
-    </header>
+    </motion.header>
   );
 }

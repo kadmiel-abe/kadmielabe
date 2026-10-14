@@ -3,6 +3,7 @@
 import React from "react";
 import { motion, useReducedMotion } from "framer-motion";
 import { Search, Palette, Terminal, Rocket, Sparkles } from "lucide-react";
+import { EASINGS } from "@/lib/motion";
 
 const steps = [
   {
@@ -77,14 +78,20 @@ export default function Process() {
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 sm:gap-7">
           {steps.map((step, idx) => {
             const Icon = step.icon;
+            const floatClass =
+              idx % 3 === 0
+                ? "animate-float-1"
+                : idx % 3 === 1
+                ? "animate-float-2"
+                : "animate-float-3";
 
             return (
               <motion.div
                 key={step.number}
-                initial={shouldReduceMotion ? { opacity: 0 } : { opacity: 0, y: 25 }}
+                initial={shouldReduceMotion ? { opacity: 0 } : { opacity: 0, y: 30 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true, margin: "-40px" }}
-                transition={{ duration: 0.5, delay: idx * 0.08, ease: "easeOut" }}
+                transition={{ duration: 0.65, delay: idx * 0.09, ease: EASINGS.awwwards }}
                 className="group relative p-6 sm:p-8 bg-white dark:bg-[#141416] rounded-2xl border border-gray-200/90 dark:border-white/10 hover:border-emerald-500/50 shadow-sm hover:shadow-xl transition-all duration-300 hover:-translate-y-1 chamfer-step flex flex-col justify-between"
               >
                 <div>
@@ -92,7 +99,9 @@ export default function Process() {
                     <span className="font-mono text-2xl font-black text-emerald-600 dark:text-emerald-400">
                       {step.number}
                     </span>
-                    <div className="w-10 h-10 rounded-xl bg-emerald-500/10 dark:bg-emerald-500/15 border border-emerald-500/20 flex items-center justify-center text-emerald-600 dark:text-emerald-400 group-hover:scale-110 group-hover:bg-emerald-500 group-hover:text-black transition-all">
+                    <div
+                      className={`w-10 h-10 rounded-xl bg-emerald-500/10 dark:bg-emerald-500/15 border border-emerald-500/20 flex items-center justify-center text-emerald-600 dark:text-emerald-400 group-hover:scale-110 group-hover:bg-emerald-500 group-hover:text-black transition-all ${floatClass}`}
+                    >
                       <Icon className="w-5 h-5" />
                     </div>
                   </div>
