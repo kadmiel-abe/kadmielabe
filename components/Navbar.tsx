@@ -103,7 +103,7 @@ export default function Navbar() {
             <span className="font-mono text-sm font-black tracking-tighter text-emerald-400">&lt;/&gt;</span>
           </div>
           <div className="flex items-baseline">
-            <span className="font-heading text-lg sm:text-xl font-extrabold tracking-tight text-white dark:text-white text-gray-900 group-hover:text-emerald-400 transition-colors">
+            <span className="font-heading text-lg sm:text-xl font-extrabold tracking-tight text-emerald-600 dark:text-white group-hover:text-white dark:group-hover:text-emerald-400 transition-colors">
               Kadmiel
             </span>
             <span className="w-1.5 h-1.5 rounded-full bg-emerald-500 ml-1 inline-block animate-pulse" />
@@ -145,7 +145,7 @@ export default function Navbar() {
             href="https://wa.me/2250706978570?text=Bonjour%20Kadmiel,%20je%20souhaite%20discuter%20d'un%20projet%20web%20pour%20mon%20entreprise."
             target="_blank"
             rel="noopener noreferrer"
-            className="hidden sm:inline-flex items-center gap-2 px-5 py-2 rounded-full bg-white dark:bg-white bg-gray-900 text-gray-950 dark:text-gray-950 text-white font-heading font-bold text-xs uppercase tracking-wider hover:bg-emerald-500 hover:text-black dark:hover:bg-emerald-500 dark:hover:text-black transition-all duration-300 shadow-[0_4px_15px_rgba(0,0,0,0.15)] hover:shadow-pill-hover hover:scale-105 active:scale-95"
+            className="hidden sm:inline-flex items-center gap-2 px-5 py-2 rounded-full bg-emerald-600 text-white dark:bg-white dark:text-gray-950 hover:bg-white hover:text-emerald-600 dark:hover:bg-emerald-500 dark:hover:text-black font-heading font-bold text-xs uppercase tracking-wider transition-all duration-300 shadow-[0_4px_15px_rgba(0,0,0,0.15)] hover:shadow-pill-hover hover:scale-105 active:scale-95"
           >
             <span>Let&apos;s Talk</span>
             <div className="w-4 h-4 rounded-full bg-black/10 dark:bg-black/10 flex items-center justify-center">
