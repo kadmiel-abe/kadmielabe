@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, useEffect } from "react";
+import { useState, useEffect, useRef } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { Menu, X, ArrowUpRight, Moon, Sun, Sparkles } from "lucide-react";
 import Magnetic from "@/components/motion/Magnetic";
@@ -11,6 +11,31 @@ export default function Navbar() {
   const [isDark, setIsDark] = useState(true);
   const [scrolled, setScrolled] = useState(false);
   const [activeSection, setActiveSection] = useState("hero");
+  const isNavigatingRef = useRef(false);
+  const navTimerRef = useRef<NodeJS.Timeout | null>(null);
+
+  const navLinks = [
+    { label: "Accueil", href: "#hero", id: "hero" },
+    { label: "À propos", href: "#a-propos", id: "a-propos" },
+    { label: "Services", href: "#services", id: "services" },
+    { label: "Projets", href: "#portfolio", id: "portfolio" },
+    { label: "Outils", href: "#outils", id: "outils" },
+    { label: "Tarifs", href: "#tarifs", id: "tarifs" },
+    { label: "Contact", href: "#contact", id: "contact" },
+  ];
+
+  // Mapping from all page sections to their corresponding navbar items
+  const sectionMapping: { id: string; navId: string }[] = [
+    { id: "hero", navId: "hero" },
+    { id: "a-propos", navId: "a-propos" },
+    { id: "services", navId: "services" },
+    { id: "portfolio", navId: "portfolio" },
+    { id: "outils", navId: "outils" },
+    { id: "tarifs", navId: "tarifs" },
+    { id: "processus", navId: "tarifs" },
+    { id: "faq", navId: "tarifs" },
+    { id: "contact", navId: "contact" },
+  ];
 
   useEffect(() => {
     // Check initial dark mode from DOM or localStorage
@@ -23,24 +48,74 @@ export default function Navbar() {
       document.documentElement.classList.add("dark");
     }
 
-    const handleScroll = () => {
-      setScrolled(window.scrollY > 30);
+    const determineActiveSection = () => {
+      setScrolled(window.scrollY > 25);
 
-      // Section spy
-      const sections = ["hero", "a-propos", "services", "portfolio", "outils", "tarifs", "contact"];
-      const scrollPos = window.scrollY + 140;
+      // If user clicked a menu anchor, preserve clicked state during smooth scroll
+      if (isNavigatingRef.current) return;
 
-      for (let i = sections.length - 1; i >= 0; i--) {
-        const el = document.getElementById(sections[i]);
-        if (el && el.offsetTop <= scrollPos) {
-          setActiveSection(sections[i]);
-          break;
+      // 1. If at the top of the page
+      if (window.scrollY < 120) {
+        setActiveSection("hero");
+        return;
+      }
+
+      // 2. If scrolled to the bottom of the page (where Contact & Footer are located)
+      const scrollHeight = document.documentElement.scrollHeight;
+      const scrollPos = window.innerHeight + window.scrollY;
+      if (scrollPos >= scrollHeight - 70) {
+        setActiveSection("contact");
+        return;
+      }
+
+      // 3. Focal reading line in viewport (38% from top, below navbar)
+      const focalLine = window.innerHeight * 0.38;
+
+      // Find the section crossing the focal reading line
+      for (let i = 0; i < sectionMapping.length; i++) {
+        const item = sectionMapping[i];
+        const el = document.getElementById(item.id);
+        if (!el) continue;
+
+        const rect = el.getBoundingClientRect();
+        if (rect.top <= focalLine && rect.bottom > focalLine) {
+          setActiveSection(item.navId);
+          return;
         }
       }
+
+      // Fallback: Pick visible section whose center is closest to focal line
+      let closestNavId = "hero";
+      let minDistance = Infinity;
+
+      for (const item of sectionMapping) {
+        const el = document.getElementById(item.id);
+        if (!el) continue;
+
+        const rect = el.getBoundingClientRect();
+        if (rect.bottom < 0 || rect.top > window.innerHeight) continue;
+
+        const sectionCenter = rect.top + rect.height / 2;
+        const distance = Math.abs(sectionCenter - focalLine);
+        if (distance < minDistance) {
+          minDistance = distance;
+          closestNavId = item.navId;
+        }
+      }
+
+      setActiveSection(closestNavId);
     };
 
-    window.addEventListener("scroll", handleScroll, { passive: true });
-    return () => window.removeEventListener("scroll", handleScroll);
+    determineActiveSection();
+
+    window.addEventListener("scroll", determineActiveSection, { passive: true });
+    window.addEventListener("resize", determineActiveSection, { passive: true });
+
+    return () => {
+      window.removeEventListener("scroll", determineActiveSection);
+      window.removeEventListener("resize", determineActiveSection);
+      if (navTimerRef.current) clearTimeout(navTimerRef.current);
+    };
   }, []);
 
   const toggleTheme = () => {
@@ -55,16 +130,6 @@ export default function Navbar() {
     }
   };
 
-  const navLinks = [
-    { label: "Accueil", href: "#hero", id: "hero" },
-    { label: "À propos", href: "#a-propos", id: "a-propos" },
-    { label: "Services", href: "#services", id: "services" },
-    { label: "Projets", href: "#portfolio", id: "portfolio" },
-    { label: "Outils", href: "#outils", id: "outils" },
-    { label: "Tarifs", href: "#tarifs", id: "tarifs" },
-    { label: "Contact", href: "#contact", id: "contact" },
-  ];
-
   const handleNavClick = (
     e: React.MouseEvent<HTMLAnchorElement>,
     href: string
@@ -74,21 +139,50 @@ export default function Navbar() {
       setMobileMenuOpen(false);
 
       const targetId = href.replace(/^#/, "");
-      if (!targetId) {
-        window.scrollTo({ top: 0, behavior: "smooth" });
+
+      // Instantly mark the clicked button as active
+      if (targetId) {
+        setActiveSection(targetId);
+      } else {
+        setActiveSection("hero");
+      }
+
+      // Lock scroll spy while smooth scrolling to prevent flicker or premature updates
+      isNavigatingRef.current = true;
+      if (navTimerRef.current) clearTimeout(navTimerRef.current);
+      navTimerRef.current = setTimeout(() => {
+        isNavigatingRef.current = false;
+      }, 1000);
+
+      if (!targetId || targetId === "hero") {
+        if (typeof window !== "undefined" && (window as any).__lenis) {
+          (window as any).__lenis.scrollTo(0, { offset: 0, duration: 1.0 });
+        } else {
+          window.scrollTo({ top: 0, behavior: "smooth" });
+        }
+        if (window.history.pushState) {
+          window.history.pushState(null, "", "#hero");
+        }
         return;
       }
 
       const targetElement = document.getElementById(targetId);
       if (targetElement) {
-        const navbarOffset = 90;
-        const elementPosition = targetElement.getBoundingClientRect().top;
-        const offsetPosition = elementPosition + window.pageYOffset - navbarOffset;
+        const navbarOffset = 85;
 
-        window.scrollTo({
-          top: offsetPosition,
-          behavior: "smooth",
-        });
+        if (typeof window !== "undefined" && (window as any).__lenis) {
+          (window as any).__lenis.scrollTo(targetElement, {
+            offset: -navbarOffset,
+            duration: 1.0,
+          });
+        } else {
+          const elementPosition = targetElement.getBoundingClientRect().top;
+          const offsetPosition = elementPosition + window.pageYOffset - navbarOffset;
+          window.scrollTo({
+            top: offsetPosition,
+            behavior: "smooth",
+          });
+        }
 
         if (window.history.pushState) {
           window.history.pushState(null, "", href);
@@ -213,17 +307,31 @@ export default function Navbar() {
             className="pointer-events-auto absolute top-20 left-4 right-4 max-w-md mx-auto rounded-3xl bg-[#121214]/95 backdrop-blur-2xl border border-white/10 p-5 shadow-2xl lg:hidden"
           >
             <div className="flex flex-col gap-1.5">
-              {navLinks.map((link) => (
-                <a
-                  key={link.label}
-                  href={link.href}
-                  onClick={(e) => handleNavClick(e, link.href)}
-                  className="px-4 py-3 rounded-2xl text-sm font-medium text-gray-200 hover:text-emerald-400 hover:bg-white/5 transition-colors flex items-center justify-between"
-                >
-                  <span>{link.label}</span>
-                  <span className="text-xs text-gray-500 font-mono">→</span>
-                </a>
-              ))}
+              {navLinks.map((link) => {
+                const isActive = activeSection === link.id;
+                return (
+                  <a
+                    key={link.label}
+                    href={link.href}
+                    onClick={(e) => handleNavClick(e, link.href)}
+                    className={`px-4 py-3 rounded-2xl text-sm font-medium transition-all flex items-center justify-between ${
+                      isActive
+                        ? "text-emerald-400 bg-emerald-500/15 border border-emerald-500/30 font-semibold shadow-[0_0_15px_rgba(17,145,52,0.15)]"
+                        : "text-gray-200 hover:text-emerald-400 hover:bg-white/5"
+                    }`}
+                  >
+                    <div className="flex items-center gap-2.5">
+                      {isActive && (
+                        <span className="w-1.5 h-1.5 rounded-full bg-emerald-400 animate-pulse" />
+                      )}
+                      <span>{link.label}</span>
+                    </div>
+                    <span className={`text-xs font-mono ${isActive ? "text-emerald-400" : "text-gray-500"}`}>
+                      {isActive ? "●" : "→"}
+                    </span>
+                  </a>
+                );
+              })}
 
               <div className="pt-3 border-t border-white/10 mt-2">
                 <a

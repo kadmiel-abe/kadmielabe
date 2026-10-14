@@ -3,6 +3,12 @@
 import { useEffect } from "react";
 import Lenis from "lenis";
 
+declare global {
+  interface Window {
+    __lenis?: Lenis;
+  }
+}
+
 export default function SmoothScroll() {
   useEffect(() => {
     // Respect prefers-reduced-motion
@@ -22,6 +28,8 @@ export default function SmoothScroll() {
       touchMultiplier: 1.5,
     });
 
+    window.__lenis = lenis;
+
     function raf(time: number) {
       lenis.raf(time);
       requestAnimationFrame(raf);
@@ -29,8 +37,9 @@ export default function SmoothScroll() {
 
     const rafId = requestAnimationFrame(raf);
 
-    // Synchronize anchor clicks with Lenis smooth scroll
+    // Synchronize anchor clicks from other elements with Lenis smooth scroll
     const handleAnchorClick = (e: MouseEvent) => {
+      if (e.defaultPrevented) return;
       const target = (e.target as HTMLElement).closest("a");
       if (!target) return;
       const href = target.getAttribute("href");
@@ -38,7 +47,7 @@ export default function SmoothScroll() {
         const element = document.querySelector(href);
         if (element) {
           e.preventDefault();
-          lenis.scrollTo(element as HTMLElement, { offset: -80 });
+          lenis.scrollTo(element as HTMLElement, { offset: -85 });
         }
       }
     };
@@ -48,6 +57,7 @@ export default function SmoothScroll() {
     return () => {
       cancelAnimationFrame(rafId);
       document.removeEventListener("click", handleAnchorClick);
+      delete window.__lenis;
       lenis.destroy();
     };
   }, []);
