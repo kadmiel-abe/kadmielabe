@@ -2,7 +2,17 @@
 
 import React, { useState, useEffect, useRef } from "react";
 import { motion, useInView, useReducedMotion } from "framer-motion";
-import { Sparkles, Code2, Database, Palette, Terminal, Cpu, Layout, Globe, FileCode2 } from "lucide-react";
+import {
+  Sparkles,
+  Code2,
+  Database,
+  Palette,
+  Terminal,
+  Cpu,
+  Layout,
+  Globe,
+  FileCode2,
+} from "lucide-react";
 import { EASINGS } from "@/lib/motion";
 
 interface ToolItem {
@@ -63,16 +73,20 @@ const toolsList: ToolItem[] = [
   },
 ];
 
-function ToolPercentageCounter({ target }: { target: number }) {
+// Compteur de pourcentage — déclenché via prop animate (pas useInView interne)
+function ToolPercentageCounter({
+  target,
+  animate,
+}: {
+  target: number;
+  animate: boolean;
+}) {
   const [val, setVal] = useState(0);
-  const ref = useRef<HTMLSpanElement>(null);
-  // once: true empêche le re-trigger, hasAnimated évite un double-départ
-  const inView = useInView(ref, { once: true, margin: "-30px" });
   const shouldReduceMotion = useReducedMotion();
   const hasAnimated = useRef(false);
 
   useEffect(() => {
-    if (!inView || hasAnimated.current) return;
+    if (!animate || hasAnimated.current) return;
     hasAnimated.current = true;
 
     if (shouldReduceMotion) {
@@ -97,13 +111,43 @@ function ToolPercentageCounter({ target }: { target: number }) {
     }, stepTime);
 
     return () => clearInterval(timer);
-  }, [inView, target, shouldReduceMotion]);
+  }, [animate, target, shouldReduceMotion]);
 
-  return <span ref={ref}>{val}%</span>;
+  return <span>{val}%</span>;
+}
+
+// Barre de progression animée — contrôlée par prop animate
+function ProgressBar({
+  percentage,
+  animate,
+  delay,
+}: {
+  percentage: number;
+  animate: boolean;
+  delay: number;
+}) {
+  return (
+    <div className="w-full h-2 rounded-full bg-gray-100 dark:bg-white/5 overflow-hidden">
+      <motion.div
+        initial={{ scaleX: 0 }}
+        animate={{ scaleX: animate ? percentage / 100 : 0 }}
+        transition={{ duration: 0.6, delay, ease: EASINGS.awwwards }}
+        className="h-full w-full origin-left rounded-full bg-emerald-500 shadow-[0_0_10px_rgba(17,145,52,0.5)]"
+      />
+    </div>
+  );
 }
 
 export default function Tools() {
   const shouldReduceMotion = useReducedMotion();
+
+  // On place le ref sur le container de la grille.
+  // amount: 0 = déclenche dès qu'un seul pixel est visible.
+  // C'est la correction du bug Lenis + whileInView :
+  // Lenis intercepte le scroll natif → l'IntersectionObserver de whileInView
+  // ne se déclenche jamais. Ici on utilise useInView + animate manuel.
+  const gridRef = useRef<HTMLDivElement>(null);
+  const isInView = useInView(gridRef, { once: true, amount: 0 });
 
   return (
     <section
@@ -132,41 +176,52 @@ export default function Tools() {
           </h2>
 
           <p className="mt-4 text-sm sm:text-base text-gray-600 dark:text-gray-400 font-light max-w-xl mx-auto leading-relaxed">
-            Une boîte à outils moderne rigoureusement sélectionnée pour garantir performance, sécurité et rapidité de mise en production.
+            Une boîte à outils moderne rigoureusement sélectionnée pour
+            garantir performance, sécurité et rapidité de mise en production.
           </p>
         </div>
 
-        {/* Grid de cartes outils avec barres de progression */}
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 sm:gap-7">
+        {/* Grid des cartes — ref sur ce div pour useInView */}
+        <div
+          ref={gridRef}
+          className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 sm:gap-7"
+        >
           {toolsList.map((tool, idx) => {
             const Icon = tool.icon;
+            const cardDelay = shouldReduceMotion ? 0 : idx * 0.05;
 
             return (
               <motion.div
                 key={tool.name}
-                initial={shouldReduceMotion ? { opacity: 0 } : { opacity: 0, y: 15 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true, margin: "-20px" }}
-                transition={{ duration: 0.35, delay: idx * 0.03, ease: EASINGS.awwwards }}
-                // Supprimé chamfer-step: le clip-path coupait border-radius et rendait les hover borders invisibles
+                initial={{ opacity: 0, y: 22 }}
+                animate={
+                  isInView
+                    ? { opacity: 1, y: 0 }
+                    : { opacity: 0, y: 22 }
+                }
+                transition={{
+                  duration: 0.4,
+                  delay: cardDelay,
+                  ease: EASINGS.awwwards,
+                }}
                 className="group relative p-6 bg-white dark:bg-[#141416] rounded-2xl border border-gray-200/90 dark:border-white/10 hover:border-emerald-500/50 shadow-sm hover:shadow-xl transition-all duration-300 hover:-translate-y-1 flex flex-col justify-between"
               >
                 <div>
-                  {/* Top row: Icon on left, Percentage Pill on right */}
+                  {/* Top row: Icône + Badge % */}
                   <div className="flex items-center justify-between mb-6">
-                    {/* Supprimé animate-float-* ici: conflictait avec group-hover:scale-110 */}
-                    <div
-                      className="w-12 h-12 rounded-xl bg-emerald-500/10 dark:bg-emerald-500/15 border border-emerald-500/20 flex items-center justify-center text-emerald-600 dark:text-emerald-400 group-hover:scale-110 group-hover:bg-emerald-500 group-hover:text-black transition-all duration-300 shadow-sm"
-                    >
+                    <div className="w-12 h-12 rounded-xl bg-emerald-500/10 dark:bg-emerald-500/15 border border-emerald-500/20 flex items-center justify-center text-emerald-600 dark:text-emerald-400 group-hover:scale-110 group-hover:bg-emerald-500 group-hover:text-black transition-all duration-300 shadow-sm">
                       <Icon className="w-6 h-6" />
                     </div>
 
                     <span className="px-3 py-1 rounded-full text-xs font-mono font-bold bg-black dark:bg-[#1F1F24] text-white shadow-sm border border-white/10">
-                      <ToolPercentageCounter target={tool.percentage} />
+                      <ToolPercentageCounter
+                        target={tool.percentage}
+                        animate={isInView}
+                      />
                     </span>
                   </div>
 
-                  {/* Tool Name & Category */}
+                  {/* Nom & Catégorie */}
                   <h3 className="font-heading text-lg sm:text-xl font-bold text-gray-900 dark:text-white group-hover:text-emerald-500 transition-colors mb-1">
                     {tool.name}
                   </h3>
@@ -175,17 +230,13 @@ export default function Tools() {
                   </p>
                 </div>
 
-                {/* Bottom Emerald Progress Bar */}
+                {/* Barre de progression verte */}
                 <div className="pt-2">
-                  <div className="w-full h-2 rounded-full bg-gray-100 dark:bg-white/5 overflow-hidden">
-                    <motion.div
-                      initial={{ scaleX: 0 }}
-                      whileInView={{ scaleX: tool.percentage / 100 }}
-                      viewport={{ once: true }}
-                      transition={{ duration: 0.5, delay: 0.1 + idx * 0.03, ease: EASINGS.awwwards }}
-                      className="h-full w-full origin-left rounded-full bg-emerald-500 shadow-[0_0_10px_rgba(17,145,52,0.5)]"
-                    />
-                  </div>
+                  <ProgressBar
+                    percentage={tool.percentage}
+                    animate={isInView}
+                    delay={0.15 + cardDelay}
+                  />
                 </div>
               </motion.div>
             );
