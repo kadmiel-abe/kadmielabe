@@ -28,10 +28,11 @@ export default function CustomCursor() {
     checkDesktop();
     window.addEventListener("resize", checkDesktop);
 
+    // Utilisation d'un ref pour éviter la re-registration des listeners à chaque changement de isVisible
     const handleMouseMove = (e: MouseEvent) => {
       mouseX.set(e.clientX);
       mouseY.set(e.clientY);
-      if (!isVisible) setIsVisible(true);
+      setIsVisible(true);
     };
 
     const handleMouseEnter = () => setIsVisible(true);
@@ -59,8 +60,8 @@ export default function CustomCursor() {
 
     window.addEventListener("mousemove", handleMouseMove);
     window.addEventListener("mouseover", handleOver);
-    window.addEventListener("mouseenter", handleMouseEnter);
-    window.addEventListener("mouseleave", handleMouseLeave);
+    document.addEventListener("mouseenter", handleMouseEnter);
+    document.addEventListener("mouseleave", handleMouseLeave);
     window.addEventListener("mousedown", handleMouseDown);
     window.addEventListener("mouseup", handleMouseUp);
 
@@ -68,12 +69,13 @@ export default function CustomCursor() {
       window.removeEventListener("resize", checkDesktop);
       window.removeEventListener("mousemove", handleMouseMove);
       window.removeEventListener("mouseover", handleOver);
-      window.removeEventListener("mouseenter", handleMouseEnter);
-      window.removeEventListener("mouseleave", handleMouseLeave);
+      document.removeEventListener("mouseenter", handleMouseEnter);
+      document.removeEventListener("mouseleave", handleMouseLeave);
       window.removeEventListener("mousedown", handleMouseDown);
       window.removeEventListener("mouseup", handleMouseUp);
     };
-  }, [isVisible, mouseX, mouseY]);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [mouseX, mouseY]); // isVisible retiré des deps: causait une fuite mémoire (re-registration des listeners)
 
   if (!isDesktop || shouldReduceMotion) return null;
 

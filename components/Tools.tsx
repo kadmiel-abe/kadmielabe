@@ -66,29 +66,33 @@ const toolsList: ToolItem[] = [
 function ToolPercentageCounter({ target }: { target: number }) {
   const [val, setVal] = useState(0);
   const ref = useRef<HTMLSpanElement>(null);
+  // once: true empêche le re-trigger, hasAnimated évite un double-départ
   const inView = useInView(ref, { once: true, margin: "-30px" });
   const shouldReduceMotion = useReducedMotion();
+  const hasAnimated = useRef(false);
 
   useEffect(() => {
-    if (!inView) return;
+    if (!inView || hasAnimated.current) return;
+    hasAnimated.current = true;
+
     if (shouldReduceMotion) {
       setVal(target);
       return;
     }
 
-    let start = 0;
-    const duration = 600;
-    const stepTime = 25;
+    let current = 0;
+    const duration = 700;
+    const stepTime = 20;
     const steps = duration / stepTime;
     const increment = target / steps;
 
     const timer = setInterval(() => {
-      start += increment;
-      if (start >= target) {
+      current += increment;
+      if (current >= target) {
         setVal(target);
         clearInterval(timer);
       } else {
-        setVal(Math.floor(start));
+        setVal(Math.round(current));
       }
     }, stepTime);
 
@@ -132,16 +136,10 @@ export default function Tools() {
           </p>
         </div>
 
-        {/* Grid of Tool Cards with Chamfered Corners and Percentage Progress Bars */}
+        {/* Grid de cartes outils avec barres de progression */}
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 sm:gap-7">
           {toolsList.map((tool, idx) => {
             const Icon = tool.icon;
-            const floatClass =
-              idx % 3 === 0
-                ? "animate-float-1"
-                : idx % 3 === 1
-                ? "animate-float-2"
-                : "animate-float-3";
 
             return (
               <motion.div
@@ -150,13 +148,15 @@ export default function Tools() {
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true, margin: "-20px" }}
                 transition={{ duration: 0.35, delay: idx * 0.03, ease: EASINGS.awwwards }}
-                className="group relative p-6 bg-white dark:bg-[#141416] rounded-2xl border border-gray-200/90 dark:border-white/10 hover:border-emerald-500/50 shadow-sm hover:shadow-xl transition-all duration-300 hover:-translate-y-1 chamfer-step flex flex-col justify-between"
+                // Supprimé chamfer-step: le clip-path coupait border-radius et rendait les hover borders invisibles
+                className="group relative p-6 bg-white dark:bg-[#141416] rounded-2xl border border-gray-200/90 dark:border-white/10 hover:border-emerald-500/50 shadow-sm hover:shadow-xl transition-all duration-300 hover:-translate-y-1 flex flex-col justify-between"
               >
                 <div>
                   {/* Top row: Icon on left, Percentage Pill on right */}
                   <div className="flex items-center justify-between mb-6">
+                    {/* Supprimé animate-float-* ici: conflictait avec group-hover:scale-110 */}
                     <div
-                      className={`w-12 h-12 rounded-xl bg-emerald-500/10 dark:bg-emerald-500/15 border border-emerald-500/20 flex items-center justify-center text-emerald-600 dark:text-emerald-400 group-hover:scale-110 group-hover:bg-emerald-500 group-hover:text-black transition-all duration-300 shadow-sm ${floatClass}`}
+                      className="w-12 h-12 rounded-xl bg-emerald-500/10 dark:bg-emerald-500/15 border border-emerald-500/20 flex items-center justify-center text-emerald-600 dark:text-emerald-400 group-hover:scale-110 group-hover:bg-emerald-500 group-hover:text-black transition-all duration-300 shadow-sm"
                     >
                       <Icon className="w-6 h-6" />
                     </div>

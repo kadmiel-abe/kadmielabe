@@ -217,8 +217,8 @@ export default function Navbar() {
         aria-label="Navigation principale"
         className={`pointer-events-auto w-full max-w-6xl rounded-full transition-all duration-300 flex items-center justify-between px-4 sm:px-6 ${
           scrolled
-            ? "py-2 sm:py-2 bg-[#0f0f11]/90 dark:bg-[#0f0f11]/90 bg-white/90 backdrop-blur-xl border border-white/10 dark:border-white/10 border-gray-200/80 shadow-[0_12px_40px_-10px_rgba(0,0,0,0.5)]"
-            : "py-2.5 sm:py-3 bg-[#121214]/80 dark:bg-[#121214]/80 bg-white/80 backdrop-blur-lg border border-white/10 dark:border-white/10 border-gray-200/60 shadow-lg"
+            ? "py-2 sm:py-2 bg-white/90 dark:bg-[#0f0f11]/90 backdrop-blur-xl border border-gray-200/80 dark:border-white/10 shadow-[0_12px_40px_-10px_rgba(0,0,0,0.5)]"
+            : "py-2.5 sm:py-3 bg-white/80 dark:bg-[#121214]/80 backdrop-blur-lg border border-gray-200/60 dark:border-white/10 shadow-lg"
         }`}
       >
         {/* Logo: Code mark with emerald dot + Kadmiel */}
