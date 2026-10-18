@@ -15,12 +15,12 @@
   /* ==========================================
    * 1. MOTION VARIABLES (SCALES & TIMINGS)
    * ========================================== */
-  --anim-duration-screen: 0.75s;        /* Scroll appearances and 1st screen (0.6s - 1s) */
-  --anim-duration-micro: 0.28s;         /* Micro-interactions (hover, click, focus) */
-  --anim-duration-glow: 2.4s;           /* Ambient light breathing */
-  --anim-distance-y: 24px;              /* Vertical translation desktop */
-  --anim-distance-y-mobile: 12px;       /* Vertical translation mobile */
-  --anim-distance-x: 20px;              /* Lateral horizontal translation */
+  --anim-duration-screen: 0.38s;        /* Fluid scroll appearances (snappy, no drag) */
+  --anim-duration-micro: 0.18s;         /* Instant micro-interactions (hover, click, focus) */
+  --anim-duration-glow: 2.0s;           /* Ambient light breathing */
+  --anim-distance-y: 18px;              /* Vertical translation desktop */
+  --anim-distance-y-mobile: 10px;       /* Vertical translation mobile */
+  --anim-distance-x: 16px;              /* Lateral horizontal translation */
   --anim-scale-lift: 1.015;             /* Micro-elevation cards & containers */
   --anim-scale-button: 1.025;           /* Micro-scale CTA buttons */
 
@@ -85,17 +85,17 @@ select {
   }
 
   /* Secondary & bordered buttons */
-  a[href="#projets"] {
+  a[href="#portfolio"] {
     transition: transform var(--anim-duration-micro) var(--anim-ease-out),
                 border-color var(--anim-duration-micro) var(--anim-ease-out),
                 background-color var(--anim-duration-micro) ease !important;
   }
 
-  a[href="#projets"]:hover {
+  a[href="#portfolio"]:hover {
     transform: translateY(-2px) !important;
   }
 
-  a[href="#projets"]:active {
+  a[href="#portfolio"]:active {
     transform: translateY(0px) scale(0.98) !important;
   }
 
@@ -111,13 +111,13 @@ select {
   }
 
   /* Project cards */
-  #projets article {
-    transition: transform var(--anim-duration-screen) var(--anim-ease-out),
+  #portfolio article {
+    transition: transform var(--anim-duration-micro) var(--anim-ease-out),
                 border-color var(--anim-duration-micro) var(--anim-ease-out),
-                box-shadow var(--anim-duration-screen) var(--anim-ease-out) !important;
+                box-shadow var(--anim-duration-micro) var(--anim-ease-out) !important;
   }
 
-  #projets article:hover {
+  #portfolio article:hover {
     transform: translateY(-4px) !important;
   }
 
@@ -125,9 +125,9 @@ select {
   #services .grid > div,
   #processus .grid > div,
   #tarifs .grid > div {
-    transition: transform var(--anim-duration-screen) var(--anim-ease-out),
+    transition: transform var(--anim-duration-micro) var(--anim-ease-out),
                 border-color var(--anim-duration-micro) var(--anim-ease-out),
-                box-shadow var(--anim-duration-screen) var(--anim-ease-out) !important;
+                box-shadow var(--anim-duration-micro) var(--anim-ease-out) !important;
   }
 
   #services .grid > div:hover,
@@ -218,7 +218,7 @@ select:focus {
   }
 
   /* Disable aggressive lifts on small screen */
-  #projets article:hover,
+  #portfolio article:hover,
   #services .grid > div:hover,
   #processus .grid > div:hover,
   #tarifs .grid > div:hover {
@@ -293,4 +293,3 @@ select:focus {
   animation-duration: 5s !important;
   transition: animation-duration 0.5s ease;
 }
-

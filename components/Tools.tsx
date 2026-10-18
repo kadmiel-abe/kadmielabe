@@ -77,8 +77,8 @@ function ToolPercentageCounter({ target }: { target: number }) {
     }
 
     let start = 0;
-    const duration = 1200;
-    const stepTime = 30;
+    const duration = 600;
+    const stepTime = 25;
     const steps = duration / stepTime;
     const increment = target / steps;
 
@@ -146,10 +146,10 @@ export default function Tools() {
             return (
               <motion.div
                 key={tool.name}
-                initial={shouldReduceMotion ? { opacity: 0 } : { opacity: 0, y: 25 }}
+                initial={shouldReduceMotion ? { opacity: 0 } : { opacity: 0, y: 15 }}
                 whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true, margin: "-40px" }}
-                transition={{ duration: 0.6, delay: idx * 0.06, ease: EASINGS.awwwards }}
+                viewport={{ once: true, margin: "-20px" }}
+                transition={{ duration: 0.35, delay: idx * 0.03, ease: EASINGS.awwwards }}
                 className="group relative p-6 bg-white dark:bg-[#141416] rounded-2xl border border-gray-200/90 dark:border-white/10 hover:border-emerald-500/50 shadow-sm hover:shadow-xl transition-all duration-300 hover:-translate-y-1 chamfer-step flex flex-col justify-between"
               >
                 <div>
@@ -179,11 +179,11 @@ export default function Tools() {
                 <div className="pt-2">
                   <div className="w-full h-2 rounded-full bg-gray-100 dark:bg-white/5 overflow-hidden">
                     <motion.div
-                      initial={{ width: 0 }}
-                      whileInView={{ width: `${tool.percentage}%` }}
+                      initial={{ scaleX: 0 }}
+                      whileInView={{ scaleX: tool.percentage / 100 }}
                       viewport={{ once: true }}
-                      transition={{ duration: 1.1, delay: 0.2 + idx * 0.05, ease: EASINGS.awwwards }}
-                      className="h-full rounded-full bg-emerald-500 shadow-[0_0_10px_rgba(17,145,52,0.5)]"
+                      transition={{ duration: 0.5, delay: 0.1 + idx * 0.03, ease: EASINGS.awwwards }}
+                      className="h-full w-full origin-left rounded-full bg-emerald-500 shadow-[0_0_10px_rgba(17,145,52,0.5)]"
                     />
                   </div>
                 </div>
@@ -195,4 +195,3 @@ export default function Tools() {
     </section>
   );
 }
-

@@ -84,10 +84,10 @@ export default function About() {
           {/* Left Column: Cut-corner Chamfered Portrait Card with Skill Pills */}
           <div className="lg:col-span-5 flex justify-center">
             <motion.div
-              initial={shouldReduceMotion ? { opacity: 0 } : { opacity: 0, y: 30 }}
+              initial={shouldReduceMotion ? { opacity: 0 } : { opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true, margin: "-50px" }}
-              transition={{ duration: 0.8, ease: EASINGS.awwwards }}
+              viewport={{ once: true, margin: "-30px" }}
+              transition={{ duration: 0.45, ease: EASINGS.awwwards }}
               className="relative w-full max-w-[380px] sm:max-w-[420px] pb-10 sm:pb-8 overflow-visible"
             >
               {/* Outer Chamfered Container (Border effect with cut corners) */}
@@ -115,10 +115,10 @@ export default function About() {
                 {skillPills.map((pill, i) => (
                   <motion.span
                     key={pill.label}
-                    initial={shouldReduceMotion ? { opacity: 0 } : { opacity: 0, y: 15 }}
+                    initial={shouldReduceMotion ? { opacity: 0 } : { opacity: 0, y: 10 }}
                     whileInView={{ opacity: 1, y: 0 }}
                     viewport={{ once: true }}
-                    transition={{ duration: 0.4, delay: 0.1 + i * 0.05 }}
+                    transition={{ duration: 0.3, delay: 0.05 + i * 0.03 }}
                     className={`px-3 py-1.5 rounded-full text-xs font-heading shadow-xl border border-white/10 backdrop-blur-md whitespace-nowrap ${pill.bg} ${pill.float}`}
                   >
                     {pill.label}
@@ -130,10 +130,10 @@ export default function About() {
 
           {/* Right Column: Bio Content, CTA, and Stylized Signature */}
           <motion.div
-            initial={shouldReduceMotion ? { opacity: 0 } : { opacity: 0, x: 40 }}
+            initial={shouldReduceMotion ? { opacity: 0 } : { opacity: 0, x: 25 }}
             whileInView={{ opacity: 1, x: 0 }}
-            viewport={{ once: true, margin: "-50px" }}
-            transition={{ duration: 0.8, ease: EASINGS.awwwards }}
+            viewport={{ once: true, margin: "-30px" }}
+            transition={{ duration: 0.45, ease: EASINGS.awwwards }}
             className="lg:col-span-7 flex flex-col justify-center mt-6 lg:mt-0"
           >
             {/* Section label with double-circle icon */}

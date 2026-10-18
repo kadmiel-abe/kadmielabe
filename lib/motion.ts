@@ -24,17 +24,17 @@ export const EASINGS = {
 };
 
 export const DURATIONS = {
-  fast: 0.25,
-  medium: 0.55,
-  slow: 0.85,
-  reveal: 0.95,
-  float: 4.5,
+  fast: 0.18,       // Snappy micro-interactions (hover, tap)
+  medium: 0.32,     // Cards, pills, submenus
+  slow: 0.45,       // Section entrance, headers
+  reveal: 0.5,      // Text/mask reveal
+  float: 3.5,       // Organic float
 };
 
 export const SPRINGS = {
-  tactile: { type: "spring", stiffness: 350, damping: 25 } as const,
-  gentle: { type: "spring", stiffness: 120, damping: 18 } as const,
-  smoothScroll: { stiffness: 100, damping: 30, restDelta: 0.001 } as const,
+  tactile: { type: "spring", stiffness: 450, damping: 28 } as const,
+  gentle: { type: "spring", stiffness: 220, damping: 22 } as const,
+  smoothScroll: { stiffness: 250, damping: 28, restDelta: 0.001 } as const,
 };
 
 // ---------------------------------------------------------------------------

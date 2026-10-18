@@ -1,7 +1,8 @@
 "use client";
 
 import React from "react";
-import { motion, useReducedMotion } from "framer-motion";
+import type { MouseEvent } from "react";
+import { motion, useReducedMotion, useSpring } from "framer-motion";
 import { ArrowUpRight, CheckCircle2 } from "lucide-react";
 import Image from "next/image";
 import Magnetic from "@/components/motion/Magnetic";
@@ -38,17 +39,42 @@ export function ProjectCard({
 }: ProjectCardProps) {
   const shouldReduceMotion = useReducedMotion();
   const isEven = index % 2 === 0;
+  const rotateX = useSpring(0, { stiffness: 180, damping: 24 });
+  const rotateY = useSpring(0, { stiffness: 180, damping: 24 });
+
+  const handleTilt = (event: MouseEvent<HTMLElement>) => {
+    if (shouldReduceMotion) return;
+
+    const bounds = event.currentTarget.getBoundingClientRect();
+    const x = (event.clientX - bounds.left) / bounds.width;
+    const y = (event.clientY - bounds.top) / bounds.height;
+    rotateX.set((0.5 - y) * 4);
+    rotateY.set((x - 0.5) * 4);
+  };
+
+  const resetTilt = () => {
+    rotateX.set(0);
+    rotateY.set(0);
+  };
 
   return (
     <motion.article
+      onMouseMove={handleTilt}
+      onMouseLeave={resetTilt}
+      style={{
+        transformPerspective: 1200,
+        rotateX: shouldReduceMotion ? 0 : rotateX,
+        rotateY: shouldReduceMotion ? 0 : rotateY,
+        transformStyle: "preserve-3d",
+      }}
       initial={
         shouldReduceMotion
           ? { opacity: 0 }
-          : { opacity: 0, x: isEven ? -40 : 40, y: 20 }
+          : { opacity: 0, x: isEven ? -25 : 25, y: 15 }
       }
       whileInView={{ opacity: 1, x: 0, y: 0 }}
-      viewport={{ once: true, margin: "-60px" }}
-      transition={{ duration: 0.75, ease: EASINGS.awwwards }}
+      viewport={{ once: true, margin: "-30px" }}
+      transition={{ duration: 0.45, ease: EASINGS.awwwards }}
       className="group relative rounded-3xl p-1 bg-gradient-to-br from-emerald-500/30 via-white/5 to-transparent chamfer-tl-br transition-all duration-500 hover:from-emerald-500/60 hover:shadow-[0_20px_50px_-15px_rgba(17,145,52,0.25)]"
     >
       <div className="w-full h-full bg-[#121214] rounded-3xl p-6 sm:p-10 lg:p-12 chamfer-tl-br overflow-hidden">

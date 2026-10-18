@@ -30,10 +30,10 @@ export default function Contact() {
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-16 items-start">
           {/* Left Column: Direct Contact Info & Value Prop */}
           <motion.div
-            initial={shouldReduceMotion ? { opacity: 0 } : { opacity: 0, x: -35 }}
+            initial={shouldReduceMotion ? { opacity: 0 } : { opacity: 0, x: -20 }}
             whileInView={{ opacity: 1, x: 0 }}
-            viewport={{ once: true, margin: "-50px" }}
-            transition={{ duration: 0.75, ease: EASINGS.awwwards }}
+            viewport={{ once: true, margin: "-30px" }}
+            transition={{ duration: 0.4, ease: EASINGS.awwwards }}
             className="lg:col-span-5 flex flex-col justify-between"
           >
             <div>
@@ -118,10 +118,10 @@ export default function Contact() {
 
           {/* Right Column: Interactive Quick Form */}
           <motion.div
-            initial={shouldReduceMotion ? { opacity: 0 } : { opacity: 0, x: 30 }}
+            initial={shouldReduceMotion ? { opacity: 0 } : { opacity: 0, x: 20 }}
             whileInView={{ opacity: 1, x: 0 }}
-            viewport={{ once: true, margin: "-50px" }}
-            transition={{ duration: 0.7, ease: "easeOut", delay: 0.15 }}
+            viewport={{ once: true, margin: "-30px" }}
+            transition={{ duration: 0.4, ease: "easeOut", delay: 0.08 }}
             className="lg:col-span-7"
           >
             <div className="p-8 sm:p-10 rounded-3xl bg-[#141416] border border-[#1E1E22] shadow-2xl chamfer-tl-br hover:border-emerald-500/40 transition-all duration-300">

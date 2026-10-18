@@ -147,10 +147,10 @@ export default function Services() {
               <motion.div
                 key={service.id}
                 layout
-                initial={shouldReduceMotion ? { opacity: 0 } : { opacity: 0, y: 30 }}
+                initial={shouldReduceMotion ? { opacity: 0 } : { opacity: 0, y: 20 }}
                 whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true, margin: "-40px" }}
-                transition={{ duration: 0.6, delay: index * 0.08, ease: EASINGS.awwwards }}
+                viewport={{ once: true, margin: "-30px" }}
+                transition={{ duration: 0.35, delay: index * 0.04, ease: EASINGS.awwwards }}
                 className={`overflow-hidden transition-all duration-300 chamfer-step border ${
                   isActive
                     ? "bg-[#141417] text-white border-emerald-500/40 shadow-2xl"
@@ -217,7 +217,7 @@ export default function Services() {
                       initial={{ opacity: 0, height: 0 }}
                       animate={{ opacity: 1, height: "auto" }}
                       exit={{ opacity: 0, height: 0 }}
-                      transition={{ duration: 0.35, ease: "easeInOut" }}
+                      transition={{ duration: 0.25, ease: "easeInOut" }}
                       className="overflow-hidden"
                     >
                       <div className="px-5 sm:px-7 pb-7 pt-2 border-t border-white/10">
@@ -226,9 +226,9 @@ export default function Services() {
                           {service.subcategories.map((tag, tagIdx) => (
                             <motion.span
                               key={tag}
-                              initial={shouldReduceMotion ? { opacity: 0 } : { opacity: 0, scale: 0.85, y: 8 }}
+                              initial={shouldReduceMotion ? { opacity: 0 } : { opacity: 0, scale: 0.9, y: 6 }}
                               animate={{ opacity: 1, scale: 1, y: 0 }}
-                              transition={{ duration: 0.3, delay: tagIdx * 0.05, ease: "easeOut" }}
+                              transition={{ duration: 0.2, delay: tagIdx * 0.02, ease: "easeOut" }}
                               className="px-3.5 py-1.5 rounded-full text-xs font-heading font-medium bg-[#1F1F24] text-gray-300 border border-white/10"
                             >
                               {tag}

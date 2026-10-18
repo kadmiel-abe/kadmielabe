@@ -106,16 +106,16 @@ export default function Hero() {
         {/* Big Syne Title with Masked Line/Word Reveal */}
         <div className="text-center max-w-4xl mx-auto mb-10 sm:mb-14 overflow-hidden">
           <motion.h1
-            initial={shouldReduceMotion ? { opacity: 0 } : { opacity: 0, y: 35 }}
+            initial={shouldReduceMotion ? { opacity: 0 } : { opacity: 0, y: 25 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8, ease: [0.22, 1, 0.36, 1] }}
+            transition={{ duration: 0.45, ease: [0.22, 1, 0.36, 1] }}
             className="font-heading text-4xl sm:text-6xl md:text-7xl lg:text-8xl font-black tracking-tight leading-[1.05] text-gray-900 dark:text-white"
           >
             <span className="inline-block overflow-hidden align-top">
               <motion.span
                 initial={shouldReduceMotion ? { y: 0 } : { y: "100%" }}
                 animate={{ y: "0%" }}
-                transition={{ duration: 0.7, ease: [0.22, 1, 0.36, 1] }}
+                transition={{ duration: 0.4, ease: [0.22, 1, 0.36, 1] }}
                 className="inline-block"
               >
                 Je suis{" "}
@@ -125,7 +125,7 @@ export default function Hero() {
               <motion.span
                 initial={shouldReduceMotion ? { y: 0 } : { y: "100%" }}
                 animate={{ y: "0%" }}
-                transition={{ duration: 0.75, delay: 0.12, ease: [0.22, 1, 0.36, 1] }}
+                transition={{ duration: 0.42, delay: 0.08, ease: [0.22, 1, 0.36, 1] }}
                 className="inline-flex items-center"
               >
                 Kadmiel Abe
@@ -143,9 +143,9 @@ export default function Hero() {
           </motion.h1>
 
           <motion.p
-            initial={shouldReduceMotion ? { opacity: 0 } : { opacity: 0, y: 20 }}
+            initial={shouldReduceMotion ? { opacity: 0 } : { opacity: 0, y: 15 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6, delay: 0.25, ease: "easeOut" }}
+            transition={{ duration: 0.35, delay: 0.15, ease: "easeOut" }}
             className="mt-4 sm:mt-5 text-sm sm:text-lg md:text-xl font-medium text-gray-600 dark:text-gray-400 max-w-2xl mx-auto"
           >
             Concepteur d&apos;applications SaaS et de plateformes B2B basé à Abidjan
@@ -277,9 +277,9 @@ export default function Hero() {
 
               {/* Floating Skill Badges (Anchored to the circular portrait with continuous float) */}
               <motion.div
-                initial={shouldReduceMotion ? { opacity: 0 } : { opacity: 0, scale: 0.8 }}
+                initial={shouldReduceMotion ? { opacity: 0 } : { opacity: 0, scale: 0.85 }}
                 animate={{ opacity: 1, scale: 1 }}
-                transition={{ duration: 0.6, delay: 0.2 }}
+                transition={{ duration: 0.35, delay: 0.05 }}
                 className="absolute top-3 -left-2 sm:top-6 sm:-left-6 z-20 px-3 sm:px-3.5 py-1.5 rounded-full bg-white dark:bg-[#18181B] text-gray-900 dark:text-white border border-gray-200 dark:border-white/10 text-[11px] sm:text-xs font-heading font-semibold shadow-xl backdrop-blur-md flex items-center gap-1.5 animate-float-1 whitespace-nowrap"
               >
                 <span className="w-2 h-2 rounded-full bg-emerald-500" />
@@ -287,9 +287,9 @@ export default function Hero() {
               </motion.div>
 
               <motion.div
-                initial={shouldReduceMotion ? { opacity: 0 } : { opacity: 0, scale: 0.8 }}
+                initial={shouldReduceMotion ? { opacity: 0 } : { opacity: 0, scale: 0.85 }}
                 animate={{ opacity: 1, scale: 1 }}
-                transition={{ duration: 0.6, delay: 0.3 }}
+                transition={{ duration: 0.35, delay: 0.1 }}
                 className="absolute top-5 -right-2 sm:top-8 sm:-right-6 z-20 px-3.5 sm:px-4 py-1.5 rounded-full bg-emerald-500 text-black text-[11px] sm:text-xs font-heading font-bold shadow-xl shadow-emerald-500/25 flex items-center gap-1.5 animate-float-2 whitespace-nowrap"
               >
                 <Sparkles className="w-3.5 h-3.5 fill-black" />
@@ -297,9 +297,9 @@ export default function Hero() {
               </motion.div>
 
               <motion.div
-                initial={shouldReduceMotion ? { opacity: 0 } : { opacity: 0, scale: 0.8 }}
+                initial={shouldReduceMotion ? { opacity: 0 } : { opacity: 0, scale: 0.85 }}
                 animate={{ opacity: 1, scale: 1 }}
-                transition={{ duration: 0.6, delay: 0.4 }}
+                transition={{ duration: 0.35, delay: 0.15 }}
                 className="absolute bottom-20 -right-2 sm:bottom-24 sm:-right-4 z-20 px-3 sm:px-3.5 py-1.5 rounded-full bg-white dark:bg-[#18181B] text-gray-900 dark:text-white border border-gray-200 dark:border-white/10 text-[11px] sm:text-xs font-heading font-semibold shadow-xl backdrop-blur-md flex items-center gap-1.5 animate-float-3 whitespace-nowrap"
               >
                 <span className="w-2 h-2 rounded-full bg-emerald-500" />
@@ -307,9 +307,9 @@ export default function Hero() {
               </motion.div>
 
               <motion.div
-                initial={shouldReduceMotion ? { opacity: 0 } : { opacity: 0, scale: 0.8 }}
+                initial={shouldReduceMotion ? { opacity: 0 } : { opacity: 0, scale: 0.85 }}
                 animate={{ opacity: 1, scale: 1 }}
-                transition={{ duration: 0.6, delay: 0.5 }}
+                transition={{ duration: 0.35, delay: 0.2 }}
                 className="absolute bottom-14 -left-2 sm:bottom-18 sm:-left-4 z-20 px-3.5 py-1.5 rounded-full bg-emerald-500/15 text-emerald-700 dark:text-emerald-400 border border-emerald-500/30 text-[11px] sm:text-xs font-heading font-bold shadow-xl backdrop-blur-md animate-float-1 whitespace-nowrap"
               >
                 Tailwind CSS
@@ -318,9 +318,9 @@ export default function Hero() {
 
             {/* Overlapping Dual CTA Button Bar with Magnetic physics */}
             <motion.div
-              initial={shouldReduceMotion ? { opacity: 0 } : { opacity: 0, y: 30 }}
+              initial={shouldReduceMotion ? { opacity: 0 } : { opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.6, delay: 0.35, ease: "easeOut" }}
+              transition={{ duration: 0.35, delay: 0.2, ease: "easeOut" }}
               className="mt-6 z-30"
             >
               <Magnetic strength={0.2}>

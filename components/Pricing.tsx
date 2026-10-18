@@ -119,10 +119,10 @@ export default function Pricing() {
           {plans.map((plan, index) => (
             <motion.div
               key={plan.name}
-              initial={{ opacity: 0, y: 35 }}
+              initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true, margin: "-50px" }}
-              transition={{ duration: 0.65, delay: index * 0.1, ease: EASINGS.awwwards }}
+              viewport={{ once: true, margin: "-30px" }}
+              transition={{ duration: 0.38, delay: index * 0.04, ease: EASINGS.awwwards }}
               className={`group relative rounded-3xl transition-all duration-300 flex flex-col overflow-visible ${
                 plan.highlight
                   ? "bg-gradient-to-b from-[#1C1C20] to-[#141417] border-2 border-emerald-500 shadow-glow-emerald hover:shadow-[0_0_35px_rgba(17,145,52,0.35)]"

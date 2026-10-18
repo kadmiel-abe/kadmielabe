@@ -88,10 +88,10 @@ export default function Process() {
             return (
               <motion.div
                 key={step.number}
-                initial={shouldReduceMotion ? { opacity: 0 } : { opacity: 0, y: 30 }}
+                initial={shouldReduceMotion ? { opacity: 0 } : { opacity: 0, y: 15 }}
                 whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true, margin: "-40px" }}
-                transition={{ duration: 0.65, delay: idx * 0.09, ease: EASINGS.awwwards }}
+                viewport={{ once: true, margin: "-20px" }}
+                transition={{ duration: 0.38, delay: idx * 0.04, ease: EASINGS.awwwards }}
                 className="group relative p-6 sm:p-8 bg-white dark:bg-[#141416] rounded-2xl border border-gray-200/90 dark:border-white/10 hover:border-emerald-500/50 shadow-sm hover:shadow-xl transition-all duration-300 hover:-translate-y-1 chamfer-step flex flex-col justify-between"
               >
                 <div>

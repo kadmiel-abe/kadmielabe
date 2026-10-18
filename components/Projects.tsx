@@ -1,6 +1,7 @@
 "use client";
 
 import React, { useState } from "react";
+import { AnimatePresence, motion, useReducedMotion } from "framer-motion";
 import { Sparkles, ArrowUpRight } from "lucide-react";
 import { projects } from "@/data/projects";
 import { ProjectCard } from "@/components/ProjectCard";
@@ -8,6 +9,7 @@ import Magnetic from "@/components/motion/Magnetic";
 
 export default function Projects() {
   const [filter, setFilter] = useState<string>("all");
+  const shouldReduceMotion = useReducedMotion();
 
   const filterTabs = [
     { id: "all", label: "Tous les Projets" },
@@ -65,11 +67,16 @@ export default function Projects() {
         </div>
 
         {/* Category filter tabs */}
-        <div className="flex items-center gap-2 overflow-x-auto pb-4 mb-12 scrollbar-none">
+        <div
+          role="group"
+          aria-label="Filtrer les projets par catégorie"
+          className="flex items-center gap-2 overflow-x-auto pb-4 mb-12 scrollbar-none"
+        >
           {filterTabs.map((tab) => (
             <button
               key={tab.id}
               onClick={() => setFilter(tab.id)}
+              aria-pressed={filter === tab.id}
               className={`px-5 py-2.5 rounded-full text-xs font-heading font-semibold transition-all duration-300 whitespace-nowrap cursor-pointer ${
                 filter === tab.id
                   ? "bg-emerald-500 text-black shadow-md shadow-emerald-500/20 scale-105"
@@ -82,24 +89,41 @@ export default function Projects() {
         </div>
 
         {/* Stack of Project Cards */}
-        <div className="space-y-12 sm:space-y-16">
-          {filteredProjects.map((project) => (
-            <ProjectCard
-              key={project.id}
-              index={project.index}
-              badge={project.badge}
-              categoryLabel={project.categoryLabel}
-              title={project.title}
-              description={project.description}
-              features={project.features}
-              tags={project.tags}
-              url={project.url}
-              urlDisplay={project.urlDisplay}
-              image={project.image}
-              imageAlt={project.imageAlt}
-              reverse={project.reverse}
-            />
-          ))}
+        <div
+          id="portfolio-projects"
+          className="space-y-12 sm:space-y-16"
+          aria-live="polite"
+        >
+          <AnimatePresence initial={false}>
+            {filteredProjects.map((project) => (
+              <motion.div
+                key={project.id}
+                layout={!shouldReduceMotion}
+                initial={shouldReduceMotion ? false : { opacity: 0, y: 12 }}
+                animate={{ opacity: 1, y: 0 }}
+                exit={shouldReduceMotion ? { opacity: 0 } : { opacity: 0, y: -8 }}
+                transition={{
+                  duration: shouldReduceMotion ? 0 : 0.28,
+                  ease: [0.22, 1, 0.36, 1],
+                }}
+              >
+                <ProjectCard
+                  index={project.index}
+                  badge={project.badge}
+                  categoryLabel={project.categoryLabel}
+                  title={project.title}
+                  description={project.description}
+                  features={project.features}
+                  tags={project.tags}
+                  url={project.url}
+                  urlDisplay={project.urlDisplay}
+                  image={project.image}
+                  imageAlt={project.imageAlt}
+                  reverse={project.reverse}
+                />
+              </motion.div>
+            ))}
+          </AnimatePresence>
         </div>
       </div>
     </section>

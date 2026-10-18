@@ -152,11 +152,11 @@ export default function Navbar() {
       if (navTimerRef.current) clearTimeout(navTimerRef.current);
       navTimerRef.current = setTimeout(() => {
         isNavigatingRef.current = false;
-      }, 1000);
+      }, 650);
 
       if (!targetId || targetId === "hero") {
         if (typeof window !== "undefined" && (window as any).__lenis) {
-          (window as any).__lenis.scrollTo(0, { offset: 0, duration: 1.0 });
+          (window as any).__lenis.scrollTo(0, { offset: 0, duration: 0.6 });
         } else {
           window.scrollTo({ top: 0, behavior: "smooth" });
         }
@@ -173,7 +173,7 @@ export default function Navbar() {
         if (typeof window !== "undefined" && (window as any).__lenis) {
           (window as any).__lenis.scrollTo(targetElement, {
             offset: -navbarOffset,
-            duration: 1.0,
+            duration: 0.6,
           });
         } else {
           const elementPosition = targetElement.getBoundingClientRect().top;
@@ -192,18 +192,33 @@ export default function Navbar() {
   };
 
   return (
-    <motion.header
-      initial={{ y: -70, opacity: 0 }}
-      animate={{ y: 0, opacity: 1 }}
-      transition={{ duration: 0.8, ease: EASINGS.awwwards }}
-      className="fixed top-4 left-0 right-0 z-50 flex justify-center px-4 sm:px-6 pointer-events-none"
-    >
+    <>
+      <AnimatePresence>
+        {mobileMenuOpen && (
+          <motion.button
+            type="button"
+            aria-label="Fermer le menu"
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            transition={{ duration: 0.2 }}
+            onClick={() => setMobileMenuOpen(false)}
+            className="fixed inset-0 z-40 bg-black/55 backdrop-blur-sm lg:hidden"
+          />
+        )}
+      </AnimatePresence>
+      <motion.header
+        initial={{ y: -70, opacity: 0 }}
+        animate={{ y: 0, opacity: 1 }}
+        transition={{ duration: 0.45, ease: EASINGS.awwwards }}
+        className="fixed top-4 left-0 right-0 z-50 flex justify-center px-4 sm:px-6 pointer-events-none"
+      >
       <nav
         aria-label="Navigation principale"
-        className={`pointer-events-auto w-full max-w-6xl rounded-full transition-all duration-300 flex items-center justify-between px-4 sm:px-6 py-2.5 sm:py-3 ${
+        className={`pointer-events-auto w-full max-w-6xl rounded-full transition-all duration-300 flex items-center justify-between px-4 sm:px-6 ${
           scrolled
-            ? "bg-[#0f0f11]/90 dark:bg-[#0f0f11]/90 bg-white/90 backdrop-blur-xl border border-white/10 dark:border-white/10 border-gray-200/80 shadow-[0_12px_40px_-10px_rgba(0,0,0,0.5)]"
-            : "bg-[#121214]/80 dark:bg-[#121214]/80 bg-white/80 backdrop-blur-lg border border-white/10 dark:border-white/10 border-gray-200/60 shadow-lg"
+            ? "py-2 sm:py-2 bg-[#0f0f11]/90 dark:bg-[#0f0f11]/90 bg-white/90 backdrop-blur-xl border border-white/10 dark:border-white/10 border-gray-200/80 shadow-[0_12px_40px_-10px_rgba(0,0,0,0.5)]"
+            : "py-2.5 sm:py-3 bg-[#121214]/80 dark:bg-[#121214]/80 bg-white/80 backdrop-blur-lg border border-white/10 dark:border-white/10 border-gray-200/60 shadow-lg"
         }`}
       >
         {/* Logo: Code mark with emerald dot + Kadmiel */}
@@ -234,7 +249,8 @@ export default function Navbar() {
                 key={link.label}
                 href={link.href}
                 onClick={(e) => handleNavClick(e, link.href)}
-                className={`relative text-xs xl:text-sm font-medium px-3.5 py-1.5 rounded-full transition-colors duration-200 ${
+                aria-current={isActive ? "location" : undefined}
+                className={`relative text-xs xl:text-sm font-medium px-3.5 py-1.5 rounded-full transition-colors duration-200 after:absolute after:left-3.5 after:right-3.5 after:bottom-1 after:h-px after:origin-left after:scale-x-0 after:bg-emerald-500/70 after:transition-transform after:duration-300 hover:after:scale-x-100 ${
                   isActive
                     ? "text-emerald-600 dark:text-emerald-400 font-semibold"
                     : "text-gray-700 dark:text-gray-300 hover:text-emerald-500 dark:hover:text-emerald-400"
@@ -314,6 +330,7 @@ export default function Navbar() {
                     key={link.label}
                     href={link.href}
                     onClick={(e) => handleNavClick(e, link.href)}
+                    aria-current={isActive ? "location" : undefined}
                     className={`px-4 py-3 rounded-2xl text-sm font-medium transition-all flex items-center justify-between ${
                       isActive
                         ? "text-emerald-400 bg-emerald-500/15 border border-emerald-500/30 font-semibold shadow-[0_0_15px_rgba(17,145,52,0.15)]"
@@ -348,6 +365,7 @@ export default function Navbar() {
           </motion.div>
         )}
       </AnimatePresence>
-    </motion.header>
+      </motion.header>
+    </>
   );
 }

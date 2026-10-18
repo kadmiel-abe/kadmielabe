@@ -7,7 +7,7 @@ import Magnetic from "@/components/motion/Magnetic";
 export default function Footer() {
   const scrollToTop = () => {
     if (typeof window !== "undefined" && (window as any).__lenis) {
-      (window as any).__lenis.scrollTo(0, { offset: 0, duration: 1.0 });
+      (window as any).__lenis.scrollTo(0, { offset: 0, duration: 0.6 });
     } else {
       window.scrollTo({ top: 0, behavior: "smooth" });
     }

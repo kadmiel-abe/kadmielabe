@@ -15,18 +15,18 @@ export default function Preloader() {
       return;
     }
 
-    // Fast and smooth counter
+    // Fast, crisp modern counter
     const interval = setInterval(() => {
       setProgress((prev) => {
         if (prev >= 100) {
           clearInterval(interval);
-          setTimeout(() => setLoading(false), 300);
+          setTimeout(() => setLoading(false), 120);
           return 100;
         }
-        const diff = Math.floor(Math.random() * 15) + 8;
+        const diff = Math.floor(Math.random() * 22) + 15;
         return Math.min(prev + diff, 100);
       });
-    }, 45);
+    }, 25);
 
     return () => clearInterval(interval);
   }, [shouldReduceMotion]);
@@ -40,7 +40,7 @@ export default function Preloader() {
           exit={{
             y: "-100%",
             transition: {
-              duration: 0.85,
+              duration: 0.4,
               ease: EASINGS.awwwards,
             },
           }}
@@ -81,8 +81,8 @@ export default function Preloader() {
             {/* Linear Progress Bar */}
             <div className="w-48 sm:w-64 h-[2px] bg-white/10 rounded-full overflow-hidden relative mb-3">
               <motion.div
-                className="h-full bg-emerald-500 shadow-[0_0_10px_rgba(16,185,129,0.8)]"
-                style={{ width: `${progress}%` }}
+                className="h-full w-full origin-left bg-emerald-500 shadow-[0_0_10px_rgba(16,185,129,0.8)]"
+                style={{ scaleX: progress / 100 }}
                 transition={{ ease: "easeOut" }}
               />
             </div>

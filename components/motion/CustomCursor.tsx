@@ -13,9 +13,9 @@ export default function CustomCursor() {
   const mouseX = useMotionValue(-100);
   const mouseY = useMotionValue(-100);
 
-  // Smooth spring for follower ring
-  const springX = useSpring(mouseX, { stiffness: 450, damping: 28 });
-  const springY = useSpring(mouseY, { stiffness: 450, damping: 28 });
+  // Smooth and responsive spring for follower ring
+  const springX = useSpring(mouseX, { stiffness: 750, damping: 35 });
+  const springY = useSpring(mouseY, { stiffness: 750, damping: 35 });
 
   useEffect(() => {
     // Only run on non-touch devices with fine pointers
