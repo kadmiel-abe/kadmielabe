@@ -34,7 +34,7 @@ export const DURATIONS = {
 export const SPRINGS = {
   tactile: { type: "spring", stiffness: 450, damping: 28 } as const,
   gentle: { type: "spring", stiffness: 220, damping: 22 } as const,
-  smoothScroll: { stiffness: 250, damping: 28, restDelta: 0.001 } as const,
+  smoothScroll: { stiffness: 500, damping: 40, restDelta: 0.001 } as const,
 };
 
 // ---------------------------------------------------------------------------

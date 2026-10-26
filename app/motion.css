@@ -38,17 +38,14 @@
 /* ==========================================
  * 3. GPU OPTIMIZATION & WILL-CHANGE
  * ========================================== */
-.motion-gpu,
-header,
-section,
-article,
-button,
-a,
-input,
-textarea,
-select {
+.motion-gpu {
+  transform: translateZ(0);
   backface-visibility: hidden;
-  -webkit-font-smoothing: subpixel-antialiased;
+}
+
+/* Paint containment to prevent offscreen repaints during scroll */
+main {
+  contain: paint;
 }
 
 /* ==========================================

@@ -106,14 +106,25 @@ export default function Navbar() {
       setActiveSection(closestNavId);
     };
 
+    let ticking = false;
+    const handleScroll = () => {
+      if (!ticking) {
+        window.requestAnimationFrame(() => {
+          determineActiveSection();
+          ticking = false;
+        });
+        ticking = true;
+      }
+    };
+
     determineActiveSection();
 
-    window.addEventListener("scroll", determineActiveSection, { passive: true });
-    window.addEventListener("resize", determineActiveSection, { passive: true });
+    window.addEventListener("scroll", handleScroll, { passive: true });
+    window.addEventListener("resize", handleScroll, { passive: true });
 
     return () => {
-      window.removeEventListener("scroll", determineActiveSection);
-      window.removeEventListener("resize", determineActiveSection);
+      window.removeEventListener("scroll", handleScroll);
+      window.removeEventListener("resize", handleScroll);
       if (navTimerRef.current) clearTimeout(navTimerRef.current);
     };
   }, []);
@@ -357,7 +368,7 @@ export default function Navbar() {
                   rel="noopener noreferrer"
                   className="flex items-center justify-center gap-2 w-full py-3.5 rounded-full bg-emerald-500 hover:bg-emerald-400 text-black font-heading font-bold text-xs uppercase tracking-wider shadow-lg transition-transform active:scale-95"
                 >
-                  <span>Let&apos;s Talk on WhatsApp</span>
+                  <span>Discutons sur WhatsApp</span>
                   <ArrowUpRight className="w-4 h-4" />
                 </a>
               </div>

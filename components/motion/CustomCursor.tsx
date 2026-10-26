@@ -22,13 +22,22 @@ export default function CustomCursor() {
     const checkDesktop = () => {
       const isFinePointer = window.matchMedia("(pointer: fine)").matches;
       const isHoverCapable = window.matchMedia("(hover: hover)").matches;
-      setIsDesktop(isFinePointer && isHoverCapable && window.innerWidth >= 1024);
+      return isFinePointer && isHoverCapable && window.innerWidth >= 1024;
     };
 
-    checkDesktop();
-    window.addEventListener("resize", checkDesktop);
+    if (!checkDesktop()) {
+      setIsDesktop(false);
+      return;
+    }
 
-    // Utilisation d'un ref pour éviter la re-registration des listeners à chaque changement de isVisible
+    setIsDesktop(true);
+
+    const handleResize = () => {
+      setIsDesktop(checkDesktop());
+    };
+
+    window.addEventListener("resize", handleResize);
+
     const handleMouseMove = (e: MouseEvent) => {
       mouseX.set(e.clientX);
       mouseY.set(e.clientY);
@@ -41,21 +50,14 @@ export default function CustomCursor() {
     const handleMouseDown = () => setIsClicking(true);
     const handleMouseUp = () => setIsClicking(false);
 
-    // Detect clickable elements for cursor growth
+    // Detect clickable elements for cursor growth efficiently
     const handleOver = (e: MouseEvent) => {
-      const target = e.target as HTMLElement;
-      if (
-        target.closest("a") ||
-        target.closest("button") ||
-        target.closest("input") ||
-        target.closest("textarea") ||
-        target.closest("[role='button']") ||
-        target.closest(".interactive")
-      ) {
-        setIsHovered(true);
-      } else {
-        setIsHovered(false);
-      }
+      const target = e.target as HTMLElement | null;
+      if (!target || !target.closest) return;
+      const hovered = Boolean(
+        target.closest("a, button, input, textarea, [role='button'], .interactive")
+      );
+      setIsHovered((prev) => (prev !== hovered ? hovered : prev));
     };
 
     window.addEventListener("mousemove", handleMouseMove);
@@ -66,7 +68,7 @@ export default function CustomCursor() {
     window.addEventListener("mouseup", handleMouseUp);
 
     return () => {
-      window.removeEventListener("resize", checkDesktop);
+      window.removeEventListener("resize", handleResize);
       window.removeEventListener("mousemove", handleMouseMove);
       window.removeEventListener("mouseover", handleOver);
       document.removeEventListener("mouseenter", handleMouseEnter);

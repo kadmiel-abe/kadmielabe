@@ -18,26 +18,36 @@ export default function SmoothScroll() {
 
     if (prefersReducedMotion) return;
 
-    const lenis = new Lenis({
-      duration: 0.65,
-      easing: (t) => Math.min(1, 1.001 - Math.pow(2, -8 * t)),
-      smoothWheel: true,
-      wheelMultiplier: 1.1,
-      touchMultiplier: 1.2,
-    });
+    // Detect touch-first / mobile devices
+    const isTouch =
+      "ontouchstart" in window ||
+      navigator.maxTouchPoints > 0 ||
+      window.matchMedia("(pointer: coarse)").matches;
 
-    window.__lenis = lenis;
-
+    // On mobile touch devices, native 120Hz momentum scroll is optimal and lightweight
+    let lenis: Lenis | null = null;
     let rafId = 0;
 
-    function raf(time: number) {
-      lenis.raf(time);
+    if (!isTouch) {
+      lenis = new Lenis({
+        duration: 0.75,
+        easing: (t) => Math.min(1, 1.001 - Math.pow(2, -8 * t)),
+        smoothWheel: true,
+        wheelMultiplier: 1.0,
+        touchMultiplier: 0,
+      });
+
+      window.__lenis = lenis;
+
+      const raf = (time: number) => {
+        lenis?.raf(time);
+        rafId = requestAnimationFrame(raf);
+      };
+
       rafId = requestAnimationFrame(raf);
     }
 
-    rafId = requestAnimationFrame(raf);
-
-    // Synchronize anchor clicks from other elements with Lenis smooth scroll
+    // Synchronize anchor clicks smoothly across all devices
     const handleAnchorClick = (e: MouseEvent) => {
       if (e.defaultPrevented) return;
       const target = (e.target as HTMLElement).closest("a");
@@ -47,7 +57,17 @@ export default function SmoothScroll() {
         const element = document.querySelector(href);
         if (element) {
           e.preventDefault();
-          lenis.scrollTo(element as HTMLElement, { offset: -85 });
+          if (lenis) {
+            lenis.scrollTo(element as HTMLElement, { offset: -85 });
+          } else {
+            const navbarOffset = 85;
+            const elementPosition = element.getBoundingClientRect().top;
+            const offsetPosition = elementPosition + window.pageYOffset - navbarOffset;
+            window.scrollTo({
+              top: offsetPosition,
+              behavior: "smooth",
+            });
+          }
         }
       }
     };
@@ -55,10 +75,12 @@ export default function SmoothScroll() {
     document.addEventListener("click", handleAnchorClick);
 
     return () => {
-      cancelAnimationFrame(rafId);
+      if (rafId) cancelAnimationFrame(rafId);
       document.removeEventListener("click", handleAnchorClick);
-      delete window.__lenis;
-      lenis.destroy();
+      if (lenis) {
+        delete window.__lenis;
+        lenis.destroy();
+      }
     };
   }, []);
 

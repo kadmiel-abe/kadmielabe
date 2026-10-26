@@ -38,7 +38,7 @@ export default function Hero() {
     >
       {/* Subtle organic background mesh / radial aura */}
       <div
-        className="pointer-events-none absolute -top-40 left-1/2 -translate-x-1/2 w-[700px] sm:w-[900px] h-[500px] rounded-full bg-emerald-500/[0.08] dark:bg-emerald-500/[0.12] blur-[120px] -z-10"
+        className="pointer-events-none absolute -top-40 left-1/2 -translate-x-1/2 w-[700px] sm:w-[900px] h-[500px] rounded-full bg-emerald-500/[0.08] dark:bg-emerald-500/[0.12] blur-[100px] -z-10 transform-gpu will-change-transform"
         aria-hidden="true"
       />
       <div

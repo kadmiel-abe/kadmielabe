@@ -1,6 +1,6 @@
 "use client";
 
-import React from "react";
+import React, { useRef } from "react";
 import type { MouseEvent } from "react";
 import { motion, useReducedMotion, useSpring } from "framer-motion";
 import { ArrowUpRight, CheckCircle2 } from "lucide-react";
@@ -41,11 +41,22 @@ export function ProjectCard({
   const isEven = index % 2 === 0;
   const rotateX = useSpring(0, { stiffness: 180, damping: 24 });
   const rotateY = useSpring(0, { stiffness: 180, damping: 24 });
+  const boundsRef = useRef<{ left: number; top: number; width: number; height: number } | null>(null);
+
+  const handleMouseEnter = (event: MouseEvent<HTMLElement>) => {
+    if (shouldReduceMotion) return;
+    const bounds = event.currentTarget.getBoundingClientRect();
+    boundsRef.current = {
+      left: bounds.left,
+      top: bounds.top,
+      width: bounds.width,
+      height: bounds.height,
+    };
+  };
 
   const handleTilt = (event: MouseEvent<HTMLElement>) => {
-    if (shouldReduceMotion) return;
-
-    const bounds = event.currentTarget.getBoundingClientRect();
+    if (shouldReduceMotion || !boundsRef.current) return;
+    const bounds = boundsRef.current;
     const x = (event.clientX - bounds.left) / bounds.width;
     const y = (event.clientY - bounds.top) / bounds.height;
     rotateX.set((0.5 - y) * 4);
@@ -53,12 +64,14 @@ export function ProjectCard({
   };
 
   const resetTilt = () => {
+    boundsRef.current = null;
     rotateX.set(0);
     rotateY.set(0);
   };
 
   return (
     <motion.article
+      onMouseEnter={handleMouseEnter}
       onMouseMove={handleTilt}
       onMouseLeave={resetTilt}
       style={{

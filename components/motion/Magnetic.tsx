@@ -18,10 +18,23 @@ export default function Magnetic({
   const [position, setPosition] = useState({ x: 0, y: 0 });
   const shouldReduceMotion = useReducedMotion();
 
-  const handleMouseMove = (e: React.MouseEvent<HTMLDivElement>) => {
+  const rectRef = useRef<{ left: number; top: number; width: number; height: number } | null>(null);
+
+  const handleMouseEnter = () => {
     if (shouldReduceMotion || !ref.current) return;
+    const rect = ref.current.getBoundingClientRect();
+    rectRef.current = {
+      left: rect.left,
+      top: rect.top,
+      width: rect.width,
+      height: rect.height,
+    };
+  };
+
+  const handleMouseMove = (e: React.MouseEvent<HTMLDivElement>) => {
+    if (shouldReduceMotion || !rectRef.current) return;
     const { clientX, clientY } = e;
-    const { left, top, width, height } = ref.current.getBoundingClientRect();
+    const { left, top, width, height } = rectRef.current;
     const centerX = left + width / 2;
     const centerY = top + height / 2;
     const deltaX = (clientX - centerX) * strength;
@@ -30,6 +43,7 @@ export default function Magnetic({
   };
 
   const handleMouseLeave = () => {
+    rectRef.current = null;
     setPosition({ x: 0, y: 0 });
   };
 
@@ -40,6 +54,7 @@ export default function Magnetic({
   return (
     <motion.div
       ref={ref}
+      onMouseEnter={handleMouseEnter}
       onMouseMove={handleMouseMove}
       onMouseLeave={handleMouseLeave}
       animate={{ x: position.x, y: position.y }}

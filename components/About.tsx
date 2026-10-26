@@ -75,7 +75,7 @@ export default function About() {
     >
       {/* Background glow */}
       <div
-        className="pointer-events-none absolute -bottom-40 left-1/4 w-[500px] h-[500px] rounded-full bg-emerald-500/10 blur-[140px] -z-10"
+        className="pointer-events-none absolute -bottom-40 left-1/4 w-[500px] h-[500px] rounded-full bg-emerald-500/10 blur-[100px] -z-10 transform-gpu will-change-transform"
         aria-hidden="true"
       />
 
