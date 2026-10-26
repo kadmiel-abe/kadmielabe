@@ -88,7 +88,7 @@ export default function Hero() {
                     />
                     <text className="text-[9.5px] font-heading font-black uppercase tracking-[0.25em] fill-gray-900 dark:fill-gray-100">
                       <textPath href="#sealCirclePath" startOffset="0%">
-                        • HIRE ME • DISPONIBLE POUR PROJETS
+                        • DISPONIBLE • DEVIS SOUS 24H
                       </textPath>
                     </text>
                   </svg>
