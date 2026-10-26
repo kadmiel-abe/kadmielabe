@@ -1,4 +1,4 @@
-﻿"use client";
+"use client";
 
 import React from "react";
 import Image from "next/image";
@@ -88,7 +88,7 @@ export default function Hero() {
                     />
                     <text className="text-[9.5px] font-heading font-black uppercase tracking-[0.25em] fill-gray-900 dark:fill-gray-100">
                       <textPath href="#sealCirclePath" startOffset="0%">
-                        • DISPONIBLE •  H24
+                        • DISPONIBLE •  H24 • 7j/7
                       </textPath>
                     </text>
                   </svg>
