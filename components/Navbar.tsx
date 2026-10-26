@@ -293,7 +293,7 @@ export default function Navbar() {
               rel="noopener noreferrer"
               className="hidden sm:inline-flex items-center gap-2 px-5 py-2 rounded-full bg-emerald-600 text-white dark:bg-white dark:text-gray-950 hover:bg-white hover:text-emerald-600 dark:hover:bg-emerald-500 dark:hover:text-black font-heading font-bold text-xs uppercase tracking-wider transition-all duration-300 shadow-[0_4px_15px_rgba(0,0,0,0.15)] hover:shadow-pill-hover hover:scale-105 active:scale-95"
             >
-              <span>Let&apos;s Talk</span>
+              <span>Discutons</span>
               <div className="w-4 h-4 rounded-full bg-black/10 dark:bg-black/10 flex items-center justify-center">
                 <ArrowUpRight className="w-3 h-3 stroke-[2.5]" />
               </div>

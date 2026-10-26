@@ -148,7 +148,7 @@ export default function Hero() {
             transition={{ duration: 0.35, delay: 0.15, ease: "easeOut" }}
             className="mt-4 sm:mt-5 text-sm sm:text-lg md:text-xl font-medium text-gray-600 dark:text-gray-400 max-w-2xl mx-auto"
           >
-            Concepteur d&apos;applications SaaS et de plateformes B2B basé à Abidjan
+            Je conçois des solutions digitales sur mesure qui aident les entreprises à vendre plus et à gagner du temps.
           </motion.p>
         </div>
 
